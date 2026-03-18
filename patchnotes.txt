@@ -1,0 +1,42 @@
+# Patch Notes - Version 1.0
+
+## New
+
+* Added custom Pokemon Reborn Launcher
+* Added auto-update system
+* Added patch notes viewer
+* Added download progress with speed indicator
+* Added fullscreen UI with fade-in animation
+* Added background and logo support
+
+## Improvements
+
+* Improved launcher stability and startup behavior
+* Improved UI responsiveness during updates
+* Improved download handling and extraction system
+* Improved update detection logic
+
+## Fixes
+
+* Fixed online battles not working with AllGen Reborn
+* Fixed issues with german.dat not loading correctly
+* Fixed multiple translation inconsistencies
+* Fixed crashes related to missing or invalid Pokemon data
+* Fixed Pokedex crashes caused by invalid entries
+* Fixed issues with custom forms not being recognized
+* Fixed problems with mod compatibility
+* Fixed update system errors (server unreachable, extraction issues)
+* Fixed UI bugs (progress bar flicker, layout shifting)
+
+## Technical
+
+* Added safe extraction system (prevents unwanted files)
+* Added cancel update functionality
+* Improved file handling for PyInstaller builds
+* Fixed path issues in onefile mode (_MEIPASS)
+* Improved resource loading (icons, images)
+
+## Known Issues
+
+* Launcher cannot update itself (requires external updater)
+* SSL verification is disabled (not recommended for production)

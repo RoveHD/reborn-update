@@ -77,25 +77,10 @@ Auto update can be enabled in settings:
 
 ---
 
-## Build (PyInstaller)
-
-Recommended settings:
-
-```
---onefile
---noconsole
---add-data "background.png;."
---add-data "logo.png;."
---add-data "icon.ico;."
-```
-
----
-
 ## Notes
 
 * The launcher cannot update itself while running
 * For self-updating, a separate updater is required
-* SSL verification is disabled (`verify=False`) → not recommended for production
 
 ---
 

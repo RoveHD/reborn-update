@@ -9,12 +9,12 @@ ROOT = Path(__file__).resolve().parents[1]
 WORKSPACE = ROOT.parent
 VERSION = '7.3.1'
 SOURCE = ROOT / 'artifacts/game-source-7.0.0'
-STAGE = ROOT / 'artifacts/game-source-7.3.1-final'
-OUT = ROOT / 'dist/release-game-7.3.1-final'
+STAGE = ROOT / 'artifacts/game-source-7.3.1-release'
+OUT = ROOT / 'dist/release-game-7.3.1-release'
 FIXES = ['patch/Mods/Party.rb', 'patch/Mods/RE - Box-Markierungen.rb',
          'patch/Mods/zzLocalGermanVisible.rb', 'patch/Mods/RE - Beutel-Sortierung-und-TM-Infos.rb',
          'intl.txt', 'Data/german.dat', 'patch/Mods/RE - Deutsche-Zusatztexte.rb',
-         'patch/Mods/zzzz_RE_BattleSound_099_Compatibility.rb']
+         'patch/Mods/zzzz_RE_BattleSound_099_Compatibility.rb', 'patch/Mods/Battle_Scene.rb']
 
 def read(path):
     return json.loads(path.read_text(encoding='utf-8-sig'))
@@ -53,11 +53,11 @@ def main():
             tested = ROOT / 'game-hotfixes/7.3.1' / relative
         else:
             tested = WORKSPACE / 'update-0.9.9-20261025/working-game' / relative
-        if relative in FIXES[:4] or relative.endswith('RE - Deutsche-Zusatztexte.rb'):
+        if relative in FIXES[:4] or relative.endswith('RE - Deutsche-Zusatztexte.rb') or relative.endswith('Battle_Scene.rb'):
             active = Path('Z:/Pokemon und  Citra/Pokemon/Reborn-19.5.42_Allgen_0.9.5') / relative
             assert tested.read_bytes() == active.read_bytes(), 'Active/tested copies differ: ' + relative
         shutil.copy2(tested, STAGE / relative)
-    print('Building and checking the complete update ZIP (eight reviewed changed paths).', flush=True)
+    print('Building and checking the complete update ZIP (nine reviewed changed paths).', flush=True)
     notes = (ROOT / 'release-notes-game-7.3.1.md').read_text(encoding='utf-8')
     package.make_release(STAGE, launcher, OUT, VERSION, notes, previous_archives=[previous])
     new_inventory = read(OUT / 'game-files.json')

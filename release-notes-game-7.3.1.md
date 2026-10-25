@@ -1,8 +1,9 @@
-# Spielhotfix 7.3.1 – Pokémon-Menüs, Street-Namen und Kampf-Sounds
+# Spielhotfix 7.3.1 – Pokémon-Menüs, Geschlechtssymbole, Street-Namen und Kampf-Sounds
 
 - „Erneut erlernen“ erscheint wieder im Teammenü, wenn es für das Pokémon bereits freigeschaltet ist. Alte Speicherformate werden unterstützt; die übrigen Menüeinträge bleiben korrekt zugeordnet.
 - Box- und Info-Markierungen werden als klare Kreis-, Quadrat-, Dreieck- und Rautensymbole gezeichnet. Das Auswahlmenü verwendet die normale Spielschrift und passt seine Breite an die Bezeichnungen an.
 - Pokédex-Labels und TM-Infos im Beutel verwenden ebenfalls die normale Spielschrift. Die Textbereiche wurden entsprechend angepasst; künstliche Schriftverkleinerungen entfallen.
+- Geschlechtssymbole im Teammenü und in den Kampfleisten sind wieder vollständig sichtbar. Positionen für Spieler, Gegner und Doppelkämpfe sind angepasst; geschlechtslose Pokémon und Illusion werden berücksichtigt.
 - Straßennamen wie „10th Street“, „Main Street“ und „Jubilife Street“ behalten ihre englischen Eigennamen. Normale Dialogwörter bleiben deutsch. Die Korrektur ist auch gegen ältere oder neu kompilierte deutsche Sprachdateien abgesichert.
 - Der Absturz „wrong number of arguments (given 4, expected 3)“ beim Schaden durch Attacken mit „Battle Sound Effects v1.1“ ist behoben. Der gezielte Kompatibilitätsfix erhält die installierte Sound-Mod; er ersetzt keine vollständige Portierung ihrer übrigen Kampfmethoden. Ohne diese alte Mod bleibt die Argumentübergabe unverändert.
 

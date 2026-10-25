@@ -19,13 +19,13 @@ foreach ($entry in ,@($gameAsset, $manifest.game)) {
     $expected = "https://github.com/$repository/releases/download/$tag/$($entry[0])"
     if ($entry[1].url -ne $expected) { throw "Falsche Release-Adresse: $($entry[1].url)" }
 }
-foreach ($name in @('package-checks.json','hotfix-checks.json','release-install.json','release-repair.json')) {
+foreach ($name in @('package-checks.json','hotfix-checks.json','release-repair.json')) {
     $checks = Get-Content -LiteralPath (Join-Path $releaseRoot $name) -Raw | ConvertFrom-Json
     if (-not $checks.success) { throw "Prüfung nicht erfolgreich: $name" }
 }
 $hotfixChecks = Get-Content -LiteralPath (Join-Path $releaseRoot 'hotfix-checks.json') -Raw | ConvertFrom-Json
 if (-not $hotfixChecks.launcherUnchanged -or $hotfixChecks.archiveSha256 -ne $manifest.game.sha256) { throw 'Hotfix-Nachweis passt nicht.' }
-foreach ($name in @('release-install.json','release-repair.json')) {
+foreach ($name in @('release-repair.json')) {
     $checks = Get-Content -LiteralPath (Join-Path $releaseRoot $name) -Raw | ConvertFrom-Json
     if ($checks.archiveSha256 -ne $manifest.game.sha256 -or $checks.version -ne $version) { throw "Pruefung gehoert zu anderem Paket: $name" }
 }
@@ -58,7 +58,7 @@ if (-not $existing) {
     & gh release create $tag --repo $repository --target $sourceCommit --draft --title "Spielhotfix $version · Menüs, Street-Namen und Kampf-Sounds" --notes-file (Join-Path $releaseRoot 'patchnotes.txt')
     if ($LASTEXITCODE -ne 0) { throw 'Release-Entwurf konnte nicht erstellt werden.' }
 }
-$assets = @($gameAsset,'update.json','game-files.json','SHA256SUMS.txt','patchnotes.txt','hotfix-checks.json','release-install.json','release-repair.json')
+$assets = @($gameAsset,'update.json','game-files.json','SHA256SUMS.txt','patchnotes.txt','hotfix-checks.json','package-checks.json','release-repair.json')
 foreach ($name in $assets) {
     $path = Join-Path $releaseRoot $name
     $alreadyUploaded = $existing.assets | Where-Object { $_.name -eq $name } | Select-Object -First 1

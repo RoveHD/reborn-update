@@ -67,19 +67,39 @@ public sealed class UpdateService : IDisposable
         string localVersion = File.Exists(versionPath) ? await File.ReadAllTextAsync(versionPath, cancellationToken) : "0.0.0";
         if (ReleaseVersion.Parse(localVersion).CompareTo(ReleaseVersion.Parse(manifest.Game.Version)) > 0)
             throw new InvalidOperationException("Eine neuere Reborn-Version ist bereits installiert. Eine Rückstufung wird nicht durchgeführt.");
+        GameHotfix? hotfix = null;
+        // Same-release repair always uses the full package. A delta is safe only
+        // for its exact declared base, including every file it will replace.
+        if (ReleaseVersion.Parse(localVersion).CompareTo(ReleaseVersion.Parse(manifest.Game.Version)) < 0)
+        {
+            var candidate = manifest.GameHotfixes.FirstOrDefault(h => h.FromVersion.Equals(localVersion.Trim(), StringComparison.Ordinal));
+            if (candidate is not null && await Task.Run(() => candidate.MatchesBase(directory, versionPath, cancellationToken), cancellationToken))
+                hotfix = candidate;
+        }
+        UpdateAsset asset = hotfix?.Asset ?? manifest.Game;
+        IProgress<UpdateProgress> selectedProgress = hotfix is null ? progress : new HotfixProgress(progress);
         string stage = installer.CreateStage();
         try
         {
-            progress.Report(new(UpdateStage.Checking, null, 0, null, 0, "Update wird vorbereitet …"));
+            selectedProgress.Report(new(UpdateStage.Checking, null, 0, null, 0, "Update wird vorbereitet …"));
             var drive = new DriveInfo(Path.GetPathRoot(directory)!);
-            if (drive.AvailableFreeSpace < manifest.Game.Size * 3) throw new IOException("Zu wenig freier Speicher für Download und Sicherung.");
+            long requiredSpace = hotfix?.RequiredSpace(directory) ?? checked(asset.Size * 3);
+            if (drive.AvailableFreeSpace < requiredSpace) throw new IOException("Zu wenig freier Speicher für Download und Sicherung.");
             string archive = Path.Combine(stage, "game.zip");
-            await download.DownloadAsync(manifest.Game, archive, progress, cancellationToken);
-            string payload = await Task.Run(() => SafePaths.Extract(archive, Path.Combine(stage, "payload"), progress, cancellationToken), cancellationToken);
-            if (!File.Exists(SafePaths.Under(payload, settings.GameExecutable))) throw new InvalidDataException("Das Update enthält keine Game.exe im Spielordner.");
+            await download.DownloadAsync(asset, archive, selectedProgress, cancellationToken);
+            string payload = await Task.Run(() => hotfix is null
+                ? SafePaths.Extract(archive, Path.Combine(stage, "payload"), selectedProgress, cancellationToken)
+                : hotfix.ExtractVerified(archive, Path.Combine(stage, "payload"), selectedProgress, cancellationToken), cancellationToken);
+            if (hotfix is null && !File.Exists(SafePaths.Under(payload, settings.GameExecutable))) throw new InvalidDataException("Das Update enthält keine Game.exe im Spielordner.");
             GameInstaller.EnsureGameStopped(directory, settings.GameExecutable);
-            await Task.Run(() => installer.Install(payload, settings.ResolveLocalVersionPath(), manifest.Game.Version, manifest.Game.RemovedFiles, progress, cancellationToken, beforeMutation: () => GameInstaller.EnsureGameStopped(directory, settings.GameExecutable)), cancellationToken);
-            progress.Report(new(UpdateStage.Complete, 100, 0, null, 0, $"Reborn {manifest.Game.Version} ist installiert."));
+            await Task.Run(() => installer.Install(payload, versionPath, manifest.Game.Version,
+                hotfix is null ? manifest.Game.RemovedFiles : [], selectedProgress, cancellationToken, beforeMutation: () =>
+                {
+                    GameInstaller.EnsureGameStopped(directory, settings.GameExecutable);
+                    if (hotfix is not null && !hotfix.MatchesBase(directory, versionPath, cancellationToken))
+                        throw new InvalidOperationException("Die Hotfix-Ausgangsdateien wurden während des Updates geändert. Bitte erneut prüfen.");
+                }), cancellationToken);
+            selectedProgress.Report(new(UpdateStage.Complete, 100, 0, null, 0, $"Reborn {manifest.Game.Version} ist installiert."));
         }
         finally { await Task.Run(() => GameInstaller.TryClean(stage)); }
     }
@@ -117,4 +137,8 @@ public sealed class UpdateService : IDisposable
     }
     public static bool IsDifferentVersion(string localVersion, string remoteVersion) => ReleaseVersion.Parse(remoteVersion).CompareTo(ReleaseVersion.Parse(localVersion)) > 0;
     public void Dispose() => download.Dispose();
+    private sealed class HotfixProgress(IProgress<UpdateProgress> target) : IProgress<UpdateProgress>
+    {
+        public void Report(UpdateProgress value) => target.Report(value with { Message = "Hotfix: " + value.Message });
+    }
 }

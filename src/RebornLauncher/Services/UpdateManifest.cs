@@ -42,6 +42,7 @@ public sealed class UpdateManifest
     public int SchemaVersion { get; set; }
     public UpdateAsset Launcher { get; set; } = new();
     public UpdateAsset Game { get; set; } = new();
+    public List<GameHotfix> GameHotfixes { get; set; } = [];
     public string PatchNotes { get; set; } = "";
     public static UpdateManifest Parse(string json)
     {
@@ -50,6 +51,14 @@ public sealed class UpdateManifest
         if (manifest.SchemaVersion != 1) throw new InvalidDataException("Dieses Update-Format wird nicht unterstützt.");
         manifest.Launcher.Validate();
         manifest.Game.Validate();
+        if (manifest.GameHotfixes is null) throw new InvalidDataException("Ungültige Hotfix-Liste.");
+        var bases = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var hotfix in manifest.GameHotfixes)
+        {
+            if (hotfix is null) throw new InvalidDataException("Leerer Hotfix-Eintrag.");
+            hotfix.Validate(manifest.Game.Version);
+            if (!bases.Add(hotfix.FromVersion)) throw new InvalidDataException("Doppelte Hotfix-Ausgangsversion.");
+        }
         return manifest;
     }
 }

@@ -59,6 +59,14 @@ if (-not $existing) {
     if ($LASTEXITCODE -ne 0) { throw 'Release-Entwurf konnte nicht erstellt werden.' }
 }
 $assets = @($gameAsset,'update.json','game-files.json','SHA256SUMS.txt','patchnotes.txt','hotfix-checks.json','package-checks.json','release-repair.json')
+if (Test-Path -LiteralPath (Join-Path $releaseRoot 'catch-checks.json')) { $assets += 'catch-checks.json' }
+foreach ($hotfix in $manifest.gameHotfixes) {
+    $name = [IO.Path]::GetFileName(([Uri]$hotfix.url).AbsolutePath)
+    if ($hotfix.version -ne $version -or $hotfix.url -ne "https://github.com/$repository/releases/download/$tag/$name") { throw 'Falsche Hotfix-Adresse oder Zielversion.' }
+    $path = Join-Path $releaseRoot $name
+    if ((Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash -ne $hotfix.sha256 -or (Get-Item -LiteralPath $path).Length -ne $hotfix.size) { throw 'Hotfix-Pruefsumme stimmt nicht.' }
+    $assets += $name
+}
 foreach ($name in $assets) {
     $path = Join-Path $releaseRoot $name
     $alreadyUploaded = $existing.assets | Where-Object { $_.name -eq $name } | Select-Object -First 1

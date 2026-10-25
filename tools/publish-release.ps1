@@ -61,10 +61,20 @@ if (-not $existing) {
 }
 $assets = @('launcher.exe',$gameAsset,'update.json','game-files.json','SHA256SUMS.txt','ERSTE-SCHRITTE.txt')
 foreach ($name in $assets) {
+    $path = Join-Path $releaseRoot $name
+    $alreadyUploaded = $existing.assets | Where-Object { $_.name -eq $name } | Select-Object -First 1
+    $digest = 'sha256:' + (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()
+    if ($alreadyUploaded -and $alreadyUploaded.state -eq 'uploaded' -and
+        $alreadyUploaded.size -eq (Get-Item -LiteralPath $path).Length -and $alreadyUploaded.digest -eq $digest) {
+        Write-Output "Bereits vollständig hochgeladen und geprüft: $name"
+        continue
+    }
     & gh release upload $tag (Join-Path $releaseRoot $name) --repo $repository --clobber
     if ($LASTEXITCODE -ne 0) { throw "Upload fehlgeschlagen: $name. Entwurf bleibt unveröffentlicht." }
 }
-$release = Invoke-GhJson @('api', "repos/$repository/releases/tags/$tag")
+# GitHub's by-tag endpoint does not expose an unpublished draft reliably.
+$release = (Invoke-GhJson @('api', "repos/$repository/releases?per_page=100")) | Where-Object { $_.tag_name -eq $tag } | Select-Object -First 1
+if (-not $release -or -not $release.draft) { throw 'Der erwartete Release-Entwurf fehlt.' }
 foreach ($name in $assets) {
     $asset = $release.assets | Where-Object { $_.name -eq $name } | Select-Object -First 1
     $path = Join-Path $releaseRoot $name

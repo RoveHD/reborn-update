@@ -7,10 +7,10 @@
     "size": 85890805
   },
   "game": {
-    "version": "7.0.0",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.0.0/Reborn-AllGen-0.9.9.zip",
-    "sha256": "727f1580fd7faa30ea73deb32e223d9c829fe8b69f179322090f12c345f9f0ec",
-    "size": 1476579974,
+    "version": "7.3.1",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.1/Reborn-AllGen-0.9.9.zip",
+    "sha256": "1bc86c047f6c2b7a96e12f5478811e6bf714e6ad3780c14db3f0306850365c97",
+    "size": 1476583417,
     "removedFiles": [
       {
         "path": "Audio/SE/003Cry_2.ogg",
@@ -3121,6 +3121,18 @@
         "sha256": "bb9f119a9b0a167ec808b5a27925ccaf9f0b60b25cb4932eab9491f271913e30"
       },
       {
+        "path": "Graphics/Characters/egg21.png",
+        "sha256": "5464665346b1ada9494395328e8219651d1d687b98426330d0ced6da4616ae5d"
+      },
+      {
+        "path": "Graphics/Characters/egg22.png",
+        "sha256": "028ca2e0dc16b85d644126d4ad950d1e1393591ec673dfbe45ccb2adb07e6829"
+      },
+      {
+        "path": "Graphics/Characters/egg23.png",
+        "sha256": "91b08632c255ab3bf6f27bae9d9bd77d96ed6d69bdd4a3199bc350a14e05214f"
+      },
+      {
         "path": "Graphics/Characters/Gen9 Armor.png",
         "sha256": "3e925a96e4087c8fd1ee3317b7c0545a3ee25615f51e3f9ccc724f0649a09b61"
       },
@@ -3245,26 +3257,6 @@
         "sha256": "e4701d334fcf7770e50a6710dcca93c4e8302b044777fcf66a551b6b98ed7d30"
       },
       {
-        "path": "Graphics/Characters/Statue hzoroark.png",
-        "sha256": "ba58d3cf4670a5be3215c7d8e4d85f0831bf84b722c2c065a7249db9db82bc5f"
-      },
-      {
-        "path": "Graphics/Characters/egg21.png",
-        "sha256": "5464665346b1ada9494395328e8219651d1d687b98426330d0ced6da4616ae5d"
-      },
-      {
-        "path": "Graphics/Characters/egg22.png",
-        "sha256": "028ca2e0dc16b85d644126d4ad950d1e1393591ec673dfbe45ccb2adb07e6829"
-      },
-      {
-        "path": "Graphics/Characters/egg23.png",
-        "sha256": "91b08632c255ab3bf6f27bae9d9bd77d96ed6d69bdd4a3199bc350a14e05214f"
-      },
-      {
-        "path": "Graphics/Characters/pkmn_Eeveon.png",
-        "sha256": "adf2b646ed91078fde1028b9f7a2b8cdd7b69cdf418da5bd6c534fac7293d1dc"
-      },
-      {
         "path": "Graphics/Characters/pkmn_arbok.png",
         "sha256": "7a2164d7047ae5ba2049dffe7ae468e60cba39b03f43e52af7751658d9ed43d1"
       },
@@ -3339,6 +3331,10 @@
       {
         "path": "Graphics/Characters/pkmn_dreepy.png",
         "sha256": "0c90a2cac65fdec4ed34cb2a99166a7f62adcc6efe09ff989117b31e45db6e72"
+      },
+      {
+        "path": "Graphics/Characters/pkmn_Eeveon.png",
+        "sha256": "adf2b646ed91078fde1028b9f7a2b8cdd7b69cdf418da5bd6c534fac7293d1dc"
       },
       {
         "path": "Graphics/Characters/pkmn_electrode_1.png",
@@ -3763,6 +3759,10 @@
       {
         "path": "Graphics/Characters/statue haxorus.png",
         "sha256": "1058a8ae54c635cc5983dba5f6ff7534e18ae380dc68da21195423519c86fcb2"
+      },
+      {
+        "path": "Graphics/Characters/Statue hzoroark.png",
+        "sha256": "ba58d3cf4670a5be3215c7d8e4d85f0831bf84b722c2c065a7249db9db82bc5f"
       },
       {
         "path": "Graphics/Characters/statue noivern.png",
@@ -6320,6 +6320,11 @@
         "replacedBy": "patch/Mods/RE - Sprachauswahl.rb"
       },
       {
+        "path": "patch/Mods/mitnahme.rb",
+        "sha256": "85e24d90f956f17ac40c27b3360175f579a43e540d178e147f5b98b27b5ab8f7",
+        "replacedBy": "patch/Mods/RE - Mitnahme-Overworld.rb"
+      },
+      {
         "path": "patch/Mods/PokemonFormItems.rb",
         "sha256": "91dc8f7af948e4462ece9fe0a74f95b8ef48f765dc851394e14572af6b1cf1af",
         "replacedBy": "patch/Mods/RE - Begleiter-Formen.rb"
@@ -6335,24 +6340,14 @@
         "replacedBy": "patch/Mods/RE - PulseDex-Versteckte-Bilder.rb"
       },
       {
-        "path": "patch/Mods/Retired Mega Stone Compatibility.rb",
-        "sha256": "49f0d1482d6c504d48ffc7725c7c6019b379e683c3f7429ce2d3a7518ba10ad7",
-        "replacedBy": "patch/Mods/RE - Alte-Megasteine-Kompatibilitaet.rb"
-      },
-      {
-        "path": "patch/Mods/TimeWeather.rb",
-        "sha256": "28533c871174216ffc405fbe662ae5cbf29b4da07d2240901ca5575f182c8a42",
-        "replacedBy": "patch/Mods/RE - Zeit-und-Wetter-Fixes.rb"
-      },
-      {
-        "path": "patch/Mods/mitnahme.rb",
-        "sha256": "85e24d90f956f17ac40c27b3360175f579a43e540d178e147f5b98b27b5ab8f7",
-        "replacedBy": "patch/Mods/RE - Mitnahme-Overworld.rb"
-      },
-      {
         "path": "patch/Mods/randomwildmusic.rb",
         "sha256": "e0a94dd4d7db9b7c9fcc6d0f1c18e3e570336ee98f5d8583fa3f7ef13ff55abb",
         "replacedBy": "patch/Mods/RE - Zufallsmusik-Wildkaempfe.rb"
+      },
+      {
+        "path": "patch/Mods/Retired Mega Stone Compatibility.rb",
+        "sha256": "49f0d1482d6c504d48ffc7725c7c6019b379e683c3f7429ce2d3a7518ba10ad7",
+        "replacedBy": "patch/Mods/RE - Alte-Megasteine-Kompatibilitaet.rb"
       },
       {
         "path": "patch/Mods/smartrepel.rb",
@@ -6360,18 +6355,13 @@
         "replacedBy": "patch/Mods/RE - Begegnungen-Neue-Pokemon.rb"
       },
       {
+        "path": "patch/Mods/TimeWeather.rb",
+        "sha256": "28533c871174216ffc405fbe662ae5cbf29b4da07d2240901ca5575f182c8a42",
+        "replacedBy": "patch/Mods/RE - Zeit-und-Wetter-Fixes.rb"
+      },
+      {
         "path": "patch/Mods/zzLocalGermanText.rb",
         "sha256": "010a86a5e186794567ed75034d11a0ee7760979d22b59cb75c400fc70dcb1107",
-        "replacedBy": "patch/Mods/RE - Deutsche-Zusatztexte.rb"
-      },
-      {
-        "path": "patch/Mods/zzLocalGermanText.rb",
-        "sha256": "a3ecfc9d3f59baaa34b985c6509a355b1d31d517fc0c381943a42269e048ff13",
-        "replacedBy": "patch/Mods/RE - Deutsche-Zusatztexte.rb"
-      },
-      {
-        "path": "patch/Mods/zzLocalGermanText.rb",
-        "sha256": "a920efdcb90e4d9a5fa9db96f67a84ac40869e04429dddb51e264db42d941cb3",
         "replacedBy": "patch/Mods/RE - Deutsche-Zusatztexte.rb"
       },
       {
@@ -6385,11 +6375,21 @@
         "replacedBy": "patch/Mods/RE - Deutsche-Zusatztexte.rb"
       },
       {
+        "path": "patch/Mods/zzLocalGermanText.rb",
+        "sha256": "a3ecfc9d3f59baaa34b985c6509a355b1d31d517fc0c381943a42269e048ff13",
+        "replacedBy": "patch/Mods/RE - Deutsche-Zusatztexte.rb"
+      },
+      {
+        "path": "patch/Mods/zzLocalGermanText.rb",
+        "sha256": "a920efdcb90e4d9a5fa9db96f67a84ac40869e04429dddb51e264db42d941cb3",
+        "replacedBy": "patch/Mods/RE - Deutsche-Zusatztexte.rb"
+      },
+      {
         "path": "patch/Mods/zzPokedexFrontMenu.rb",
         "sha256": "5975798f5552c7c6aa13be965819eb8a51e4705773d61d55f26c68afe5d753ac",
         "replacedBy": "patch/Mods/RE - Pokedex-Ansichtsauswahl.rb"
       }
     ]
   },
-  "patchNotes": "# Launcher 7.3.0 – Lebendige Jahreszeiten\n\nDie Jahreszeiten-Themes bekommen anklickbare Szenenobjekte, natürlichere Pokémon-Platzierungen und dezente Soundeffekte.\n\n- Die Hauptansicht kommt ohne Scrollen aus. Szene, Spielstart, Versionswahl und Einstellungen bleiben auch im kleinen Fenster erreichbar; lange Versionshinweise können separat gescrollt werden.\n- Jedes Theme hat eine eigene Szenenkomposition mit vollständig sichtbaren Pokémon und erreichbaren Props. Kleine Begleiter reagieren auf Klicks.\n- Eine begrenzte Bühnenhöhe, ein größeres Logo und kompakte Buttons halten Spielstart und Patchnotizen auch im maximierten Fenster gut sichtbar.\n- Jahreszeitliche Objekte wie Schneemänner, Raketen, Eier, Kürbisse, Geschenke und Wasserballons reagieren mit passenden Animationen und begrenzten Partikeleffekten.\n- Zum Jahreswechsel steigen zufällige Feuerwerksraketen über die gesamte Fensterfläche auf. Fünf Explosionsmuster mit Leuchtspuren berücksichtigen die Effekt- und Bewegungseinstellungen; die Bedienung bleibt anklickbar.\n- Im Dialog „Lebendige Jahreszeiten“ lassen sich Dekorationen, Interaktionen, Partikel, Animationen und Event-Geräusche einstellen. Event-Geräusche sind zunächst ausgeschaltet.\n- Halloween bietet zwölf seltene Ambient-Sounds: verschiedene Geisterlachen, Kichern, Flüstern, Wind und einzelne besondere Geräusche. Ein eigener Schalter und drei Häufigkeitsstufen steuern die Atmosphäre. Dieselbe Variante wiederholt sich frühestens nach 15 aktiven Minuten. Beim Minimieren, Spielstart oder Abschalten der Event-Geräusche verstummen die Ambient-Sounds.\n- Das Logo wird vollständig dargestellt; maximierte Fenster berücksichtigen die Windows-Taskleiste.\n- Schnee-, Wasser- und andere Dekoflächen laufen an den Rändern weich aus. Haupt-Pokémon werden nicht mehr am Bühnenrand abgeschnitten.\n- Die Darstellung lässt sich dauerhaft auf Nacht oder Tag stellen; eine automatische Umschaltung bleibt wählbar. Die Auswahl wird gespeichert.\n- Tag und Nacht gehen über 2,8 Sekunden weich ineinander über. Tagesfarben sind gedämpfter; reduzierte Bewegung schaltet die Überblendung ab.\n\nDieses Release aktualisiert den Launcher. Spielpaket, eigene Mods, Übersetzungen, Grafiken und Spielstände bleiben unverändert."
+  "patchNotes": "# Spielhotfix 7.3.1 – Pokémon-Menüs, Geschlechtssymbole, Street-Namen und Kampf-Sounds\n\n- „Erneut erlernen“ erscheint wieder im Teammenü, wenn es für das Pokémon bereits freigeschaltet ist. Alte Speicherformate werden unterstützt; die übrigen Menüeinträge bleiben korrekt zugeordnet.\n- Box- und Info-Markierungen werden als klare Kreis-, Quadrat-, Dreieck- und Rautensymbole gezeichnet. Das Auswahlmenü verwendet die normale Spielschrift und passt seine Breite an die Bezeichnungen an.\n- Pokédex-Labels und TM-Infos im Beutel verwenden ebenfalls die normale Spielschrift. Die Textbereiche wurden entsprechend angepasst; künstliche Schriftverkleinerungen entfallen.\n- Geschlechtssymbole im Teammenü und in den Kampfleisten sind wieder vollständig sichtbar. Positionen für Spieler, Gegner und Doppelkämpfe sind angepasst; geschlechtslose Pokémon und Illusion werden berücksichtigt.\n- Straßennamen wie „10th Street“, „Main Street“ und „Jubilife Street“ behalten ihre englischen Eigennamen. Normale Dialogwörter bleiben deutsch. Die Korrektur ist auch gegen ältere oder neu kompilierte deutsche Sprachdateien abgesichert.\n- Der Absturz „wrong number of arguments (given 4, expected 3)“ beim Schaden durch Attacken mit „Battle Sound Effects v1.1“ ist behoben. Der gezielte Kompatibilitätsfix erhält die installierte Sound-Mod; er ersetzt keine vollständige Portierung ihrer übrigen Kampfmethoden. Ohne diese alte Mod bleibt die Argumentübergabe unverändert.\n\nDie Spielbasis bleibt AllGen 0.9.9. Der Launcher bleibt bei Version 7.3.0. Spielstände, persönliche Einstellungen und eigene zusätzliche Mods werden vom Update beibehalten.\n\nNach der Installation das Spiel vollständig neu starten.\n"
 }

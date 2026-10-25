@@ -1,17 +1,13 @@
-# Launcher 7.3.0 – Lebendige Jahreszeiten
+# Spielhotfix 7.3.1 – Pokémon-Menüs, Geschlechtssymbole, Street-Namen und Kampf-Sounds
 
-Die Jahreszeiten-Themes bekommen anklickbare Szenenobjekte, natürlichere Pokémon-Platzierungen und dezente Soundeffekte.
+- „Erneut erlernen“ erscheint wieder im Teammenü, wenn es für das Pokémon bereits freigeschaltet ist. Alte Speicherformate werden unterstützt; die übrigen Menüeinträge bleiben korrekt zugeordnet.
+- Box- und Info-Markierungen werden als klare Kreis-, Quadrat-, Dreieck- und Rautensymbole gezeichnet. Das Auswahlmenü verwendet die normale Spielschrift und passt seine Breite an die Bezeichnungen an.
+- Pokédex-Labels und TM-Infos im Beutel verwenden ebenfalls die normale Spielschrift. Die Textbereiche wurden entsprechend angepasst; künstliche Schriftverkleinerungen entfallen.
+- Geschlechtssymbole im Teammenü und in den Kampfleisten sind wieder vollständig sichtbar. Positionen für Spieler, Gegner und Doppelkämpfe sind angepasst; geschlechtslose Pokémon und Illusion werden berücksichtigt.
+- Straßennamen wie „10th Street“, „Main Street“ und „Jubilife Street“ behalten ihre englischen Eigennamen. Normale Dialogwörter bleiben deutsch. Die Korrektur ist auch gegen ältere oder neu kompilierte deutsche Sprachdateien abgesichert.
+- Der Absturz „wrong number of arguments (given 4, expected 3)“ beim Schaden durch Attacken mit „Battle Sound Effects v1.1“ ist behoben. Der gezielte Kompatibilitätsfix erhält die installierte Sound-Mod; er ersetzt keine vollständige Portierung ihrer übrigen Kampfmethoden. Ohne diese alte Mod bleibt die Argumentübergabe unverändert.
 
-- Die Hauptansicht kommt ohne Scrollen aus. Szene, Spielstart, Versionswahl und Einstellungen bleiben auch im kleinen Fenster erreichbar; lange Versionshinweise können separat gescrollt werden.
-- Jedes Theme hat eine eigene Szenenkomposition mit vollständig sichtbaren Pokémon und erreichbaren Props. Kleine Begleiter reagieren auf Klicks.
-- Eine begrenzte Bühnenhöhe, ein größeres Logo und kompakte Buttons halten Spielstart und Patchnotizen auch im maximierten Fenster gut sichtbar.
-- Jahreszeitliche Objekte wie Schneemänner, Raketen, Eier, Kürbisse, Geschenke und Wasserballons reagieren mit passenden Animationen und begrenzten Partikeleffekten.
-- Zum Jahreswechsel steigen zufällige Feuerwerksraketen über die gesamte Fensterfläche auf. Fünf Explosionsmuster mit Leuchtspuren berücksichtigen die Effekt- und Bewegungseinstellungen; die Bedienung bleibt anklickbar.
-- Im Dialog „Lebendige Jahreszeiten“ lassen sich Dekorationen, Interaktionen, Partikel, Animationen und Event-Geräusche einstellen. Event-Geräusche sind zunächst ausgeschaltet.
-- Halloween bietet zwölf seltene Ambient-Sounds: verschiedene Geisterlachen, Kichern, Flüstern, Wind und einzelne besondere Geräusche. Ein eigener Schalter und drei Häufigkeitsstufen steuern die Atmosphäre. Dieselbe Variante wiederholt sich frühestens nach 15 aktiven Minuten. Beim Minimieren, Spielstart oder Abschalten der Event-Geräusche verstummen die Ambient-Sounds.
-- Das Logo wird vollständig dargestellt; maximierte Fenster berücksichtigen die Windows-Taskleiste.
-- Schnee-, Wasser- und andere Dekoflächen laufen an den Rändern weich aus. Haupt-Pokémon werden nicht mehr am Bühnenrand abgeschnitten.
-- Die Darstellung lässt sich dauerhaft auf Nacht oder Tag stellen; eine automatische Umschaltung bleibt wählbar. Die Auswahl wird gespeichert.
-- Tag und Nacht gehen über 2,8 Sekunden weich ineinander über. Tagesfarben sind gedämpfter; reduzierte Bewegung schaltet die Überblendung ab.
+Die Spielbasis bleibt AllGen 0.9.9. Der Launcher bleibt bei Version 7.3.0. Spielstände, persönliche Einstellungen und eigene zusätzliche Mods werden vom Update beibehalten.
 
-Dieses Release aktualisiert den Launcher. Spielpaket, eigene Mods, Übersetzungen, Grafiken und Spielstände bleiben unverändert.
+Nach der Installation das Spiel vollständig neu starten.
+

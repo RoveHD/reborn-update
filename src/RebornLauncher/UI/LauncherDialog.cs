@@ -19,13 +19,13 @@ internal sealed class LauncherDialog : Window
         WindowStyle = WindowStyle.None; ShowInTaskbar = false;
         foreach (string key in new[] { "Ink", "Surface", "Text", "Muted", "Faint", "Violet", "Mint", "Line" }) Resources[key] = owner.FindResource(key);
         Background = (Brush)owner.FindResource("Surface");
-        Foreground = Brushes.White; FontFamily = new FontFamily("pack://application:,,,/assets/fonts/#Barlow");
+        Foreground = (Brush)owner.FindResource("Text"); FontFamily = new FontFamily("pack://application:,,,/assets/fonts/#Barlow");
         WindowChrome.SetWindowChrome(this, new WindowChrome { CaptionHeight = 42, GlassFrameThickness = new Thickness(0), ResizeBorderThickness = new Thickness(0), UseAeroCaptionButtons = false });
         var frame = new Border { Background = Background, BorderThickness = new Thickness(1), BorderBrush = (Brush)owner.FindResource("Line"), Padding = new Thickness(30) };
         var stack = new StackPanel();
         stack.Children.Add(new TextBlock { Text = "POKÉMON REBORN", FontSize = 11, Foreground = (Brush)owner.FindResource("Mint"), Margin = new Thickness(0, 0, 0, 15) });
         stack.Children.Add(new TextBlock { Text = title, FontFamily = new FontFamily("pack://application:,,,/assets/fonts/#Barlow Condensed"), FontSize = 32, FontWeight = FontWeights.SemiBold, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 16) });
-        stack.Children.Add(new ScrollViewer { MaxHeight = 310, VerticalScrollBarVisibility = ScrollBarVisibility.Auto, Content = new TextBlock { Text = message, FontSize = 15, LineHeight = 23, TextWrapping = TextWrapping.Wrap, Foreground = new SolidColorBrush(Color.FromRgb(201, 191, 209)) } });
+        stack.Children.Add(new ScrollViewer { MaxHeight = 310, VerticalScrollBarVisibility = ScrollBarVisibility.Auto, Content = new TextBlock { Text = message, FontSize = 15, LineHeight = 23, TextWrapping = TextWrapping.Wrap, Foreground = (Brush)owner.FindResource("Muted") } });
         var actions = new StackPanel { Orientation = Orientation.Horizontal, HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0, 25, 0, 0) };
         DismissButton = new Button { Content = "Abbrechen", IsCancel = true, MinWidth = 110, Style = (Style)owner.FindResource("SecondaryButton"), Margin = new Thickness(0, 0, 12, 0) };
         AcceptButton = new Button { Content = buttons == MessageBoxButton.YesNo ? "Fortfahren" : "Verstanden", IsDefault = true, MinWidth = 120, Style = (Style)owner.FindResource("SecondaryButton"), Background = (Brush)owner.FindResource("Line") };

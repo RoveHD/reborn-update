@@ -73,7 +73,9 @@ $start.Environment['REBORN_LAUNCHER_SMOKE_OUTPUT'] = $smokeResult
 $helper = [Diagnostics.Process]::Start($start)
 if (-not $helper.WaitForExit(60000)) { $helper.Kill(); throw 'Der installierte Updatehelfer hat das Zeitlimit überschritten.' }
 if ($helper.ExitCode -ne 0) { throw "Updatehelfer beendet: $($helper.ExitCode)" }
-$deadline = [DateTime]::UtcNow.AddSeconds(20)
+# The restarted smoke now opens 62 effect codecs and renders all day/night scenes.
+# Update acknowledgement is checked separately; allow the full verification to finish.
+$deadline = [DateTime]::UtcNow.AddSeconds(180)
 while (-not (Test-Path -LiteralPath $smokeResult) -and [DateTime]::UtcNow -lt $deadline) { Start-Sleep -Milliseconds 100 }
 $smoke = Get-Content -LiteralPath $smokeResult -Raw | ConvertFrom-Json
 $request = Get-Content -LiteralPath $requestPath -Raw | ConvertFrom-Json

@@ -16,47 +16,17 @@ public static class SeasonalPointer
     private const int DibSize = DibHeaderSize + XorSize + AndSize;
     private const int CursorImageOffset = 22;
 
-    // Points form a slightly chunky pixel-art arrow with its tip at the top left.
+    // Classic arrow silhouette, simply filled with the current theme color.
     private static readonly Point[] Arrow =
     [
-        new(2, 1), new(2, 24), new(8, 18), new(14, 29), new(19, 27),
-        new(14, 15), new(27, 15)
+        new(3, 2), new(3, 23), new(8, 18), new(12.2, 27), new(16, 25.2),
+        new(11.8, 16.2), new(20, 16.2)
     ];
 
     /// <summary>Builds a valid 32-bit color .cur cursor. Dispose the returned cursor on replacement.</summary>
     public static Cursor Create(Color accent)
     {
-        var pixels = new byte[Size * Size * 4];
-        var silhouette = new bool[Size * Size];
-        for (var y = 0; y < Size; y++)
-        for (var x = 0; x < Size; x++)
-            silhouette[y * Size + x] = Contains(x + 0.5, y + 0.5, Arrow);
-
-        for (var y = 0; y < Size; y++)
-        for (var x = 0; x < Size; x++)
-        {
-            var isInside = silhouette[y * Size + x];
-            var nearEdge = false;
-            for (var oy = -1; oy <= 1 && !nearEdge; oy++)
-            for (var ox = -1; ox <= 1; ox++)
-            {
-                if (ox == 0 && oy == 0) continue;
-                var nx = x + ox;
-                var ny = y + oy;
-                var neighborInside = nx >= 0 && nx < Size && ny >= 0 && ny < Size && silhouette[ny * Size + nx];
-                if (neighborInside != isInside) { nearEdge = true; break; }
-            }
-
-            if (isInside)
-            {
-                if (nearEdge) SetPixel(pixels, x, y, 18, 16, 22, 255); // ink outline
-                else SetAccentPixel(pixels, x, y, accent);
-            }
-            else if (nearEdge)
-            {
-                SetPixel(pixels, x, y, 255, 255, 255, 255); // clear white edge against any theme
-            }
-        }
+        var pixels = RenderPixels(accent);
 
         using var stream = new MemoryStream(CursorImageOffset + DibSize);
         using (var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, leaveOpen: true))
@@ -69,8 +39,8 @@ public static class SeasonalPointer
             writer.Write((byte)Size);
             writer.Write((byte)0);
             writer.Write((byte)0);
-            writer.Write((ushort)2); // Hotspot: arrow tip, in image pixels.
-            writer.Write((ushort)1);
+            writer.Write((ushort)3); // Hotspot: arrow tip, in image pixels.
+            writer.Write((ushort)2);
             writer.Write(DibSize);
             writer.Write(CursorImageOffset);
 
@@ -118,16 +88,46 @@ public static class SeasonalPointer
         return inside;
     }
 
-    private static void SetAccentPixel(byte[] pixels, int x, int y, Color accent)
+    internal static byte[] RenderPixels(Color accent)
     {
-        // A small, brighter shoulder gives the arrow dimension without muting the theme color.
-        var highlight = y < 9 && x < 9;
-        static byte Lift(byte value) => (byte)Math.Min(255, value + 54);
-        SetPixel(pixels, x, y,
-            highlight ? Lift(accent.R) : accent.R,
-            highlight ? Lift(accent.G) : accent.G,
-            highlight ? Lift(accent.B) : accent.B,
-            255);
+        const int samples = 4;
+        var pixels = new byte[Size * Size * 4];
+        for (var y = 0; y < Size; y++)
+        for (var x = 0; x < Size; x++)
+        {
+            int covered = 0, red = 0, green = 0, blue = 0;
+            for (var sy = 0; sy < samples; sy++)
+            for (var sx = 0; sx < samples; sx++)
+            {
+                double px = x + (sx + 0.5) / samples, py = y + (sy + 0.5) / samples;
+                if (!Contains(px, py, Arrow)) continue;
+                bool outline = EdgeDistance(px, py) < 0.9;
+                red += outline ? 26 : accent.R;
+                green += outline ? 25 : accent.G;
+                blue += outline ? 32 : accent.B;
+                covered++;
+            }
+            if (covered == 0) continue;
+            // CUR stores straight BGRA; coverage alpha gives smooth edges without
+            // the previous thick white halo or a blurred click point.
+            SetPixel(pixels, x, y, (byte)(red / covered), (byte)(green / covered),
+                (byte)(blue / covered), (byte)(covered * 255 / (samples * samples)));
+        }
+        return pixels;
+    }
+
+    private static double EdgeDistance(double x, double y)
+    {
+        double nearest = double.MaxValue;
+        for (int i = 0, j = Arrow.Length - 1; i < Arrow.Length; j = i++)
+        {
+            var a = Arrow[j]; var b = Arrow[i];
+            double dx = b.X - a.X, dy = b.Y - a.Y;
+            double t = Math.Clamp(((x - a.X) * dx + (y - a.Y) * dy) / (dx * dx + dy * dy), 0, 1);
+            double ex = x - a.X - t * dx, ey = y - a.Y - t * dy;
+            nearest = Math.Min(nearest, Math.Sqrt(ex * ex + ey * ey));
+        }
+        return nearest;
     }
 
     private static void SetPixel(byte[] pixels, int x, int y, byte red, byte green, byte blue, byte alpha)

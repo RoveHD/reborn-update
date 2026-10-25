@@ -5,7 +5,7 @@ Deutscher Windows-Launcher für die gemeinsame Reborn-/AllGen-Installation. Er a
 ## Für Mitspieler
 
 1. Spiel und alten Launcher schließen.
-2. [Reborn-Launcher-7.2.0-Setup.exe](https://github.com/RoveHD/reborn-update/releases/download/v7.2.0/Reborn-Launcher-7.2.0-Setup.exe) herunterladen und installieren. Keine Administratorrechte nötig.
+2. [Reborn-Launcher-7.3.0-Setup.exe](https://github.com/RoveHD/reborn-update/releases/download/v7.3.0/Reborn-Launcher-7.3.0-Setup.exe) herunterladen und installieren. Keine Administratorrechte nötig.
 3. Den Launcher über das Startmenü öffnen und einmal den vorhandenen Reborn-Spielordner auswählen.
 
 Der Launcher ist separat unter `%LOCALAPPDATA%\Programs\RebornLauncher` installiert. Das Setup verändert keine Spieldateien. Neue veröffentlichte Launcher-Versionen kommen beim Start automatisch über GitHub. Ein vorhandener C#-Launcher 7.0/7.1 kann sich ebenfalls selbst aktualisieren; für den dauerhaften Installationsordner einmal das Setup verwenden.

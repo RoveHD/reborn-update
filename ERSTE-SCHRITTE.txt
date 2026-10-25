@@ -1,21 +1,27 @@
-Pokémon Reborn – Launcher 7.2.0
+Pokémon Reborn – Launcher 7.3.0
 
 EINMALIGER WECHSEL
 1. Reborn und den bisherigen Launcher schließen.
-2. Reborn-Launcher-7.2.0-Setup.exe starten und den Launcher installieren.
+2. Reborn-Launcher-7.3.0-Setup.exe starten und den Launcher installieren.
    Keine Administratorrechte nötig. Spielstände nicht verschieben.
 3. Den Launcher über das Windows-Startmenü starten.
 
 Beim ersten Start im Launcher „Spielordner auswählen“ anklicken.
 Im richtigen Ordner liegen Game.exe, Game.ini und mkxp.json.
 Das Setup installiert den Launcher separat und verändert keine Spielinstallation.
-Alte Python-Launcher brauchen diesen einmaligen Wechsel. C#-Launcher 7.0/7.1
+Alte Python-Launcher brauchen diesen einmaligen Wechsel. C#-Launcher ab 7.0
 können sich selbst aktualisieren; für den festen Installationsordner das Setup nutzen.
 
 SAISON-DESIGNS
 Farben, Pokémon, Effekte und Musik wechseln automatisch jedes Jahr nach Datum.
 Oben auf die Saisonanzeige klicken für den Kalender und die Musikquellen.
 Musik, Lautstärke, Mausspur und ruhige Effekte sind unten einstellbar.
+Die Darstellung lässt sich auf dauerhaft Nacht, dauerhaft Tag oder automatische
+Umschaltung stellen. Ohne gespeicherte Auswahl startet der Launcher im Nachtmodus.
+Unter „Lebendige Jahreszeiten“ lassen sich anklickbare Objekte, Partikel und
+Event-Geräusche einstellen. Geräusche sind zunächst aus. Halloween-Ambient-Sounds
+haben einen eigenen Schalter und eine einstellbare Häufigkeit. Sie pausieren
+beim Minimieren und während das Spiel läuft.
 
 DANACH AUTOMATISCH
 Der Launcher prüft zuerst seine eigene Version. Bei Bedarf aktualisiert er sich,

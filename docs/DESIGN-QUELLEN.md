@@ -9,3 +9,5 @@
 Die Ressourcen werden lokal eingebettet; der Launcher lädt beim Start keine externen Schrift- oder Bilddateien.
 
 Saisonmotive: Pokémon-Artwork aus dem PokeAPI-Sprite-Repository, Unterordner sprites/pokemon/other/official-artwork/. Zuordnung: pumpkaboo=710.png, gengar=94.png, delibird=225.png, glaceon=471.png, buneary=427.png, shaymin=492.png, squirtle=7.png, vaporeon=134.png, leafeon=470.png, sawsbuck=586.png, jirachi=385.png, pikachu=25.png, arceus=493.png. Originalgrafiken unverändert. Quelle: https://github.com/PokeAPI/sprites .
+
+Weitere Saisonmotive: espeon=196.png, eevee=133.png, lucario=448.png, mimikyu=778.png, misdreavus=200.png, chandelure=609.png, alolan-vulpix=10103.png, snorunt=361.png, spheal=363.png, togepi=175.png, sylveon=700.png, ribombee=743.png, lapras=131.png, psyduck=54.png, mantyke=458.png, rowlet=722.png, vulpix=37.png, deerling=585.png, victini=494.png, clefairy=35.png, ampharos=181.png, dialga=483.png, palkia=484.png, giratina=487.png, togekiss=468.png. Dateinamen entsprechen den Pokémon-Namen; Originalgrafiken unverändert aus demselben offiziellen Artwork-Unterordner des PokeAPI-Sprite-Repositorys.

@@ -35,7 +35,8 @@ $start.Environment['REBORN_LAUNCHER_SMOKE_OUTPUT'] = $smokeResult
 $process = [Diagnostics.Process]::Start($start)
 if (-not $process.WaitForExit(55000)) { $process.Kill(); throw 'Isolierter Testhelfer hat Zeitlimit überschritten.' }
 if ($process.ExitCode -ne 0) { throw "Testhelfer fehlgeschlagen: $($process.ExitCode)" }
-$deadline = [DateTime]::UtcNow.AddSeconds(15)
+# The restarted smoke verifies 62 effect codecs and every day/night scene.
+$deadline = [DateTime]::UtcNow.AddSeconds(180)
 while (-not (Test-Path -LiteralPath $smokeResult) -and [DateTime]::UtcNow -lt $deadline) { Start-Sleep -Milliseconds 100 }
 $result = Get-Content -LiteralPath $smokeResult -Raw | ConvertFrom-Json
 $request = Get-Content -LiteralPath $requestPath -Raw | ConvertFrom-Json

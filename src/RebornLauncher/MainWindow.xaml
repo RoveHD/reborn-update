@@ -1,4 +1,4 @@
-<Window x:Class="PokemonRebornLauncher.MainWindow"
+﻿<Window x:Class="PokemonRebornLauncher.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
@@ -6,7 +6,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="Pokémon Reborn – Launcher"
         Icon="pack://application:,,,/assets/reborn.ico"
-        Width="1180" Height="850" MinWidth="960" MinHeight="640"
+        Width="1560" Height="940" MinWidth="960" MinHeight="640"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         ResizeMode="CanResize" Cursor="{DynamicResource ThemeCursor}" Background="#0B090F"
         Loaded="Window_Loaded" KeyDown="Window_KeyDown" Closing="Window_Closing">
@@ -14,6 +14,26 @@
         <shell:WindowChrome CaptionHeight="42" ResizeBorderThickness="6" GlassFrameThickness="0" CornerRadius="0" UseAeroCaptionButtons="False" />
     </shell:WindowChrome.WindowChrome>
     <Window.Resources>
+        <DrawingBrush x:Key="SceneryEdgeFade" Viewbox="0,0,1,1" ViewboxUnits="Absolute" Stretch="Fill">
+            <DrawingBrush.Drawing>
+                <DrawingGroup>
+                    <DrawingGroup.OpacityMask>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="Transparent" Offset="0"/><GradientStop Color="Black" Offset="0.09"/>
+                            <GradientStop Color="Black" Offset="0.88"/><GradientStop Color="Transparent" Offset="1"/>
+                        </LinearGradientBrush>
+                    </DrawingGroup.OpacityMask>
+                    <GeometryDrawing Geometry="M0,0 L1,0 1,1 0,1 Z">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="Black" Offset="0"/><GradientStop Color="Black" Offset="0.82"/>
+                                <GradientStop Color="Transparent" Offset="1"/>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
         <sys:Boolean x:Key="ReduceMotion">False</sys:Boolean>
         <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">6</sys:Double>
         <SolidColorBrush x:Key="Ink" Color="#0B090F" />
@@ -23,19 +43,21 @@
         <SolidColorBrush x:Key="Faint" Color="#817986" />
         <SolidColorBrush x:Key="Violet" Color="#B16AE6" />
         <SolidColorBrush x:Key="Mint" Color="#9BE6D2" />
+        <SolidColorBrush x:Key="CtaText" Color="#100B15"/>
         <SolidColorBrush x:Key="Line" Color="#39313F" />
         <Style x:Key="Eyebrow" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="pack://application:,,,/assets/fonts/#Barlow" />
-            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontSize" Value="12" />
             <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Foreground" Value="#B4AEBB" />
+            <Setter Property="Foreground" Value="{DynamicResource Muted}" />
         </Style>
         <Style x:Key="BodyText" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="pack://application:,,,/assets/fonts/#Barlow" />
             <Setter Property="Foreground" Value="{DynamicResource Muted}" />
-            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontSize" Value="16" />
         </Style>
         <Style x:Key="SecondaryButton" TargetType="Button">
+            <Setter Property="ui:ReactiveFeedback.Enabled" Value="True"/><Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
             <Setter Property="Foreground" Value="{DynamicResource Text}" />
             <Setter Property="Background" Value="{DynamicResource Surface}" />
             <Setter Property="BorderBrush" Value="{DynamicResource Line}" />
@@ -44,7 +66,7 @@
             <Setter Property="MinHeight" Value="36" />
             <Setter Property="Cursor" Value="{DynamicResource ThemeCursor}" />
             <Setter Property="FontFamily" Value="pack://application:,,,/assets/fonts/#Barlow" />
-            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontSize" Value="14" />
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -54,11 +76,7 @@
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
                         </Border>
                         <ControlTemplate.Triggers>
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions><Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=Tag}" Value="False"/><Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/></MultiDataTrigger.Conditions>
-                                <MultiDataTrigger.EnterActions><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="ButtonLift" Storyboard.TargetProperty="Y" To="-1" Duration="0:0:0.12"/></Storyboard></BeginStoryboard></MultiDataTrigger.EnterActions>
-                                <MultiDataTrigger.ExitActions><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="ButtonLift" Storyboard.TargetProperty="Y" To="0" Duration="0:0:0.12"/></Storyboard></BeginStoryboard></MultiDataTrigger.ExitActions>
-                            </MultiDataTrigger>
+                            <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="ButtonSurface" Property="BorderBrush" Value="{DynamicResource Mint}"/><Setter TargetName="ButtonSurface" Property="Background" Value="{DynamicResource Line}"/></Trigger>
                             <Trigger Property="IsPressed" Value="True"><Setter TargetName="ButtonSurface" Property="Opacity" Value="0.72"/></Trigger>
                             <Trigger Property="IsEnabled" Value="False"><Setter TargetName="ButtonSurface" Property="Opacity" Value="0.4"/></Trigger>
                             <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="ButtonSurface" Property="BorderBrush" Value="{DynamicResource Mint}"/></Trigger>
@@ -72,7 +90,8 @@
             <Setter Property="BorderBrush" Value="#854357" />
         </Style>
         <Style x:Key="PrimaryButton" TargetType="Button">
-            <Setter Property="Foreground" Value="#100B15" />
+            <Setter Property="ui:ReactiveFeedback.Enabled" Value="True"/><Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="Foreground" Value="{DynamicResource CtaText}" />
             <Setter Property="Background" Value="{DynamicResource Violet}" />
             <Setter Property="BorderBrush" Value="{DynamicResource Mint}" />
             <Setter Property="BorderThickness" Value="1" />
@@ -91,12 +110,7 @@
                             <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Left"/><TextBlock Grid.Column="1" Text="↗" FontFamily="Segoe UI Symbol" FontSize="20" FontWeight="Normal" VerticalAlignment="Center" Margin="18,0,0,0"/></Grid>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions><Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=Tag}" Value="False"/><Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/></MultiDataTrigger.Conditions>
-                                <MultiDataTrigger.EnterActions><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="CtaLift" Storyboard.TargetProperty="Y" To="-2" Duration="0:0:0.16"/></Storyboard></BeginStoryboard></MultiDataTrigger.EnterActions>
-                                <MultiDataTrigger.ExitActions><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="CtaLift" Storyboard.TargetProperty="Y" To="0" Duration="0:0:0.16"/></Storyboard></BeginStoryboard></MultiDataTrigger.ExitActions>
-                            </MultiDataTrigger>
-                            <Trigger Property="IsPressed" Value="True"><Setter TargetName="CtaSurface" Property="Opacity" Value="0.78"/></Trigger>
+                            <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="CtaSurface" Property="Background" Value="{DynamicResource Mint}"/><Setter TargetName="CtaSurface" Property="BorderBrush" Value="{DynamicResource Violet}"/></Trigger><Trigger Property="IsPressed" Value="True"><Setter TargetName="CtaSurface" Property="Opacity" Value="0.78"/></Trigger>
                             <Trigger Property="IsEnabled" Value="False"><Setter TargetName="CtaSurface" Property="Opacity" Value="0.4"/></Trigger>
                             <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="CtaSurface" Property="BorderBrush" Value="{DynamicResource Mint}"/></Trigger>
                         </ControlTemplate.Triggers>
@@ -105,15 +119,19 @@
             </Setter>
         </Style>
         <Style x:Key="WindowControlButton" TargetType="Button" BasedOn="{StaticResource SecondaryButton}">
-            <Setter Property="Background" Value="Transparent"/><Setter Property="BorderThickness" Value="0"/><Setter Property="Padding" Value="0"/><Setter Property="MinWidth" Value="42"/><Setter Property="MinHeight" Value="32"/><Setter Property="Foreground" Value="#D4CCD8"/>
+            <!-- The title bar touches the window edge; a hover lift would move
+                 its buttons outside the window. Keep color feedback in place. -->
+            <Setter Property="ui:ReactiveFeedback.Enabled" Value="False"/>
+            <Setter Property="Background" Value="Transparent"/><Setter Property="BorderThickness" Value="0"/><Setter Property="Padding" Value="0"/><Setter Property="MinWidth" Value="42"/><Setter Property="MinHeight" Value="32"/><Setter Property="Foreground" Value="{DynamicResource Muted}"/>
         </Style>
         <Style x:Key="VersionSegment" TargetType="Button" BasedOn="{StaticResource SecondaryButton}">
-            <Setter Property="Background" Value="Transparent"/><Setter Property="BorderThickness" Value="0,0,0,2"/><Setter Property="BorderBrush" Value="#39313F"/><Setter Property="Padding" Value="0,8"/><Setter Property="MinHeight" Value="34"/><Setter Property="Foreground" Value="#A79EAA"/>
+            <Setter Property="Background" Value="Transparent"/><Setter Property="BorderThickness" Value="0,0,0,2"/><Setter Property="BorderBrush" Value="#39313F"/><Setter Property="Padding" Value="0,8"/><Setter Property="MinHeight" Value="34"/><Setter Property="Foreground" Value="{DynamicResource Muted}"/>
             <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button"><Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" Background="Transparent"><ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/></Border></ControlTemplate></Setter.Value></Setter><Style.Triggers><Trigger Property="IsKeyboardFocused" Value="True"><Setter Property="Foreground" Value="{DynamicResource Mint}"/></Trigger></Style.Triggers>
         </Style>
         <Style x:Key="ToggleCheckBox" TargetType="CheckBox">
-            <Setter Property="Foreground" Value="{DynamicResource Muted}"/><Setter Property="FontFamily" Value="pack://application:,,,/assets/fonts/#Barlow"/><Setter Property="FontSize" Value="12"/><Setter Property="Cursor" Value="{DynamicResource ThemeCursor}"/><Setter Property="Focusable" Value="True"/>
-            <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="CheckBox"><Grid MinHeight="30"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="44"/></Grid.ColumnDefinitions><ContentPresenter VerticalAlignment="Center" RecognizesAccessKey="True"/><Border x:Name="SwitchTrack" Grid.Column="1" Width="36" Height="20" Background="#332B39" BorderBrush="#56475F" BorderThickness="1" CornerRadius="10" HorizontalAlignment="Right" VerticalAlignment="Center"><Ellipse x:Name="SwitchThumb" Width="12" Height="12" Fill="#B9AFBF" HorizontalAlignment="Left" Margin="3,0,0,0"><Ellipse.RenderTransform><TranslateTransform x:Name="SwitchPosition" X="0" /></Ellipse.RenderTransform></Ellipse></Border><Border x:Name="FocusMark" Grid.ColumnSpan="2" BorderBrush="Transparent" BorderThickness="1" CornerRadius="1" IsHitTestVisible="False"/></Grid><ControlTemplate.Triggers><Trigger Property="IsChecked" Value="True"><Setter TargetName="SwitchTrack" Property="Background" Value="{DynamicResource Surface}"/><Setter TargetName="SwitchTrack" Property="BorderBrush" Value="{DynamicResource Violet}"/><Setter TargetName="SwitchThumb" Property="Fill" Value="{DynamicResource Mint}"/><Trigger.EnterActions><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="SwitchPosition" Storyboard.TargetProperty="X" To="16" Duration="0:0:0.16"/></Storyboard></BeginStoryboard></Trigger.EnterActions><Trigger.ExitActions><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="SwitchPosition" Storyboard.TargetProperty="X" To="0" Duration="0:0:0.16"/></Storyboard></BeginStoryboard></Trigger.ExitActions></Trigger><Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="FocusMark" Property="BorderBrush" Value="{DynamicResource Mint}"/></Trigger><Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.45"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter>
+            <Setter Property="ui:ReactiveFeedback.Enabled" Value="True"/><Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="Foreground" Value="{DynamicResource Muted}"/><Setter Property="FontFamily" Value="pack://application:,,,/assets/fonts/#Barlow"/><Setter Property="FontSize" Value="13"/><Setter Property="Cursor" Value="{DynamicResource ThemeCursor}"/><Setter Property="Focusable" Value="True"/>
+            <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="CheckBox"><Grid MinHeight="30"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="44"/></Grid.ColumnDefinitions><ContentPresenter VerticalAlignment="Center" RecognizesAccessKey="True"/><Border x:Name="SwitchTrack" Grid.Column="1" Width="36" Height="20" Background="{DynamicResource Surface}" BorderBrush="{DynamicResource Line}" BorderThickness="1" CornerRadius="10" HorizontalAlignment="Right" VerticalAlignment="Center"><Ellipse x:Name="SwitchThumb" Width="12" Height="12" Fill="#B9AFBF" HorizontalAlignment="Left" Margin="3,0,0,0"><Ellipse.RenderTransform><TranslateTransform x:Name="SwitchPosition" X="0" /></Ellipse.RenderTransform></Ellipse></Border><Border x:Name="FocusMark" Grid.ColumnSpan="2" BorderBrush="Transparent" BorderThickness="1" CornerRadius="1" IsHitTestVisible="False"/></Grid><ControlTemplate.Triggers><Trigger Property="IsChecked" Value="True"><Setter TargetName="SwitchTrack" Property="Background" Value="{DynamicResource Surface}"/><Setter TargetName="SwitchTrack" Property="BorderBrush" Value="{DynamicResource Violet}"/><Setter TargetName="SwitchThumb" Property="Fill" Value="{DynamicResource Mint}"/><Trigger.EnterActions><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="SwitchPosition" Storyboard.TargetProperty="X" To="16" Duration="0:0:0.16"/></Storyboard></BeginStoryboard></Trigger.EnterActions><Trigger.ExitActions><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="SwitchPosition" Storyboard.TargetProperty="X" To="0" Duration="0:0:0.16"/></Storyboard></BeginStoryboard></Trigger.ExitActions></Trigger><Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="FocusMark" Property="BorderBrush" Value="{DynamicResource Mint}"/></Trigger><Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.45"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter>
         </Style>
         <Style x:Key="ModernProgressBar" TargetType="ProgressBar">
             <Setter Property="Height" Value="5"/><Setter Property="Background" Value="#302738"/><Setter Property="Foreground" Value="{DynamicResource Mint}"/>
@@ -130,6 +148,7 @@
             </ControlTemplate></Setter.Value></Setter>
         </Style>
         <Style TargetType="Slider">
+          <Setter Property="ui:ReactiveFeedback.Enabled" Value="True"/><Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
           <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Slider"><Border x:Name="SliderFocus" BorderThickness="1" BorderBrush="Transparent" Padding="3">
             <Grid><Border Background="#4A3C55" Height="3" VerticalAlignment="Center" CornerRadius="2"/>
               <Track x:Name="PART_Track" Minimum="{TemplateBinding Minimum}" Maximum="{TemplateBinding Maximum}" Value="{TemplateBinding Value}">
@@ -142,143 +161,110 @@
     </Window.Resources>
 
     <Grid x:Name="Root" Background="{DynamicResource Ink}" ClipToBounds="True">
-        <Image x:Name="SceneArtwork" Stretch="UniformToFill" Opacity="0.16" IsHitTestVisible="False" />
-        <Grid IsHitTestVisible="False"><Grid.RenderTransform><TranslateTransform x:Name="SceneTranslate"/></Grid.RenderTransform>
-            <Rectangle Fill="#A3090710" />
-            <Rectangle><Rectangle.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="1,0"><GradientStop Color="#F70B0910" Offset="0"/><GradientStop Color="#A80B0910" Offset="0.56"/><GradientStop Color="#F80B0910" Offset="1"/></LinearGradientBrush></Rectangle.Fill></Rectangle>
-            <Rectangle><Rectangle.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#E80B0910" Offset="0"/><GradientStop Color="#000B0910" Offset="0.2"/><GradientStop Color="#000B0910" Offset="0.78"/><GradientStop Color="#F00B0910" Offset="1"/></LinearGradientBrush></Rectangle.Fill></Rectangle>
-        </Grid>
         <Border x:Name="AccentGlow" Width="520" Height="310" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,105,0,0" Opacity="0.11" IsHitTestVisible="False">
             <Border.Background><RadialGradientBrush><GradientStop Color="#A95BCD" Offset="0"/><GradientStop Color="#585BCD" Offset="0.48"/><GradientStop Color="#00585BCD" Offset="1"/></RadialGradientBrush></Border.Background>
         </Border>
-        <Viewbox x:Name="AmbientRing" Width="780" Height="780" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="80,-145,0,0" Opacity="0.23" IsHitTestVisible="False">
-          <Grid Width="700" Height="700" RenderTransformOrigin="0.5,0.5"><Grid.RenderTransform><RotateTransform x:Name="RingRotation"/></Grid.RenderTransform>
-            <Ellipse Stroke="{DynamicResource Violet}" StrokeThickness="1" Margin="25"/><Ellipse Stroke="{DynamicResource Line}" StrokeThickness="28" Margin="40"/>
-            <Ellipse Stroke="{DynamicResource Violet}" StrokeThickness="4" StrokeDashArray="0.5 16" Margin="62"/>
-            <Ellipse Stroke="{DynamicResource Line}" StrokeThickness="1" Margin="94"/><Line X1="350" Y1="0" X2="350" Y2="700" Stroke="{DynamicResource Line}"/><Line X1="0" Y1="350" X2="700" Y2="350" Stroke="{DynamicResource Line}"/>
-          </Grid>
-        </Viewbox>
-        <ui:SeasonalScene x:Name="SeasonalBackdrop" IsHitTestVisible="False"/>
+
+
         <Grid>
             <Grid.RowDefinitions><RowDefinition Height="42"/><RowDefinition Height="*"/><RowDefinition Height="48"/></Grid.RowDefinitions>
             <!-- Custom title bar -->
-            <Grid Grid.Row="0" Background="#D10D0A13">
+            <Grid Grid.Row="0" Background="{DynamicResource Surface}">
                 <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="22,0,0,0" IsHitTestVisible="False">
                     <Ellipse Width="7" Height="7" Fill="{DynamicResource Mint}" Margin="0,0,10,0"/>
-                    <TextBlock Text="POKÉMON REBORN" Foreground="#E7E0E9" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="11" FontWeight="Bold" VerticalAlignment="Center"/>
-                    <TextBlock Text="  /  LAUNCHER" Foreground="#827A88" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="10" VerticalAlignment="Center"/>
+                    <TextBlock Text="POKÉMON REBORN" Foreground="{DynamicResource Text}" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="11" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <TextBlock Text="  /  LAUNCHER" Foreground="{DynamicResource Muted}" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="10" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top">
+                    <Button x:Name="LightingModeButton" Content="IMMER NACHT ▾" ToolTip="Helligkeit wählen: immer Nacht, immer Tag oder automatisch" Style="{StaticResource WindowControlButton}" FontSize="10" Padding="10,0" shell:WindowChrome.IsHitTestVisibleInChrome="True" Click="LightingModeButton_Click">
+                      <Button.ContextMenu><ContextMenu Background="{DynamicResource Surface}" Foreground="{DynamicResource Text}" BorderBrush="{DynamicResource Line}" BorderThickness="1" Padding="4">
+                        <ContextMenu.Resources><Style TargetType="MenuItem"><Setter Property="Foreground" Value="{DynamicResource Text}"/><Setter Property="Background" Value="Transparent"/><Setter Property="FontFamily" Value="pack://application:,,,/assets/fonts/#Barlow"/><Setter Property="FontSize" Value="14"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="MenuItem"><Border x:Name="MenuRow" Background="{TemplateBinding Background}" Padding="14,9"><ContentPresenter ContentSource="Header"/></Border><ControlTemplate.Triggers><Trigger Property="IsHighlighted" Value="True"><Setter TargetName="MenuRow" Property="Background" Value="{DynamicResource Line}"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter></Style></ContextMenu.Resources>
+                        <MenuItem Header="Immer Nacht" Tag="night" Click="LightingMode_Click"/><MenuItem Header="Immer Tag" Tag="day" Click="LightingMode_Click"/><MenuItem Header="Automatisch · 07–19 Uhr Tag" Tag="auto" Click="LightingMode_Click"/>
+                      </ContextMenu></Button.ContextMenu>
+                    </Button>
                     <Button x:Name="ThemeInfoButton" Content="SAISON · AUTOMATISCH" ToolTip="Saisonkalender und Musikquellen" FontSize="10" Padding="12,0" Style="{StaticResource WindowControlButton}" shell:WindowChrome.IsHitTestVisibleInChrome="True" Click="ThemeInfo_Click"/>
-                    <Button x:Name="FullscreenButton" Content="□" ToolTip="Fenster maximieren oder wiederherstellen" Width="42" Style="{StaticResource WindowControlButton}" shell:WindowChrome.IsHitTestVisibleInChrome="True" Click="FullscreenButton_Click" />
                     <Button Content="—" ToolTip="Minimieren" Style="{StaticResource WindowControlButton}" shell:WindowChrome.IsHitTestVisibleInChrome="True" Click="MinimizeButton_Click" />
+                    <Button x:Name="FullscreenButton" Content="□" ToolTip="Fenster maximieren oder wiederherstellen" Width="42" Style="{StaticResource WindowControlButton}" shell:WindowChrome.IsHitTestVisibleInChrome="True" Click="FullscreenButton_Click" />
                     <Button Content="×" ToolTip="Schließen" Style="{StaticResource WindowControlButton}" shell:WindowChrome.IsHitTestVisibleInChrome="True" Click="CloseWindowButton_Click" />
                 </StackPanel>
             </Grid>
 
-            <Grid Grid.Row="1" MaxWidth="1440" HorizontalAlignment="Stretch" Margin="38,22,38,16">
-                <Grid.ColumnDefinitions><ColumnDefinition Width="*" MinWidth="0"/><ColumnDefinition Width="1"/><ColumnDefinition Width="310" MinWidth="270"/></Grid.ColumnDefinitions>
-                <Grid x:Name="HeroPanel" Grid.Column="0" Margin="0,0,42,0">
-                    <Grid.RenderTransform><TranslateTransform x:Name="HeroTranslate"/></Grid.RenderTransform>
-                    <Grid.RowDefinitions><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
-                    <ScrollViewer x:Name="HeroScroller" Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                        <Grid><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
-                            <Grid Grid.Row="0" Margin="0,4,0,4">
-                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="250"/></Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0">
-                                    <TextBlock x:Name="SeasonTitleText" Text="ZURÜCK IN" Style="{StaticResource Eyebrow}" Foreground="{DynamicResource Mint}" />
-                                    <Grid Height="135" MaxWidth="360" Margin="-8,6,0,0" HorizontalAlignment="Left">
-                                        <Viewbox Stretch="Uniform" StretchDirection="DownOnly" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                            <StackPanel x:Name="LogoFallback">
-                                                <TextBlock Text="POKÉMON" Foreground="#F5EFF5" FontFamily="pack://application:,,,/assets/fonts/#Barlow Condensed" FontSize="77" FontWeight="Black" LineHeight="76" />
-                                                <TextBlock Text="REBORN" Foreground="#C58BE8" FontFamily="pack://application:,,,/assets/fonts/#Barlow Condensed" FontSize="89" FontWeight="Black" Margin="0,-34,0,0" />
-                                            </StackPanel>
-                                        </Viewbox>
-                                        <Image x:Name="LogoArtwork" Stretch="Uniform" Visibility="Collapsed" />
-                                    </Grid>
-                                    <TextBlock x:Name="SeasonSubtitleText" TextWrapping="Wrap" Text="Deine Geschichte geht weiter." Style="{StaticResource BodyText}" FontSize="15" Margin="0,8,0,0"/>
-                                </StackPanel>
-                                <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="4,12,0,0">
-                                    <Image x:Name="PokemonArtwork" Source="pack://application:,,,/assets/artwork/umbreon.png" Width="200" Height="200" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"><Image.RenderTransform><TranslateTransform x:Name="ArtworkFloat"/></Image.RenderTransform></Image>
-                                    <TextBlock x:Name="PokemonNameText" Text="NACHTARA" Foreground="#D8C8E2" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="9" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,2,0,5"/>
-                                    <Button x:Name="ChangeArtworkButton" Content="Motiv wechseln" Style="{StaticResource SecondaryButton}" HorizontalAlignment="Center" MinHeight="28" Padding="9,4" FontSize="10" Click="ChangeArtwork_Click"/>
-                                </StackPanel>
-                            </Grid>
-
-                            <Grid Grid.Row="1" Margin="0,12,0,10">
-                                <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                                <StackPanel VerticalAlignment="Center"><TextBlock Text="SPIELVERSION" Style="{StaticResource Eyebrow}"/><TextBlock x:Name="LocalVersionText" Text="–" Foreground="{DynamicResource Text}" FontFamily="pack://application:,,,/assets/fonts/#Barlow Condensed" FontSize="24" FontWeight="Bold" Margin="0,2,0,0"/></StackPanel>
-                                <Border Grid.Column="1" Height="1" Background="#493E50" Margin="20,0" VerticalAlignment="Center"/>
-                                <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right"><TextBlock Text="LETZTER PATCH" Style="{StaticResource Eyebrow}" TextAlignment="Right"/><TextBlock x:Name="RemoteVersionText" Text="Prüfe …" Foreground="{DynamicResource Mint}" FontFamily="pack://application:,,,/assets/fonts/#Barlow Condensed" FontSize="24" FontWeight="Bold" Margin="0,2,0,0" HorizontalAlignment="Right"/></StackPanel>
-                            </Grid>
-
-                            <StackPanel Grid.Row="2" Margin="0,0,0,15">
-                                <Border x:Name="UpdateBadgeBorder" Background="#1D1A22" BorderBrush="#695282" BorderThickness="0,0,0,1" Padding="0,6" Margin="0,0,0,9"><TextBlock x:Name="UpdateBadgeText" Text="Status wird geprüft" Foreground="#E5C5F4" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontWeight="SemiBold" FontSize="12"/></Border>
-                                <TextBlock x:Name="StatusText" Text="Der Launcher ist bereit." Style="{StaticResource BodyText}" MinHeight="20" TextWrapping="Wrap" />
-                                <StackPanel x:Name="ProgressPanel" Visibility="Collapsed" Margin="0,12,0,0"><ProgressBar x:Name="DownloadProgressBar" Style="{StaticResource ModernProgressBar}" Minimum="0" Maximum="100" Value="0"/><Grid Margin="0,7,0,0"><TextBlock x:Name="ProgressText" Text="Warte …" Style="{StaticResource BodyText}" FontSize="11"/><TextBlock x:Name="SpeedText" Foreground="{DynamicResource Mint}" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="11" HorizontalAlignment="Right"/></Grid></StackPanel>
-                            </StackPanel>
-
-
-
-                        </Grid>
-                    </ScrollViewer>
-                            <StackPanel Grid.Row="1" Margin="0,14,0,0">
-                            <StackPanel Margin="0,0,0,10">
-                                <TextBlock Text="VERSION WÄHLEN" Style="{StaticResource Eyebrow}" Margin="0,0,0,6"/>
-                                <Grid HorizontalAlignment="Left" MinWidth="300"><Grid.ColumnDefinitions><ColumnDefinition Width="145"/><ColumnDefinition Width="145"/></Grid.ColumnDefinitions>
-                                    <Button x:Name="LatestVersionButton" Content="Aktuell" Style="{StaticResource VersionSegment}" Click="VersionButton_Click"/>
-                                    <Button x:Name="PreviousVersionButton" Grid.Column="1" Content="Vorherige" Style="{StaticResource VersionSegment}" Click="VersionButton_Click"/>
-                                </Grid>
-                                <TextBlock x:Name="VersionSelectionHint" Text="Eine zweite Version ist nach dem nächsten Spielupdate verfügbar." Style="{StaticResource BodyText}" FontSize="11" Margin="0,6,0,0" TextWrapping="Wrap"/>
-                            </StackPanel>
-                                <Button x:Name="StartGameButton" Content="SPIEL STARTEN" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Left" Margin="0,0,0,10" Click="StartGameButton_Click"/>
-                                <WrapPanel Margin="0,0,0,6"><Button x:Name="CheckUpdatesButton" Content="Updates suchen" Style="{StaticResource SecondaryButton}" Margin="0,0,9,8" Click="CheckUpdatesButton_Click"/><Button x:Name="RepairButton" Content="Dateien reparieren" Style="{StaticResource SecondaryButton}" Margin="0,0,9,8" Click="RepairButton_Click"/><Button x:Name="CancelButton" Content="Abbrechen" Visibility="Collapsed" Style="{StaticResource DangerButton}" Margin="0,0,9,8" Click="CancelButton_Click"/><Button x:Name="ChooseFolderButton" Content="Spielordner auswählen  →" Style="{StaticResource SecondaryButton}" HorizontalAlignment="Left" Margin="0,0,0,8" Click="ChooseFolderButton_Click"/></WrapPanel>
-
-                                <StackPanel>
-                                    <CheckBox x:Name="AutoUpdateCheckBox" MaxWidth="460" HorizontalAlignment="Left" Width="460" Content="Vor dem Start automatisch aktualisieren" Style="{StaticResource ToggleCheckBox}" Margin="0,0,0,2" Checked="AutoUpdateCheckBox_Changed" Unchecked="AutoUpdateCheckBox_Changed"/>
-                                    <CheckBox x:Name="CloseAfterStartCheckBox" MaxWidth="460" HorizontalAlignment="Left" Width="460" Content="Launcher nach Spielstart schließen" Style="{StaticResource ToggleCheckBox}" FontSize="11" Checked="CloseAfterStartCheckBox_Changed" Unchecked="CloseAfterStartCheckBox_Changed"/>
-                                </StackPanel>
-                            </StackPanel>
-
+            <ScrollViewer x:Name="HeroScroller" Grid.Row="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled" CanContentScroll="False" Padding="0">
+              <Grid x:Name="ContentLayout" MaxWidth="1440" Margin="24,12,24,10" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions><RowDefinition x:Name="HeroRow" Height="242"/><RowDefinition x:Name="OperationsRow" Height="*" MinHeight="276"/></Grid.RowDefinitions>
+                <Grid x:Name="HeroContent" Grid.Row="0" Margin="0,0,0,12">
+                  <Grid.ColumnDefinitions><ColumnDefinition x:Name="HeroTextColumn" Width="220"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                  <StackPanel x:Name="HeroPanel" VerticalAlignment="Top" Margin="0,8,20,0">
+                    <StackPanel.RenderTransform><TranslateTransform x:Name="HeroTranslate"/></StackPanel.RenderTransform>
+                    <TextBlock x:Name="SeasonTitleText" Text="ZURÜCK IN REBORN" Style="{StaticResource Eyebrow}" Foreground="{DynamicResource Mint}" TextWrapping="Wrap"/>
+                    <Grid x:Name="LogoFrame" Height="112" Width="200" Margin="0,8,0,0" HorizontalAlignment="Left">
+                      <Viewbox Stretch="Uniform" StretchDirection="DownOnly"><StackPanel x:Name="LogoFallback"><TextBlock Text="POKÉMON" Foreground="{DynamicResource Text}" FontFamily="pack://application:,,,/assets/fonts/#Barlow Condensed" FontSize="77" FontWeight="Black"/><TextBlock Text="REBORN" Foreground="{DynamicResource Violet}" FontFamily="pack://application:,,,/assets/fonts/#Barlow Condensed" FontSize="89" FontWeight="Black" Margin="0,-34,0,0"/></StackPanel></Viewbox>
+                      <Image x:Name="LogoArtwork" Stretch="Uniform" Visibility="Collapsed"/>
+                    </Grid>
+                    <TextBlock x:Name="SeasonSubtitleText" Text="Deine Geschichte geht weiter." Style="{StaticResource BodyText}" FontSize="16" TextWrapping="Wrap" Margin="0,8,0,0"/>
+                  </StackPanel>
+                  <Grid x:Name="PokemonStage" Grid.Column="1">
+                    <Grid.RowDefinitions><RowDefinition Height="*"/><RowDefinition Height="28"/></Grid.RowDefinitions>
+                    <Grid x:Name="StageArtArea" ClipToBounds="True">
+                      <ui:SeasonalScene x:Name="SeasonalBackdrop" IsHitTestVisible="False" OpacityMask="{StaticResource SceneryEdgeFade}"/>
+                      <Grid Visibility="Collapsed"><ui:SeasonalScene x:Name="LeftEdgeScene" IsHitTestVisible="False"/><ui:SeasonalScene x:Name="RightEdgeScene" IsHitTestVisible="False"/></Grid>
+                      <Image x:Name="LeftPokemonTop" Visibility="Collapsed"><Image.RenderTransform><TranslateTransform x:Name="LeftTopFloat"/></Image.RenderTransform></Image>
+                      <Image x:Name="RightPokemonBottom" Visibility="Collapsed"><Image.RenderTransform><TranslateTransform x:Name="RightBottomFloat"/></Image.RenderTransform></Image>
+                      <ui:PokemonScenery x:Name="PokemonSceneryForeground" IsHitTestVisible="False" OpacityMask="{StaticResource SceneryEdgeFade}"/>
+                      <ui:EventPropsScene x:Name="EventPropsView" Cursor="{DynamicResource ThemeCursor}"/>
+                      <Image x:Name="LeftPokemonBottom" IsHitTestVisible="False" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"><Image.RenderTransform><TranslateTransform x:Name="LeftBottomFloat"/></Image.RenderTransform></Image>
+                      <Image x:Name="PokemonArtwork" IsHitTestVisible="False" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"><Image.RenderTransform><TranslateTransform x:Name="ArtworkFloat"/></Image.RenderTransform></Image>
+                      <Image x:Name="RightPokemonTop" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Focusable="True" Cursor="Hand" ToolTip="Ein neugieriger Begleiter – anklicken" AutomationProperties.Name="Pokémon begrüßen" MouseLeftButtonUp="Cameo_Click" KeyDown="Cameo_KeyDown"><Image.RenderTransform><TranslateTransform x:Name="RightTopFloat"/></Image.RenderTransform></Image>
+                      <ui:PokemonScenery x:Name="LeftPokemonOcclusion" Visibility="Collapsed" IsHitTestVisible="False"/>
+                      <ui:PokemonScenery x:Name="RightPokemonOcclusion" Visibility="Collapsed" IsHitTestVisible="False"/>
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="8,4,8,0"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock x:Name="StageCaptionText" Text="DEIN NÄCHSTES ABENTEUER WARTET" Style="{StaticResource Eyebrow}" Foreground="{DynamicResource Violet}" FontSize="10" VerticalAlignment="Center"/><TextBlock x:Name="PokemonNameText" Grid.Column="1" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="11" Foreground="{DynamicResource Muted}" VerticalAlignment="Center" Margin="12,0,0,0"/></Grid>
+                  </Grid>
                 </Grid>
-
-                <Border Grid.Column="1" Background="#44394C" Margin="0,8,0,8"/>
-
-                <Grid x:Name="ScenePanel" Grid.Column="2" Margin="28,8,0,0">
-
-                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Margin="0,0,0,19">
-                        <TextBlock Text="NEUIGKEITEN" Style="{StaticResource Eyebrow}" Foreground="{DynamicResource Violet}"/>
-                        <TextBlock Text="Was sich verändert" Foreground="{DynamicResource Text}" FontFamily="pack://application:,,,/assets/fonts/#Barlow Condensed" FontSize="29" FontWeight="Bold" Margin="0,3,0,0"/>
-                        <TextBlock x:Name="PatchNotesSubtitle" Text="Versionshinweise" Style="{StaticResource BodyText}" FontSize="11" Margin="0,3,0,0"/>
-                        <Button x:Name="RefreshPatchNotesButton" Content="↻  Neu laden" Style="{StaticResource SecondaryButton}" MinWidth="0" HorizontalAlignment="Left" Margin="0,11,0,0" Padding="9,5" Click="RefreshPatchNotesButton_Click"/>
-                    </StackPanel>
-                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="0,0,1,18">
-                        <TextBlock x:Name="PatchNotesText" Text="Lade Versionshinweise …" Foreground="#D7D0DA" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="13" LineHeight="21" TextWrapping="Wrap" Padding="0,3,9,8"/>
-                    </ScrollViewer>
-                    <StackPanel Grid.Row="2" Margin="0,8,0,0">
-                        <Border Height="1" Background="#493E50" Margin="0,0,0,12"/>
-                        <Button Content="Release-Seite öffnen  ↗" Style="{StaticResource SecondaryButton}" HorizontalAlignment="Left" Margin="0,0,0,8" Click="OpenReleaseButton_Click"/>
-                        <Button Content="Spielordner öffnen  ↗" Style="{StaticResource SecondaryButton}" HorizontalAlignment="Left" Click="OpenFolderButton_Click"/>
-                    </StackPanel>
+                <Grid Grid.Row="1"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition x:Name="NotesColumn" Width="280"/></Grid.ColumnDefinitions>
+                  <Grid x:Name="OperationsPanel" Margin="0,0,24,0" MaxWidth="680" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Grid.RowDefinitions><RowDefinition Height="48"/><RowDefinition Height="58"/><RowDefinition Height="64"/><RowDefinition Height="46"/><RowDefinition Height="60"/></Grid.RowDefinitions>
+                    <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                      <StackPanel><TextBlock Text="SPIELVERSION" Style="{StaticResource Eyebrow}" FontSize="10"/><TextBlock x:Name="LocalVersionText" Text="–" Foreground="{DynamicResource Text}" FontFamily="pack://application:,,,/assets/fonts/#Barlow Condensed" FontSize="24" FontWeight="Bold"/></StackPanel>
+                      <StackPanel Grid.Column="1" Margin="24,0,0,0"><TextBlock Text="LETZTER PATCH" Style="{StaticResource Eyebrow}" FontSize="10"/><TextBlock x:Name="RemoteVersionText" Text="Prüfe …" Foreground="{DynamicResource Mint}" FontFamily="pack://application:,,,/assets/fonts/#Barlow Condensed" FontSize="24" FontWeight="Bold"/></StackPanel>
+                      <Border x:Name="UpdateBadgeBorder" Grid.Column="2" Background="{DynamicResource Surface}" BorderBrush="{DynamicResource Line}" BorderThickness="0,0,0,1" Padding="8,5" Margin="16,0,0,8" VerticalAlignment="Center"><TextBlock x:Name="UpdateBadgeText" Text="Status wird geprüft" Foreground="{DynamicResource Text}" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="12" TextWrapping="Wrap"/></Border>
+                    </Grid>
+                    <Grid Grid.Row="1"><Grid.RowDefinitions><RowDefinition Height="26"/><RowDefinition Height="26"/></Grid.RowDefinitions><TextBlock x:Name="StatusText" Text="Der Launcher ist bereit." Style="{StaticResource BodyText}" FontSize="14" TextTrimming="CharacterEllipsis" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                      <StackPanel x:Name="ProgressPanel" Grid.Row="1" Visibility="Collapsed"><ProgressBar x:Name="DownloadProgressBar" Style="{StaticResource ModernProgressBar}" Minimum="0" Maximum="100"/><Grid Margin="0,3,0,0"><TextBlock x:Name="ProgressText" Style="{StaticResource BodyText}" FontSize="11"/><TextBlock x:Name="SpeedText" Foreground="{DynamicResource Mint}" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="11" HorizontalAlignment="Right"/></Grid></StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="2"><Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                      <Grid Width="320" Margin="0,0,16,0"><Grid.RowDefinitions><RowDefinition Height="34"/><RowDefinition Height="24"/></Grid.RowDefinitions><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><Button x:Name="LatestVersionButton" Content="Aktuell" Style="{StaticResource VersionSegment}" Click="VersionButton_Click"/><Button x:Name="PreviousVersionButton" Grid.Column="1" Content="Vorherige" Style="{StaticResource VersionSegment}" Click="VersionButton_Click"/></Grid><TextBlock x:Name="VersionSelectionHint" Grid.Row="1" Text="Version wählen" Style="{StaticResource BodyText}" FontSize="11" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/></Grid>
+                      <Button x:Name="StartGameButton" Grid.Column="1" Content="SPIEL STARTEN" Style="{StaticResource PrimaryButton}" MinWidth="210" MaxWidth="280" Height="58" FontSize="21" HorizontalAlignment="Left" VerticalAlignment="Top" Click="StartGameButton_Click"/>
+                    </Grid>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left"><Button x:Name="CheckUpdatesButton" Width="140" MaxWidth="200" Content="Updates suchen" Style="{StaticResource SecondaryButton}" Padding="6,6" FontSize="13" Margin="0,0,8,0" Click="CheckUpdatesButton_Click"/><Button x:Name="RepairButton" Width="132" MaxWidth="200" Content="Reparieren" ToolTip="Spieldateien reparieren" Style="{StaticResource SecondaryButton}" Padding="6,6" FontSize="13" Margin="0,0,8,0" Click="RepairButton_Click"/><Button x:Name="ChooseFolderButton" Width="140" MaxWidth="200" Content="Spielordner …" Style="{StaticResource SecondaryButton}" Padding="6,6" FontSize="13" Click="ChooseFolderButton_Click"/><Button x:Name="CancelButton" Width="96" MaxWidth="200" Content="Abbrechen" Style="{StaticResource DangerButton}" Visibility="Collapsed" Padding="8,6" Margin="8,0,0,0" Click="CancelButton_Click"/></StackPanel>
+                    <StackPanel Grid.Row="4" MaxWidth="460" HorizontalAlignment="Left"><CheckBox x:Name="AutoUpdateCheckBox" Content="Vor dem Start automatisch aktualisieren" Style="{StaticResource ToggleCheckBox}" Checked="AutoUpdateCheckBox_Changed" Unchecked="AutoUpdateCheckBox_Changed"/><CheckBox x:Name="CloseAfterStartCheckBox" Content="Launcher nach Spielstart schließen" Style="{StaticResource ToggleCheckBox}" Checked="CloseAfterStartCheckBox_Changed" Unchecked="CloseAfterStartCheckBox_Changed"/></StackPanel>
+                  </Grid>
+                  <Grid x:Name="ScenePanel" Grid.Column="1" Margin="0,0,0,0"><Grid.RowDefinitions><RowDefinition Height="48"/><RowDefinition Height="*"/><RowDefinition Height="38"/></Grid.RowDefinitions>
+                    <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><StackPanel><TextBlock Text="Was ist neu?" FontFamily="pack://application:,,,/assets/fonts/#Barlow Condensed" FontSize="26" FontWeight="Bold" Foreground="{DynamicResource Text}"/><TextBlock x:Name="PatchNotesSubtitle" Text="Versionshinweise" Style="{StaticResource BodyText}" FontSize="13"/></StackPanel><Button x:Name="RefreshPatchNotesButton" Grid.Column="1" Content="↻" ToolTip="Versionshinweise neu laden" Style="{StaticResource SecondaryButton}" Padding="10,4" VerticalAlignment="Top" Click="RefreshPatchNotesButton_Click"/></Grid>
+                    <ScrollViewer x:Name="PatchNotesScroller" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="0,0,0,8"><TextBlock x:Name="PatchNotesText" Text="Lade Versionshinweise …" Foreground="{DynamicResource Text}" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="16" LineHeight="26" TextWrapping="Wrap" Padding="0,0,12,4"/></ScrollViewer>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left"><Button x:Name="ReleasePageButton" Content="Release ↗" Style="{StaticResource SecondaryButton}" MaxWidth="200" Padding="14,4" Margin="0,0,8,0" Click="OpenReleaseButton_Click"/><Button x:Name="OpenGameFolderButton" Content="Ordner ↗" Style="{StaticResource SecondaryButton}" MaxWidth="200" Padding="14,4" Click="OpenFolderButton_Click"/></StackPanel>
+                  </Grid>
                 </Grid>
-            </Grid>
+              </Grid>
+            </ScrollViewer>
 
-            <Grid Grid.Row="2" Margin="38,0,38,0" Background="#D10B0910">
+            <Grid Grid.Row="2" Margin="38,0,38,0" Background="{DynamicResource Surface}">
                 <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center"><Ellipse Width="5" Height="5" Fill="{DynamicResource Mint}" Margin="0,0,9,0"/><TextBlock x:Name="TopStatusText" MaxWidth="150" TextTrimming="CharacterEllipsis" Text="Bereit" Foreground="{DynamicResource Muted}" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="10" VerticalAlignment="Center"/><TextBlock x:Name="ActivityText" Text="Bereit" Visibility="Collapsed" Foreground="{DynamicResource Faint}" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="10" Margin="11,0,0,0" VerticalAlignment="Center"/></StackPanel>
                 <TextBlock x:Name="LauncherStatusText" Grid.Column="1" Text="Launcher wird geprüft …" Foreground="{DynamicResource Faint}" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="10" Margin="0,0,22,0" VerticalAlignment="Center"/>
                 <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="EventSettingsButton" Content="Effekte" Style="{StaticResource SecondaryButton}" FontSize="11" MinHeight="28" Padding="8,4" Margin="0,0,14,0" Click="EventSettings_Click"/>
                     <TextBlock Text="MAUSSPUR" Style="{StaticResource Eyebrow}" FontSize="9" VerticalAlignment="Center" Margin="0,0,7,0"/><CheckBox x:Name="MouseTrailCheckBox" ToolTip="Leuchtspur hinter dem Mauszeiger" Style="{StaticResource ToggleCheckBox}" Width="44" Margin="0,0,14,0" Checked="MouseTrail_Changed" Unchecked="MouseTrail_Changed"/>
                     <TextBlock Text="MUSIK" Style="{StaticResource Eyebrow}" FontSize="9" VerticalAlignment="Center" Margin="0,0,9,0"/><CheckBox x:Name="MusicCheckBox" ToolTip="Hintergrundmusik an oder aus" Style="{StaticResource ToggleCheckBox}" Width="44" Margin="0,0,10,0" Checked="MusicToggle_Changed" Unchecked="MusicToggle_Changed"/>
-                    <TextBlock x:Name="MusicStatusText" Text="AN" Width="48" TextTrimming="CharacterEllipsis" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" Foreground="{DynamicResource Mint}" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="9" VerticalAlignment="Center" Margin="0,0,10,0" IsHitTestVisible="False"/>
+                    <TextBlock x:Name="MusicStatusText" Visibility="Collapsed" Text="AN" Width="48" TextTrimming="CharacterEllipsis" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" Foreground="{DynamicResource Mint}" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="9" VerticalAlignment="Center" Margin="0,0,10,0" IsHitTestVisible="False"/>
                     <TextBlock Text="♪" Foreground="{DynamicResource Faint}" FontFamily="Segoe UI Symbol" FontSize="12" VerticalAlignment="Center" Margin="0,0,5,0"/>
                     <Slider x:Name="MusicVolumeSlider" ToolTip="Musiklautstärke" Width="75" Height="24" Minimum="0" Maximum="1" Value="0.22" SmallChange="0.02" LargeChange="0.1" IsMoveToPointEnabled="True" Focusable="True" ValueChanged="MusicVolume_Changed"/>
-                    <TextBlock Text="RUHIGE EFFEKTE" Style="{StaticResource Eyebrow}" FontSize="9" VerticalAlignment="Center" Margin="0,0,9,0"/><CheckBox x:Name="ReduceMotionCheckBox" ToolTip="Animationen reduzieren" Style="{StaticResource ToggleCheckBox}" Width="44" Margin="0" Checked="ReduceMotion_Changed" Unchecked="ReduceMotion_Changed"/>
+                    <TextBlock Text="RUHIG" Style="{StaticResource Eyebrow}" FontSize="9" VerticalAlignment="Center" Margin="0,0,9,0"/><CheckBox x:Name="ReduceMotionCheckBox" ToolTip="Animationen reduzieren" Style="{StaticResource ToggleCheckBox}" Width="44" Margin="0" Checked="ReduceMotion_Changed" Unchecked="ReduceMotion_Changed"/>
                 </StackPanel>
             </Grid>
         </Grid>
+        <ui:FireworkScene x:Name="FireworksView" IsHitTestVisible="False" ClipToBounds="True"/>
         <ui:MouseTrail x:Name="MouseTrailView" IsHitTestVisible="False"/>
     </Grid>
 </Window>

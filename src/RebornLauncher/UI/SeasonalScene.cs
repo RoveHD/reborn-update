@@ -1,19 +1,19 @@
 using System;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
 namespace PokemonRebornLauncher.UI;
 
 /// <summary>
 /// Lightweight vector scenery for the launcher. Keep this element behind the
-/// content: its palette is deliberately translucent and its decorations stay
-/// around the edges of a 16:9 design canvas.
+/// artwork inside its own clipped stage, separate from all text and controls.
 /// </summary>
 public sealed class SeasonalScene : FrameworkElement
 {
-    private const double SceneWidth = 1920;
-    private const double SceneHeight = 1080;
+    private const double SceneWidth = 1000;
+    private const double SceneHeight = 400;
     private const double FrameSeconds = 1.0 / 30.0;
 
     private static readonly Brush Pumpkin = MakeBrush(225, 111, 44, 208);
@@ -33,13 +33,10 @@ public sealed class SeasonalScene : FrameworkElement
     private static readonly Brush LeafGold = MakeBrush(222, 147, 55, 190);
     private static readonly Brush LeafRed = MakeBrush(190, 72, 64, 185);
     private static readonly Brush LeafYellow = MakeBrush(242, 190, 76, 185);
-    private static readonly Brush FireworkBlue = MakeBrush(120, 199, 255, 155);
-    private static readonly Brush FireworkGold = MakeBrush(255, 214, 119, 170);
     private static readonly Brush ArceusGold = MakeBrush(255, 218, 135, 120);
     private static readonly Brush ArceusPale = MakeBrush(255, 244, 204, 90);
     private static readonly Brush ArceusHalo = MakeHaloBrush();
     private static readonly Pen SunRayPen = MakePen(255, 211, 117, 32, 3);
-    private static readonly Pen FireworkRayPen = MakePen(255, 229, 205, 100, 1.7);
     private static readonly Pen EggOutline = MakePen(255, 255, 255, 100, 1);
     private static readonly Pen ArceusInnerPen = MakePen(255, 241, 205, 90, 1);
     private static readonly Pen PumpkinLine = MakePen(255, 196, 103, 175, 1.5);
@@ -49,6 +46,9 @@ public sealed class SeasonalScene : FrameworkElement
     private static readonly Pen WaterLine = MakePen(154, 229, 241, 150, 2);
     private static readonly Pen LeafLine = MakePen(255, 211, 124, 120, 1.5);
     private static readonly Pen GoldLine = MakePen(255, 231, 170, 135, 2);
+    private static readonly DependencyProperty DaylightProgressProperty = DependencyProperty.Register(
+        nameof(DaylightProgress), typeof(double), typeof(SeasonalScene),
+        new FrameworkPropertyMetadata(0d, FrameworkPropertyMetadataOptions.AffectsRender));
 
     private static readonly StreamGeometry GhostShape = BuildGhostShape();
     private static readonly StreamGeometry LeafShape = BuildLeafShape();
@@ -60,6 +60,10 @@ public sealed class SeasonalScene : FrameworkElement
     private readonly ScaleTransform _scale = new();
     private string _themeId = "standard";
     private bool _reduceMotion;
+    private bool _hasDaylightTarget;
+    private bool _targetDaylight;
+    private double DaylightProgress { get => (double)GetValue(DaylightProgressProperty); set => SetValue(DaylightProgressProperty, value); }
+    public bool Edge { get; set; }
     private double _phase;
 
     public SeasonalScene()
@@ -77,7 +81,7 @@ public sealed class SeasonalScene : FrameworkElement
     }
 
     /// <summary>Sets the seasonal palette and whether decorative motion is reduced.</summary>
-    public void SetTheme(string id, bool reduceMotion)
+    public void SetTheme(string id, bool reduceMotion, bool daylight = false, bool animateLighting = true)
     {
         string requested = (id ?? "standard").Trim().ToLowerInvariant();
         _themeId = requested switch
@@ -86,17 +90,47 @@ public sealed class SeasonalScene : FrameworkElement
             _ => "standard"
         };
         _reduceMotion = reduceMotion;
-        _phase = 0;
+        SetDaylight(daylight, animateLighting && !_reduceMotion);
         UpdateTimerState();
         InvalidateVisual();
+    }
+
+    private void SetDaylight(bool daylight, bool animate)
+    {
+        if (_hasDaylightTarget && daylight == _targetDaylight)
+        {
+            if (!animate)
+            {
+                BeginAnimation(DaylightProgressProperty, null);
+                DaylightProgress = daylight ? 1 : 0;
+            }
+            return;
+        }
+        double current = DaylightProgress;
+        _targetDaylight = daylight;
+        bool first = !_hasDaylightTarget;
+        _hasDaylightTarget = true;
+        double target = daylight ? 1 : 0;
+        BeginAnimation(DaylightProgressProperty, null);
+        DaylightProgress = target;
+        if (!animate || first)
+        {
+            return;
+        }
+        BeginAnimation(DaylightProgressProperty, new DoubleAnimation(current, target, TimeSpan.FromSeconds(2.8))
+        {
+            EasingFunction = new SineEase { EasingMode = EasingMode.EaseInOut },
+            FillBehavior = FillBehavior.Stop
+        }, HandoffBehavior.SnapshotAndReplace);
     }
 
     protected override void OnRender(DrawingContext drawingContext)
     {
         base.OnRender(drawingContext);
-        if (ActualWidth <= 0 || ActualHeight <= 0 || _themeId == "standard")
+        if (ActualWidth <= 0 || ActualHeight <= 0)
             return;
 
+        if (Edge) { DrawEdgeScene(drawingContext); return; }
         _scale.ScaleX = ActualWidth / SceneWidth;
         _scale.ScaleY = ActualHeight / SceneHeight;
         drawingContext.PushTransform(_scale);
@@ -104,6 +138,7 @@ public sealed class SeasonalScene : FrameworkElement
 
         switch (_themeId)
         {
+            case "standard": DrawNight(drawingContext); break;
             case "halloween": DrawHalloween(drawingContext); break;
             case "winter": DrawWinter(drawingContext); break;
             case "spring": DrawSpring(drawingContext); break;
@@ -129,7 +164,7 @@ public sealed class SeasonalScene : FrameworkElement
 
     private void UpdateTimerState()
     {
-        if (IsLoaded && IsVisible && !_reduceMotion && _themeId != "standard")
+        if (IsLoaded && IsVisible && !_reduceMotion )
         {
             if (!_timer.IsEnabled)
                 _timer.Start();
@@ -140,140 +175,168 @@ public sealed class SeasonalScene : FrameworkElement
         }
     }
 
+    private void DrawEdgeScene(DrawingContext dc)
+    {
+        dc.PushTransform(new ScaleTransform(ActualWidth / 180, ActualHeight / 800));
+        for (int i = 0; i < 12; i++)
+        {
+            double x = 12 + Pseudo(i * 13 + 4) * 150;
+            double y = (Pseudo(i * 17 + 7) * 800 + _phase * (8 + i % 3 * 3)) % 800;
+            switch (_themeId)
+            {
+                case "winter": DrawSnowflake(dc, x, y, 3 + i % 3, Snow); break;
+                case "spring": DrawLeaf(dc, x, y, 14 + i % 3 * 3, SpringGreen, i * 20 + _phase * 10); break;
+                case "harvest": DrawLeaf(dc, x, y, 18 + i % 3 * 3, i % 2 == 0 ? LeafGold : LeafRed, i * 25 + _phase * 12); break;
+                case "summer": dc.DrawEllipse(null, WaterLine, new Point(x, 800 - y), 4 + i % 4 * 2, 4 + i % 4 * 2); break;
+                case "halloween":
+                    if (i < 3) DrawGhost(dc, x, y, 21, 29);
+                    else dc.DrawEllipse(PumpkinLight, null, new Point(x, y), 2, 2);
+                    break;
+                case "arceus" or "newyear": DrawStar(dc, x, y, 3 + i % 3, ArceusPale); break;
+                default:
+                    dc.PushOpacity(1 - DaylightProgress);
+                    dc.DrawEllipse(SnowSoft, null, new Point(x, y), 1.7, 1.7);
+                    dc.Pop();
+                    dc.PushOpacity(DaylightProgress);
+                    DrawLeaf(dc, x, y, 10, SpringMint, i * 30);
+                    dc.Pop();
+                    break;
+            }
+        }
+        dc.Pop();
+    }
+
+    private void DrawNight(DrawingContext dc)
+    {
+        dc.PushOpacity(0.7 * (1 - DaylightProgress));
+        double moonRadius = 34 - DaylightProgress * 8;
+        dc.DrawEllipse(ArceusPale, null, new Point(845, 78), moonRadius, moonRadius);
+        dc.DrawEllipse(MakeBrush(14, 12, 24, 255), null, new Point(860 - DaylightProgress * 5, 68), moonRadius * .85, moonRadius * .85);
+        for (int i = 0; i < 24; i++)
+        {
+            double x = Pseudo(i * 17 + 8) * SceneWidth;
+            double y = 18 + Pseudo(i * 13 + 5) * 200;
+            dc.PushOpacity(0.3 + (Math.Sin(_phase + i) + 1) * 0.3);
+            dc.DrawEllipse(SnowSoft, null, new Point(x, y), 1.6 + i % 2, 1.6 + i % 2);
+            dc.Pop();
+        }
+        dc.Pop();
+        dc.PushOpacity(DaylightProgress);
+        dc.DrawEllipse(MakeBrush(255, 198, 116, 82), null, new Point(845, 78), 34 + DaylightProgress * 20, 34 + DaylightProgress * 20);
+        for (int i = 0; i < 8; i++) DrawFlower(dc, 40 + i * 134, 360, 12, SpringPink);
+        dc.Pop();
+    }
+
     private void DrawHalloween(DrawingContext dc)
     {
-        DrawPumpkin(dc, 455, 146, 78);
-        DrawPumpkin(dc, 1362, 145, 55);
-        DrawGhost(dc, 556 + Drift(4, 1.2), 170, 45, 50);
-        DrawGhost(dc, 1365 - Drift(4, 1.4), 239, 40, 45);
+        DrawPumpkin(dc, 135, 325, 115);
+        DrawPumpkin(dc, 880, 330, 82);
+        DrawPumpkin(dc, 230, 345, 53);
+        DrawGhost(dc, 135 + Drift(12, 1.2), 72, 57, 65);
+        DrawGhost(dc, 820 - Drift(16, 1.4), 105, 49, 58);
+        for (int i = 0; i < 12; i++)
+        {
+            double x = 70 + Pseudo(i * 17 + 2) * 860;
+            double y = 30 + (Pseudo(i * 11 + 5) * 300 + _phase * 10) % 300;
+            dc.PushOpacity(0.2 + (Math.Sin(_phase + i) + 1) * 0.2);
+            dc.DrawEllipse(PumpkinLight, null, new Point(x, y), 2.8, 2.8);
+            dc.Pop();
+        }
     }
 
     private void DrawWinter(DrawingContext dc)
     {
-        dc.PushOpacity(0.18);
-        dc.DrawRectangle(Ice, null, new Rect(0, 1032, SceneWidth, 48));
-        dc.DrawEllipse(Ice, null, new Point(-75, 1052), 500, 18);
-        dc.DrawEllipse(Ice, null, new Point(1995, 1052), 500, 18);
-        dc.DrawGeometry(null, SnowLine, SnowEdgeLeft);
-        dc.DrawGeometry(null, SnowLine, SnowEdgeRight);
+        dc.PushOpacity(0.35);
+        dc.DrawEllipse(Ice, null, new Point(140, 385), 280, 33);
+        dc.DrawEllipse(Ice, null, new Point(900, 390), 370, 40);
         dc.Pop();
-
         for (int i = 0; i < 44; i++)
         {
-            double baseX = Pseudo(i * 17 + 5) * SceneWidth;
-            double y = (Pseudo(i * 29 + 3) * SceneHeight + _phase * (18 + (i % 5) * 5)) % SceneHeight;
-            double x = baseX + Math.Sin(_phase * 0.72 + i * 1.7) * (7 + i % 9);
-            double centerFade = x > 480 && x < 1450 && y > 160 && y < 870 ? 0.12 : 1;
-            dc.PushOpacity(centerFade);
-            DrawSnowflake(dc, x, y, 3.4 + (i % 4) * 1.3, i % 3 == 0 ? Snow : SnowSoft);
-            dc.Pop();
+            double y = (Pseudo(i * 29 + 3) * SceneHeight + _phase * (10 + i % 5 * 4)) % SceneHeight;
+            double x = Pseudo(i * 17 + 5) * SceneWidth + Math.Sin(_phase * 0.72 + i * 1.7) * 12;
+            DrawSnowflake(dc, x, y, 2.2 + i % 4 * 1.2, i % 3 == 0 ? Snow : SnowSoft);
         }
     }
 
     private void DrawSpring(DrawingContext dc)
     {
-        DrawEgg(dc, 485, 145, 39, 50, EggBlue, 0.12);
-        DrawEgg(dc, 1365, 150, 34, 44, EggCream, -0.14);
-        for (int i = 0; i < 10; i++)
+        DrawEgg(dc, 128, 320, 56, 72, EggBlue, 0.12);
+        DrawEgg(dc, 870, 335, 45, 59, EggCream, -0.14);
+        DrawEgg(dc, 200, 348, 31, 42, EggCream, 0.3);
+        for (int i = 0; i < 18; i++)
         {
-            double x = i < 5 ? 405 + i * 49 : 1305 + (i - 5) * 19;
-            double y = 203 + (i % 3) * 29 + Math.Sin(_phase * 0.7 + i) * 2;
-            DrawFlower(dc, x, y, 8 + i % 3 * 1.5, i % 2 == 0 ? SpringPink : SpringYellow);
-        }
-        for (int i = 0; i < 9; i++)
-        {
-            double x = i % 2 == 0 ? 405 + Pseudo(i * 11 + 8) * 230 : 1305 + Pseudo(i * 11 + 8) * 72;
-            double y = 105 + Pseudo(i * 23 + 2) * 150 + _phase * (2 + i % 3);
-            dc.PushTransform(new TranslateTransform(x, y));
-            dc.PushTransform(new RotateTransform(Math.Sin(_phase + i) * 20));
-            dc.DrawGeometry(SpringPink, null, PetalShape);
-            dc.Pop(); dc.Pop();
-            dc.DrawEllipse(SpringYellow, null, new Point(x + 4, y + 3), 2.2, 2.2);
-        }
-
-        // Soft green leaves drift in the open gap between the logo, artwork and divider.
-        // Their movement is bounded so they never fall through the controls below.
-        for (int i = 0; i < 7; i++)
-        {
-            double x = i % 2 == 0
-                ? 420 + Pseudo(i * 13 + 4) * 42
-                : 1320 + Pseudo(i * 13 + 4) * 22;
-            x += Math.Sin(_phase * 0.45 + i * 1.7) * 7;
-            double y = 106 + Pseudo(i * 17 + 9) * 112 + Math.Sin(_phase * 0.65 + i) * 8;
-            DrawLeaf(dc, x, y, 15 + i % 3 * 3, SpringMint, Math.Sin(_phase * 0.55 + i) * 14 + i * 21);
+            double x = 25 + i * 57;
+            DrawFlower(dc, x, 365 + Math.Sin(i * 1.7) * 12, 9 + i % 3 * 2, i % 2 == 0 ? SpringPink : SpringYellow);
+            double px = (Pseudo(i * 11 + 8) * 1000 + Math.Sin(_phase * .5 + i) * 25) % 1000;
+            double py = (Pseudo(i * 23 + 2) * 400 + _phase * (8 + i % 3)) % 400;
+            if (i % 3 == 0) DrawLeaf(dc, px, py, 18, SpringMint, _phase * 12 + i * 22);
+            else
+            {
+                dc.PushTransform(new TranslateTransform(px, py));
+                dc.PushTransform(new RotateTransform(_phase * 10 + i * 26));
+                dc.DrawGeometry(SpringPink, null, PetalShape);
+                dc.Pop(); dc.Pop();
+            }
         }
     }
 
     private void DrawSummer(DrawingContext dc)
     {
-        dc.DrawEllipse(Sun, null, new Point(520, 135), 80, 80);
-        for (int i = 0; i < 8; i++)
+        dc.PushOpacity(1 - DaylightProgress);
         {
-            double angle = (-1.05 + i * 0.14) + Math.Sin(_phase * 0.15) * 0.025;
-            double x1 = 520 + Math.Cos(angle) * 100;
-            double y1 = 135 + Math.Sin(angle) * 100;
-            double x2 = 520 + Math.Cos(angle) * 200;
-            double y2 = 135 + Math.Sin(angle) * 200;
-            dc.DrawLine(SunRayPen, new Point(x1, y1), new Point(x2, y2));
+            double radiusY = 36 * (ActualWidth / SceneWidth) / (ActualHeight / SceneHeight);
+            dc.DrawEllipse(ArceusPale, null, new Point(140, 85), 36 * (1 - DaylightProgress * .22), radiusY * (1 - DaylightProgress * .22));
+            for (int i = 0; i < 12; i++)
+                DrawStar(dc, 220 + Pseudo(i * 17 + 2) * 720, 25 + Pseudo(i * 11 + 7) * 160, 2 + i % 2, SnowSoft);
         }
-
-        DrawWave(dc, 410, 352, 220, 10, 0.1);
-        DrawWave(dc, 1295, 340, 100, 8, 1.8);
-        DrawWave(dc, 430, 386, 190, 7, 2.8);
-        for (int i = 0; i < 8; i++)
+        dc.Pop();
+        dc.PushOpacity(DaylightProgress);
+        double sunRadius = 36 + DaylightProgress * 18;
+        dc.DrawEllipse(MakeBrush(255, 198, 116, 72), null, new Point(140, 85), sunRadius, sunRadius);
+        for (int i = 0; i < 12; i++)
         {
-            double x = 430 + i * 28;
-            double bob = Math.Sin(_phase * 1.4 + i * 1.9);
-            double y = 292 + (i % 3) * 19 + bob * 4;
-            double r = 2.5 + i % 3;
-            dc.DrawEllipse(null, WaterLine, new Point(x, y), r, r);
+            double a = i * Math.PI / 6 + _phase * 0.05;
+            dc.DrawLine(SunRayPen, new Point(140 + Math.Cos(a) * (sunRadius + 12), 85 + Math.Sin(a) * (sunRadius + 12)), new Point(140 + Math.Cos(a) * (sunRadius + 27), 85 + Math.Sin(a) * (sunRadius + 27)));
+        }
+        dc.Pop();
+        for (int i = 0; i < 4; i++) DrawWave(dc, 0, 325 + i * 19, 1000, 9 - i, i * 1.7);
+        for (int i = 0; i < 16; i++)
+        {
+            double x = 45 + Pseudo(i * 17 + 4) * 920;
+            double y = 375 - (Pseudo(i * 13 + 2) * 300 + _phase * (13 + i % 4)) % 300;
+            dc.DrawEllipse(null, WaterLine, new Point(x, y), 3 + i % 4 * 2, 3 + i % 4 * 2);
         }
     }
 
     private void DrawHarvest(DrawingContext dc)
     {
-        for (int i = 0; i < 18; i++)
+        for (int i = 0; i < 24; i++)
         {
-            bool inLeftEdge = i % 2 == 0;
-            double x = inLeftEdge
-                ? 18 + Pseudo(i + 10) * 18
-                : 1882 + Pseudo(i + 31) * 20;
-            double y = (Pseudo(i * 7 + 16) * SceneHeight + _phase * (18 + i % 4 * 5)) % SceneHeight;
-            double size = 20 + i % 5 * 3;
-            Brush leaf = i % 3 == 0 ? LeafRed : i % 3 == 1 ? LeafGold : LeafYellow;
-            DrawLeaf(dc, x, y, size, leaf, Math.Sin(_phase * 0.8 + i) * 32 + i * 13);
+            double x = Pseudo(i * 11 + 10) * 1000 + Math.Sin(_phase * .7 + i) * 22;
+            double y = (Pseudo(i * 7 + 16) * SceneHeight + _phase * (13 + i % 4 * 5)) % SceneHeight;
+            DrawLeaf(dc, x, y, 19 + i % 5 * 4, i % 3 == 0 ? LeafRed : i % 3 == 1 ? LeafGold : LeafYellow, Math.Sin(_phase * .8 + i) * 32 + i * 13);
         }
     }
 
     private void DrawNewYear(DrawingContext dc)
     {
-        DrawFirework(dc, 455, 169, 43, FireworkGold, 0.2);
-        DrawFirework(dc, 1362, 173, 35, FireworkBlue, 1.3);
+        for (int i = 0; i < 18; i++)
+            DrawStar(dc, Pseudo(i * 17) * 1000, (Pseudo(i * 7) * 380 + _phase * 12) % 380, 2 + i % 3, ArceusPale);
     }
 
     private void DrawArceus(DrawingContext dc)
     {
-        Point haloCenter = new(520, 150);
-        dc.DrawEllipse(ArceusHalo, null, haloCenter, 108, 108);
-        dc.DrawEllipse(null, GoldLine, haloCenter, 83, 83);
-        dc.DrawEllipse(null, ArceusInnerPen, haloCenter, 94, 94);
-        dc.DrawEllipse(ArceusGold, null, haloCenter, 5, 5);
-        for (int i = 0; i < 16; i++)
+        Point center = new(500, 195);
+        dc.DrawEllipse(ArceusHalo, null, center, 310, 170);
+        dc.DrawEllipse(null, GoldLine, center, 230, 155);
+        dc.DrawEllipse(null, ArceusInnerPen, center, 250, 172);
+        for (int i = 0; i < 24; i++)
         {
-            double a = i * Math.PI / 8 + _phase * 0.08;
-            double r1 = 96 + (i % 3) * 6;
-            double r2 = r1 + 8 + i % 4 * 2;
-            dc.DrawLine(i % 4 == 0 ? GoldLine : SnowLine,
-                new Point(haloCenter.X + Math.Cos(a) * r1, haloCenter.Y + Math.Sin(a) * r1),
-                new Point(haloCenter.X + Math.Cos(a) * r2, haloCenter.Y + Math.Sin(a) * r2));
+            double a = i * Math.PI / 12 + _phase * .05;
+            double x = center.X + Math.Cos(a) * 270;
+            double y = center.Y + Math.Sin(a) * 178;
+            DrawStar(dc, x, y, i % 4 == 0 ? 10 : 4, ArceusPale);
         }
-        for (int i = 0; i < 8; i++)
-        {
-            double x = 410 + Pseudo(i * 9 + 14) * 220;
-            double y = 95 + Pseudo(i * 7 + 25) * 125;
-            DrawStar(dc, x, y, 4 + i % 3 * 2, ArceusPale);
-        }
-        DrawStar(dc, 1360, 150, 10, ArceusPale);
     }
 
     private void DrawPumpkin(DrawingContext dc, double x, double y, double size)
@@ -339,21 +402,6 @@ public sealed class SeasonalScene : FrameworkElement
             dc.DrawLine(WaterLine, previous, new Point(px, py));
             previous = new Point(px, py);
         }
-    }
-
-    private static void DrawFirework(DrawingContext dc, double x, double y, double radius, Brush color, double offset)
-    {
-        for (int i = 0; i < 16; i++)
-        {
-            double a = i * Math.PI / 8 + offset;
-            double inner = radius * 0.32;
-            double outer = radius * (0.72 + (i % 3) * 0.09);
-            Point start = new(x + Math.Cos(a) * inner, y + Math.Sin(a) * inner);
-            Point end = new(x + Math.Cos(a) * outer, y + Math.Sin(a) * outer);
-            dc.DrawLine(FireworkRayPen, start, end);
-            dc.DrawEllipse(color, null, end, 2.6, 2.6);
-        }
-        dc.DrawEllipse(FireworkGold, null, new Point(x, y), 4, 4);
     }
 
     private static void DrawStar(DrawingContext dc, double x, double y, double r, Brush brush)

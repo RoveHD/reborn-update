@@ -18,10 +18,10 @@ public sealed class LauncherMusic : IDisposable
             ["halloween"] = ("Come Play with Me", "USUAN1400042"),
             ["winter"] = ("We Wish you a Merry Christmas", "USUAN1100369"),
             ["spring"] = ("Whimsy Groove", "USUAN1100011"),
-            ["summer"] = ("Beach Party", "USUAN1100613"),
+            ["summer"] = ("Sunshine (version 2)", "USUAN1100628"),
             ["harvest"] = ("Lone Harvest", "USUAN1100409"),
             ["newyear"] = ("Beachfront Celebration", "USUAN1200022"),
-            ["arceus"] = ("Heroic Age", "USUAN1100848")
+            ["arceus"] = ("Phoenix", "")
         };
 
     private readonly Dispatcher dispatcher;
@@ -71,6 +71,20 @@ public sealed class LauncherMusic : IDisposable
         if (id == "standard")
             return "„Reborn Theme“ von O Colosso (2017), aus der vorhandenen Pokémon-Reborn-Spielkopie. " +
                 "Die Lizenzangaben der Spielmusik sind nicht Teil dieser Launcher-Credits.";
+
+        if (id == "arceus")
+            return "„Phoenix“ von Scott Buckley (scottbuckley.com.au), veröffentlicht unter " +
+                "Creative Commons Namensnennung 4.0 International (CC BY 4.0). " +
+                "Quelle: https://www.scottbuckley.com.au/library/phoenix/ | " +
+                "Lizenz: https://creativecommons.org/licenses/by/4.0/ | " +
+                "Bearbeitet: auf 92 Sekunden gekürzt, mit 5 Sekunden Ausblendung versehen und als MP3 mit 128 kbit/s kodiert.";
+
+        if (id == "summer")
+            return "„Sunshine (version 2)“ von Kevin MacLeod (incompetech.com), veröffentlicht unter " +
+                "Creative Commons Namensnennung 4.0 (CC BY 4.0). " +
+                "Quelle: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100628 | " +
+                "Lizenz: https://creativecommons.org/licenses/by/4.0/ | " +
+                "Bearbeitet: auf 92 Sekunden gekürzt, mit 5 Sekunden Ausblendung versehen und als MP3 mit 128 kbit/s kodiert.";
 
         return $"„{track.Title}“ von Kevin MacLeod (incompetech.com), " +
             $"Creative Commons Namensnennung 4.0 (CC BY 4.0). Track: " +

@@ -11,9 +11,9 @@
     <Authors>Elias</Authors>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>assets/reborn.ico</ApplicationIcon>
-    <Version>7.2.0</Version>
-    <AssemblyVersion>7.2.0.0</AssemblyVersion>
-    <FileVersion>7.2.0.0</FileVersion>
+    <Version>7.3.0</Version>
+    <AssemblyVersion>7.3.0.0</AssemblyVersion>
+    <FileVersion>7.3.0.0</FileVersion>
     <Description>Reborn Launcher mit automatischer Selbstaktualisierung</Description>
   </PropertyGroup>
 
@@ -36,6 +36,9 @@
     <EmbeddedResource Include="assets/fonts/OFL.txt" LogicalName="PokemonRebornLauncher.Barlow-OFL.txt" />
     <EmbeddedResource Include="../../docs/MUSIC-CREDITS.txt" LogicalName="PokemonRebornLauncher.MUSIC-CREDITS.txt" />
     <Resource Include="assets/artwork/*.png" />
+    <EmbeddedResource Include="assets/audio/events/*.wav" LogicalName="PokemonRebornLauncher.events.%(Filename).wav"/>
+    <None Include="../../docs/EVENT-SOUND-CREDITS.md" Link="credits/EVENT-SOUND-CREDITS.md" CopyToPublishDirectory="PreserveNewest"/>
+    <None Include="../../docs/HALLOWEEN-AMBIENT-AUDIO.md" Link="credits/HALLOWEEN-AMBIENT-AUDIO.md" CopyToPublishDirectory="PreserveNewest"/>
     <EmbeddedResource Include="assets/audio/music-*.mp3" LogicalName="PokemonRebornLauncher.%(Filename)%(Extension)" />
     <EmbeddedResource Include="assets/audio/reborn-theme.mp3" LogicalName="PokemonRebornLauncher.reborn-theme.mp3" />
     <None Include="background.png" Condition="Exists('background.png')" CopyToOutputDirectory="PreserveNewest" />

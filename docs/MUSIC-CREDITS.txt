@@ -1,9 +1,9 @@
 Launcher music credits
 
-The seasonal tracks below are written and recorded by Kevin MacLeod and are
-offered on Incompetech under Creative Commons Attribution 4.0 (CC BY 4.0).
-Track pages include the creator's attribution and license statement. The
-launcher packages locally edited MP3 files, so playback needs no network access.
+The seasonal tracks below are by Kevin MacLeod (Incompetech) or Scott Buckley
+and are offered under Creative Commons Attribution 4.0 (CC BY 4.0). Track pages
+include the creator's attribution and license statement. The launcher packages
+locally edited MP3 files, so playback needs no network access.
 
 Seasonal tracks:
 
@@ -25,12 +25,13 @@ https://creativecommons.org/licenses/by/4.0/
 Track: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100011
 Used for the spring theme; shortened, faded out, and encoded as MP3.
 
-"Beach Party" Kevin MacLeod (incompetech.com)
+"Sunshine (version 2)" Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 4.0 License
 https://creativecommons.org/licenses/by/4.0/
-Track: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100613
-Used for the summer theme; repeated with a short fade between repetitions and
-encoded as MP3.
+Track: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100628
+Download: https://incompetech.com/music/royalty-free/mp3-royaltyfree/Sunshine%20ver%202.mp3
+Used for the summer theme; shortened to 92 seconds, faded out over the final
+5 seconds, and encoded as stereo MP3 at 44.1 kHz / 128 kbit/s.
 
 "Lone Harvest" Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 4.0 License
@@ -44,11 +45,14 @@ https://creativecommons.org/licenses/by/4.0/
 Track: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1200022
 Used for the New Year theme; shortened, faded out, and encoded as MP3.
 
-"Heroic Age" Kevin MacLeod (incompetech.com)
-Licensed under Creative Commons: By Attribution 4.0 License
+"Phoenix" Scott Buckley (scottbuckley.com.au)
+Released under Creative Commons Attribution 4.0 International (CC BY 4.0).
 https://creativecommons.org/licenses/by/4.0/
-Track: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100848
-Used for the rare Arceus theme; shortened, faded out, and encoded as MP3.
+Track: https://www.scottbuckley.com.au/library/phoenix/
+Download: https://www.scottbuckley.com.au/library/wp-content/uploads/2018/01/sb_phoenix.mp3
+Attribution: 'Phoenix' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au
+Used for the rare Arceus theme; shortened to 92 seconds, faded out over the
+final 5 seconds, and encoded as stereo MP3 at 44.1 kHz / 128 kbit/s.
 
 The standard launcher theme remains "Reborn Theme" by O Colosso (2017),
 sourced from Audio/BGM/Reborn Theme.ogg in the existing Pokémon Reborn game

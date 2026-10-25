@@ -34,6 +34,7 @@ public partial class MainWindow : Window
     public MainWindow(bool smokeTest = false)
     {
         InitializeComponent();
+        PokemonRebornLauncher.UI.WindowWorkArea.Attach(this);
         _smokeTest = smokeTest;
         Opacity = 0;
     }
@@ -42,7 +43,7 @@ public partial class MainWindow : Window
     {
         if (_smokeTest)
         {
-            _settings = new LauncherSettings { InstallDirectory = AppContext.BaseDirectory, Fullscreen = false };
+            _settings = new LauncherSettings { InstallDirectory = AppContext.BaseDirectory, Fullscreen = false, MusicEnabled = false };
             _localVersion = "7.0.0";
             _remoteVersion = "7.0.0";
             _versionSelection = new VersionSelection("7.0.0", "6.1.0", false);
@@ -80,6 +81,13 @@ public partial class MainWindow : Window
         {
             ShowFailure("Launcher konnte nicht gestartet werden.", ex);
         }
+    }
+
+    private static string ReadablePatchNotes(string text)
+    {
+        // The channel accepts plain text and simple Markdown; don't display its markup as prose.
+        text = System.Text.RegularExpressions.Regex.Replace(text.Trim(), @"(?m)^#{1,6}\s+", "");
+        return text.Replace("**", "").Replace("`", "");
     }
 
     private void BeginFadeIn()
@@ -129,7 +137,7 @@ public partial class MainWindow : Window
             UpdateVersionLabels();
             PatchNotesText.Text = string.IsNullOrWhiteSpace(manifest.PatchNotes)
                 ? "Für diese Version gibt es keine Versionshinweise."
-                : manifest.PatchNotes.Trim();
+                : ReadablePatchNotes(manifest.PatchNotes);
             PatchNotesSubtitle.Text = $"Änderungen für Version {_remoteVersion}";
             SetStatus("Spielstatus geladen.");
         }
@@ -324,7 +332,7 @@ public partial class MainWindow : Window
         UpdateBadgeText.Text = text;
         UpdateBadgeBorder.Background = Brushes.Transparent;
         UpdateBadgeBorder.BorderBrush = BrushFromHex(border);
-        UpdateBadgeText.Foreground = BrushFromHex(foreground);
+        UpdateBadgeText.Foreground = (Brush)FindResource("Mint");
     }
 
     private void UpdateVersionSelectionUi()
@@ -363,6 +371,7 @@ public partial class MainWindow : Window
 
     private async void VersionButton_Click(object sender, RoutedEventArgs e)
     {
+        if (_smokeTest) { SetStatus("Designvorschau · Spiel und Updates bleiben unberührt."); return; }
         if (_isBusy || _versionSelection?.OtherVersion is null) return;
         bool wantsPrevious = ReferenceEquals(sender, PreviousVersionButton);
         if (wantsPrevious == _versionSelection.IsPreviousActive) return;
@@ -583,6 +592,7 @@ public partial class MainWindow : Window
 
     private async void StartGameButton_Click(object sender, RoutedEventArgs e)
     {
+        if (_smokeTest) { SetStatus("Designvorschau · Spiel und Updates bleiben unberührt."); return; }
         if (_isBusy) return;
         if (!HasSelectedGame()) { ChooseFolderButton_Click(sender, e); return; }
         var ready = true;
@@ -603,12 +613,14 @@ public partial class MainWindow : Window
 
     private async void CheckUpdatesButton_Click(object sender, RoutedEventArgs e)
     {
+        if (_smokeTest) { SetStatus("Designvorschau · Spiel und Updates bleiben unberührt."); return; }
         if (!await CheckLauncherUpdateAsync()) return;
         await EnsureUpdatedAsync(automatic: false, force: false);
     }
 
     private async void RepairButton_Click(object sender, RoutedEventArgs e)
     {
+        if (_smokeTest) { SetStatus("Designvorschau · Spiel und Updates bleiben unberührt."); return; }
         var answer = ShowPrompt(
             "Dabei werden Spieldateien erneut geladen und vorhandene Dateien ersetzt. Fortfahren?",
             "Spiel reparieren",
@@ -631,6 +643,7 @@ public partial class MainWindow : Window
 
     private async void RefreshPatchNotesButton_Click(object sender, RoutedEventArgs e)
     {
+        if (_smokeTest) { SetStatus("Designvorschau · Spiel und Updates bleiben unberührt."); return; }
         await RefreshLauncherInfoAsync();
     }
 
@@ -727,11 +740,13 @@ public partial class MainWindow : Window
 
     private void OpenReleaseButton_Click(object sender, RoutedEventArgs e)
     {
+        if (_smokeTest) { SetStatus("Designvorschau · Spiel und Updates bleiben unberührt."); return; }
         TryOpen(_settings.ReleasePageUrl);
     }
 
     private void OpenFolderButton_Click(object sender, RoutedEventArgs e)
     {
+        if (_smokeTest) { SetStatus("Designvorschau · Spiel und Updates bleiben unberührt."); return; }
         TryOpen(_settings.ResolveInstallDirectory());
     }
 
@@ -828,6 +843,7 @@ public partial class MainWindow : Window
 
     private async void ChooseFolderButton_Click(object sender, RoutedEventArgs e)
     {
+        if (_smokeTest) { SetStatus("Designvorschau · Spiel und Updates bleiben unberührt."); return; }
         var dialog = new OpenFolderDialog { Title = "Pokémon-Reborn-Spielordner auswählen", InitialDirectory = _settings.ResolveInstallDirectory(), Multiselect = false };
         if (dialog.ShowDialog(this) != true) return;
         var requiredFiles = new[] { _settings.GameExecutable, "Game.ini", "mkxp.json" };

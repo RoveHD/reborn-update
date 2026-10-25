@@ -17,8 +17,17 @@ public sealed class LauncherSettings
     public double MusicVolume { get; set; } = 0.22;
     public bool ReduceMotion { get; set; }
     public bool MouseTrailEnabled { get; set; } = true;
+    public bool EventDecorationsEnabled { get; set; } = true;
+    public bool InteractivePropsEnabled { get; set; } = true;
+    public string EventParticleQuality { get; set; } = "medium";
+    public bool EventSoundsEnabled { get; set; }
+    public double EventSoundVolume { get; set; } = 0.12;
+    public bool HalloweenAmbientEnabled { get; set; } = true;
+    public string HalloweenAmbientFrequency { get; set; } = "normal";
+    public string EventAnimationIntensity { get; set; } = "normal";
     public string Artwork { get; set; } = "umbreon";
     public string ThemeDiscoverySeed { get; set; } = "";
+    public string ThemeLightingMode { get; set; } = "night";
     public string GameExecutable { get; set; } = "Game.exe";
     public string InstallDirectory { get; set; } = ".";
     public string LocalVersionFile { get; set; } = "version.txt";
@@ -63,6 +72,11 @@ public sealed class LauncherSettings
             if (!hasModern) property.SetValue(settings, JsonSerializer.Deserialize(value.GetRawText(), property.PropertyType));
             settings.AdditionalSettings?.Remove(alias.Key);
         }
+        settings.EventSoundVolume = Math.Clamp(settings.EventSoundVolume, 0, 1);
+        if (settings.HalloweenAmbientFrequency is not ("low" or "normal" or "high")) settings.HalloweenAmbientFrequency = "normal";
+        if (settings.EventParticleQuality is not ("off" or "low" or "medium" or "high")) settings.EventParticleQuality = "medium";
+        if (settings.EventAnimationIntensity is not ("reduced" or "normal" or "high")) settings.EventAnimationIntensity = "normal";
+        if (settings.ThemeLightingMode is not ("night" or "day" or "auto")) settings.ThemeLightingMode = "night";
         return settings;
     }
     public async Task SaveAsync(CancellationToken cancellationToken = default)

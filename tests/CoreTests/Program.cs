@@ -42,6 +42,27 @@ Add("SemVer ordering, prerelease, metadata, downgrade guard", () =>
     Check(!UpdateService.IsDifferentVersion("v7.0.0+build1", "7.0.0+build2"));
     Throws<InvalidDataException>(() => ReleaseVersion.Parse("latest"));
 });
+Add("Ambient settings preserve opt-out, volume and frequency across reload", () =>
+{
+    var defaults = LauncherSettings.Parse("{}");
+    Check(!defaults.EventSoundsEnabled && defaults.HalloweenAmbientEnabled && defaults.HalloweenAmbientFrequency == "normal");
+    var configured = LauncherSettings.Parse("""{"eventSoundsEnabled":true,"eventSoundVolume":0.27,"halloweenAmbientEnabled":false,"halloweenAmbientFrequency":"low","friendSetting":"keep"}""");
+    var restored = LauncherSettings.Parse(System.Text.Json.JsonSerializer.Serialize(configured));
+    Check(restored.EventSoundsEnabled && !restored.HalloweenAmbientEnabled && restored.EventSoundVolume == .27 && restored.HalloweenAmbientFrequency == "low");
+    Check(restored.AdditionalSettings!["friendSetting"].GetString() == "keep");
+    Check(LauncherSettings.Parse("""{"halloweenAmbientFrequency":"invalid"}""").HalloweenAmbientFrequency == "normal");
+});
+Add("Lighting modes survive settings reload and default to night", () =>
+{
+    Check(LauncherSettings.Parse("{}").ThemeLightingMode == "night");
+    foreach (string mode in new[] { "night", "day", "auto" })
+    {
+        var chosen = LauncherSettings.Parse("{\"themeLightingMode\":\"" + mode + "\",\"friendSetting\":\"keep\"}");
+        var reloaded = LauncherSettings.Parse(System.Text.Json.JsonSerializer.Serialize(chosen));
+        Check(reloaded.ThemeLightingMode == mode && reloaded.AdditionalSettings!["friendSetting"].GetString() == "keep");
+    }
+    Check(LauncherSettings.Parse("""{"themeLightingMode":"invalid"}""").ThemeLightingMode == "night");
+});
 Add("Snake case migration, modern keys win, unknown settings retained", () =>
 {
     var old = LauncherSettings.Parse("""{"auto_update":false,"install_directory":"D:/Reborn","favorite_theme":"purple"}""");
@@ -58,6 +79,18 @@ Add("Presentation preferences preserve existing installs and user choices", () =
     var reloaded = LauncherSettings.Parse(System.Text.Json.JsonSerializer.Serialize(chosen));
     Check(!reloaded.MusicEnabled && reloaded.MusicVolume == 0.37 && reloaded.ReduceMotion && reloaded.Artwork == "absol");
     Check(reloaded.InstallDirectory == "D:/Reborn" && reloaded.AdditionalSettings!["friendSetting"].GetString() == "keep");
+});
+Add("Event settings remain opt-in, bounded and survive legacy preference migration", () =>
+{
+    var legacy = LauncherSettings.Parse("""{"auto_update":false,"install_directory":"D:/Reborn","friendSetting":"keep"}""");
+    Check(legacy.EventDecorationsEnabled && legacy.InteractivePropsEnabled && !legacy.EventSoundsEnabled);
+    Check(legacy.EventSoundVolume == .12 && legacy.EventParticleQuality == "medium");
+    var chosen = LauncherSettings.Parse("""{"eventSoundsEnabled":true,"eventSoundVolume":0.27,"eventDecorationsEnabled":false,"interactivePropsEnabled":false,"eventParticleQuality":"low","eventAnimationIntensity":"reduced","friendSetting":"keep"}""");
+    var roundTrip = LauncherSettings.Parse(System.Text.Json.JsonSerializer.Serialize(chosen));
+    Check(roundTrip.EventSoundsEnabled && roundTrip.EventSoundVolume == .27 && !roundTrip.EventDecorationsEnabled && !roundTrip.InteractivePropsEnabled);
+    Check(roundTrip.EventParticleQuality == "low" && roundTrip.EventAnimationIntensity == "reduced" && roundTrip.AdditionalSettings!["friendSetting"].GetString() == "keep");
+    var invalid = LauncherSettings.Parse("""{"eventSoundVolume":8,"eventParticleQuality":"oops","eventAnimationIntensity":"oops"}""");
+    Check(invalid.EventSoundVolume == 1 && invalid.EventParticleQuality == "medium" && invalid.EventAnimationIntensity == "normal");
 });
 Add("Recurring themes respect exact annual boundaries and leap day", () =>
 {

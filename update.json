@@ -7,10 +7,10 @@
     "size": 85890805
   },
   "game": {
-    "version": "7.3.1",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.1/Reborn-AllGen-0.9.9.zip",
-    "sha256": "1bc86c047f6c2b7a96e12f5478811e6bf714e6ad3780c14db3f0306850365c97",
-    "size": 1476583417,
+    "version": "7.3.2",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.2/Reborn-AllGen-0.9.9.zip",
+    "sha256": "a7016240d9d75df4a2c37ec779bfea581911d8fa234bab68e2b9574ab2c8d87b",
+    "size": 1476960959,
     "removedFiles": [
       {
         "path": "Audio/SE/003Cry_2.ogg",
@@ -6391,5 +6391,22 @@
       }
     ]
   },
-  "patchNotes": "# Spielhotfix 7.3.1 – Pokémon-Menüs, Geschlechtssymbole, Street-Namen und Kampf-Sounds\n\n- „Erneut erlernen“ erscheint wieder im Teammenü, wenn es für das Pokémon bereits freigeschaltet ist. Alte Speicherformate werden unterstützt; die übrigen Menüeinträge bleiben korrekt zugeordnet.\n- Box- und Info-Markierungen werden als klare Kreis-, Quadrat-, Dreieck- und Rautensymbole gezeichnet. Das Auswahlmenü verwendet die normale Spielschrift und passt seine Breite an die Bezeichnungen an.\n- Pokédex-Labels und TM-Infos im Beutel verwenden ebenfalls die normale Spielschrift. Die Textbereiche wurden entsprechend angepasst; künstliche Schriftverkleinerungen entfallen.\n- Geschlechtssymbole im Teammenü und in den Kampfleisten sind wieder vollständig sichtbar. Positionen für Spieler, Gegner und Doppelkämpfe sind angepasst; geschlechtslose Pokémon und Illusion werden berücksichtigt.\n- Straßennamen wie „10th Street“, „Main Street“ und „Jubilife Street“ behalten ihre englischen Eigennamen. Normale Dialogwörter bleiben deutsch. Die Korrektur ist auch gegen ältere oder neu kompilierte deutsche Sprachdateien abgesichert.\n- Der Absturz „wrong number of arguments (given 4, expected 3)“ beim Schaden durch Attacken mit „Battle Sound Effects v1.1“ ist behoben. Der gezielte Kompatibilitätsfix erhält die installierte Sound-Mod; er ersetzt keine vollständige Portierung ihrer übrigen Kampfmethoden. Ohne diese alte Mod bleibt die Argumentübergabe unverändert.\n\nDie Spielbasis bleibt AllGen 0.9.9. Der Launcher bleibt bei Version 7.3.0. Spielstände, persönliche Einstellungen und eigene zusätzliche Mods werden vom Update beibehalten.\n\nNach der Installation das Spiel vollständig neu starten.\n"
+  "patchNotes": "# Spielhotfix 7.3.2 - Ballwurf-Absturz\n\nBehebt den Absturz `super: no superclass method pbThrowPokeBall` beim gemeinsamen Einsatz der legendaeren Fangschwierigkeit und SWM Reusable Premier Balls, insbesondere nach erneutem Laden der Spielskripte.\n\nDie Fang-Mod greift jetzt an den Kampfklassen ein, damit SWM weiterhin die Original-Fangroutine speichert. Fangchancen, wiederverwendbare Premierbaelle und Arceus' Reborn-Kugel-Sperre bleiben unveraendert.\n\nAlle Spielkorrekturen aus 7.3.1 sind enthalten. Genau eine Spiel-Datei wurde gegenueber 7.3.1 geaendert. Der Launcher bleibt auf Version 7.3.0.\n\nSpiel vor dem Update vollstaendig schliessen und danach neu starten. Kein Kompilieren erforderlich.\n\nPruefung: Absturz mit vorheriger Version reproduziert; 132 isolierte Ruby-Pruefungen bestanden (Originalroutine, beide Mod-Ladereihenfolgen, erneutes Laden, Safari, Fangbalance und Ballverbrauch). Kein Test auf dem Rechner des Empfaengers.",
+  "gameHotfixes": [
+    {
+      "fromVersion": "7.3.1",
+      "version": "7.3.2",
+      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.2/Reborn-Hotfix-7.3.1-to-7.3.2.zip",
+      "sha256": "1ed868f76b2805794d523cf2cf153bf1b1c598151e221445ffa4f7f679323a97",
+      "size": 4190,
+      "files": [
+        {
+          "path": "patch/Mods/zzLegendaryCatchDifficulty.rb",
+          "beforeSha256": "6d5f5297f06ffad62ae2cb7ace92d13a2c1a01dc462cd6f851d79093d09cca6e",
+          "sha256": "736909fc0eca9785c2a119a7d72f085a1df804de8c8b2e2344cda6ba74c63db3",
+          "size": 10984
+        }
+      ]
+    }
+  ]
 }

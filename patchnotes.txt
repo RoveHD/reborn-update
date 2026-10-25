@@ -1,29 +1,19 @@
-Launcher 7.0.0 · AllGen 0.9.9 auf Reborn 19.5
+# Launcher 7.2.0 – Installer und automatische Saison-Designs
 
-Der neue Launcher aktualisiert zuerst sich selbst und danach das Spiel. Beim ersten Wechsel bitte den alten Launcher schließen und die neue launcher.exe in den Spielordner kopieren. Danach erfolgen weitere Aktualisierungen automatisch.
+**Windows-Installation:** Reborn-Launcher-7.2.0-Setup.exe herunterladen, installieren und einmal den vorhandenen Reborn-Spielordner wählen. Keine Adminrechte nötig. Das Setup verändert keine Spielinstallation. Launcher-Updates kommen danach automatisch über GitHub; Einstellungen und Verknüpfungen bleiben erhalten.
 
-WICHTIG: Zuerst launcher.exe aus diesem Release verwenden. Der alte Updater kann die notwendige Bereinigung umbenannter Mods nicht ausführen. Sein alter Updatekanal bleibt deshalb auf 6.1.0; das neue Spielpaket wird ausschließlich über das neue Update-Manifest verteilt. Die Paketnummer 7.0.0 ist unabhängig von AllGen 0.9.9.
+- Neues Reborn-Design mit eigener Titelleiste, eingebetteten Schriften, animierten Schaltern und passenden Dialogen.
+- Automatische jährliche Themes: Standard, Halloween, Winter/Weihnachten, Frühling/Ostern, Sommer, Herbst und Silvester/Neujahr – jeweils mit passenden Pokémon und eigener Musik.
+- Schneefall, fallende Herbstblätter, Frühlingsblätter und Pokémon-Eier, Wasserwellen, Blasen, Kürbisse, Geister und Feuerwerk.
+- Sehr seltenes geheimes Arceus-Design.
+- Saisonfarbiger Mauszeiger und separat abschaltbare Leuchtspur. „Ruhige Effekte“ reduziert Bewegung.
+- Musik mit Ein/Aus und Lautstärke; Pause beim Minimieren und beim Spielstart. Kalender und Musik-Credits über die Saisonanzeige erreichbar.
+- Spielordnerwahl bei einer neuen Installation. Der Rückweg zur vorherigen Spielversion bleibt erhalten.
 
-Neu im Launcher:
-• Eigenes Icon und deutsche, skalierbare Oberfläche.
-• Getrennte Versionsprüfung für Launcher und Spiel.
-• Geprüfte Downloads, Fortschritt und Abbruchmöglichkeit.
-• Sicherung und Wiederherstellung bei fehlgeschlagenen Spielupdates.
-• Zwischen aktueller und vorheriger Spielversion wechseln – beide bleiben startbar.
-• Automatische Spielupdates pausieren, solange die vorherige Version ausgewählt ist.
-• Spielstände und persönliche Einstellungen bleiben erhalten.
-• Spielordner frei auswählen und den Pfad für spätere Starts speichern.
-• Bekannte veraltete Dateien hashgesichert entfernen; bei Konflikten mit selbst veränderten Mods vor der Installation abbrechen.
+**Das Spielpaket bleibt 7.0.0 / AllGen 0.9.9.** Die Launcher-Version ist davon unabhängig. Die drei ergänzten Prüfsummen für ältere deutsche Übersetzungsmods bleiben im Updatekanal enthalten.
 
-Spielstand des Pakets: AllGen 0.9.9 mit den vorhandenen Anpassungen.
-• Deutsche Attacken, Fähigkeiten und Mega-Stein-Beschreibungen überarbeitet.
-• Custom-Attacke Searing Void heißt Glutabgrund.
-• Zu lange Beschreibungen und Feldnotizen gekürzt.
-• Absturz beim Scrollen über den alten Pottrott-Megastein behoben.
-• Weitere englische Dialoge und Menüs ergänzt; Custom-Evoli-Namen und Pokédex-Texte vereinheitlicht.
-• Doppelten Schaufler-Eintrag unter „VM benutzen“ entfernt.
-• Bestehende angepasste Mods und Verbesserungen der Spielkopie enthalten.
+Die zusätzliche launcher.exe ist das geprüfte Ziel für automatische Updates vorhandener C#-Launcher 7.0/7.1. Alte Python-Updater brauchen einmalig das Setup. Die portable Bauform war im C#-Launcher keine Update-Sperre; bisher wurde im Updatekanal noch 7.0.0 angeboten.
 
-Der Download enthält das vollständige Spielpaket. Lokal werden nur abweichende Dateien ersetzt und genau eine vorherige Version bleibt über den Umschalter erreichbar. Neue Spielstände können mit der vorherigen Spielversion inkompatibel sein.
+Geprüft: 49 Core-Prüfungen, Kalendergrenzen und Ostertermine, WPF-Oberfläche bei 1280×800 und 960×640, alle acht Audiotracks sowie stumme Musikwechsel, Cursor/Leuchtspur, Installation/Reinstallation, Selbstupdate mit Neustart und alter EXE-Sicherung, Deinstallation und Erhalt isolierter Testdaten. Kein Spielstart im persönlichen Spielordner. Setup und Launcher haben kein eigenes Code-Signing-Zertifikat.
 
-Mega-Pottrott wurde vom AllGen-Ersteller entfernt. Der alte Stein bleibt im Inventar sichtbar, hat in dieser Version aber keine Wirkung.
+Musikquellen und Bearbeitungsnachweise: [Credits](https://github.com/RoveHD/reborn-update/blob/main/docs/SEASONAL-MUSIC-SOURCES.md).

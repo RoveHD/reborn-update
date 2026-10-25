@@ -23,13 +23,13 @@ ersetzt sie und startet die neue Anwendung. Die neue Anwendung bestätigt den
 Start und setzt anschließend die Spielaktualisierung fort. Die Verknüpfungen
 bleiben gültig, weil sich der Installationspfad nicht ändert.
 
-Am 25. Oktober 2026 enthielt das öffentliche GitHub-Manifest noch Launcher 7.0.0.
-Die lokal verteilte Designfassung 7.1.0 erhält deshalb kein Update von diesem
-Manifest: Die veröffentlichte Version ist älter. Die portable Verpackung ist im
-vorliegenden C#-Code keine Sperre für Selbstupdates. Für das neue Setup muss
-nach dem geprüften Build auch die neue Launcher-EXE als GitHub-Release
-veröffentlicht und die Launcher-Sektion im Manifest auf diese Version gesetzt
-werden. Ein lokal gebautes Setup veröffentlicht noch nichts.
+Bei der Diagnose am 25. Oktober 2026 enthielt das öffentliche GitHub-Manifest
+noch Launcher 7.0.0. Die lokal verteilte Designfassung 7.1.0 konnte davon kein
+neueres Update erhalten. Die portable Verpackung ist im vorliegenden C#-Code
+keine Sperre für Selbstupdates. Release 7.2.0 veröffentlicht das neue Setup
+und die dazugehörige Launcher-EXE; die Launcher-Sektion des Manifests wird erst
+nach dem vollständigen Upload auf diese Version gesetzt. Das Spielmanifest
+bleibt unverändert bei AllGen 0.9.9 / Paketversion 7.0.0.
 
 Die Installation unter LocalAppData stellt einen beschreibbaren, dauerhaften
 Launcher-Ordner bereit. Dadurch hängt der Austausch nicht von Schreibrechten

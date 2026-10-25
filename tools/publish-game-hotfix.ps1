@@ -11,7 +11,7 @@ $version = $manifest.game.version
 $tag = "v$version"
 $gameAsset = [IO.Path]::GetFileName(([Uri]$manifest.game.url).AbsolutePath)
 if ($gameAsset -ne 'Reborn-AllGen-0.9.9.zip') { throw 'Unerwarteter Spielpaketname. Legacy-Clients dürfen dieses Paket nicht installieren.' }
-if ($manifest.schemaVersion -ne 1 -or $manifest.launcher.version -ne '7.3.0' -or $version -ne '7.3.1') { throw 'Unerwartete Hotfix-Version.' }
+if ($manifest.schemaVersion -ne 1 -or $manifest.launcher.version -ne '7.3.0' -or $version -notin @('7.3.1','7.3.2')) { throw 'Unerwartete Hotfix-Version.' }
 foreach ($entry in ,@($gameAsset, $manifest.game)) {
     $path = Join-Path $releaseRoot $entry[0]
     $hash = (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash
@@ -55,7 +55,7 @@ if ($existing -and -not $existing.draft) { throw "$tag ist bereits veröffentlic
 if (-not $existing) {
     $sourceCommit = (& git rev-parse HEAD).Trim()
     if ($LASTEXITCODE -ne 0) { throw 'Quellcode-Commit konnte nicht bestimmt werden.' }
-    & gh release create $tag --repo $repository --target $sourceCommit --draft --title "Spielhotfix $version · Menüs, Street-Namen und Kampf-Sounds" --notes-file (Join-Path $releaseRoot 'patchnotes.txt')
+    & gh release create $tag --repo $repository --target $sourceCommit --draft --title "Spielhotfix $version" --notes-file (Join-Path $releaseRoot 'patchnotes.txt')
     if ($LASTEXITCODE -ne 0) { throw 'Release-Entwurf konnte nicht erstellt werden.' }
 }
 $assets = @($gameAsset,'update.json','game-files.json','SHA256SUMS.txt','patchnotes.txt','hotfix-checks.json','package-checks.json','release-repair.json')

@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "sha256": "736909fc0eca9785c2a119a7d72f085a1df804de8c8b2e2344cda6ba74c63db3",
+  "checks": {
+    "original": {
+      "exitCode": 0,
+      "checks": 32
+    },
+    "swm-first": {
+      "exitCode": 0,
+      "checks": 33
+    },
+    "catch-first": {
+      "exitCode": 0,
+      "checks": 33
+    },
+    "script-reload": {
+      "exitCode": 0,
+      "checks": 34
+    },
+    "before-repro": {
+      "exitCode": 1,
+      "expectedFailureReproduced": true
+    }
+  },
+  "totalSuccessfulChecks": 132,
+  "realGameMethodsUsed": true,
+  "testedOnRecipientsComputer": false,
+  "updaterPublished": false,
+  "unchanged": [
+    "catch balance",
+    "30-ball Arceus gate",
+    "SWM source",
+    "save data"
+  ],
+  "backup": "backups/catch-super-hotfix-20261025-230206"
+}

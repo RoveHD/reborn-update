@@ -1,0 +1,44 @@
+name: Build catch hotfix 7.3.2
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: game-catch-hotfix-7.3.2
+  cancel-in-progress: false
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Build and verify complete game package
+        run: python3 tools/prepare_catch_hotfix.py
+      - name: Upload verified files to draft only
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_COMMIT: ${{ github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view v7.3.2 --json isDraft > /tmp/catch-release.json 2>/dev/null; then
+            python3 -c 'import json; assert json.load(open("/tmp/catch-release.json"))["isDraft"], "Release already public"'
+          else
+            gh release create v7.3.2 --target "$RELEASE_COMMIT" --draft --title "Spielhotfix 7.3.2 - Ballwurf-Absturz" --notes-file dist/release-game-7.3.2/patchnotes.txt
+          fi
+          gh release upload v7.3.2 dist/release-game-7.3.2/* --clobber
+          gh release view v7.3.2 --json assets > /tmp/catch-assets.json
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          assets = {a['name']: a for a in json.load(open('/tmp/catch-assets.json'))['assets']}
+          for path in Path('dist/release-game-7.3.2').iterdir():
+              digest = hashlib.file_digest(path.open('rb'), 'sha256').hexdigest()
+              asset = assets[path.name]
+              assert asset['state'] == 'uploaded' and asset['size'] == path.stat().st_size
+              assert asset['digest'] == 'sha256:' + digest, path.name
+          print('Draft assets verified. Live update channel unchanged.')
+          PY

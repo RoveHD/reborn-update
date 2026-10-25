@@ -1,0 +1,47 @@
+[
+  {
+    "path": "patch/Mods/zzLocalGermanText.rb",
+    "sha256": "a920efdcb90e4d9a5fa9db96f67a84ac40869e04429dddb51e264db42d941cb3",
+    "replacedBy": "patch/Mods/RE - Deutsche-Zusatztexte.rb",
+    "provenance": [
+      {
+        "path": "reborn-update/dist/release-7.0.0/Reborn-19.5.0.zip",
+        "archiveSha256": "ae70767ce951b251ef03c10fc9c0762d5d3d8405183e8a4771a35fbe16bae885",
+        "entry": "patch/Mods/zzLocalGermanText.rb"
+      },
+      {
+        "path": "Deutsch-Ergaenzung/Sicherungen/20261025-124122-9816/zzLocalGermanText.rb"
+      },
+      {
+        "path": "reborn-update/test-results/full-package/game-65f519c549654ddea4621b71acb23699/patch/Mods/zzLocalGermanText.rb"
+      }
+    ]
+  },
+  {
+    "path": "patch/Mods/zzLocalGermanText.rb",
+    "sha256": "2354f69c75352cea944da88f2dcfa1f409b74bd3647d57b877ce66260e6cf888",
+    "replacedBy": "patch/Mods/RE - Deutsche-Zusatztexte.rb",
+    "provenance": [
+      {
+        "path": "Deutsch-Ergaenzung/Sicherungen/20261025-102537-9692/zzLocalGermanText.rb"
+      }
+    ]
+  },
+  {
+    "path": "patch/Mods/zzLocalGermanText.rb",
+    "sha256": "402d0f35c75bf4019cfbcfd1c3749e81913162a3023f51a92a8350a9fe556f0c",
+    "replacedBy": "patch/Mods/RE - Deutsche-Zusatztexte.rb",
+    "provenance": [
+      {
+        "path": "Deutsch-Ergaenzung/Sicherungen/20261025-140146-4469/zzLocalGermanText.rb"
+      },
+      {
+        "path": "Deutsch-Ergaenzung/Sicherungen/layout-before-20261025/zzLocalGermanText.rb"
+      },
+      {
+        "path": "Deutsch-Ergaenzung/Sicherungen/layout-before-20261025/Deutsch-Ergaenzung-v2.zip",
+        "entry": "Deutsch-Ergaenzung/patch/Mods/zzLocalGermanText.rb"
+      }
+    ]
+  }
+]

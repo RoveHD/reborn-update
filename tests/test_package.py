@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest import mock
 import zipfile
 
 spec=importlib.util.spec_from_file_location('package_release',Path(__file__).resolve().parents[1]/'tools/package_release.py')
@@ -74,5 +75,55 @@ class PackagingTests(unittest.TestCase):
             rows=package.removed_files(root,{'Scripts/ScriptLoader.rb':{}},previous_archives=[archive])
             self.assertEqual(len(rows),1)
             self.assertEqual(rows[0]['path'],'patch/Mods/retired.rb')
+
+    def test_reviewed_german_hashes_are_reproducible_without_historical_copies(self):
+        entries = list(package.known_retired_files())
+        self.assertEqual(len(entries), 3)
+        with tempfile.TemporaryDirectory() as temp:
+            game = Path(temp)
+            replacement = 'patch/Mods/RE - Deutsche-Zusatztexte.rb'
+            rows = package.removed_files(game, {replacement: {}})
+            self.assertEqual(rows, sorted(entries, key=lambda e: (e['path'].casefold(), e['sha256'])))
+            self.assertEqual(package.removed_files(game, {}), [])
+            self.assertEqual(package.removed_files(game, {replacement: {}, entries[0]['path']: {}}), [])
+        manifest = json.loads((Path(__file__).resolve().parents[1] / 'update.json').read_text(encoding='utf8'))
+        self.assertTrue(all(entry in manifest['game']['removedFiles'] for entry in entries))
+
+    def test_registry_duplicates_and_historical_sources_merge(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp); game = root / 'game'; old = root / 'old'
+            relative = 'patch/Mods/retired.rb'; replacement = 'patch/Mods/RE - Retired.rb'
+            source = old / relative; source.parent.mkdir(parents=True); source.write_bytes(b'known old bytes')
+            loader = game / 'Scripts/ScriptLoader.rb'; loader.parent.mkdir(parents=True)
+            loader.write_text('# BEGIN RE MOD NAMES\n"RE - Retired.rb" => "retired.rb",\n# END RE MOD NAMES', encoding='utf8')
+            entry = {'path': relative, 'sha256': package.sha256(source), 'replacedBy': replacement}
+            registry = root / 'registry.json'
+            registry.write_text(json.dumps([entry, dict(entry, sha256=entry['sha256'].upper())]), encoding='utf8')
+            with mock.patch.object(package, 'KNOWN_RETIRED_FILES', registry):
+                self.assertEqual(package.removed_files(game, {replacement: {}}, [old]), [entry])
+                loader.unlink()
+                self.assertEqual(package.removed_files(game, {replacement: {}}, [old]), [entry])
+
+    def test_registry_rejects_unsafe_paths_hashes_and_self_replacement(self):
+        valid = {'path': 'patch/Mods/old.rb', 'sha256': 'a' * 64, 'replacedBy': 'patch/Mods/new.rb'}
+        invalid = [None, {}, dict(valid, sha256='a' * 63), dict(valid, sha256=None),
+                   dict(valid, replacedBy=valid['path'].upper())]
+        for key in ['path', 'replacedBy']:
+            for value in ['../outside.rb', '/patch/Mods/a.rb', 'C:\\outside.rb',
+                          'patch//Mods/a.rb', 'patch/Mods/a.rb.', 'patch/Mods/CON.rb',
+                          'patch/Mods/a?.rb', 'patch/Mods/a\x00.rb', 'Save Data/Game_3.rxdata',
+                          'settings.json', None]:
+                invalid.append(dict(valid, **{key: value}))
+        with tempfile.TemporaryDirectory() as temp:
+            registry = Path(temp) / 'registry.json'
+            with mock.patch.object(package, 'KNOWN_RETIRED_FILES', registry):
+                for entry in invalid:
+                    with self.subTest(entry=entry):
+                        registry.write_text(json.dumps([entry]), encoding='utf8')
+                        with self.assertRaises(ValueError):
+                            list(package.known_retired_files())
+                registry.write_text('{}', encoding='utf8')
+                with self.assertRaises(ValueError):
+                    list(package.known_retired_files())
 
 if __name__=='__main__':unittest.main()

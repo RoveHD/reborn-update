@@ -6370,6 +6370,21 @@
         "replacedBy": "patch/Mods/RE - Deutsche-Zusatztexte.rb"
       },
       {
+        "path": "patch/Mods/zzLocalGermanText.rb",
+        "sha256": "a920efdcb90e4d9a5fa9db96f67a84ac40869e04429dddb51e264db42d941cb3",
+        "replacedBy": "patch/Mods/RE - Deutsche-Zusatztexte.rb"
+      },
+      {
+        "path": "patch/Mods/zzLocalGermanText.rb",
+        "sha256": "2354f69c75352cea944da88f2dcfa1f409b74bd3647d57b877ce66260e6cf888",
+        "replacedBy": "patch/Mods/RE - Deutsche-Zusatztexte.rb"
+      },
+      {
+        "path": "patch/Mods/zzLocalGermanText.rb",
+        "sha256": "402d0f35c75bf4019cfbcfd1c3749e81913162a3023f51a92a8350a9fe556f0c",
+        "replacedBy": "patch/Mods/RE - Deutsche-Zusatztexte.rb"
+      },
+      {
         "path": "patch/Mods/zzPokedexFrontMenu.rb",
         "sha256": "5975798f5552c7c6aa13be965819eb8a51e4705773d61d55f26c68afe5d753ac",
         "replacedBy": "patch/Mods/RE - Pokedex-Ansichtsauswahl.rb"

@@ -18,6 +18,7 @@ PRIVATE_DIRS = {'save data','saves','save','saved games','.git','.reborn-updater
 PRIVATE_FILES = {'settings.json','mkxp.json','version.txt','launcher.exe','pokemon reborn launcher.exe',
                  'errorlog.txt','debug.txt','updater.log','thumbs.db','desktop.ini'}
 GAME_ARCHIVE = 'Reborn-AllGen-0.9.9.zip'
+KNOWN_RETIRED_FILES = Path(__file__).with_name('known-retired-files.json')
 
 def sha256(path):
     h=hashlib.sha256()
@@ -49,6 +50,35 @@ def files_in(root):
                 raise ValueError('Verknüpfte Datei im Paket: '+rel)
             yield rel,p
 
+def known_retired_files():
+    """Reviewed exact bytes, independent of which historical copies remain on disk."""
+    entries = json.loads(KNOWN_RETIRED_FILES.read_text(encoding='utf-8'))
+    if not isinstance(entries, list):
+        raise ValueError('Ungültiges Register historischer Dateien')
+    def relative(value):
+        if not isinstance(value, str):
+            raise ValueError('Ungültiger historischer Dateipfad')
+        path = value.replace('\\', '/')
+        for part in path.split('/'):
+            if (not part or part in {'.', '..'} or part.endswith(('.', ' ')) or
+                    any(ord(c) < 32 or c in '<>:"|?*' for c in part) or
+                    re.fullmatch(r'CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9]', part.split('.')[0], re.I)):
+                raise ValueError('Unsicherer historischer Dateipfad: ' + value)
+        if not allowed(path):
+            raise ValueError('Geschützter historischer Dateipfad: ' + value)
+        return path
+    for entry in entries:
+        if not isinstance(entry, dict):
+            raise ValueError('Ungültiger historischer Dateieintrag')
+        path = relative(entry.get('path'))
+        replacement = relative(entry.get('replacedBy'))
+        digest = entry.get('sha256')
+        if not isinstance(digest, str) or not re.fullmatch(r'[a-fA-F0-9]{64}', digest):
+            raise ValueError('Ungültige historische SHA-256-Prüfsumme: ' + path)
+        if path.casefold() == replacement.casefold():
+            raise ValueError('Historische Datei darf sich nicht selbst ersetzen: ' + path)
+        yield {'path': path, 'sha256': digest.lower(), 'replacedBy': replacement}
+
 def removed_files(game, inventory, previous=None, previous_archives=None):
     """Known historical bytes only; never infer deletions from unknown user files."""
     current = {path.casefold() for path in inventory}
@@ -63,12 +93,17 @@ def removed_files(game, inventory, previous=None, previous_archives=None):
                 if target.casefold() in current:
                     replacements[('patch/Mods/' + original).casefold()] = target
     removed = {}
-    def add(rel, digest):
+    def add(rel, digest, replacement=None):
         if not allowed(rel) or rel.casefold() in current:
             return
         entry = {'path': rel, 'sha256': digest}
-        if rel.casefold() in replacements:
-            entry['replacedBy'] = replacements[rel.casefold()]
+        replacement = replacement or replacements.get(rel.casefold())
+        if replacement is not None:
+            entry['replacedBy'] = replacement
+        existing = removed.get((rel.casefold(), digest))
+        if existing is not None and existing.get('replacedBy') is not None and replacement is not None:
+            if existing['replacedBy'].casefold() != replacement.casefold():
+                raise ValueError('Widersprüchlicher historischer Ersatzpfad: ' + rel)
         removed[(rel.casefold(), digest)] = entry
     directories = [previous] if isinstance(previous, Path) else (previous or [])
     for directory in directories:
@@ -104,6 +139,9 @@ def removed_files(game, inventory, previous=None, previous_archives=None):
                     for block in iter(lambda: stream.read(1024 * 1024), b''):
                         h.update(block)
                 add(rel, h.hexdigest())
+    for entry in known_retired_files():
+        if entry['replacedBy'].casefold() in current:
+            add(entry['path'], entry['sha256'], entry['replacedBy'])
     return sorted(removed.values(), key=lambda entry: (entry['path'].casefold(), entry['sha256']))
 
 def make_release(game,launcher,out,version,notes,previous=None,previous_archives=None):

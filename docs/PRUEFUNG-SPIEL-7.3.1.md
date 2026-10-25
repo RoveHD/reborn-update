@@ -28,4 +28,6 @@ Keine vollständige Spiel-Durchspielprüfung und kein Kampf auf dem Rechner des 
 
 ## Veröffentlichung
 
-Vorbereitet und lokal geprüft. Remote-Veröffentlichung und Aktivierung werden nach vollständigem Upload separat verifiziert.
+Am 25.10.2026 veröffentlicht: https://github.com/RoveHD/reborn-update/releases/tag/v7.3.1
+
+Alle acht Release-Assets wurden vor Freischaltung anhand der von GitHub gemeldeten Größe und SHA-256-Prüfsumme gegen die lokalen Dateien geprüft. Der Release ist öffentlich, kein Entwurf und kein Prerelease. Die Aktivierung erfolgte mit Commit `d04fd3d` erst nach erfolgreicher Assetprüfung. Anschließend wurde auch der öffentliche Raw-Updatekanal direkt abgerufen: Spielversion 7.3.1 mit exakt der oben genannten Prüfsumme, Launcher unverändert 7.3.0. Der Legacy-Kanal blieb unverändert. Der Hotfix ist absichtlich nicht als neuester Launcher-Download markiert.

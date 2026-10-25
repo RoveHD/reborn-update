@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "launcher": {
-    "version": "7.3.0",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.0/launcher.exe",
-    "sha256": "1549976203ce800165447470c924d158ebc03f4726655ad0e18e86581e1edca6",
-    "size": 85890805
+    "version": "7.3.3",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.3/launcher.exe",
+    "size": 85896949,
+    "sha256": "29ac03add15acbde27b27f82b570c16908fb63cfca6332dc8334c359356a7dfe"
   },
   "game": {
     "version": "7.3.2",
@@ -6391,7 +6391,7 @@
       }
     ]
   },
-  "patchNotes": "# Spielhotfix 7.3.2 - Ballwurf-Absturz\n\nBehebt den Absturz `super: no superclass method pbThrowPokeBall` beim gemeinsamen Einsatz der legendaeren Fangschwierigkeit und SWM Reusable Premier Balls, insbesondere nach erneutem Laden der Spielskripte.\n\nDie Fang-Mod greift jetzt an den Kampfklassen ein, damit SWM weiterhin die Original-Fangroutine speichert. Fangchancen, wiederverwendbare Premierbaelle und Arceus' Reborn-Kugel-Sperre bleiben unveraendert.\n\nAlle Spielkorrekturen aus 7.3.1 sind enthalten. Genau eine Spiel-Datei wurde gegenueber 7.3.1 geaendert. Der Launcher bleibt auf Version 7.3.0.\n\nSpiel vor dem Update vollstaendig schliessen und danach neu starten. Kein Kompilieren erforderlich.\n\nPruefung: Absturz mit vorheriger Version reproduziert; 132 isolierte Ruby-Pruefungen bestanden (Originalroutine, beide Mod-Ladereihenfolgen, erneutes Laden, Safari, Fangbalance und Ballverbrauch). Kein Test auf dem Rechner des Empfaengers.",
+  "patchNotes": "# Launcher 7.3.3 - Kleine automatische Spiel-Hotfixes\n\nDer Launcher kann passende Spiel-Hotfixes jetzt als kleines Paket mit ausschliesslich geaenderten Dateien installieren. Fuer den Fang-Fix von Spielversion 7.3.1 auf 7.3.2 sind das 4.190 Bytes statt des gesamten Spielpakets.\n\nVor der Auswahl werden installierte Version und Ausgangsdateien geprueft. Bei einer anderen Ausgangsversion, veraenderten Ausgangsdateien oder einer Reparatur wird das vollstaendige Spielpaket verwendet. Downloads und enthaltene Dateien werden per SHA-256 verifiziert. Sicherung, Wiederherstellung und Versionswechsel bleiben erhalten.\n\nEinmalig wird dieser Launcher selbst aktualisiert. Danach erfolgt die Auswahl des passenden Spielpakets automatisch. Bestehende Launcher koennen weiterhin das vollstaendige Spielupdate installieren.\n\nDie Oberflaeche entspricht dem veroeffentlichten Launcher 7.3.0; laufende Designarbeiten sind nicht Teil dieses Service-Updates.\n\n# Spielhotfix 7.3.2 - Ballwurf-Absturz\n\nBehebt den Absturz `super: no superclass method pbThrowPokeBall` beim gemeinsamen Einsatz der legendaeren Fangschwierigkeit und SWM Reusable Premier Balls, insbesondere nach erneutem Laden der Spielskripte.\n\nDie Fang-Mod greift jetzt an den Kampfklassen ein, damit SWM weiterhin die Original-Fangroutine speichert. Fangchancen, wiederverwendbare Premierbaelle und Arceus' Reborn-Kugel-Sperre bleiben unveraendert.\n\nAlle Spielkorrekturen aus 7.3.1 sind enthalten. Genau eine Spiel-Datei wurde gegenueber 7.3.1 geaendert. Der Launcher bleibt auf Version 7.3.0.\n\nSpiel vor dem Update vollstaendig schliessen und danach neu starten. Kein Kompilieren erforderlich.\n\nPruefung: Absturz mit vorheriger Version reproduziert; 132 isolierte Ruby-Pruefungen bestanden (Originalroutine, beide Mod-Ladereihenfolgen, erneutes Laden, Safari, Fangbalance und Ballverbrauch). Kein Test auf dem Rechner des Empfaengers.",
   "gameHotfixes": [
     {
       "fromVersion": "7.3.1",

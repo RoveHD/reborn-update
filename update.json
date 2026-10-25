@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "launcher": {
-    "version": "7.3.3",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.3/launcher.exe",
-    "size": 85896949,
-    "sha256": "29ac03add15acbde27b27f82b570c16908fb63cfca6332dc8334c359356a7dfe"
+    "version": "7.3.4",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.4/launcher.exe",
+    "sha256": "d9207936bd589663e158e76acd1fbf5d74d67dcb9269f93dc0409f7e9bd96c80",
+    "size": 118870261
   },
   "game": {
     "version": "7.3.2",
@@ -6391,7 +6391,7 @@
       }
     ]
   },
-  "patchNotes": "# Launcher 7.3.3 - Kleine automatische Spiel-Hotfixes\n\nDer Launcher kann passende Spiel-Hotfixes jetzt als kleines Paket mit ausschliesslich geaenderten Dateien installieren. Fuer den Fang-Fix von Spielversion 7.3.1 auf 7.3.2 sind das 4.190 Bytes statt des gesamten Spielpakets.\n\nVor der Auswahl werden installierte Version und Ausgangsdateien geprueft. Bei einer anderen Ausgangsversion, veraenderten Ausgangsdateien oder einer Reparatur wird das vollstaendige Spielpaket verwendet. Downloads und enthaltene Dateien werden per SHA-256 verifiziert. Sicherung, Wiederherstellung und Versionswechsel bleiben erhalten.\n\nEinmalig wird dieser Launcher selbst aktualisiert. Danach erfolgt die Auswahl des passenden Spielpakets automatisch. Bestehende Launcher koennen weiterhin das vollstaendige Spielupdate installieren.\n\nDie Oberflaeche entspricht dem veroeffentlichten Launcher 7.3.0; laufende Designarbeiten sind nicht Teil dieses Service-Updates.\n\n# Spielhotfix 7.3.2 - Ballwurf-Absturz\n\nBehebt den Absturz `super: no superclass method pbThrowPokeBall` beim gemeinsamen Einsatz der legendaeren Fangschwierigkeit und SWM Reusable Premier Balls, insbesondere nach erneutem Laden der Spielskripte.\n\nDie Fang-Mod greift jetzt an den Kampfklassen ein, damit SWM weiterhin die Original-Fangroutine speichert. Fangchancen, wiederverwendbare Premierbaelle und Arceus' Reborn-Kugel-Sperre bleiben unveraendert.\n\nAlle Spielkorrekturen aus 7.3.1 sind enthalten. Genau eine Spiel-Datei wurde gegenueber 7.3.1 geaendert. Der Launcher bleibt auf Version 7.3.0.\n\nSpiel vor dem Update vollstaendig schliessen und danach neu starten. Kein Kompilieren erforderlich.\n\nPruefung: Absturz mit vorheriger Version reproduziert; 132 isolierte Ruby-Pruefungen bestanden (Originalroutine, beide Mod-Ladereihenfolgen, erneutes Laden, Safari, Fangbalance und Ballverbrauch). Kein Test auf dem Rechner des Empfaengers.",
+  "patchNotes": "# Launcher 7.3.4 – Anime-Szenen mit 2,5D-Bewegung\n\nDer Launcher erhält acht neu gestaltete Anime-Szenen mit fest eingezeichneten Pokémon, passend zu Standard, Halloween, Winter, Frühling/Ostern, Sommer, Herbst, Silvester und Arceus. Pokémon stehen in der Landschaft, schwimmen im Wasser oder schauen hinter Felsen und Pflanzen hervor.\n\n- Landschaft, Vordergrund und Partikel bewegen sich mit unterschiedlicher Tiefe leicht mit der Maus. Zusätzlich generierter Bildinhalt und eine korrigierte Darstellung verhindern sichtbare Bildkanten beim Bewegen.\n- Logo und Startbutton bleiben horizontal zentriert und unbewegt. Untertitel und Versionsinformationen haben gut lesbare Hintergründe.\n- Startseite, Changelog, Extras und Einstellungen sind über die obere Navigation erreichbar. Lange Versionshinweise öffnen in einem eigenen Fenster.\n- Saisonale Dekorationen haben feste Plätze; Geschenke liegen am Boden, Baumschmuck hängt am Baum. Wetter, Feuerwerk und anklickbare Effekte bleiben erhalten.\n- Halloween bietet einen gelegentlichen Gengar-Flug mit Drehung und Lachen. Fünf schnelle Klicks auf das Logo lösen den Blut-Effekt aus.\n- Reduzierte Bewegung, Effektlautstärke und vorhandene Einstellungen werden berücksichtigt. Gemalte Pokémon sind feste Bestandteile ihrer Szene; der frühere Pokémon-Wechsel entfällt.\n\nDie Funktionen aus Launcher 7.3.3 für kleine automatische Spiel-Hotfixes sind enthalten. Spielversion 7.3.2 und ihre Updatepakete bleiben unverändert. Dieses Release aktualisiert den Launcher; ein erneuter vollständiger Spieldownload ist dafür nicht erforderlich.\n\nDie Windows-Setup-Datei eignet sich für eine Neuinstallation. Bestehende Installationen erhalten die neue launcher.exe über die Launcher-Aktualisierung.",
   "gameHotfixes": [
     {
       "fromVersion": "7.3.1",

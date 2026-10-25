@@ -1,21 +1,14 @@
-# Launcher 7.3.3 - Kleine automatische Spiel-Hotfixes
+# Launcher 7.3.4 – Anime-Szenen mit 2,5D-Bewegung
 
-Der Launcher kann passende Spiel-Hotfixes jetzt als kleines Paket mit ausschliesslich geaenderten Dateien installieren. Fuer den Fang-Fix von Spielversion 7.3.1 auf 7.3.2 sind das 4.190 Bytes statt des gesamten Spielpakets.
+Der Launcher erhält acht neu gestaltete Anime-Szenen mit fest eingezeichneten Pokémon, passend zu Standard, Halloween, Winter, Frühling/Ostern, Sommer, Herbst, Silvester und Arceus. Pokémon stehen in der Landschaft, schwimmen im Wasser oder schauen hinter Felsen und Pflanzen hervor.
 
-Vor der Auswahl werden installierte Version und Ausgangsdateien geprueft. Bei einer anderen Ausgangsversion, veraenderten Ausgangsdateien oder einer Reparatur wird das vollstaendige Spielpaket verwendet. Downloads und enthaltene Dateien werden per SHA-256 verifiziert. Sicherung, Wiederherstellung und Versionswechsel bleiben erhalten.
+- Landschaft, Vordergrund und Partikel bewegen sich mit unterschiedlicher Tiefe leicht mit der Maus. Zusätzlich generierter Bildinhalt und eine korrigierte Darstellung verhindern sichtbare Bildkanten beim Bewegen.
+- Logo und Startbutton bleiben horizontal zentriert und unbewegt. Untertitel und Versionsinformationen haben gut lesbare Hintergründe.
+- Startseite, Changelog, Extras und Einstellungen sind über die obere Navigation erreichbar. Lange Versionshinweise öffnen in einem eigenen Fenster.
+- Saisonale Dekorationen haben feste Plätze; Geschenke liegen am Boden, Baumschmuck hängt am Baum. Wetter, Feuerwerk und anklickbare Effekte bleiben erhalten.
+- Halloween bietet einen gelegentlichen Gengar-Flug mit Drehung und Lachen. Fünf schnelle Klicks auf das Logo lösen den Blut-Effekt aus.
+- Reduzierte Bewegung, Effektlautstärke und vorhandene Einstellungen werden berücksichtigt. Gemalte Pokémon sind feste Bestandteile ihrer Szene; der frühere Pokémon-Wechsel entfällt.
 
-Einmalig wird dieser Launcher selbst aktualisiert. Danach erfolgt die Auswahl des passenden Spielpakets automatisch. Bestehende Launcher koennen weiterhin das vollstaendige Spielupdate installieren.
+Die Funktionen aus Launcher 7.3.3 für kleine automatische Spiel-Hotfixes sind enthalten. Spielversion 7.3.2 und ihre Updatepakete bleiben unverändert. Dieses Release aktualisiert den Launcher; ein erneuter vollständiger Spieldownload ist dafür nicht erforderlich.
 
-Die Oberflaeche entspricht dem veroeffentlichten Launcher 7.3.0; laufende Designarbeiten sind nicht Teil dieses Service-Updates.
-
-# Spielhotfix 7.3.2 - Ballwurf-Absturz
-
-Behebt den Absturz `super: no superclass method pbThrowPokeBall` beim gemeinsamen Einsatz der legendaeren Fangschwierigkeit und SWM Reusable Premier Balls, insbesondere nach erneutem Laden der Spielskripte.
-
-Die Fang-Mod greift jetzt an den Kampfklassen ein, damit SWM weiterhin die Original-Fangroutine speichert. Fangchancen, wiederverwendbare Premierbaelle und Arceus' Reborn-Kugel-Sperre bleiben unveraendert.
-
-Alle Spielkorrekturen aus 7.3.1 sind enthalten. Genau eine Spiel-Datei wurde gegenueber 7.3.1 geaendert. Der Launcher bleibt auf Version 7.3.0.
-
-Spiel vor dem Update vollstaendig schliessen und danach neu starten. Kein Kompilieren erforderlich.
-
-Pruefung: Absturz mit vorheriger Version reproduziert; 132 isolierte Ruby-Pruefungen bestanden (Originalroutine, beide Mod-Ladereihenfolgen, erneutes Laden, Safari, Fangbalance und Ballverbrauch). Kein Test auf dem Rechner des Empfaengers.
+Die Windows-Setup-Datei eignet sich für eine Neuinstallation. Bestehende Installationen erhalten die neue launcher.exe über die Launcher-Aktualisierung.

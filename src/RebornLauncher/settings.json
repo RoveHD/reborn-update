@@ -1,0 +1,14 @@
+{
+  "autoUpdate": true,
+  "fullscreen": true,
+  "closeLauncherAfterGameStart": false,
+  "gameExecutable": "Game.exe",
+  "installDirectory": ".",
+  "localVersionFile": "version.txt",
+  "backgroundImage": "background.png",
+  "logoImage": "logo.png",
+  "versionFileUrl": "https://raw.githubusercontent.com/RoveHD/reborn-update/main/version.txt",
+  "patchNotesUrl": "https://raw.githubusercontent.com/RoveHD/reborn-update/main/patchnotes.txt",
+  "downloadUrl": "https://github.com/RoveHD/reborn-update/releases/latest/download/Reborn-19.5.0.zip",
+  "releasePageUrl": "https://github.com/RoveHD/reborn-update/releases/latest"
+}

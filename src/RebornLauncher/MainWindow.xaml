@@ -1,0 +1,86 @@
+<Window x:Class="PokemonRebornLauncher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Pokémon Reborn – Launcher"
+        Icon="pack://application:,,,/assets/reborn.ico"
+        Width="1100" Height="760" MinWidth="960" MinHeight="600"
+        WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
+        ResizeMode="CanResize" Background="#101318"
+        Loaded="Window_Loaded" KeyDown="Window_KeyDown" Closing="Window_Closing">
+    <Window.Resources>
+        <SolidColorBrush x:Key="PanelBrush" Color="#191D23" />
+        <SolidColorBrush x:Key="PanelBorderBrush" Color="#343B43" />
+        <SolidColorBrush x:Key="TextBrush" Color="#F4F3EF" />
+        <SolidColorBrush x:Key="MutedBrush" Color="#B2B5B7" />
+        <SolidColorBrush x:Key="DimBrush" Color="#858B91" />
+        <SolidColorBrush x:Key="CyanBrush" Color="#53D7C2" />
+        <SolidColorBrush x:Key="RedBrush" Color="#D84953" />
+        <Style x:Key="SecondaryButton" TargetType="Button">
+            <Setter Property="Height" Value="40"/><Setter Property="MinWidth" Value="112"/>
+            <Setter Property="Padding" Value="14,0"/><Setter Property="Margin" Value="0,0,8,8"/>
+            <Setter Property="Background" Value="#252B32"/><Setter Property="Foreground" Value="#F4F3EF"/>
+            <Setter Property="BorderBrush" Value="#414A54"/><Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="13"/><Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button"><Border x:Name="Root" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" Padding="{TemplateBinding Padding}"><ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True"/></Border><ControlTemplate.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Root" Property="Background" Value="#343D47"/></Trigger><Trigger Property="IsPressed" Value="True"><Setter TargetName="Root" Property="Background" Value="#171B20"/></Trigger><Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.45"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter>
+        </Style>
+        <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource SecondaryButton}"><Setter Property="Height" Value="52"/><Setter Property="MinWidth" Value="180"/><Setter Property="Background" Value="#C83F4B"/><Setter Property="BorderBrush" Value="#E65B66"/><Setter Property="FontSize" Value="16"/><Setter Property="FontWeight" Value="Bold"/></Style>
+        <Style x:Key="DangerButton" TargetType="Button" BasedOn="{StaticResource SecondaryButton}"><Setter Property="Background" Value="#42282B"/><Setter Property="BorderBrush" Value="#764047"/></Style>
+        <Style x:Key="ModernProgressBar" TargetType="ProgressBar"><Setter Property="Height" Value="10"/><Setter Property="Background" Value="#30363E"/><Setter Property="Foreground" Value="#53D7C2"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ProgressBar"><Grid><Border Background="{TemplateBinding Background}" CornerRadius="5"/><Border x:Name="PART_Track"/><Decorator x:Name="PART_Indicator" HorizontalAlignment="Left"><Border Background="{TemplateBinding Foreground}" CornerRadius="5"/></Decorator></Grid></ControlTemplate></Setter.Value></Setter></Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+        <Grid Margin="22,20,22,16">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Border Width="5" Height="42" Background="#D84953" CornerRadius="2" Margin="0,0,14,0"/>
+                <StackPanel><TextBlock Text="POKÉMON REBORN" Foreground="{StaticResource TextBrush}" FontSize="19" FontWeight="Bold"/><TextBlock Text="SPIEL- UND UPDATE-LAUNCHER" Foreground="{StaticResource DimBrush}" FontSize="10" FontWeight="SemiBold" Margin="1,3,0,0"/></StackPanel>
+                <TextBlock x:Name="TopStatusText" Text="Bereit" Foreground="{StaticResource MutedBrush}" FontSize="12" Margin="22,0,0,0" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <TextBlock x:Name="LauncherStatusText" Text="Launcher wird geprüft …" Foreground="{StaticResource MutedBrush}" FontSize="11" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                <Button x:Name="FullscreenButton" Content="Maximieren" Style="{StaticResource SecondaryButton}" Margin="0" Height="34" MinWidth="100" Click="FullscreenButton_Click"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Margin="20,0,20,0">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="0.95*" MinWidth="380"/><ColumnDefinition Width="18"/><ColumnDefinition Width="1.05*" MinWidth="400"/></Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource PanelBorderBrush}" BorderThickness="1" CornerRadius="8" Padding="18">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <Grid MinHeight="590"><Grid.RowDefinitions><RowDefinition Height="130"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,0,0,15"><Image x:Name="LogoArtwork" Stretch="Uniform" Visibility="Collapsed"/><StackPanel x:Name="LogoFallback" VerticalAlignment="Center"><TextBlock Text="POKÉMON" Foreground="{StaticResource TextBrush}" FontFamily="Segoe UI Black" FontSize="33" FontWeight="Black" TextAlignment="Center"/><TextBlock Text="REBORN" Foreground="#D84953" FontFamily="Segoe UI Black" FontSize="39" FontWeight="Black" TextAlignment="Center" Margin="0,-8,0,0"/></StackPanel></Grid>
+                    <Grid Grid.Row="1" Margin="0,0,0,14"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                        <Border Background="#20252B" CornerRadius="5" Padding="12" Margin="0,0,5,0"><StackPanel><TextBlock Text="SPIELVERSION" Foreground="{StaticResource DimBrush}" FontSize="10" FontWeight="Bold"/><TextBlock x:Name="LocalVersionText" Text="–" Foreground="{StaticResource TextBrush}" FontSize="17" FontWeight="SemiBold" Margin="0,4,0,0"/></StackPanel></Border>
+                        <Border Grid.Column="1" Background="#20252B" CornerRadius="5" Padding="12" Margin="5,0,0,0"><StackPanel><TextBlock Text="AKTUELLE VERSION" Foreground="{StaticResource DimBrush}" FontSize="10" FontWeight="Bold"/><TextBlock x:Name="RemoteVersionText" Text="Prüfe …" Foreground="{StaticResource TextBrush}" FontSize="17" FontWeight="SemiBold" Margin="0,4,0,0"/></StackPanel></Border>
+                    </Grid>
+                    <StackPanel Grid.Row="2" Margin="0,0,0,15"><Border x:Name="UpdateBadgeBorder" Background="#20332F" BorderBrush="#356C61" BorderThickness="1" CornerRadius="5" Padding="10,7" Margin="0,0,0,9"><TextBlock x:Name="UpdateBadgeText" Text="Status wird geprüft" Foreground="#A5E9D9" FontWeight="SemiBold" FontSize="12" TextAlignment="Center"/></Border>
+                        <TextBlock x:Name="StatusText" Text="Der Launcher ist bereit." Foreground="{StaticResource MutedBrush}" FontSize="12" TextWrapping="Wrap" MinHeight="32"/>
+                        <StackPanel x:Name="ProgressPanel" Visibility="Collapsed" Margin="0,12,0,0"><ProgressBar x:Name="DownloadProgressBar" Style="{StaticResource ModernProgressBar}" Minimum="0" Maximum="100" Value="0"/><Grid Margin="0,7,0,0"><TextBlock x:Name="ProgressText" Text="Warte …" Foreground="{StaticResource MutedBrush}" FontSize="11"/><TextBlock x:Name="SpeedText" Foreground="{StaticResource DimBrush}" FontSize="11" HorizontalAlignment="Right"/></Grid></StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" VerticalAlignment="Bottom">
+                        <Border Background="#20252B" CornerRadius="5" Padding="12" Margin="0,0,0,12">
+                            <StackPanel>
+                                <TextBlock Text="SPIELVERSION WÄHLEN" Foreground="{StaticResource DimBrush}" FontSize="10" FontWeight="Bold" Margin="0,0,0,8"/>
+                                <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                    <Button x:Name="LatestVersionButton" Content="Aktuell" Style="{StaticResource SecondaryButton}" Margin="0,0,4,0" Padding="6,0" MinWidth="0" Click="VersionButton_Click"/>
+                                    <Button x:Name="PreviousVersionButton" Grid.Column="1" Content="Vorherige" Style="{StaticResource SecondaryButton}" Margin="4,0,0,0" Padding="6,0" MinWidth="0" Click="VersionButton_Click"/>
+                                </Grid>
+                                <TextBlock x:Name="VersionSelectionHint" Text="Eine zweite Version ist nach dem nächsten Spielupdate verfügbar." Foreground="{StaticResource MutedBrush}" FontSize="11" TextWrapping="Wrap" Margin="0,8,0,0"/>
+                            </StackPanel>
+                        </Border>
+                        <Button x:Name="StartGameButton" Content="SPIEL STARTEN" Style="{StaticResource PrimaryButton}" Margin="0,0,0,12" Click="StartGameButton_Click"/>
+                        <WrapPanel><Button x:Name="CheckUpdatesButton" Content="Nach Updates suchen" Style="{StaticResource SecondaryButton}" Click="CheckUpdatesButton_Click"/><Button x:Name="RepairButton" Content="Dateien reparieren" Style="{StaticResource SecondaryButton}" Click="RepairButton_Click"/><Button x:Name="CancelButton" Content="Abbrechen" Visibility="Collapsed" Style="{StaticResource DangerButton}" Click="CancelButton_Click"/></WrapPanel>
+                        <Button x:Name="ChooseFolderButton" Content="Spielordner auswählen …" Style="{StaticResource SecondaryButton}" HorizontalAlignment="Left" Click="ChooseFolderButton_Click"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="4" Margin="0,14,0,0"><CheckBox x:Name="AutoUpdateCheckBox" Content="Spiel vor dem Start aktuell halten" Foreground="{StaticResource TextBrush}" FontSize="12" Margin="0,0,0,7" Checked="AutoUpdateCheckBox_Changed" Unchecked="AutoUpdateCheckBox_Changed"/><CheckBox x:Name="CloseAfterStartCheckBox" Content="Launcher nach Spielstart schließen" Foreground="{StaticResource MutedBrush}" FontSize="11" Checked="CloseAfterStartCheckBox_Changed" Unchecked="CloseAfterStartCheckBox_Changed"/></StackPanel>
+                </Grid>
+                </ScrollViewer>
+            </Border>
+            <Border Grid.Column="2" Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource PanelBorderBrush}" BorderThickness="1" CornerRadius="8" Padding="20">
+                <Grid><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,0,0,13"><StackPanel><TextBlock Text="ÄNDERUNGEN" Foreground="{StaticResource TextBrush}" FontSize="22" FontWeight="Bold"/><TextBlock x:Name="PatchNotesSubtitle" Text="Versionshinweise" Foreground="{StaticResource MutedBrush}" FontSize="11" Margin="0,3,0,0"/></StackPanel><Button x:Name="RefreshPatchNotesButton" Content="Neu laden" Style="{StaticResource SecondaryButton}" MinWidth="92" Height="34" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="RefreshPatchNotesButton_Click"/></Grid>
+                    <Border Grid.Row="1" Background="#14181D" BorderBrush="#30363E" BorderThickness="1" CornerRadius="6" Padding="15"><ScrollViewer VerticalScrollBarVisibility="Auto"><TextBlock x:Name="PatchNotesText" Text="Lade Versionshinweise …" Foreground="#E3E2DE" FontSize="13" LineHeight="20" TextWrapping="Wrap"/></ScrollViewer></Border>
+                    <WrapPanel Grid.Row="2" Margin="0,13,0,0"><Button Content="Release-Seite öffnen" Style="{StaticResource SecondaryButton}" Click="OpenReleaseButton_Click"/><Button Content="Spielordner öffnen" Style="{StaticResource SecondaryButton}" Click="OpenFolderButton_Click"/></WrapPanel>
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="2" Margin="2,12,2,0"><TextBlock x:Name="ActivityText" Text="Bereit" Foreground="{StaticResource DimBrush}" FontSize="11" VerticalAlignment="Center"/><TextBlock Text="Pokémon Reborn" Foreground="{StaticResource DimBrush}" FontSize="11" HorizontalAlignment="Right" VerticalAlignment="Center"/></Grid>
+    </Grid>
+</Window>

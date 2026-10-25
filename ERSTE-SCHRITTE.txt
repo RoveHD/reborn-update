@@ -1,0 +1,42 @@
+Pokémon Reborn – neuer Launcher
+
+EINMALIGER WECHSEL
+1. Reborn und den bisherigen Launcher schließen.
+2. Die neue launcher.exe in deinen vorhandenen Reborn-Spielordner kopieren.
+   Die bisherige launcher.exe darf ersetzt werden. Spielstände nicht verschieben.
+3. Die neue launcher.exe starten.
+
+Liegt das Spiel woanders, im Launcher „Spielordner auswählen …“ anklicken.
+Im richtigen Ordner liegen Game.exe, Game.ini und mkxp.json.
+Der alte Launcher kann dieses neue Paket nicht sicher installieren. Deshalb
+zuerst die neue launcher.exe verwenden; ein alter Downloadfehler wird so behoben.
+
+DANACH AUTOMATISCH
+Der Launcher prüft zuerst seine eigene Version. Bei Bedarf aktualisiert er sich,
+startet neu und setzt danach das Reborn-Update fort.
+„Spiel vor dem Start aktuell halten“ steuert nur automatische Spielupdates.
+
+DEINE DATEN
+Spielstände und persönliche Einstellungen bleiben erhalten.
+Das Spiel muss während einer Installation geschlossen sein.
+Bekannte alte Moddateien werden anhand ihrer Prüfsumme entfernt. Ist eine alte
+Mod selbst verändert und kollidiert mit dem neuen Dateinamen, stoppt das Update
+vor der Installation und nennt die Datei. Eigene Anpassung dann erst sichern.
+Nach einem abgebrochenen Update den Launcher erneut starten und die
+Wiederherstellung abwarten. Den Ordner .reborn-updater dabei nicht löschen.
+
+ZWISCHEN ZWEI VERSIONEN WECHSELN
+Nach dem ersten Versionsupdate kannst du unter „Spielversion wählen“ zwischen
+„Aktuell“ und „Vorherige“ wechseln. Reborn muss dabei geschlossen sein.
+Beide Versionen bleiben startbar. Es ist kein neuer Download nötig.
+Solange „Vorherige“ aktiv ist, pausieren automatische Spielupdates.
+Für Updates und Reparaturen zuerst wieder „Aktuell“ auswählen.
+Beim nächsten Versionsupdate bleibt wieder genau ein Vorgänger erhalten.
+Spielstände bleiben unverändert; neue Spielstände können mit älteren
+Spielversionen inkompatibel sein. Wichtige Spielstände vorher separat sichern.
+
+Das Paket 7.0.0 enthält AllGen 0.9.9 mit den überarbeiteten deutschen Texten.
+Die Zahl der Paketversion ist unabhängig von der AllGen-Version.
+
+Der Download enthält das vollständige Paket. Lokal werden nur unterschiedliche
+Dateien ersetzt und für den Versionswechsel gesichert.

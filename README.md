@@ -1,89 +1,94 @@
-# Pokemon Reborn Launcher
+# Pokémon Reborn – Launcher
 
-Custom launcher with auto-update system, patch notes, and modern UI.
+Deutscher Windows-Launcher für die gemeinsame Reborn-/AllGen-Installation. Er aktualisiert zuerst sich selbst, startet neu und setzt danach das Spielupdate fort. Reborn-Logo und originales Reborn-Icon sind eingebettet. Die EXE bringt ihre .NET-Laufzeit mit.
 
----
+## Für Mitspieler
 
-## Features
+1. Spiel und alten Launcher schließen.
+2. Die neue `launcher.exe` aus dem Release in den vorhandenen Spielordner kopieren und die alte Launcher-Datei ersetzen. Dort liegen `Game.exe`, `Game.ini` und `mkxp.json`.
+3. `launcher.exe` starten. Falls das Spiel woanders liegt, **Spielordner auswählen** verwenden.
 
-* Auto update system (optional)
-* Manual update check
-* Patch notes viewer
-* Download progress with speed display
-* Cancel update
-* Dark mode UI
-* Fullscreen launcher
-* Background + logo support
-* Fade-in animation
+**Dieser erste Wechsel ist einmalig.** Der alte Python-Launcher kann seine laufende EXE nicht zuverlässig ersetzen. Ab dieser Version erfolgen weitere Selbstupdates automatisch.
 
----
+Für diesen Wechsel muss die neue `launcher.exe` aus Release 7.0.0 verwendet werden. Das alte `version.txt`-Updateverfahren bleibt auf 6.1.0; das neue Spielpaket heißt `Reborn-AllGen-0.9.9.zip`. Dadurch installiert der alte Updater die umbenannten Mods nicht ohne die notwendige Löschmigration. Ältere Clients können beim Updateversuch eine fehlende Download-Datei melden; dann ebenfalls zuerst den Launcher ersetzen.
 
-## How it works
+Die automatische Spielaktualisierung ist standardmäßig aktiv und abschaltbar. Selbstupdates werden bei jedem Start und vor manuellen Updates geprüft. Nach erfolgreichem Austausch setzt die neue EXE den Updateablauf fort. Bei abgeschalteten Spielupdates oder fehlendem Internet lässt sich ein vorhandenes, konsistentes Spiel lokal starten.
 
-The launcher checks a remote version file:
+### Zwischen zwei Spielversionen wechseln
 
-```
-version.txt
-```
+Unter **Spielversion wählen** stehen nach dem ersten Versionsupdate mit diesem Launcher **Aktuell** und **Vorherige** bereit. Beide bleiben erhalten und lassen sich beliebig oft auswählen und starten. Reborn muss beim Umschalten geschlossen sein. Der Launcher tauscht die unterschiedlichen Dateien im vorhandenen Spielordner aus; es läuft jeweils die ausgewählte Version. Dafür ist kein erneuter Download erforderlich.
 
-If the version is different, it downloads:
+Die Auswahl bleibt nach dem Schließen erhalten. Solange **Vorherige** aktiv ist, pausieren automatische Spielupdates; Update und Reparatur werden erst nach dem Wechsel zu **Aktuell** wieder freigegeben. Ein weiteres Versionsupdate ersetzt das Paar: Aus A/B wird B/C. Eine Reparatur derselben Version erhält den vorhandenen Rückweg. Gespeichert werden die unterschiedlichen Dateien, keine vollständige zweite Kopie des Spiels.
 
-```
-Reborn-19.5.0.zip
-```
+Spielstände und persönliche Einstellungen werden beim Wechsel nicht zurückgesetzt. Ein mit einer neueren Spielversion gespeicherter Spielstand kann mit der älteren Version inkompatibel sein; vor dem ersten Start mit einer neuen Version wichtige Spielstände separat sichern. Bereits vor Installation dieses Launchers entfernte Spielversionen können nicht nachträglich wiederhergestellt werden.
 
-Then:
+**Downloadgröße:** Updates laden derzeit weiterhin das vollständige Spielpaket. Nur das lokale Ersetzen und die Sicherung sind auf geänderte Dateien begrenzt; Downloads einzelner Änderungen sind noch nicht implementiert.
 
-* extracts files
-* updates local version
-* launches game
+**Dateien reparieren** lädt das geprüfte Spielpaket erneut, prüft vorhandene Dateien und ersetzt beschädigte oder veraltete Dateien. Spielstände, `settings.json`, `mkxp.json` und unbekannte zusätzliche Dateien bleiben erhalten. Mitgelieferte Mod-Dateien werden auf den Paketstand aktualisiert; eigene Änderungen an genau diesen Dateien gehören daher vorher in eine eigene Sicherung.
 
----
+## Updateverfahren
 
-## File Structure
+- `update.json` enthält getrennte Versionen für Launcher und Spiel, feste Release-Adressen, Größen und SHA-256-Prüfsummen. Zusammengehörige Version und Download können dadurch nicht durch einen wechselnden `latest`-Link auseinanderlaufen.
+- HTTPS-Zertifikate werden geprüft. Fehlerhafte Downloads werden vor der Installation verworfen. Ein fehlendes Manifest wird offen angezeigt; es gibt keinen Rückfall auf den unsicheren alten Updateablauf.
+- Reborn muss geschlossen sein. Das Paket wird separat entpackt und geprüft. Identische Dateien bleiben unverändert. Alle betroffenen Originaldateien werden gesichert, bevor die erste Spieländerung erfolgt.
+- Bei Fehler oder Abbruch wird der vorherige Stand wiederhergestellt. Nach Prozessabbruch wird das dauerhafte Updateprotokoll beim nächsten Start ausgewertet, bevor Reborn starten darf. Bei gesperrten Dateien bleiben Sicherung und Protokoll für einen erneuten Versuch erhalten.
+- Löschungen sind nur für ausdrücklich genannte Dateien mit passender alter Prüfsumme erlaubt. Unbekannte Mods werden nicht pauschal entfernt.
+- Mehrere belegte Altstände derselben Datei werden berücksichtigt. Kollidiert eine selbst veränderte alte Moddatei mit ihrer neuen Benennung, bricht das Update vor der Installation ab und nennt die Datei. Sie muss dann außerhalb des Spiels gesichert und die Anpassung gezielt übernommen werden.
+- Beim Selbstupdate bleibt `launcher.exe.previous` als Rückweg erhalten. Der neu gestartete Prozess bestätigt den Austausch; ein nicht startfähiger neuer Launcher wird nach Möglichkeit durch die vorherige EXE ersetzt.
 
-```
-/launcher
- ├── updater.exe
- ├── Game.exe
- ├── version.txt
- ├── settings.json
- ├── background.png
- ├── logo.png
- ├── icon.ico
+Der Launcher aktualisiert eine vorhandene Installation. Das aktuelle Paket basiert auf AllGen 0.9.9 mit den vorhandenen Anpassungen. Die Paketversion 7.0.0 ist unabhängig von der AllGen-Versionsnummer.
+
+## Quellcode, Build und Tests
+
+Die vorhandenen C#-/WPF-Quellen wurden vom Desktop nach `src/RebornLauncher` übernommen und dort überarbeitet. Die ursprünglichen Desktop-Dateien bleiben unverändert. Zum Bauen sind Windows und .NET SDK 9 nötig; Mitspieler benötigen kein separates .NET.
+
+```powershell
+./tools/build.ps1
+dotnet run --project tests/CoreTests -c Release
+python -m unittest discover -s tests -p 'test_*.py' -v
+./dist/launcher/launcher.exe --smoke-test ./test-results/ui/result.json
+./tools/test-self-update.ps1
 ```
 
----
+Ergebnis: `dist/launcher/launcher.exe`. Das Icon unter `src/RebornLauncher/assets/reborn.ico` stammt aus der vorhandenen Reborn-`Game.exe`; `logo.png` aus dem bisherigen Launcher. Die Vorschau rendert das tatsächliche WPF-Fenster groß und bei Mindestgröße. Die Selbstupdate-Prüfung tauscht zwei echte EXEs in einem isolierten Ordner aus und kontrolliert Neustart, Sicherung und unveränderte Test-Spielstände.
 
-## Auto Update
+## Spielpaket bauen
 
-Auto update can be enabled in settings:
+```powershell
+python tools/package_release.py --game "D:/Pfad/geprüftes-Spiel" --previous-game "D:/Pfad/altes-Spiel" --launcher dist/launcher/launcher.exe --output dist/release-7.0.0 --version 7.0.0 --notes release-notes-7.0.0.txt
+dotnet run --project tests/ReleaseChecks -- dist/release-7.0.0 test-results/full-package
+```
 
-* Enabled → updates automatically on start
-* Disabled → manual update only
+Der Paketbau nimmt nur vorgesehene Spielordner und Engine-Dateien auf. Spielstände, persönliche Einstellungen, Logs, Verknüpfungen, Testharnesses und Launcher werden ausgeschlossen. Jede ZIP-Datei wird anschließend erneut gelesen und per SHA-256 gegen die Quelle geprüft. `game-files.json` enthält das Dateiinventar. Wiederholbares `--previous-game` und `--previous-archive` erstellen hashgeschützte Löschanweisungen aus bekannten alten Quellen. Bei umbenannten Mods wird zusätzlich der neue Zielpfad als `replacedBy` vermerkt.
 
----
+Für Release 7.0.0 wird zusätzlich das tatsächlich veröffentlichte 6.1.0-Paket in eine neue Testkopie entpackt. Weil dieses alte Paket nur einen Patch enthält, ergänzt eine separate alte Spielkopie ausschließlich fehlende Basisdateien. Der Test akzeptiert hierfür nur Pfade auf D:. Danach werden Reparatur und ein synthetisches Folgeupdate in derselben isolierten Testkopie geprüft:
 
-## URLs
+```powershell
+dotnet run --project tests/ReleaseChecks -c Release -- dist/release-7.0.0 test-results/migration-6.1.0 --migration artifacts/previous-6.1.0/Reborn-19.5.0.zip "D:/Pfad/alte-Test-Spielkopie"
+dotnet run --project tests/ReleaseChecks -c Release -- dist/release-7.0.0 test-results/migration-6.1.0 --repair
+dotnet run --project tests/ReleaseChecks -c Release -- dist/release-7.0.0 test-results/migration-6.1.0 --switch
+```
 
-* Version:
-  https://raw.githubusercontent.com/RoveHD/reborn-update/main/version.txt
+Für einen erneuten vollständigen Testlauf wieder mit `--migration` beginnen. Der letzte Wechseltest hinterlässt absichtlich die vorherige Version ausgewählt; eine anschließende Reparatur wäre deshalb gesperrt.
 
-* Patch Notes:
-  https://raw.githubusercontent.com/RoveHD/reborn-update/main/patchnotes.txt
+Für eine neue Version die Versionsangaben im Projekt anheben, neu bauen und testen. Launcher und Spiel dürfen im Manifest unterschiedliche Versionen haben; das Veröffentlichungswerkzeug ist für gemeinsame Releases ausgelegt.
 
-* Download:
-  https://github.com/RoveHD/reborn-update/releases/latest/download/Reborn-19.5.0.zip
+## Veröffentlichung
 
----
+Lokales Bauen veröffentlicht nichts. Nach den Installations-, Reparatur- und Selbstupdate-Prüfungen bindet `python tools/finalize_release.py` die geprüfte EXE und die Nachweise an das vorbereitete Release 7.0.0. Die Ergebnisse stehen in [docs/PRUEFUNG-7.0.0.md](docs/PRUEFUNG-7.0.0.md). Nach ausdrücklicher Freigabe zuerst die Quellcodeänderungen ins Repository übertragen.
 
-## Notes
+```powershell
+# Nur prüfen; GitHub bleibt unverändert:
+./tools/publish-release.ps1 -ReleaseDirectory dist/release-7.0.0
 
-* The launcher cannot update itself while running
-* For self-updating, a separate updater is required
+# Bewusst veröffentlichen:
+./tools/publish-release.ps1 -ReleaseDirectory dist/release-7.0.0 -Publish
+```
 
----
+Benötigt eine angemeldete GitHub CLI. Das Skript erstellt zuerst einen Entwurf am veröffentlichten Quellcode-Commit, lädt alle Assets hoch und vergleicht die von GitHub gemeldeten Größen und Prüfsummen. Dann wird der Release öffentlich. `update.json` und `patchnotes.txt` werden danach gemeinsam auf `main` aktualisiert. Veröffentlichte Releases werden nicht überschrieben. Das alte `version.txt` bleibt absichtlich auf 6.1.0; der neue Launcher nutzt ausschließlich das geprüfte Manifest und versionsgebundene URLs.
 
-## Credits
+## Grenzen und Rückweg
 
-Launcher made by Elias
+Die EXE besitzt kein gekauftes Code-Signing-Zertifikat; Windows kann daher eine Reputationsmeldung zeigen. Die Prüfungen umfassen lokale Installation, Wiederherstellung und echte EXE-Neustarts. Der Download durch Freunde ist erst nach Veröffentlichung separat zu bestätigen.
+
+Bei einem fehlgeschlagenen Spielupdate den Launcher neu starten und die Wiederherstellung abwarten. `.reborn-updater` während einer unvollständigen Installation nicht löschen. Für eine manuelle Launcher-Rückkehr bei geschlossenem Launcher `launcher.exe.previous` als `launcher.exe` zurückkopieren.

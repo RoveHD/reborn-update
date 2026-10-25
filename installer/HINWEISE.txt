@@ -1,0 +1,24 @@
+Pokémon Reborn Launcher
+
+Der Installer richtet ausschließlich den Launcher ein. Zum Spielen wird eine
+vorhandene Reborn-Installation benötigt. Im Launcher „Spielordner auswählen“
+verwenden. Der Installer verändert keine Spielinstallation.
+
+Der Launcher prüft beim Start seine neue Version über das GitHub-Manifest:
+https://raw.githubusercontent.com/RoveHD/reborn-update/main/update.json
+Eine veröffentlichte neuere Version wird anhand ihrer Größe und SHA-256-Prüfsumme
+geprüft, installiert und neu gestartet. Danach folgt die Spielaktualisierung.
+Die Einstellung für automatische Spielupdates ist davon unabhängig.
+
+Persönliche Launcher-Einstellungen liegen in settings.json im Launcher-Ordner.
+Eine bestehende Datei wird bei Installation oder Reparatur nicht überschrieben.
+Bei einem ersten Wechsel von der portablen Version den Spielordner erneut im
+Launcher auswählen. Es werden keine fremden Ordner nach Einstellungen durchsucht.
+
+Deinstallation ist über Windows „Installierte Apps“ möglich. Sie entfernt nur die
+vom Installer eingerichteten Dateien. Einstellungen und Sicherungen bleiben bei
+Bedarf für eine spätere Installation erhalten. Spiel und Spielstände bleiben
+erhalten.
+
+Der Launcher und der Installer haben kein Code-Signing-Zertifikat.
+Die Quellen und Lizenzhinweise zu Schrift, Bildern und Musik stehen in credits.

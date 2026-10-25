@@ -13,6 +13,12 @@ public sealed class LauncherSettings
     public bool AutoUpdate { get; set; } = true;
     public bool Fullscreen { get; set; }
     public bool CloseLauncherAfterGameStart { get; set; }
+    public bool MusicEnabled { get; set; } = true;
+    public double MusicVolume { get; set; } = 0.22;
+    public bool ReduceMotion { get; set; }
+    public bool MouseTrailEnabled { get; set; } = true;
+    public string Artwork { get; set; } = "umbreon";
+    public string ThemeDiscoverySeed { get; set; } = "";
     public string GameExecutable { get; set; } = "Game.exe";
     public string InstallDirectory { get; set; } = ".";
     public string LocalVersionFile { get; set; } = "version.txt";

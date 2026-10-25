@@ -11,9 +11,9 @@
     <Authors>Elias</Authors>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>assets/reborn.ico</ApplicationIcon>
-    <Version>7.0.0</Version>
-    <AssemblyVersion>7.0.0.0</AssemblyVersion>
-    <FileVersion>7.0.0.0</FileVersion>
+    <Version>7.2.0</Version>
+    <AssemblyVersion>7.2.0.0</AssemblyVersion>
+    <FileVersion>7.2.0.0</FileVersion>
     <Description>Reborn Launcher mit automatischer Selbstaktualisierung</Description>
   </PropertyGroup>
 
@@ -27,7 +27,17 @@
 
   <ItemGroup>
     <None Update="settings.json" CopyToOutputDirectory="Never" />
+    <None Include="../../docs/DESIGN-QUELLEN.md" Link="credits/DESIGN-QUELLEN.md" CopyToPublishDirectory="PreserveNewest" />
+    <None Include="../../docs/SEASONAL-MUSIC-SOURCES.md" Link="credits/SEASONAL-MUSIC-SOURCES.md" CopyToPublishDirectory="PreserveNewest" />
+    <None Include="../../docs/MUSIC-CREDITS.txt" Link="credits/MUSIC-CREDITS.txt" CopyToPublishDirectory="PreserveNewest" />
+    <None Update="assets/fonts/OFL.txt" Link="credits/Barlow-OFL.txt" CopyToPublishDirectory="PreserveNewest" />
     <Resource Include="assets/reborn.ico" />
+    <Resource Include="assets/fonts/*.ttf" />
+    <EmbeddedResource Include="assets/fonts/OFL.txt" LogicalName="PokemonRebornLauncher.Barlow-OFL.txt" />
+    <EmbeddedResource Include="../../docs/MUSIC-CREDITS.txt" LogicalName="PokemonRebornLauncher.MUSIC-CREDITS.txt" />
+    <Resource Include="assets/artwork/*.png" />
+    <EmbeddedResource Include="assets/audio/music-*.mp3" LogicalName="PokemonRebornLauncher.%(Filename)%(Extension)" />
+    <EmbeddedResource Include="assets/audio/reborn-theme.mp3" LogicalName="PokemonRebornLauncher.reborn-theme.mp3" />
     <None Include="background.png" Condition="Exists('background.png')" CopyToOutputDirectory="PreserveNewest" />
     <EmbeddedResource Include="logo.png" Condition="Exists('logo.png')" LogicalName="PokemonRebornLauncher.logo.png" />
     <None Include="icon.ico" Condition="Exists('icon.ico')" CopyToOutputDirectory="PreserveNewest" />

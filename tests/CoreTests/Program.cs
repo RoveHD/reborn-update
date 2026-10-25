@@ -50,6 +50,52 @@ Add("Snake case migration, modern keys win, unknown settings retained", () =>
     Check(!old.AdditionalSettings.ContainsKey("auto_update"));
     Check(LauncherSettings.Parse("""{"auto_update":false,"autoUpdate":true}""").AutoUpdate);
 });
+Add("Presentation preferences preserve existing installs and user choices", () =>
+{
+    var existing = LauncherSettings.Parse("""{"auto_update":false,"install_directory":"D:/Reborn"}""");
+    Check(existing.MusicEnabled && existing.MusicVolume == 0.22 && !existing.ReduceMotion && existing.Artwork == "umbreon");
+    var chosen = LauncherSettings.Parse("""{"musicEnabled":false,"musicVolume":0.37,"reduceMotion":true,"artwork":"absol","installDirectory":"D:/Reborn","friendSetting":"keep"}""");
+    var reloaded = LauncherSettings.Parse(System.Text.Json.JsonSerializer.Serialize(chosen));
+    Check(!reloaded.MusicEnabled && reloaded.MusicVolume == 0.37 && reloaded.ReduceMotion && reloaded.Artwork == "absol");
+    Check(reloaded.InstallDirectory == "D:/Reborn" && reloaded.AdditionalSettings!["friendSetting"].GetString() == "keep");
+});
+Add("Recurring themes respect exact annual boundaries and leap day", () =>
+{
+    foreach (int year in new[] {2024, 2026, 2027, 2038, 2100})
+    foreach (var (month, day, expected) in new (int, int, string)[] { (1,1,"newyear"),(1,2,"newyear"),(1,3,"winter"),(1,6,"winter"),(1,7,"standard"),(2,28,"standard"),(3,1,"spring"),(5,31,"spring"),(6,1,"summer"),(8,31,"summer"),(9,1,"harvest"),(10,14,"harvest"),(10,15,"halloween"),(11,2,"halloween"),(11,3,"harvest"),(11,30,"harvest"),(12,1,"winter"),(12,30,"winter"),(12,31,"newyear") })
+        Check(ThemeCalendar.Resolve(new DateOnly(year,month,day)) == expected, $"Theme boundary {year}-{month}-{day}");
+    Check(ThemeCalendar.Resolve(new DateOnly(2028,2,29)) == "standard");
+});
+Add("Gregorian Easter moves each year, including century corrections", () =>
+{
+    Check(ThemeCalendar.EasterSunday(2024) == new DateOnly(2024,3,31));
+    Check(ThemeCalendar.EasterSunday(2025) == new DateOnly(2025,4,20));
+    Check(ThemeCalendar.EasterSunday(2026) == new DateOnly(2026,4,5));
+    Check(ThemeCalendar.EasterSunday(2038) == new DateOnly(2038,4,25));
+    for (int year=2000; year<=2200; year++)
+    {
+        var easter = ThemeCalendar.EasterSunday(year);
+        Check(easter.DayOfWeek == DayOfWeek.Sunday);
+        Check(easter >= new DateOnly(year,3,22) && easter <= new DateOnly(year,4,25));
+        Check(ThemeCalendar.IsEasterSeason(easter.AddDays(-14)) && ThemeCalendar.IsEasterSeason(easter.AddDays(14)));
+        Check(!ThemeCalendar.IsEasterSeason(easter.AddDays(15)));
+        Check(ThemeCalendar.Resolve(easter) == "spring");
+    }
+});
+Add("Secret encounter is date-stable, persists via settings and is culture-independent", () =>
+{
+    const string seed = "9dd53471-1c54-4c64-b1de-5018b906dc5f";
+    var first = new DateOnly(2026,1,1);
+    var encounter = Enumerable.Range(0,10000).Select(first.AddDays).First(day => ThemeCalendar.IsArceusDay(day,seed));
+    Check(ThemeCalendar.Resolve(encounter,seed) == "arceus");
+    var saved = LauncherSettings.Parse(System.Text.Json.JsonSerializer.Serialize(new LauncherSettings { ThemeDiscoverySeed=seed }));
+    Check(ThemeCalendar.Resolve(encounter,saved.ThemeDiscoverySeed) == "arceus");
+    Check(!ThemeCalendar.IsArceusDay(encounter,"invalid"));
+    var previousCulture = System.Globalization.CultureInfo.CurrentCulture;
+    try { System.Globalization.CultureInfo.CurrentCulture = new System.Globalization.CultureInfo("ar-SA"); Check(ThemeCalendar.IsArceusDay(encounter,seed)); }
+    finally { System.Globalization.CultureInfo.CurrentCulture = previousCulture; }
+    Check(Enumerable.Range(0,3650).Count(i => ThemeCalendar.IsArceusDay(first.AddDays(i),seed)) < 30);
+});
 Add("Windows paths block traversal, ADS, reserved names and ambiguity", () =>
 {
     foreach (var path in new[] { "../escape", "C:/file", "/root", "folder/file:stream", "a/../b", "a//b", "a./b", "a /b", "CON.txt", "foo/LPT1", "foo/./bar", "a\0b" })

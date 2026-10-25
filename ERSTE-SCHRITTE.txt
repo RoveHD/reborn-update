@@ -1,15 +1,21 @@
-Pokémon Reborn – neuer Launcher
+Pokémon Reborn – Launcher 7.2.0
 
 EINMALIGER WECHSEL
 1. Reborn und den bisherigen Launcher schließen.
-2. Die neue launcher.exe in deinen vorhandenen Reborn-Spielordner kopieren.
-   Die bisherige launcher.exe darf ersetzt werden. Spielstände nicht verschieben.
-3. Die neue launcher.exe starten.
+2. Reborn-Launcher-7.2.0-Setup.exe starten und den Launcher installieren.
+   Keine Administratorrechte nötig. Spielstände nicht verschieben.
+3. Den Launcher über das Windows-Startmenü starten.
 
-Liegt das Spiel woanders, im Launcher „Spielordner auswählen …“ anklicken.
+Beim ersten Start im Launcher „Spielordner auswählen“ anklicken.
 Im richtigen Ordner liegen Game.exe, Game.ini und mkxp.json.
-Der alte Launcher kann dieses neue Paket nicht sicher installieren. Deshalb
-zuerst die neue launcher.exe verwenden; ein alter Downloadfehler wird so behoben.
+Das Setup installiert den Launcher separat und verändert keine Spielinstallation.
+Alte Python-Launcher brauchen diesen einmaligen Wechsel. C#-Launcher 7.0/7.1
+können sich selbst aktualisieren; für den festen Installationsordner das Setup nutzen.
+
+SAISON-DESIGNS
+Farben, Pokémon, Effekte und Musik wechseln automatisch jedes Jahr nach Datum.
+Oben auf die Saisonanzeige klicken für den Kalender und die Musikquellen.
+Musik, Lautstärke, Mausspur und ruhige Effekte sind unten einstellbar.
 
 DANACH AUTOMATISCH
 Der Launcher prüft zuerst seine eigene Version. Bei Bedarf aktualisiert er sich,

@@ -1,0 +1,55 @@
+Launcher music credits
+
+The seasonal tracks below are written and recorded by Kevin MacLeod and are
+offered on Incompetech under Creative Commons Attribution 4.0 (CC BY 4.0).
+Track pages include the creator's attribution and license statement. The
+launcher packages locally edited MP3 files, so playback needs no network access.
+
+Seasonal tracks:
+
+"Come Play with Me" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+https://creativecommons.org/licenses/by/4.0/
+Track: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1400042
+Used for the Halloween theme; shortened, faded out, and encoded as MP3.
+
+"We Wish you a Merry Christmas" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+https://creativecommons.org/licenses/by/4.0/
+Track: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100369
+Used for the winter theme; shortened, faded out, and encoded as MP3.
+
+"Whimsy Groove" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+https://creativecommons.org/licenses/by/4.0/
+Track: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100011
+Used for the spring theme; shortened, faded out, and encoded as MP3.
+
+"Beach Party" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+https://creativecommons.org/licenses/by/4.0/
+Track: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100613
+Used for the summer theme; repeated with a short fade between repetitions and
+encoded as MP3.
+
+"Lone Harvest" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+https://creativecommons.org/licenses/by/4.0/
+Track: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100409
+Used for the harvest theme; faded out and encoded as MP3.
+
+"Beachfront Celebration" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+https://creativecommons.org/licenses/by/4.0/
+Track: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1200022
+Used for the New Year theme; shortened, faded out, and encoded as MP3.
+
+"Heroic Age" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+https://creativecommons.org/licenses/by/4.0/
+Track: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100848
+Used for the rare Arceus theme; shortened, faded out, and encoded as MP3.
+
+The standard launcher theme remains "Reborn Theme" by O Colosso (2017),
+sourced from Audio/BGM/Reborn Theme.ogg in the existing Pokémon Reborn game
+copy. That game music is not covered by the seasonal tracks' CC BY 4.0 license.

@@ -5,12 +5,30 @@ Deutscher Windows-Launcher für die gemeinsame Reborn-/AllGen-Installation. Er a
 ## Für Mitspieler
 
 1. Spiel und alten Launcher schließen.
-2. Die neue `launcher.exe` aus dem Release in den vorhandenen Spielordner kopieren und die alte Launcher-Datei ersetzen. Dort liegen `Game.exe`, `Game.ini` und `mkxp.json`.
-3. `launcher.exe` starten. Falls das Spiel woanders liegt, **Spielordner auswählen** verwenden.
+2. [Reborn-Launcher-7.2.0-Setup.exe](https://github.com/RoveHD/reborn-update/releases/download/v7.2.0/Reborn-Launcher-7.2.0-Setup.exe) herunterladen und installieren. Keine Administratorrechte nötig.
+3. Den Launcher über das Startmenü öffnen und einmal den vorhandenen Reborn-Spielordner auswählen.
 
-**Dieser erste Wechsel ist einmalig.** Der alte Python-Launcher kann seine laufende EXE nicht zuverlässig ersetzen. Ab dieser Version erfolgen weitere Selbstupdates automatisch.
+Der Launcher ist separat unter `%LOCALAPPDATA%\Programs\RebornLauncher` installiert. Das Setup verändert keine Spieldateien. Neue veröffentlichte Launcher-Versionen kommen beim Start automatisch über GitHub. Ein vorhandener C#-Launcher 7.0/7.1 kann sich ebenfalls selbst aktualisieren; für den dauerhaften Installationsordner einmal das Setup verwenden.
 
-Für diesen Wechsel muss die neue `launcher.exe` aus Release 7.0.0 verwendet werden. Das alte `version.txt`-Updateverfahren bleibt auf 6.1.0; das neue Spielpaket heißt `Reborn-AllGen-0.9.9.zip`. Dadurch installiert der alte Updater die umbenannten Mods nicht ohne die notwendige Löschmigration. Ältere Clients können beim Updateversuch eine fehlende Download-Datei melden; dann ebenfalls zuerst den Launcher ersetzen.
+Alte Python-Launcher brauchen einmalig das neue Setup. Das alte `version.txt`-Updateverfahren bleibt auf 6.1.0; das Spielpaket heißt `Reborn-AllGen-0.9.9.zip`. Dadurch installiert der alte Updater umbenannte Mods nicht ohne die notwendige Löschmigration. Das Spielpaket bleibt 7.0.0 / AllGen 0.9.9.
+
+### Jahreszeiten und Gestaltung
+
+Themes wechseln automatisch jedes Jahr nach dem lokalen Datum, auch wenn der Launcher über Mitternacht offen bleibt:
+
+| Zeitraum | Design |
+| --- | --- |
+| 7. Januar bis Ende Februar | Standard: Nachtara / Absol |
+| März–Mai | Frühling mit Haspiror / Shaymin, Blüten, Blättern und Pokémon-Eiern; Ostergruß um den jährlich berechneten Ostertermin |
+| Juni–August | Sommer mit Schiggy / Aquana, Sonne, Wasserwellen und Blasen |
+| September–14. Oktober und 3.–30. November | Herbst mit Folipurba / Kronjuwild und fallendem Laub |
+| 15. Oktober–2. November | Halloween mit Irrbis / Gengar, Kürbissen und Geistern |
+| 1.–30. Dezember und 3.–6. Januar | Winter/Weihnachten mit Botogel / Glaziola und Schneefall |
+| 31. Dezember–2. Januar | Silvester/Neujahr mit Jirachi / Pikachu und Feuerwerk |
+
+Eine sehr seltene Überraschung mit Arceus kann einen Tag lang erscheinen. Neustarts erhöhen die Tageschance nicht. Es gibt keine manuelle Themenauswahl. „Motiv wechseln“ tauscht nur das Pokémon innerhalb der aktuellen Saison.
+
+Jede Saison hat eigene lokal eingebettete Musik. Ein/Aus, Lautstärke, Mausspur und reduzierte Effekte sind einstellbar. Musik pausiert beim Minimieren und während eines vom Launcher gestarteten Spiels. Mauszeiger und Leuchtspur passen sich der Saisonfarbe an. Unter der Saisonanzeige stehen Kalender und Musikquellen; vollständige Credits sind im Installationsordner enthalten.
 
 Die automatische Spielaktualisierung ist standardmäßig aktiv und abschaltbar. Selbstupdates werden bei jedem Start und vor manuellen Updates geprüft. Nach erfolgreichem Austausch setzt die neue EXE den Updateablauf fort. Bei abgeschalteten Spielupdates oder fehlendem Internet lässt sich ein vorhandenes, konsistentes Spiel lokal starten.
 
@@ -44,6 +62,8 @@ Die vorhandenen C#-/WPF-Quellen wurden vom Desktop nach `src/RebornLauncher` üb
 
 ```powershell
 ./tools/build.ps1
+./tools/build-installer.ps1 -BootstrapCompiler
+./installer/test-installer.ps1
 dotnet run --project tests/CoreTests -c Release
 python -m unittest discover -s tests -p 'test_*.py' -v
 ./dist/launcher/launcher.exe --smoke-test ./test-results/ui/result.json

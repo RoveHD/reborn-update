@@ -20,6 +20,9 @@ public partial class MainWindow : Window
     private bool _isBusy;
     private bool _settingsLoaded;
     private bool _smokeTest;
+    private bool _previewMissingGame;
+
+    private bool HasSelectedGame() => !_previewMissingGame && (_smokeTest || File.Exists(Path.Combine(_settings.ResolveInstallDirectory(), _settings.GameExecutable)));
     private bool _allowClose;
     private bool _closeWhenIdle;
     private bool _suppressSettingsEvents;
@@ -37,8 +40,6 @@ public partial class MainWindow : Window
 
     private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
-        BeginFadeIn();
-
         if (_smokeTest)
         {
             _settings = new LauncherSettings { InstallDirectory = AppContext.BaseDirectory, Fullscreen = false };
@@ -47,7 +48,9 @@ public partial class MainWindow : Window
             _versionSelection = new VersionSelection("7.0.0", "6.1.0", false);
             ApplySettingsToUi();
             LoadVisualAssets();
-            LauncherStatusText.Text = "Launcher 7.0.0 · Vorschau";
+            InitializePresentation();
+            BeginFadeIn();
+            LauncherStatusText.Text = $"Launcher {SelfUpdateService.CurrentVersion} · Vorschau";
             PatchNotesText.Text = "Neues Abenteuer, neue Updates.\n\n• Verbesserte Stabilität und Fehlerkorrekturen.\n• Versionshinweise lassen sich hier bequem lesen.";
             PatchNotesSubtitle.Text = "Beispielansicht · offline";
             UpdateVersionLabels();
@@ -61,12 +64,14 @@ public partial class MainWindow : Window
             _settingsLoaded = true;
             ApplySettingsToUi();
             LoadVisualAssets();
+            InitializePresentation();
+            BeginFadeIn();
             var launcherReady = await CheckLauncherUpdateAsync(continueOnFailure: true);
             if (_closeWhenIdle || _allowClose) return;
             await RefreshLauncherInfoAsync();
             if (_closeWhenIdle) return;
 
-            if (launcherReady && !_launcherUpdateFailed && (_settings.AutoUpdate || SelfUpdateService.ContinueAfterSelfUpdate))
+            if (HasSelectedGame() && launcherReady && !_launcherUpdateFailed && (_settings.AutoUpdate || SelfUpdateService.ContinueAfterSelfUpdate))
             {
                 await EnsureUpdatedAsync(automatic: true, force: false);
             }
@@ -79,6 +84,7 @@ public partial class MainWindow : Window
 
     private void BeginFadeIn()
     {
+        if (_settings.ReduceMotion || !SystemParameters.ClientAreaAnimation) { Opacity = 1; return; }
         BeginAnimation(OpacityProperty, new DoubleAnimation
         {
             From = 0,
@@ -111,8 +117,12 @@ public partial class MainWindow : Window
         SetBusy(true, "Spielstatus wird geprüft …");
         try
         {
-            _localVersion = await Task.Run(() => _updates.ReadLocalVersionAsync(_settings, token), token);
-            _versionSelection = _updates.GetVersionSelection(_settings);
+            if (HasSelectedGame())
+            {
+                _localVersion = await Task.Run(() => _updates.ReadLocalVersionAsync(_settings, token), token);
+                _versionSelection = _updates.GetVersionSelection(_settings);
+            }
+            else { _localVersion = "0.0.0"; _versionSelection = null; }
             UpdateVersionLabels();
             var manifest = await _updates.GetManifestAsync(_settings, token);
             _remoteVersion = manifest.Game.Version;
@@ -153,6 +163,11 @@ public partial class MainWindow : Window
             return false;
         }
 
+        if (!HasSelectedGame())
+        {
+            SetStatus("Wähle zuerst deinen vorhandenen Reborn-Spielordner aus.");
+            return false;
+        }
         _operationCts = new CancellationTokenSource();
         var token = _operationCts.Token;
 
@@ -186,7 +201,7 @@ public partial class MainWindow : Window
 
             if (!automatic && !force)
             {
-                var answer = MessageBox.Show(
+                var answer = ShowPrompt(
                     $"Version {_remoteVersion} ist verfügbar. Jetzt herunterladen und installieren?",
                     "Spielupdate verfügbar",
                     MessageBoxButton.YesNo,
@@ -267,6 +282,7 @@ public partial class MainWindow : Window
         DownloadProgressBar.IsIndeterminate = true;
         DownloadProgressBar.Value = 0;
         ProgressText.Text = "Wird vorbereitet …";
+        Dispatcher.BeginInvoke(new Action(() => ProgressPanel.BringIntoView()), System.Windows.Threading.DispatcherPriority.Loaded);
         SpeedText.Text = "";
     }
 
@@ -275,6 +291,12 @@ public partial class MainWindow : Window
         UpdateVersionSelectionUi();
         LocalVersionText.Text = string.IsNullOrWhiteSpace(_localVersion) ? "Nicht installiert" : _localVersion;
         RemoteVersionText.Text = string.IsNullOrWhiteSpace(_remoteVersion) ? "Offline" : _remoteVersion;
+        if (!HasSelectedGame())
+        {
+            LocalVersionText.Text = "Nicht ausgewählt";
+            SetBadge("Spielordner auswählen", "#17131D", "#463B4E", "#E8DCC7");
+            return;
+        }
 
         var hasRemote = !string.IsNullOrWhiteSpace(_remoteVersion);
         var needsUpdate = hasRemote && UpdateService.IsDifferentVersion(_localVersion, _remoteVersion);
@@ -300,7 +322,7 @@ public partial class MainWindow : Window
     private void SetBadge(string text, string background, string border, string foreground)
     {
         UpdateBadgeText.Text = text;
-        UpdateBadgeBorder.Background = BrushFromHex(background);
+        UpdateBadgeBorder.Background = Brushes.Transparent;
         UpdateBadgeBorder.BorderBrush = BrushFromHex(border);
         UpdateBadgeText.Foreground = BrushFromHex(foreground);
     }
@@ -315,8 +337,8 @@ public partial class MainWindow : Window
         PreviousVersionButton.Content = older is null ? "Vorherige · –" : $"{(previous ? "✓ " : "")}Vorherige · {older}";
         LatestVersionButton.IsEnabled = !_isBusy && hasPair && previous;
         PreviousVersionButton.IsEnabled = !_isBusy && hasPair && !previous;
-        LatestVersionButton.Background = BrushFromHex(!previous ? "#23483F" : "#252B32");
-        PreviousVersionButton.Background = BrushFromHex(previous ? "#23483F" : "#252B32");
+        LatestVersionButton.BorderBrush = (Brush)FindResource(!previous ? "Violet" : "Line");
+        PreviousVersionButton.BorderBrush = (Brush)FindResource(previous ? "Violet" : "Line");
         LatestVersionButton.Opacity = _isBusy ? 0.45 : 1;
         PreviousVersionButton.Opacity = _isBusy || !hasPair ? 0.45 : 1;
         VersionSelectionHint.Text = !hasPair
@@ -326,7 +348,17 @@ public partial class MainWindow : Window
                 : "Beide Versionen bleiben verfügbar. Zum Wechseln muss Reborn geschlossen sein.";
         CheckUpdatesButton.IsEnabled = !_isBusy && !previous;
         RepairButton.IsEnabled = !_isBusy && !previous;
-        StartGameButton.Content = $"VERSION {_localVersion} STARTEN";
+        StartGameButton.Content = "REBORN STARTEN";
+        if (!HasSelectedGame())
+        {
+            StartGameButton.Content = "SPIELORDNER WÄHLEN";
+            LatestVersionButton.Content = "Aktuell · –";
+            PreviousVersionButton.Content = "Vorherige · –";
+            LocalVersionText.Text = "Nicht ausgewählt";
+            LatestVersionButton.IsEnabled = PreviousVersionButton.IsEnabled = RepairButton.IsEnabled = false;
+            VersionSelectionHint.Text = "Wähle deinen bestehenden Reborn-Ordner. Der Launcher bleibt separat installiert.";
+            SetBadge("Spielordner auswählen", "#17131D", "#463B4E", "#E8DCC7");
+        }
     }
 
     private async void VersionButton_Click(object sender, RoutedEventArgs e)
@@ -475,6 +507,10 @@ public partial class MainWindow : Window
         {
             AutoUpdateCheckBox.IsChecked = _settings.AutoUpdate;
             CloseAfterStartCheckBox.IsChecked = _settings.CloseLauncherAfterGameStart;
+            MusicCheckBox.IsChecked = _settings.MusicEnabled;
+            MusicVolumeSlider.Value = double.IsFinite(_settings.MusicVolume) ? Math.Clamp(_settings.MusicVolume, 0, 1) : 0.22;
+            ReduceMotionCheckBox.IsChecked = _settings.ReduceMotion;
+            MouseTrailCheckBox.IsChecked = _settings.MouseTrailEnabled;
             ApplyWindowMode();
         }
         finally { _suppressSettingsEvents = false; }
@@ -483,7 +519,8 @@ public partial class MainWindow : Window
     private void ApplyWindowMode()
     {
         WindowState = _settings.Fullscreen ? WindowState.Maximized : WindowState.Normal;
-        FullscreenButton.Content = _settings.Fullscreen ? "Fenster" : "Maximieren";
+        FullscreenButton.Content = _settings.Fullscreen ? "❐" : "□";
+        FullscreenButton.ToolTip = _settings.Fullscreen ? "Fenster wiederherstellen (F11)" : "Maximieren (F11)";
     }
 
     private void LoadVisualAssets()
@@ -547,6 +584,7 @@ public partial class MainWindow : Window
     private async void StartGameButton_Click(object sender, RoutedEventArgs e)
     {
         if (_isBusy) return;
+        if (!HasSelectedGame()) { ChooseFolderButton_Click(sender, e); return; }
         var ready = true;
         if (_versionSelection?.IsPreviousActive != true && _settings.AutoUpdate && !string.IsNullOrWhiteSpace(_remoteVersion))
         {
@@ -571,7 +609,7 @@ public partial class MainWindow : Window
 
     private async void RepairButton_Click(object sender, RoutedEventArgs e)
     {
-        var answer = MessageBox.Show(
+        var answer = ShowPrompt(
             "Dabei werden Spieldateien erneut geladen und vorhandene Dateien ersetzt. Fortfahren?",
             "Spiel reparieren",
             MessageBoxButton.YesNo,
@@ -656,7 +694,7 @@ public partial class MainWindow : Window
         if (!File.Exists(gamePath))
         {
             SetStatus($"{_settings.GameExecutable} wurde nicht gefunden.");
-            MessageBox.Show(
+            ShowPrompt(
                 $"Nicht gefunden:\n{gamePath}\n\nInstalliere oder repariere zuerst die Spieldateien.",
                 "Spiel nicht gefunden",
                 MessageBoxButton.OK,
@@ -666,13 +704,14 @@ public partial class MainWindow : Window
 
         try
         {
-            Process.Start(new ProcessStartInfo
+            var game = Process.Start(new ProcessStartInfo
             {
                 FileName = gamePath,
                 WorkingDirectory = installDirectory,
                 UseShellExecute = true
             });
 
+            TrackGameMusic(game);
             SetStatus("Spiel gestartet.");
 
             if (_settings.CloseLauncherAfterGameStart)
@@ -704,7 +743,7 @@ public partial class MainWindow : Window
     private async void ToggleFullscreen()
     {
         var oldValue = _settings.Fullscreen;
-        _settings.Fullscreen = !_settings.Fullscreen;
+        _settings.Fullscreen = WindowState != WindowState.Maximized;
         ApplyWindowMode();
 
         if (_settingsLoaded)
@@ -770,7 +809,7 @@ public partial class MainWindow : Window
     private void ShowFailure(string title, Exception ex)
     {
         SetStatus($"{title} {ex.Message}");
-        MessageBox.Show(
+        ShowPrompt(
             $"{title}\n\n{ex.Message}",
             "Pokemon Reborn Launcher",
             MessageBoxButton.OK,
@@ -823,7 +862,7 @@ public partial class MainWindow : Window
         }
         if (_isBusy && _operationCts is not null && !_allowClose)
         {
-            var answer = MessageBox.Show("Ein Vorgang läuft. Abbrechen und Launcher schließen?", "Vorgang läuft", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            var answer = ShowPrompt("Ein Vorgang läuft. Abbrechen und Launcher schließen?", "Vorgang läuft", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (answer != MessageBoxResult.Yes) { e.Cancel = true; return; }
             _closeWhenIdle = true;
             _operationCts.Cancel();

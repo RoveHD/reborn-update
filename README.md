@@ -5,12 +5,12 @@ Deutscher Windows-Launcher für die gemeinsame Reborn-/AllGen-Installation. Er a
 ## Für Mitspieler
 
 1. Spiel und alten Launcher schließen.
-2. [Reborn-Launcher-7.3.0-Setup.exe](https://github.com/RoveHD/reborn-update/releases/download/v7.3.0/Reborn-Launcher-7.3.0-Setup.exe) herunterladen und installieren. Keine Administratorrechte nötig.
+2. [Reborn-Launcher-7.3.4-Setup.exe](https://github.com/RoveHD/reborn-update/releases/download/v7.3.4/Reborn-Launcher-7.3.4-Setup.exe) herunterladen und installieren. Keine Administratorrechte nötig.
 3. Den Launcher über das Startmenü öffnen und einmal den vorhandenen Reborn-Spielordner auswählen.
 
 Der Launcher ist separat unter `%LOCALAPPDATA%\Programs\RebornLauncher` installiert. Das Setup verändert keine Spieldateien. Neue veröffentlichte Launcher-Versionen kommen beim Start automatisch über GitHub. Ein vorhandener C#-Launcher 7.0/7.1 kann sich ebenfalls selbst aktualisieren; für den dauerhaften Installationsordner einmal das Setup verwenden.
 
-Alte Python-Launcher brauchen einmalig das neue Setup. Das alte `version.txt`-Updateverfahren bleibt auf 6.1.0; das Spielpaket heißt `Reborn-AllGen-0.9.9.zip`. Dadurch installiert der alte Updater umbenannte Mods nicht ohne die notwendige Löschmigration. Das Spielpaket bleibt 7.0.0 / AllGen 0.9.9.
+Alte Python-Launcher brauchen einmalig das neue Setup. Das alte `version.txt`-Updateverfahren bleibt auf 6.1.0; das Spielpaket heißt `Reborn-AllGen-0.9.9.zip`. Dadurch installiert der alte Updater umbenannte Mods nicht ohne die notwendige Löschmigration. Das aktuelle Spielpaket bleibt bei diesem Launcher-Release auf 7.3.2 / AllGen 0.9.9. Passende kleine Hotfix-Pakete werden seit Launcher 7.3.3 automatisch ausgewählt.
 
 ### Jahreszeiten und Gestaltung
 
@@ -20,13 +20,13 @@ Themes wechseln automatisch jedes Jahr nach dem lokalen Datum, auch wenn der Lau
 | --- | --- |
 | 7. Januar bis Ende Februar | Standard: Nachtara / Absol |
 | März–Mai | Frühling mit Haspiror / Shaymin, Blüten, Blättern und Pokémon-Eiern; Ostergruß um den jährlich berechneten Ostertermin |
-| Juni–August | Sommer mit Schiggy / Aquana, Sonne, Wasserwellen und Blasen |
+| Juni–August | Sommer mit Schiggy / Lapras / Mantirps, Sonne, Wasserwellen und Blasen |
 | September–14. Oktober und 3.–30. November | Herbst mit Folipurba / Kronjuwild und fallendem Laub |
 | 15. Oktober–2. November | Halloween mit Irrbis / Gengar, Kürbissen und Geistern |
-| 1.–30. Dezember und 3.–6. Januar | Winter/Weihnachten mit Botogel / Glaziola und Schneefall |
+| 1.–30. Dezember und 3.–6. Januar | Winter/Weihnachten mit Glaziola / Alola-Vulpix und Schneefall |
 | 31. Dezember–2. Januar | Silvester/Neujahr mit Jirachi / Pikachu und Feuerwerk |
 
-Eine sehr seltene Überraschung mit Arceus kann einen Tag lang erscheinen. Neustarts erhöhen die Tageschance nicht. Es gibt keine manuelle Themenauswahl. „Motiv wechseln“ tauscht nur das Pokémon innerhalb der aktuellen Saison.
+Eine sehr seltene Überraschung mit Arceus kann einen Tag lang erscheinen. Neustarts erhöhen die Tageschance nicht. Die Pokémon sind seit 7.3.4 fest in Anime-Landschaften eingezeichnet. Mehrere Ebenen bewegen sich mit der Maus in 2,5D; Logo, Texte und Startbutton bleiben zentriert und ruhig. Die Landschaften wurden außen erweitert, damit beim Bewegen keine Bildränder sichtbar werden. Changelog, Extras und Einstellungen sind über die obere Navigation erreichbar. Eine manuelle Themen- oder Pokémon-Auswahl gibt es nicht.
 
 Jede Saison hat eigene lokal eingebettete Musik. Ein/Aus, Lautstärke, Mausspur und reduzierte Effekte sind einstellbar. Musik pausiert beim Minimieren und während eines vom Launcher gestarteten Spiels. Mauszeiger und Leuchtspur passen sich der Saisonfarbe an. Unter der Saisonanzeige stehen Kalender und Musikquellen; vollständige Credits sind im Installationsordner enthalten.
 

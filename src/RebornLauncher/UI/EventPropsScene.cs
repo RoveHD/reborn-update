@@ -31,6 +31,9 @@ public sealed class EventPropsScene : FrameworkElement
     private int? _hoveredPropId;
     private readonly List<Rect> _exclusionZones = [];
     private readonly Dictionary<int, Point> _authoredHomes = [];
+    private readonly Dictionary<int, SceneDecorationAnchor> _authoredAnchors = [];
+    private readonly Dictionary<int, int> _anchorParents = [];
+    private readonly HashSet<int> _visiblePropIds = [];
     private bool _placementDirty = true;
     private int _placedCount = -1;
     private string? _placementFailure;
@@ -58,18 +61,20 @@ public sealed class EventPropsScene : FrameworkElement
         if (_placementFailure is not null) throw new InvalidOperationException(_placementFailure);
         var available = new Rect(0, 0, ActualWidth, ActualHeight);
         var boxes = new List<(EventProp Prop, Rect Box)>();
-        foreach (var prop in _simulation.Props.Where(p => !p.IsTemporary))
+        foreach (var prop in VisibleProps.Where(p => !p.IsTemporary))
         {
             var box = GetHitBoundsDip(prop);
             if (!available.Contains(box)) throw new InvalidOperationException($"Prop außerhalb der Bühne: {_theme}/{prop.Kind} {box}");
             if (_exclusionZones.Any(zone => zone.IntersectsWith(box))) throw new InvalidOperationException($"Prop über Pokémon oder Text: {_theme}/{prop.Kind}");
             foreach (var previous in boxes)
-                if (box.IntersectsWith(previous.Box)) throw new InvalidOperationException($"Props überlappen: {_theme}/{prop.Kind}/{previous.Prop.Kind}");
+                if (box.IntersectsWith(previous.Box)
+                    && !(_anchorParents.TryGetValue(prop.Id, out int parentId) && parentId == previous.Prop.Id))
+                    throw new InvalidOperationException($"Props überlappen: {_theme}/{prop.Kind}/{previous.Prop.Kind}");
             boxes.Add((prop, box));
         }
     }
 
-    public IReadOnlyList<(int Id, PropKind Kind, Rect Bounds)> GetPlacementBounds() => _simulation.Props
+    public IReadOnlyList<(int Id, PropKind Kind, Rect Bounds)> GetPlacementBounds() => VisibleProps
         .Where(p => !p.IsTemporary).Select(p => (p.Id, p.Kind, GetHitBoundsDip(p))).ToArray();
 
     private static readonly Brush Ink = B(24, 29, 43);
@@ -183,7 +188,10 @@ public sealed class EventPropsScene : FrameworkElement
         dc.PushClip(new RectangleGeometry(new Rect(0, 0, WorldWidth, WorldHeight)));
         double sx = ActualWidth / WorldWidth, sy = ActualHeight / WorldHeight;
         foreach (PropParticle particle in _simulation.Particles) DrawParticle(dc, particle, sx, sy);
-        foreach (EventProp prop in _simulation.Props) DrawProp(dc, prop);
+        EventProp[] visible = VisibleProps.ToArray();
+        foreach (EventProp prop in visible.Where(p => !_anchorParents.ContainsKey(p.Id) && !_authoredAnchors.GetValueOrDefault(p.Id).TetherUp)) DrawProp(dc, prop);
+        DrawAttachmentTethers(dc);
+        foreach (EventProp prop in visible.Where(p => _anchorParents.ContainsKey(p.Id) || _authoredAnchors.GetValueOrDefault(p.Id).TetherUp)) DrawProp(dc, prop);
         if (_simulation.Flash > 0)
         {
             dc.PushOpacity(Math.Clamp(_simulation.Flash, 0, 1) * .12);
@@ -191,6 +199,36 @@ public sealed class EventPropsScene : FrameworkElement
             dc.Pop();
         }
         dc.Pop(); dc.Pop();
+    }
+
+    private IEnumerable<EventProp> VisibleProps => _simulation.Props.Where(p => p.IsTemporary || _visiblePropIds.Contains(p.Id));
+
+    private void DrawAttachmentTethers(DrawingContext dc)
+    {
+        var barkPen = P(72, 57, 47, 1.05);
+        var icePen = P(202, 233, 246, 1.15);
+        foreach (var (childId, parentId) in _anchorParents)
+        {
+            EventProp? child = _simulation.Props.FirstOrDefault(p => p.Id == childId && !p.IsTemporary);
+            EventProp? parent = _simulation.Props.FirstOrDefault(p => p.Id == parentId && !p.IsTemporary);
+            if (child is null || parent is null) continue;
+            if (!_authoredAnchors.GetValueOrDefault(childId).TetherUp) continue;
+            PropLayout childLayout = GetPropLayout(child);
+            double childTop = childLayout.Center.Y + childLayout.Bounds.Top * childLayout.ScaleY;
+            double threadLength = 7 * WorldHeight / ActualHeight;
+            dc.DrawLine(barkPen, new Point(childLayout.Center.X, childTop - threadLength),
+                new Point(childLayout.Center.X, childTop));
+        }
+        foreach (EventProp prop in VisibleProps.Where(p => !p.IsTemporary && _authoredAnchors.GetValueOrDefault(p.Id).TetherUp))
+        {
+            PropLayout layout = GetPropLayout(prop);
+            double top = layout.Center.Y + layout.Bounds.Top * layout.ScaleY;
+            double lengthDip = prop.Kind == PropKind.Spider ? 62 : 30;
+            double lengthWorld = lengthDip * WorldHeight / ActualHeight;
+            dc.DrawLine(prop.Kind == PropKind.Icicle ? icePen : barkPen,
+                new Point(layout.Center.X, Math.Max(0, top - lengthWorld)),
+                new Point(layout.Center.X, top + 1));
+        }
     }
 
     private void DrawProp(DrawingContext dc, EventProp prop)
@@ -450,7 +488,12 @@ public sealed class EventPropsScene : FrameworkElement
         return new RotateTransform(5).TransformBounds(bounds);
     }
 
-    private double PropDipScale(EventProp prop) => Math.Clamp(Math.Min(ActualWidth / 1500, ActualHeight / 420) * prop.Scale, .54, .9);
+    private double PropDipScale(EventProp prop)
+    {
+        double multiplier = _authoredAnchors.TryGetValue(prop.Id, out SceneDecorationAnchor anchor) ? anchor.ScaleMultiplier : 1;
+        double minimum = multiplier < 1 ? .25 : .54;
+        return Math.Clamp(Math.Min(ActualWidth / 1700, ActualHeight / 1000) * prop.Scale * multiplier, minimum, 1.25);
+    }
 
     private Rect BoxAt(EventProp prop, Point center, bool reserve = false)
     {
@@ -462,7 +505,18 @@ public sealed class EventPropsScene : FrameworkElement
         if (reserve)
         {
             bool drifting = prop.Kind is PropKind.Ghost or PropKind.Bat or PropKind.Butterfly or PropKind.Firefly or PropKind.Bubble or PropKind.Spider;
-            double verticalMotion = 2.2 + (drifting ? 15 : prop.Kind is PropKind.ChocolateBunny or PropKind.Rabbit ? 9 : 0);
+            if (StandsOnGround(prop.Kind))
+            {
+                box.Inflate(3, 3);
+                // Rabbits hop upward from the floor, never below it.
+                if (prop.Kind is PropKind.ChocolateBunny or PropKind.Rabbit)
+                {
+                    double hop = 9 * ActualHeight / WorldHeight;
+                    box = new Rect(box.X, box.Y - hop, box.Width, box.Height + hop);
+                }
+                return box;
+            }
+            double verticalMotion = 2.2 + (drifting ? 15 : 0);
             box.Inflate(3 + (drifting ? 14 * ActualWidth / WorldWidth : 0), 3 + verticalMotion * ActualHeight / WorldHeight);
         }
         return box;
@@ -477,10 +531,17 @@ public sealed class EventPropsScene : FrameworkElement
             minY <= maxY ? Math.Clamp(center.Y, minY, maxY) : ActualHeight / 2);
     }
 
+    private static bool StandsOnGround(PropKind kind) => kind is not
+        (PropKind.Ghost or PropKind.Bat or PropKind.Butterfly or PropKind.Firefly or PropKind.Bubble or
+        PropKind.Spider or PropKind.Icicle or PropKind.Ornament or PropKind.Bell or PropKind.LightString or PropKind.Star or PropKind.Confetti);
+
     private bool Fits(EventProp prop, Point center, IReadOnlyList<Rect> occupied)
     {
         Rect box = BoxAt(prop, center, true);
+        double groundBandTop = _authoredAnchors.TryGetValue(prop.Id, out SceneDecorationAnchor anchor) && anchor.GroundBandTop is double customBand
+            ? customBand : SceneDecorationLayout.GroundBandTop(_theme);
         return new Rect(0, 0, ActualWidth, ActualHeight).Contains(box)
+            && (!StandsOnGround(prop.Kind) || box.Bottom >= ActualHeight * groundBandTop)
             && !_exclusionZones.Any(r => r.IntersectsWith(box)) && !occupied.Any(r => r.IntersectsWith(box));
     }
 
@@ -489,10 +550,17 @@ public sealed class EventPropsScene : FrameworkElement
         Point clamped = ClampCenter(prop, preferred);
         if (Fits(prop, clamped, occupied)) return clamped;
         Point? best = null; double score = double.PositiveInfinity;
-        // Continuous low-discrepancy candidates: no common row/column grid between themes.
-        for (int i = 1; i <= 2200; i++)
+        // Resolve collisions locally around the authored semantic anchor. Never send
+        // a prop to an unrelated free patch across the launcher.
+        const double turn = 2.399963229728653;
+        for (int ring = 1; ring <= 18; ring++)
+        for (int spoke = 0; spoke < 20; spoke++)
         {
-            var candidate = ClampCenter(prop, new Point(Halton(i, 2) * ActualWidth, Halton(i, 3) * ActualHeight));
+            double angle = spoke * turn;
+            double radiusX = ActualWidth * .0045 * ring;
+            double radiusY = ActualHeight * .0035 * ring;
+            var candidate = ClampCenter(prop, new Point(preferred.X + Math.Cos(angle) * radiusX,
+                preferred.Y + Math.Sin(angle) * radiusY));
             double distance = (candidate - preferred).LengthSquared;
             if (distance >= score || !Fits(prop, candidate, occupied)) continue;
             best = candidate; score = distance;
@@ -500,38 +568,63 @@ public sealed class EventPropsScene : FrameworkElement
         return best;
     }
 
-    private static double Halton(int index, int radix)
-    {
-        double result = 0, fraction = 1d / radix;
-        for (; index > 0; index /= radix) { result += fraction * (index % radix); fraction /= radix; }
-        return result;
-    }
-
     private void CaptureAuthoredHomes()
     {
         _authoredHomes.Clear();
-        foreach (var prop in _simulation.Props.Where(p => !p.IsTemporary))
-            _authoredHomes[prop.Id] = new Point(prop.HomeX, prop.HomeY);
+        _authoredAnchors.Clear();
+        _anchorParents.Clear();
+        _visiblePropIds.Clear();
+        var available = _simulation.Props.Where(p => !p.IsTemporary).GroupBy(p => p.Kind)
+            .ToDictionary(g => g.Key, g => new Queue<EventProp>(g.OrderBy(p => p.Id)));
+        var firstByKind = new Dictionary<PropKind, int>();
+        foreach (SceneDecorationAnchor anchor in SceneDecorationLayout.ForTheme(_theme, _christmas))
+        {
+            if (!available.TryGetValue(anchor.Kind, out Queue<EventProp>? queue) || queue.Count == 0) continue;
+            EventProp prop = queue.Dequeue();
+            _visiblePropIds.Add(prop.Id);
+            _authoredAnchors[prop.Id] = anchor;
+            _authoredHomes[prop.Id] = new Point(anchor.X * WorldWidth, anchor.Y * WorldHeight);
+            if (anchor.ParentKind is PropKind parentKind && firstByKind.TryGetValue(parentKind, out int parentId))
+                _anchorParents[prop.Id] = parentId;
+            firstByKind.TryAdd(anchor.Kind, prop.Id);
+        }
     }
 
     private void EnsurePlacement()
     {
         if (ActualWidth <= 0 || ActualHeight <= 0) return;
-        int permanentCount = _simulation.Props.Count(p => !p.IsTemporary);
+        int permanentCount = _visiblePropIds.Count;
         if (!_placementDirty && _placedCount == permanentCount) return;
         _placementFailure = null;
         var occupied = new List<Rect>();
-        foreach (var prop in _simulation.Props.Where(p => !p.IsTemporary)
-            .OrderByDescending(p => BoxAt(p, new Point(), true).Width * BoxAt(p, new Point(), true).Height))
+        foreach (var prop in VisibleProps.Where(p => !p.IsTemporary)
+            .OrderByDescending(p => StandsOnGround(p.Kind))
+            .ThenByDescending(p => BoxAt(p, new Point(), true).Height))
         {
             Point authored = _authoredHomes.GetValueOrDefault(prop.Id, new Point(prop.HomeX, prop.HomeY));
             Point preferred = new(authored.X / WorldWidth * ActualWidth, authored.Y / WorldHeight * ActualHeight);
-            Point? found = NearestFree(prop, preferred, occupied);
+            SceneDecorationAnchor anchor = _authoredAnchors[prop.Id];
+            bool attached = _anchorParents.TryGetValue(prop.Id, out int parentId);
+            if (attached)
+            {
+                EventProp parent = _simulation.Props.First(p => p.Id == parentId);
+                double parentScale = PropDipScale(parent);
+                preferred = new Point(parent.HomeX / WorldWidth * ActualWidth + anchor.ParentOffsetX * parentScale,
+                    parent.HomeY / WorldHeight * ActualHeight + anchor.ParentOffsetY * parentScale);
+                if (anchor.AlignGroundToParent)
+                    preferred.Y = parent.HomeY / WorldHeight * ActualHeight
+                        + (GetVisualBounds(parent.Kind).Bottom * parentScale - GetVisualBounds(prop.Kind).Bottom * PropDipScale(prop));
+            }
+            else if (anchor.GroundFootY is double footY)
+                preferred.Y = ActualHeight * footY - GetVisualBounds(prop.Kind).Bottom * PropDipScale(prop);
+            // Parent-relative decorations stay on their authored branch point. Overlap
+            // with the parent is intentional and children render/hit-test above it.
+            Point? found = attached ? ClampCenter(prop, preferred) : NearestFree(prop, preferred, occupied);
             var center = found ?? ClampCenter(prop, preferred);
             if (found is null) _placementFailure = $"Keine freie Prop-Fläche: {_theme}/{prop.Kind}, Bühne {ActualWidth:0}×{ActualHeight:0}";
             // One authoritative location for drawing, hit testing, particles, children and respawn.
             _simulation.RelocateHome(prop.Id, center.X / ActualWidth * WorldWidth, center.Y / ActualHeight * WorldHeight);
-            occupied.Add(BoxAt(prop, center, true));
+            if (!attached) occupied.Add(BoxAt(prop, center, true));
         }
         _placedCount = permanentCount; _placementDirty = false;
     }
@@ -555,7 +648,7 @@ public sealed class EventPropsScene : FrameworkElement
         return new PropLayout(new Point(center.X / sx, center.Y / sy), scale / sx, scale / sy, GetVisualBounds(prop.Kind));
     }
 
-    private double GetPropBob(EventProp prop) => _reduceMotion || prop.State != PropState.Idle ? 0 : Math.Sin(_phase * 1.4 + prop.Id * 1.73) * 2.2;
+    private double GetPropBob(EventProp prop) => _reduceMotion || prop.State != PropState.Idle || StandsOnGround(prop.Kind) ? 0 : Math.Sin(_phase * 1.4 + prop.Id * 1.73) * 2.2;
 
     private static Rect GetVisualBounds(PropKind kind) => kind switch
     {
@@ -566,8 +659,12 @@ public sealed class EventPropsScene : FrameworkElement
         PropKind.Ghost => new Rect(-22, -26, 44, 50),
         PropKind.Bat => new Rect(-30, -24, 60, 45),
         PropKind.Chick => new Rect(-22, -25, 43, 50),
-        PropKind.PineTree => new Rect(-24, -35, 48, 53),
+        PropKind.PineTree => new Rect(-24, -34, 48, 67),
         PropKind.Icicle => new Rect(-17, -24, 34, 54),
+        PropKind.Gift => new Rect(-22, -22, 44, 44),
+        PropKind.Ornament => new Rect(-15, -17, 30, 36),
+        PropKind.Bell => new Rect(-18, -21, 36, 40),
+        PropKind.CandyCane => new Rect(-14, -25, 28, 48),
         PropKind.Scarecrow => new Rect(-26, -41, 52, 70),
         PropKind.Candle => new Rect(-12, -32, 24, 56),
         PropKind.Rocket => new Rect(-12, -29, 24, 63),
@@ -610,8 +707,8 @@ public sealed class EventPropsScene : FrameworkElement
             case Key.Left: MoveSelection(-1); e.Handled = true; break;
             case Key.Right: MoveSelection(1); e.Handled = true; break;
             case Key.Enter: case Key.Space:
-                EventProp? selected = _simulation.Props.FirstOrDefault(x => x.Id == _selectedPropId && x.State == PropState.Idle);
-                if (selected is null) { EnsureSelection(); selected = _simulation.Props.FirstOrDefault(x => x.Id == _selectedPropId && x.State == PropState.Idle); }
+                EventProp? selected = VisibleProps.FirstOrDefault(x => x.Id == _selectedPropId && x.State == PropState.Idle);
+                if (selected is null) { EnsureSelection(); selected = VisibleProps.FirstOrDefault(x => x.Id == _selectedPropId && x.State == PropState.Idle); }
                 if (selected is not null) TryActivateProp(selected);
                 e.Handled = true;
                 break;
@@ -622,16 +719,17 @@ public sealed class EventPropsScene : FrameworkElement
     protected override void OnLostKeyboardFocus(KeyboardFocusChangedEventArgs e) { base.OnLostKeyboardFocus(e); InvalidateVisual(); }
     private void EnsureSelection()
     {
-        if (_selectedPropId is not null && _simulation.Props.Any(x => x.Id == _selectedPropId && x.State == PropState.Idle)) return;
-        _selectedPropId = _simulation.Props.FirstOrDefault(x => x.State == PropState.Idle)?.Id;
+        if (_selectedPropId is not null && VisibleProps.Any(x => x.Id == _selectedPropId && x.State == PropState.Idle)) return;
+        _selectedPropId = VisibleProps.FirstOrDefault(x => x.State == PropState.Idle)?.Id;
     }
-    private EventProp? FindPropAt(Point world) => _simulation.Props
+    private EventProp? FindPropAt(Point world) => VisibleProps
         .Where(x => x.State == PropState.Idle && GetHitRect(x).Contains(world))
-        .OrderBy(x => Math.Pow(GetPropLayout(x).Center.X - world.X, 2) + Math.Pow(GetPropLayout(x).Center.Y - world.Y, 2))
+        .OrderBy(x => _anchorParents.ContainsKey(x.Id) ? 0 : 1)
+        .ThenBy(x => Math.Pow(GetPropLayout(x).Center.X - world.X, 2) + Math.Pow(GetPropLayout(x).Center.Y - world.Y, 2))
         .FirstOrDefault();
     private void MoveSelection(int direction)
     {
-        EventProp[] idle = _simulation.Props.Where(x => x.State == PropState.Idle).OrderBy(x => x.X).ThenBy(x => x.Y).ToArray();
+        EventProp[] idle = VisibleProps.Where(x => x.State == PropState.Idle).OrderBy(x => x.X).ThenBy(x => x.Y).ToArray();
         if (idle.Length == 0) { _selectedPropId = null; InvalidateVisual(); return; }
         int current = Array.FindIndex(idle, x => x.Id == _selectedPropId);
         if (current < 0) current = direction > 0 ? -1 : 0;

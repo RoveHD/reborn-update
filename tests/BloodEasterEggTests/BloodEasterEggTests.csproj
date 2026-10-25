@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/RebornLauncher/PokemonRebornLauncher.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="../../src/RebornLauncher/assets/artwork/*.png" Link="assets/artwork/%(Filename)%(Extension)" />
+    <Resource Include="../../src/RebornLauncher/assets/fonts/*.ttf" Link="assets/fonts/%(Filename)%(Extension)" />
+    <Resource Include="../../src/RebornLauncher/assets/reborn.ico" Link="assets/reborn.ico" />
+  </ItemGroup>
+</Project>

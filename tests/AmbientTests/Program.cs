@@ -218,6 +218,35 @@ internal static class Program
             Check(error);
         });
 
+        Test("Gengar laugh uses its own gated voice without advancing ambient schedule", () =>
+        {
+            using var audio = new HalloweenAmbientAudio(jumpscarePlayerFactory: () => new MediaPlayer { IsMuted = true });
+            audio.Configure("halloween", true, true, .2, false);
+            var schedule = (HalloweenAmbientSchedule)typeof(HalloweenAmbientAudio)
+                .GetField("schedule", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(audio)!;
+            var remainingBefore = schedule.TimeUntilNextSound;
+
+            audio.ConfigureJumpscareLaugh(false, .2, false);
+            audio.PlayJumpscareLaugh();
+            Check(GetJumpscareVoice(audio) is null);
+            audio.ConfigureJumpscareLaugh(true, 0, false);
+            audio.PlayJumpscareLaugh();
+            Check(GetJumpscareVoice(audio) is null);
+            audio.ConfigureJumpscareLaugh(true, .2, true);
+            audio.PlayJumpscareLaugh();
+            Check(GetJumpscareVoice(audio) is null);
+
+            audio.ConfigureJumpscareLaugh(true, .2, false);
+            audio.PlayJumpscareLaugh();
+            var voice = (MediaPlayer)GetJumpscareVoice(audio)!;
+            Check(voice.IsMuted && Math.Abs(voice.Volume - .13) < .000001);
+            Check(schedule.TimeUntilNextSound == remainingBefore, "The jumpscare changed the ambient schedule.");
+            audio.ConfigureJumpscareLaugh(true, .4, false);
+            Check(Math.Abs(voice.Volume - .26) < .000001);
+            audio.ConfigureJumpscareLaugh(true, .4, true);
+            Check(GetJumpscareVoice(audio) is null, "Pausing did not stop the jumpscare laugh.");
+        });
+
         if (args.Contains("--audio")) AddAudioIntegrationTests();
         int failed = 0;
         foreach (var (name, run) in tests)
@@ -291,6 +320,8 @@ internal static class Program
 
     private static object? GetVoice(HalloweenAmbientAudio audio) => typeof(HalloweenAmbientAudio)
         .GetField("voice", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(audio);
+    private static object? GetJumpscareVoice(HalloweenAmbientAudio audio) => typeof(HalloweenAmbientAudio)
+        .GetField("jumpscareVoice", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(audio);
     private static void InvokeOpened(HalloweenAmbientAudio audio, MediaPlayer player) => typeof(HalloweenAmbientAudio)
         .GetMethod("OnMediaOpened", BindingFlags.Instance | BindingFlags.NonPublic)!.Invoke(audio, [player, EventArgs.Empty]);
     private static void Test(string name, Action test) => tests.Add((name, test));

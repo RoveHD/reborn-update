@@ -32,7 +32,8 @@ internal static class Program
             Check(fireworks.ActualWidth == content.ActualWidth && fireworks.ActualHeight == content.ActualHeight, "Overlay does not cover whole launcher");
             Check(!fireworks.IsHitTestVisible && !fireworks.Focusable, "Overlay intercepts input");
             var center = button.TransformToAncestor(content).Transform(new Point(button.ActualWidth / 2, button.ActualHeight / 2));
-            var hit = VisualTreeHelper.HitTest(content, center)?.VisualHit;
+            // Real WPF input routing skips the click-through scenery layers.
+            var hit = content.InputHitTest(center) as DependencyObject;
             while (hit is not null && hit != button) hit = VisualTreeHelper.GetParent(hit);
             Check(hit == button, "Start button is not reachable through overlay");
             fireworks.Configure(true, 240, 1.6, false, true);

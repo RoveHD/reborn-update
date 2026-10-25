@@ -26,6 +26,7 @@ public sealed class LauncherSettings
     public string HalloweenAmbientFrequency { get; set; } = "normal";
     public string EventAnimationIntensity { get; set; } = "normal";
     public string Artwork { get; set; } = "umbreon";
+    public Dictionary<string, string> ThemeArtworkSelections { get; set; } = new(StringComparer.OrdinalIgnoreCase);
     public string ThemeDiscoverySeed { get; set; } = "";
     public string ThemeLightingMode { get; set; } = "night";
     public string GameExecutable { get; set; } = "Game.exe";
@@ -77,6 +78,7 @@ public sealed class LauncherSettings
         if (settings.EventParticleQuality is not ("off" or "low" or "medium" or "high")) settings.EventParticleQuality = "medium";
         if (settings.EventAnimationIntensity is not ("reduced" or "normal" or "high")) settings.EventAnimationIntensity = "normal";
         if (settings.ThemeLightingMode is not ("night" or "day" or "auto")) settings.ThemeLightingMode = "night";
+        settings.ThemeArtworkSelections = MainPokemonSelection.SanitizeSavedSelections(settings.ThemeArtworkSelections);
         return settings;
     }
     public async Task SaveAsync(CancellationToken cancellationToken = default)

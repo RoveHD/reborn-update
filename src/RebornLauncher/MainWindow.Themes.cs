@@ -10,34 +10,23 @@ namespace PokemonRebornLauncher;
 
 public partial class MainWindow
 {
-    private sealed record ThemeLook(string Title, string Subtitle, string Accent, string Highlight, string Ink, string Surface, string Line, string[] Artwork, string[] Names);
+    private sealed record ThemeLook(string Title, string Subtitle, string Accent, string Highlight, string Ink, string Surface, string Line);
     private static readonly Dictionary<string, ThemeLook> ThemeLooks = new()
     {
-        ["standard"] = new("ZURÜCK IN REBORN", "Deine Geschichte geht weiter.", "#C284EB", "#9BE6D2", "#0B090F", "#17131D", "#463B4E", ["umbreon", "absol"], ["NACHTARA / 0197", "PSIANA / 0196"]),
-        ["halloween"] = new("DIE NACHT DER GEISTER", "Irrbis leuchtet. Die Geister erwachen.", "#F5A34B", "#DEC3FA", "#130B08", "#281A13", "#6A4226", ["pumpkaboo", "gengar"], ["IRRBIS / 0710", "GENGAR / 0094"]),
-        ["winter"] = new("WINTERZAUBER", "Leise fällt der Schnee über Reborn.", "#9AD9F0", "#FFE1AA", "#08121D", "#152A3A", "#345768", ["delibird", "glaceon"], ["GLAZIOLA / 0471", "BOTOGEL / 0225"]),
-        ["spring"] = new("REBORN BLÜHT AUF", "Neue Abenteuer zwischen Blüten und Sonnenstrahlen.", "#EBA5C7", "#B9E6A1", "#10160F", "#253122", "#486544", ["buneary", "shaymin"], ["HASPIROR / 0427", "SHAYMIN / 0492"]),
-        ["summer"] = new("AB INS WASSER", "Sonne, Wellen und ein Sprung ins nächste Abenteuer.", "#6ED8EB", "#FFE391", "#07151D", "#12323C", "#306575", ["squirtle", "vaporeon"], ["SCHIGGY / 0007", "AQUANA / 0134"]),
-        ["harvest"] = new("GOLDENE TAGE", "Das Laub tanzt. Reborn wartet.", "#E9AD6C", "#C4D89D", "#151109", "#302719", "#685338", ["leafeon", "sawsbuck"], ["FOLIPURBA / 0470", "KRONJUWILD / 0586"]),
-        ["newyear"] = new("EIN NEUES ABENTEUER", "Ein Wunsch. Ein neues Jahr. Unzählige Möglichkeiten.", "#EFD082", "#B9C6FF", "#0D1020", "#1D2540", "#57577A", ["jirachi", "pikachu"], ["JIRACHI / 0385", "PIKACHU / 0025"]),
-        ["arceus"] = new("DER URSPRUNG ERWACHT", "Ein seltener Augenblick jenseits der Zeit.", "#F4DF9D", "#F6F1DF", "#14120C", "#302A19", "#806D38", ["arceus"], ["ARCEUS / 0493"])
+        ["standard"] = new("ZURÜCK IN REBORN", "Deine Geschichte geht weiter.", "#C284EB", "#9BE6D2", "#0B090F", "#17131D", "#463B4E"),
+        ["halloween"] = new("DIE NACHT DER GEISTER", "Irrbis leuchtet. Die Geister erwachen.", "#F5A34B", "#DEC3FA", "#130B08", "#281A13", "#6A4226"),
+        ["winter"] = new("WINTERZAUBER", "Leise fällt der Schnee über Reborn.", "#9AD9F0", "#FFE1AA", "#08121D", "#152A3A", "#345768"),
+        ["spring"] = new("REBORN BLÜHT AUF", "Neue Abenteuer zwischen Blüten und Sonnenstrahlen.", "#EBA5C7", "#B9E6A1", "#10160F", "#253122", "#486544"),
+        ["summer"] = new("AB INS WASSER", "Sonne, Wellen und ein Sprung ins nächste Abenteuer.", "#6ED8EB", "#FFE391", "#07151D", "#12323C", "#306575"),
+        ["harvest"] = new("GOLDENE TAGE", "Das Laub tanzt. Reborn wartet.", "#E9AD6C", "#C4D89D", "#151109", "#302719", "#685338"),
+        ["newyear"] = new("EIN NEUES ABENTEUER", "Ein Wunsch. Ein neues Jahr. Unzählige Möglichkeiten.", "#EFD082", "#B9C6FF", "#0D1020", "#1D2540", "#57577A"),
+        ["arceus"] = new("DER URSPRUNG ERWACHT", "Ein seltener Augenblick jenseits der Zeit.", "#F4DF9D", "#F6F1DF", "#14120C", "#302A19", "#806D38")
     };
     private readonly DispatcherTimer _calendarTimer = new() { Interval = TimeSpan.FromMinutes(1) };
     private string _activeTheme = "standard";
     private DateOnly _themeDay;
     private bool _daylight;
     private bool _themeApplied;
-    private static readonly Dictionary<string, string[]> ThemeCast = new()
-    {
-        ["standard"] = ["umbreon", "espeon", "absol", "eevee", "lucario"],
-        ["halloween"] = ["pumpkaboo", "gengar", "mimikyu", "misdreavus", "chandelure"],
-        ["winter"] = ["glaceon", "delibird", "alolan-vulpix", "snorunt", "spheal"],
-        ["spring"] = ["buneary", "shaymin", "togepi", "sylveon", "ribombee"],
-        ["summer"] = ["squirtle", "vaporeon", "lapras", "psyduck", "mantyke"],
-        ["harvest"] = ["leafeon", "sawsbuck", "rowlet", "vulpix", "deerling"],
-        ["newyear"] = ["jirachi", "pikachu", "victini", "clefairy", "ampharos"],
-        ["arceus"] = ["arceus", "dialga", "palkia", "giratina", "togekiss"]
-    };
     private static readonly Dictionary<string, string[]> DayPalettes = new()
     {
         ["standard"] = ["#302C36", "#403946", "#706176", "#C99CE1", "#A0CFC2"],
@@ -50,64 +39,34 @@ public partial class MainWindow
         ["arceus"] = ["#3B372A", "#4B4533", "#8B7C55", "#DECA96", "#E1DAC2"]
     };
 
-    // Coordinates describe a scene, not window gutters: x is the centre, y the
-    // foot line, and size the fraction of the stage height. All three actors
-    // stay inside the stage, including the curious companion during its greeting.
-    private sealed record ActorPlace(double X, double Foot, double Size);
-    private sealed record SceneComposition(ActorPlace Main, ActorPlace Companion, ActorPlace Cameo);
-    private static readonly Dictionary<string, SceneComposition> Compositions = new()
-    {
-        ["standard"] = new(new(.24,.94,.83), new(.76,.86,.50), new(.52,.56,.32)),
-        ["winter"] = new(new(.20,.94,.86), new(.81,.88,.49), new(.55,.72,.36)),
-        ["halloween"] = new(new(.51,.95,.78), new(.16,.65,.45), new(.85,.87,.38)),
-        ["spring"] = new(new(.79,.93,.85), new(.24,.90,.53), new(.48,.53,.34)),
-        ["summer"] = new(new(.27,.96,.73), new(.73,.91,.66), new(.50,.42,.28)),
-        ["harvest"] = new(new(.43,.94,.85), new(.84,.72,.42), new(.13,.90,.36)),
-        ["newyear"] = new(new(.72,.68,.60), new(.18,.96,.63), new(.46,.94,.36)),
-        ["arceus"] = new(new(.49,.91,.88), new(.13,.63,.40), new(.85,.85,.40))
-    };
-
     private void UpdateResponsiveLayout()
     {
         if (!_presentationReady) return;
-        double contentWidth = Math.Min(1440, Math.Max(0, ActualWidth - 48));
-        bool compact = ActualWidth < 1200;
-        bool wide = ActualWidth >= 1520;
-        HeroTextColumn.Width = new GridLength(compact ? 220 : wide ? 340 : 300);
-        NotesColumn.Width = new GridLength(Math.Clamp(contentWidth - 704, 280, 712));
-        LogoFrame.Width = compact ? 200 : wide && ActualHeight >= 720 ? 300 : 260;
-        LogoFrame.Height = compact ? 112 : wide && ActualHeight >= 720 ? 168 : 146;
-        // Leave enough room for all controls at the minimum size and stop the
-        // artwork from taking over a tall or maximized window.
-        double stageHeight = Math.Clamp(202 + (ActualHeight - 640) * .30, 202, 320);
-        HeroRow.Height = new GridLength(stageHeight + 40);
+        double stageHeight = StageArtArea.ActualHeight;
+        // Props stay within the visible stage; the backdrop bitmap is oversized
+        // for camera travel and must not expand the placement area.
+        EventPropsView.Width = Math.Min(StageArtArea.ActualWidth, AtmosphereView.IllustratedWidth);
+        EventPropsView.HorizontalAlignment = HorizontalAlignment.Center;
+        HeroRow.Height = new GridLength(1, GridUnitType.Star);
+        OperationsRow.Height = new GridLength(0);
+        HeroPanel.MaxWidth = Math.Min(500, Math.Max(360, ActualWidth - 24));
+        OperationsSurface.Width = HeroPanel.MaxWidth;
+        OperationsPanel.Width = Math.Max(0, HeroPanel.MaxWidth - 28);
+        StartGameButton.Width = Math.Min(450, Math.Max(320, ActualWidth - 48));
+        HeroPanel.Margin = new Thickness(12, 0, 12, 48);
+        double logoHeight = Math.Clamp(stageHeight * .32, 172, 355);
+        if (stageHeight < 600) logoHeight -= 28;
+        if (ProgressPanel.IsVisible) logoHeight -= 46;
+        LogoFrame.Height = logoHeight;
+        LogoFrame.Width = Math.Clamp(Math.Min(ActualWidth * .46, logoHeight * 1.68), 240, 440);
         LogoArtwork.Margin = new Thickness(4);
         if (StageArtArea.ActualWidth < 1 || StageArtArea.ActualHeight < 1) return;
-        var composition = Compositions[_activeTheme];
-        PlaceActor(PokemonArtwork, composition.Main, .30);
-        PlaceActor(LeftPokemonBottom, composition.Companion, .23);
-        PlaceActor(RightPokemonTop, composition.Cameo, .16);
-        LeftPokemonTop.Visibility = RightPokemonBottom.Visibility = Visibility.Collapsed;
-        ApplyCameoPosition(true);
-        PokemonSceneryForeground.SetActorBounds(new[] { PokemonArtwork, LeftPokemonBottom, RightPokemonTop }
-            .Select(image => new Rect(image.Margin.Left, image.Margin.Top, image.Width, image.Height)));
-        // Exclusions are in the same DIP space as the props host. Props can use
-        // the open ground and sky without covering an actor or stealing its hit.
-        EventPropsView.SetExclusionZones(new[] { PokemonArtwork, LeftPokemonBottom, RightPokemonTop }
-            .Select(image => new Rect(image.Margin.Left - 6, image.Margin.Top - 8, image.Width + 12, image.Height + 16)));
-    }
-
-    private void PlaceActor(System.Windows.Controls.Image image, ActorPlace place, double maxWidth)
-    {
-        double width = StageArtArea.ActualWidth, height = StageArtArea.ActualHeight;
-        double size = Math.Min(height * place.Size, width * maxWidth);
-        double x = Math.Clamp(width * place.X - size / 2, 8, Math.Max(8, width - size - 8));
-        double y = Math.Clamp(height * place.Foot - size, 8, Math.Max(8, height - size - 8));
-        image.Width = image.Height = size;
-        image.HorizontalAlignment = HorizontalAlignment.Left;
-        image.VerticalAlignment = VerticalAlignment.Top;
-        image.Margin = new Thickness(x, y, 0, 0);
-        image.Visibility = Visibility.Visible;
+        HideSeparatePokemonActors();
+        PokemonSceneryForeground.SetActorBounds(Array.Empty<Rect>());
+        PokemonSceneryForeground.Opacity = 0;
+        var heroBounds = HeroPanel.TransformToVisual(EventPropsView).TransformBounds(new Rect(HeroPanel.RenderSize));
+        heroBounds.Inflate(16, 12);
+        EventPropsView.SetExclusionZones([heroBounds]);
     }
 
     private void InitializeCalendar()
@@ -119,6 +78,8 @@ public partial class MainWindow
         }
         SizeChanged += (_, _) => UpdateResponsiveLayout();
         StageArtArea.SizeChanged += (_, _) => UpdateResponsiveLayout();
+        EventPropsView.SizeChanged += (_, _) => UpdateResponsiveLayout();
+        HeroPanel.SizeChanged += (_, _) => UpdateResponsiveLayout();
         SyncLightingButton();
         RefreshCalendar();
         if (!_smokeTest)
@@ -198,7 +159,7 @@ public partial class MainWindow
 
         var theme = ThemeLooks[id];
         var palette = _daylight ? DayPalettes[id] : [theme.Ink, theme.Surface, theme.Line, theme.Accent, theme.Highlight];
-        foreach (var (key, color) in new[] { ("Ink", palette[0]), ("Surface", palette[1]), ("Line", palette[2]), ("Violet", palette[3]), ("Mint", palette[4]), ("Text", _daylight ? "#F0E9E2" : "#F4F0F0"), ("Muted", _daylight ? "#D0C7D0" : "#B4AEBB"), ("Faint", _daylight ? "#C7BDC8" : "#918797"), ("CtaText", "#100B15") })
+        foreach (var (key, color) in new[] { ("Ink", palette[0]), ("Surface", palette[1]), ("Line", palette[2]), ("Violet", palette[3]), ("Mint", palette[4]), ("Text", _daylight ? "#F0E9E2" : "#F4F0F0"), ("Muted", "#D1CFDA"), ("Faint", "#BFC0CD"), ("CtaText", "#100B15") })
             MorphResource(key, color, animate);
         Background = (Brush)Resources["Ink"];
         UpdatePointer((Color)ColorConverter.ConvertFromString(palette[3]));
@@ -217,7 +178,8 @@ public partial class MainWindow
         ThemeInfoButton.Content = id == "arceus" ? (_daylight ? "✦ ARCEUS · TAG" : "✦ ARCEUS · NACHT") : $"{ThemeLabel(id).ToUpperInvariant()} · {(_daylight ? "TAG" : "NACHT")}";
         ThemeInfoButton.ToolTip = $"Saison nach Datum: {day:dd.MM.yyyy} · Licht: {LightingLabel} · Kalender und Musikquellen";
         PokemonSceneryForeground.SetTheme(id, _daylight, animate);
-        ShowArtwork(animate);
+        PokemonSceneryForeground.Opacity = 0;
+        ShowArtwork();
         ApplyMotion(animateLighting: animate, restartEntrance: !lightingOnly);
         ApplyMusic();
         UpdateVersionLabels();
@@ -285,6 +247,7 @@ public partial class MainWindow
         _daylight = daylight ?? LightingForHour(DateTime.Now.Hour);
         _themeDay = id == "spring" ? ThemeCalendar.EasterSunday(2027) : id == "winter" ? new DateOnly(2027, 12, 15) : new DateOnly(2027, 10, 31);
         ApplyTheme(id, _themeDay);
-        if (PokemonArtwork.Source is null || _activeTheme != id) throw new InvalidOperationException("Themenwechsel fehlgeschlagen.");
+        if (_activeTheme != id || PokemonNameText.Text != ScenePokemonFor(id).DisplayName || PokemonArtwork.Visibility != Visibility.Collapsed)
+            throw new InvalidOperationException("Die feste Pokémon-Szene wurde nicht übernommen.");
     }
 }

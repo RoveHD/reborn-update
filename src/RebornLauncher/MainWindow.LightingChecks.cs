@@ -41,10 +41,13 @@ public partial class MainWindow
         if (SameColor(middle, night) || SameColor(middle, day) || !((SolidColorBrush)Resources["Ink"]).HasAnimatedProperties)
             throw new InvalidOperationException("Kein sichtbarer Farb-Zwischenstand.");
         await capture("standard-morph");
+        // Encoding the scene can take several animation frames. Compare the
+        // reversal with the color at the reversal, not the pre-capture sample.
+        var beforeReversal = Current("Ink");
         _daylight = false;
         ApplyTheme("standard", _themeDay, animate: true);
         await Dispatcher.Yield(DispatcherPriority.Render);
-        if (Math.Abs(Current("Ink").R - middle.R) > 3)
+        if (Math.Abs(Current("Ink").R - beforeReversal.R) > 3)
             throw new InvalidOperationException("Richtungswechsel springt zur Ausgangsfarbe.");
         await Task.Delay(LightingDuration + TimeSpan.FromMilliseconds(250));
         if (!SameColor(Current("Ink"), night)) throw new InvalidOperationException($"Nachtziel nicht erreicht: {Current("Ink")} statt {night}.");
@@ -59,7 +62,7 @@ public partial class MainWindow
         await Task.Delay(450);
         _settings.ReduceMotion = true;
         ApplyMotion();
-        if (!SameColor(Current("Ink"), night) || PokemonArtwork.Source is DrawingImage) throw new InvalidOperationException($"Reduzierte Bewegung beendet Morph nicht: {Current("Ink")} statt {night}; Artwork {PokemonArtwork.Source.GetType().Name}.");
+        if (!SameColor(Current("Ink"), night) || PokemonArtwork.Source is DrawingImage) throw new InvalidOperationException($"Reduzierte Bewegung beendet Morph nicht: {Current("Ink")} statt {night}; Artwork {PokemonArtwork.Source?.GetType().Name ?? "integrierte Szene"}.");
         _daylight = true;
         ApplyTheme("standard", _themeDay, animate: true);
         if (!SameColor(Current("Ink"), day)) throw new InvalidOperationException("Reduzierte Bewegung animiert weiter.");

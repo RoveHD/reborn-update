@@ -38,8 +38,10 @@ assert all(lighting[key] for key in ['continuousColors', 'reversal', 'reducedMot
 fireworks = read(root / 'test-results/fireworks-verified/result.json')
 assert all(fireworks[key] for key in ['success', 'fullWindow', 'clickThrough', 'settings', 'themeReset', 'compact', 'hiddenStopped'])
 manifest = read(root / 'update.json')
-assert manifest['game']['version'] == '7.0.0'
-assert manifest['game']['sha256'] == '727f1580fd7faa30ea73deb32e223d9c829fe8b69f179322090f12c345f9f0ec'
+assert tuple(map(int, version.split('.'))) > tuple(map(int, manifest['launcher']['version'].split('.')))
+# A launcher-only release retains the current game package, migrations and
+# optional incremental hotfixes. Never pin these to an older game release.
+assert manifest['game']['version'] and len(manifest['game']['sha256']) == 64
 manifest['launcher'] = dict(version=version, url=f'https://github.com/RoveHD/reborn-update/releases/download/v{version}/launcher.exe', sha256=sha(exe), size=exe.stat().st_size)
 manifest['patchNotes'] = (root / f'release-notes-{version}.md').read_text(encoding='utf-8').strip()
 (release / 'update.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
@@ -49,6 +51,9 @@ evidence = {k: v for k, v in check.items() if k != 'testDirectory'}
 evidence.update(themeAudioSeconds=smoke['themeAudioSeconds'], calendarRolloverVerified=True, mouseEffectsVerified=True, musicTransitionsVerified=True)
 evidence['lightingMorph'] = lighting
 evidence['fireworksUi'] = fireworks
+evidence['gameVersionUnchanged'] = manifest['game']['version']
+evidence['gameSha256Unchanged'] = manifest['game']['sha256']
+evidence['gameHotfixesPreserved'] = len(manifest.get('gameHotfixes', []))
 for key in ['propInteractions', 'eventSoundCodecs', 'halloweenAmbient', 'compactControlsVisible', 'presentationControlsVerified', 'nonScrollingThemeLayoutsVerified', 'balancedSceneLayoutVerified', 'lightingModeVerified', 'maximizedThemes']:
     if key in smoke:
         evidence[key] = smoke[key]

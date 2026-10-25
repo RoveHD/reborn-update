@@ -64,6 +64,7 @@ public sealed class SeasonalScene : FrameworkElement
     private bool _targetDaylight;
     private double DaylightProgress { get => (double)GetValue(DaylightProgressProperty); set => SetValue(DaylightProgressProperty, value); }
     public bool Edge { get; set; }
+    public bool ParticlesOnly { get; set; }
     private double _phase;
 
     public SeasonalScene()
@@ -136,7 +137,8 @@ public sealed class SeasonalScene : FrameworkElement
         drawingContext.PushTransform(_scale);
         drawingContext.PushClip(new RectangleGeometry(new Rect(0, 0, SceneWidth, SceneHeight)));
 
-        switch (_themeId)
+        if (ParticlesOnly) DrawAtmosphericParticles(drawingContext);
+        else switch (_themeId)
         {
             case "standard": DrawNight(drawingContext); break;
             case "halloween": DrawHalloween(drawingContext); break;
@@ -150,6 +152,27 @@ public sealed class SeasonalScene : FrameworkElement
 
         drawingContext.Pop();
         drawingContext.Pop();
+    }
+
+    private void DrawAtmosphericParticles(DrawingContext dc)
+    {
+        for (int i = 0; i < 28; i++)
+        {
+            double x = Pseudo(i * 17 + 5) * SceneWidth + Math.Sin(_phase * .5 + i) * 8;
+            double y = (Pseudo(i * 29 + 3) * SceneHeight + _phase * (_themeId == "winter" ? 8 : 3)) % SceneHeight;
+            // Keep the reading and button column quiet.
+            if (x > 290 && x < 710) continue;
+            dc.PushOpacity(.25 + (Math.Sin(_phase + i) + 1) * .18);
+            if (_themeId is "spring" or "harvest")
+                DrawLeaf(dc, x, y, _themeId == "spring" ? 5 : 8, _themeId == "spring" ? SpringPink : LeafGold, _phase * 8 + i * 19);
+            else
+            {
+                double radius = _themeId == "winter" ? 1 + i % 3 * .6 : .8 + i % 2 * .5;
+                double ry = radius * _scale.ScaleX / Math.Max(.001, _scale.ScaleY);
+                dc.DrawEllipse(_themeId == "halloween" ? PumpkinLight : _themeId == "newyear" || _themeId == "arceus" ? ArceusPale : SnowSoft, null, new Point(x, y), radius, ry);
+            }
+            dc.Pop();
+        }
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e) => UpdateTimerState();

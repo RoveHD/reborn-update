@@ -18,14 +18,20 @@ public sealed class HalloweenAmbientAudio : IDisposable
     private readonly DispatcherTimer timer;
     private readonly Stopwatch clock = Stopwatch.StartNew();
     private readonly Action<string>? diagnostic;
+    private readonly Func<MediaPlayer> jumpscarePlayerFactory;
     private readonly HashSet<string> reportedFailures = new(StringComparer.Ordinal);
+    private readonly Random jumpscareRandom = new();
     private TimeSpan previousTick;
     private Voice? voice;
+    private MediaPlayer? jumpscareVoice;
+    private bool jumpscareEnabled;
+    private double jumpscareVolume = HalloweenAmbientSchedule.DefaultEventVolume;
     private bool disposed;
 
-    public HalloweenAmbientAudio(Action<string>? diagnostic = null)
+    public HalloweenAmbientAudio(Action<string>? diagnostic = null, Func<MediaPlayer>? jumpscarePlayerFactory = null)
     {
         this.diagnostic = diagnostic;
+        this.jumpscarePlayerFactory = jumpscarePlayerFactory ?? (() => new MediaPlayer());
         timer = new DispatcherTimer(DispatcherPriority.Background, dispatcher) { Interval = TimeSpan.FromSeconds(1) };
         timer.Tick += OnTick;
     }
@@ -52,6 +58,79 @@ public sealed class HalloweenAmbientAudio : IDisposable
             catch (Exception error) { Report(current.Cue.Name, error.Message); StopVoice(); }
         }
         timer.Start();
+    }
+
+    /// <summary>Configures the visual Gengar cue's laugh separately from the ambient scheduler.</summary>
+    public void ConfigureJumpscareLaugh(bool enabled, double eventVolume, bool paused)
+    {
+        VerifyAccess();
+        if (disposed) return;
+        jumpscareEnabled = enabled && !paused;
+        jumpscareVolume = HalloweenAmbientSchedule.NormalizeVolume(eventVolume);
+        if (!jumpscareEnabled || jumpscareVolume <= 0) StopJumpscareVoice();
+        else if (jumpscareVoice is { } current) current.Volume = jumpscareVolume * .65;
+    }
+
+    /// <summary>Plays one random existing laugh variant without advancing or pausing ambient scheduling.</summary>
+    public void PlayJumpscareLaugh()
+    {
+        VerifyAccess();
+        if (disposed || !jumpscareEnabled || jumpscareVolume <= 0 || jumpscareVoice is not null) return;
+        var laughs = HalloweenAmbientSchedule.Catalog
+            .Where(item => item.Kind == HalloweenAmbientKind.Laugh)
+            .ToArray();
+        if (laughs.Length == 0) return;
+        string cueName = laughs[jumpscareRandom.Next(laughs.Length)].Name;
+        try
+        {
+            var player = jumpscarePlayerFactory();
+            player.Volume = jumpscareVolume * .65;
+            jumpscareVoice = player;
+            player.MediaOpened += OnJumpscareOpened;
+            player.MediaEnded += OnJumpscareEnded;
+            player.MediaFailed += OnJumpscareFailed;
+            player.Open(new Uri(EnsureCache(cueName), UriKind.Absolute));
+        }
+        catch (Exception error)
+        {
+            Report(cueName, error.Message);
+            StopJumpscareVoice();
+        }
+    }
+
+    private void OnJumpscareOpened(object? sender, EventArgs e)
+    {
+        if (jumpscareVoice is not { } current || !ReferenceEquals(sender, current)) return;
+        if (disposed || !jumpscareEnabled || jumpscareVolume <= 0)
+        {
+            StopJumpscareVoice();
+            return;
+        }
+        try { current.Play(); }
+        catch { StopJumpscareVoice(); }
+    }
+
+    private void OnJumpscareEnded(object? sender, EventArgs e)
+    {
+        if (jumpscareVoice is { } current && ReferenceEquals(sender, current)) StopJumpscareVoice();
+    }
+
+    private void OnJumpscareFailed(object? sender, ExceptionEventArgs e)
+    {
+        if (jumpscareVoice is not { } current || !ReferenceEquals(sender, current)) return;
+        StopJumpscareVoice();
+    }
+
+    private void StopJumpscareVoice()
+    {
+        var current = jumpscareVoice;
+        jumpscareVoice = null;
+        if (current is null) return;
+        current.MediaOpened -= OnJumpscareOpened;
+        current.MediaEnded -= OnJumpscareEnded;
+        current.MediaFailed -= OnJumpscareFailed;
+        try { current.Stop(); } catch { }
+        try { current.Close(); } catch { }
     }
 
     private void OnTick(object? sender, EventArgs e)
@@ -200,6 +279,7 @@ public sealed class HalloweenAmbientAudio : IDisposable
         timer.Stop();
         timer.Tick -= OnTick;
         StopVoice();
+        StopJumpscareVoice();
         clock.Stop();
     }
 }

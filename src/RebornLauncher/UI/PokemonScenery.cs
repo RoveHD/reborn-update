@@ -23,6 +23,7 @@ public sealed class PokemonScenery : FrameworkElement
 
     public bool Edge { get; set; }
     public bool RightEdge { get; set; }
+    public bool ContactShadowsOnly { get; set; }
 
     public void SetTheme(string theme, bool daylight, bool animate = false)
     {
@@ -69,9 +70,11 @@ public sealed class PokemonScenery : FrameworkElement
                 "arceus" or "newyear" => Color.FromArgb(100, 211, 180, 103),
                 _ => Color.FromArgb(95, 80, 65, 100)
             };
+            if (ContactShadowsOnly) tint = Color.FromArgb(160, 8, 10, 18);
             var pool = new RadialGradientBrush(tint, Color.FromArgb(0, tint.R, tint.G, tint.B));
-            dc.DrawEllipse(pool, null, new Point(actor.X + actor.Width / 2, actor.Bottom - 4), actor.Width * .42, Math.Max(7, actor.Height * .055));
+            dc.DrawEllipse(pool, null, new Point(actor.X + actor.Width / 2, actor.Bottom - 3), actor.Width * .34, Math.Max(4, actor.Height * .035));
         }
+        if (ContactShadowsOnly) { dc.Pop(); return; }
         dc.PushTransform(new ScaleTransform(ActualWidth / WidthBase, ActualHeight / HeightBase));
         var shade = Brush(18, 21, 27, 145);
         var muted = Brush(44, 54, 65, 210);

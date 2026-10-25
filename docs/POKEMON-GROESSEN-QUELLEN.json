@@ -1,0 +1,362 @@
+[
+  {
+    "id": "espeon",
+    "name": "Psiana",
+    "form": "Normalform",
+    "heightMetres": 0.9,
+    "source": "https://www.pokewiki.de/Psiana",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,9 m"
+  },
+  {
+    "id": "umbreon",
+    "name": "Nachtara",
+    "form": "Normalform",
+    "heightMetres": 1.0,
+    "source": "https://www.pokewiki.de/Nachtara",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 1,0 m"
+  },
+  {
+    "id": "absol",
+    "name": "Absol",
+    "form": "Normalform",
+    "heightMetres": 1.2,
+    "source": "https://www.pokewiki.de/Absol",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 1,2 m"
+  },
+  {
+    "id": "eevee",
+    "name": "Evoli",
+    "form": "Normalform",
+    "heightMetres": 0.3,
+    "source": "https://www.pokewiki.de/Evoli",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,3 m≧ 18,0 m (Gigadynamax) Basisformwert aus derselben Infobox; weitere Formwerte im Rohwert."
+  },
+  {
+    "id": "lucario",
+    "name": "Lucario",
+    "form": "Normalform",
+    "heightMetres": 1.2,
+    "source": "https://www.pokewiki.de/Lucario",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 1,2 m 1,3 m (Mega &amp; Mega Z) Basisformwert aus derselben Infobox; weitere Formwerte im Rohwert."
+  },
+  {
+    "id": "sylveon",
+    "name": "Feelinara",
+    "form": "Normalform",
+    "heightMetres": 1.0,
+    "source": "https://www.pokewiki.de/Feelinara",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 1,0 m"
+  },
+  {
+    "id": "leafeon",
+    "name": "Folipurba",
+    "form": "Normalform",
+    "heightMetres": 1.0,
+    "source": "https://www.pokewiki.de/Folipurba",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 1,0 m"
+  },
+  {
+    "id": "pumpkaboo",
+    "name": "Irrbis",
+    "form": "Mittelgroße Sorte",
+    "heightMetres": 0.4,
+    "source": "https://www.pokewiki.de/Irrbis",
+    "verified": true,
+    "notes": "PokéWiki listet vier Größenformen. Die Launcher-Artworkzuordnung official-artwork/710.png ist in docs/DESIGN-QUELLEN.md belegt; Live-PokeAPI-Abfrage /pokemon/710 ergab id 710, name pumpkaboo-average, species pumpkaboo, height 4 (4 dm = 0,4 m), womit die offizielle Zuordnung zur Mittelgroßen Sorte bestätigt ist. PokéWiki-Quelle enthält die Größenstaffel: Kleine Sorte 0,3 m; Mittelgroße Sorte 0,4 m; Große Sorte 0,5 m; Extragroße Sorte 0,8 m."
+  },
+  {
+    "id": "gengar",
+    "name": "Gengar",
+    "form": "Normalform",
+    "heightMetres": 1.5,
+    "source": "https://www.pokewiki.de/Gengar",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 1,5 m1,4 m (Mega)≧ 20,0 m (Gigadynamax) Basisformwert aus derselben Infobox; weitere Formwerte im Rohwert."
+  },
+  {
+    "id": "mimikyu",
+    "name": "Mimigma",
+    "form": "Normalform",
+    "heightMetres": 0.2,
+    "source": "https://www.pokewiki.de/Mimigma",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,2 m"
+  },
+  {
+    "id": "misdreavus",
+    "name": "Traunfugil",
+    "form": "Normalform",
+    "heightMetres": 0.7,
+    "source": "https://www.pokewiki.de/Traunfugil",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,7 m"
+  },
+  {
+    "id": "chandelure",
+    "name": "Skelabra",
+    "form": "Normalform",
+    "heightMetres": 1.0,
+    "source": "https://www.pokewiki.de/Skelabra",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 1,0 m2,5 m (Mega) Basisformwert aus derselben Infobox; weitere Formwerte im Rohwert."
+  },
+  {
+    "id": "giratina",
+    "name": "Giratina",
+    "form": "Wandelform",
+    "heightMetres": 4.5,
+    "source": "https://www.pokewiki.de/Giratina",
+    "verified": true,
+    "notes": "PokéWiki-Infobox listet Wandelform 4,5 m und Urform 6,9 m; der Launcher-ID ist keine Form angehängt. PokéWiki-Formartikel beschreibt Wandelform als Normalform."
+  },
+  {
+    "id": "glaceon",
+    "name": "Glaziola",
+    "form": "Normalform",
+    "heightMetres": 0.8,
+    "source": "https://www.pokewiki.de/Glaziola",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,8 m"
+  },
+  {
+    "id": "delibird",
+    "name": "Botogel",
+    "form": "Normalform",
+    "heightMetres": 0.9,
+    "source": "https://www.pokewiki.de/Botogel",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,9 m"
+  },
+  {
+    "id": "alolan-vulpix",
+    "name": "Vulpix",
+    "form": "Alola-Form",
+    "heightMetres": 0.6,
+    "source": "https://www.pokewiki.de/Vulpix",
+    "verified": true,
+    "notes": "Die PokéWiki-Hauptseite zeigt in beiden umschaltbaren Infoboxen (Vulpix und Alola-Form) 0,6 m."
+  },
+  {
+    "id": "snorunt",
+    "name": "Schneppke",
+    "form": "Normalform",
+    "heightMetres": 0.7,
+    "source": "https://www.pokewiki.de/Schneppke",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,7 m"
+  },
+  {
+    "id": "spheal",
+    "name": "Seemops",
+    "form": "Normalform",
+    "heightMetres": 0.8,
+    "source": "https://www.pokewiki.de/Seemops",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,8 m"
+  },
+  {
+    "id": "lapras",
+    "name": "Lapras",
+    "form": "Normalform",
+    "heightMetres": 2.5,
+    "source": "https://www.pokewiki.de/Lapras",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 2,5 m≧ 24,0 m (Gigadynamax) Basisformwert aus derselben Infobox; weitere Formwerte im Rohwert."
+  },
+  {
+    "id": "buneary",
+    "name": "Haspiror",
+    "form": "Normalform",
+    "heightMetres": 0.4,
+    "source": "https://www.pokewiki.de/Haspiror",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,4 m"
+  },
+  {
+    "id": "shaymin",
+    "name": "Shaymin",
+    "form": "Landform",
+    "heightMetres": 0.2,
+    "source": "https://www.pokewiki.de/Shaymin",
+    "verified": true,
+    "notes": "PokéWiki-Infobox listet Landform 0,2 m und Zenitform 0,4 m; im Launcher keine Form angegeben. Landform ist die Standardform."
+  },
+  {
+    "id": "togepi",
+    "name": "Togepi",
+    "form": "Normalform",
+    "heightMetres": 0.3,
+    "source": "https://www.pokewiki.de/Togepi",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,3 m"
+  },
+  {
+    "id": "ribombee",
+    "name": "Bandelby",
+    "form": "Normalform",
+    "heightMetres": 0.2,
+    "source": "https://www.pokewiki.de/Bandelby",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,2 m"
+  },
+  {
+    "id": "squirtle",
+    "name": "Schiggy",
+    "form": "Normalform",
+    "heightMetres": 0.5,
+    "source": "https://www.pokewiki.de/Schiggy",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,5 m"
+  },
+  {
+    "id": "vaporeon",
+    "name": "Aquana",
+    "form": "Normalform",
+    "heightMetres": 1.0,
+    "source": "https://www.pokewiki.de/Aquana",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 1,0 m"
+  },
+  {
+    "id": "psyduck",
+    "name": "Enton",
+    "form": "Normalform",
+    "heightMetres": 0.8,
+    "source": "https://www.pokewiki.de/Enton",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,8 m"
+  },
+  {
+    "id": "mantyke",
+    "name": "Mantirps",
+    "form": "Normalform",
+    "heightMetres": 1.0,
+    "source": "https://www.pokewiki.de/Mantirps",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 1,0 m"
+  },
+  {
+    "id": "sawsbuck",
+    "name": "Kronjuwild",
+    "form": "Normalform",
+    "heightMetres": 1.9,
+    "source": "https://www.pokewiki.de/Kronjuwild",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 1,9 m"
+  },
+  {
+    "id": "rowlet",
+    "name": "Bauz",
+    "form": "Normalform",
+    "heightMetres": 0.3,
+    "source": "https://www.pokewiki.de/Bauz",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,3 m"
+  },
+  {
+    "id": "vulpix",
+    "name": "Vulpix",
+    "form": "Normalform",
+    "heightMetres": 0.6,
+    "source": "https://www.pokewiki.de/Vulpix",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,6 m"
+  },
+  {
+    "id": "deerling",
+    "name": "Sesokitz",
+    "form": "Normalform",
+    "heightMetres": 0.6,
+    "source": "https://www.pokewiki.de/Sesokitz",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,6 m"
+  },
+  {
+    "id": "jirachi",
+    "name": "Jirachi",
+    "form": "Normalform",
+    "heightMetres": 0.3,
+    "source": "https://www.pokewiki.de/Jirachi",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,3 m"
+  },
+  {
+    "id": "pikachu",
+    "name": "Pikachu",
+    "form": "Normalform",
+    "heightMetres": 0.4,
+    "source": "https://www.pokewiki.de/Pikachu",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,4 m≧ 21,0 m (Gigadynamax) Basisformwert aus derselben Infobox; weitere Formwerte im Rohwert."
+  },
+  {
+    "id": "victini",
+    "name": "Victini",
+    "form": "Normalform",
+    "heightMetres": 0.4,
+    "source": "https://www.pokewiki.de/Victini",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,4 m"
+  },
+  {
+    "id": "clefairy",
+    "name": "Piepi",
+    "form": "Normalform",
+    "heightMetres": 0.6,
+    "source": "https://www.pokewiki.de/Piepi",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 0,6 m"
+  },
+  {
+    "id": "ampharos",
+    "name": "Ampharos",
+    "form": "Normalform",
+    "heightMetres": 1.4,
+    "source": "https://www.pokewiki.de/Ampharos",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 1,4 m"
+  },
+  {
+    "id": "togekiss",
+    "name": "Togekiss",
+    "form": "Normalform",
+    "heightMetres": 1.5,
+    "source": "https://www.pokewiki.de/Togekiss",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 1,5 m"
+  },
+  {
+    "id": "arceus",
+    "name": "Arceus",
+    "form": "Normalform",
+    "heightMetres": 3.2,
+    "source": "https://www.pokewiki.de/Arceus",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 3,2 m"
+  },
+  {
+    "id": "dialga",
+    "name": "Dialga",
+    "form": "Normalform",
+    "heightMetres": 5.4,
+    "source": "https://www.pokewiki.de/Dialga",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 5,4 m7,0 m (Urform) Basisformwert aus derselben Infobox; weitere Formwerte im Rohwert."
+  },
+  {
+    "id": "palkia",
+    "name": "Palkia",
+    "form": "Normalform",
+    "heightMetres": 4.2,
+    "source": "https://www.pokewiki.de/Palkia",
+    "verified": true,
+    "notes": "Aus PokéWiki-Hauptinfobox, Feld „Erscheinung → Größe“. Rohwert: 4,2 m6,3 m (Urform) Basisformwert aus derselben Infobox; weitere Formwerte im Rohwert."
+  }
+]

@@ -14,6 +14,9 @@ Stand: 25. Oktober 2026. Launcher-only-Update mit interaktiven Jahreszeiten, eig
 - Alle acht Musikstücke, 50 Event-Sounds und zwölf Halloween-Ambient-Sounds über den Windows-Mediencodec stumm geöffnet. Kalenderwechsel, Mausspur und Musikwechsel einschließlich schneller Folgewechsel geprüft.
 - Morph-Prüfung auf exakt derselben Release-EXE bestanden: acht gedämpfte Tagespaletten, Textkontrast, sichtbare Farbzwischenstände, Richtungswechsel während der Animation, fertige Pokémon-Überblendung und reduzierte Bewegung.
 - Echte isolierte Installation, erneute Installation, Ablehnung eines Spielordners, Selbstupdate der installierten EXE mit Neustart und alter EXE-Sicherung sowie Deinstallation bestanden. Einstellungen, synthetische Spiel-/Spielstanddateien und vorhandene globale Benutzereinträge unverändert.
+- 16 sichtbare Tag-/Nacht-Vorschaufenster aus der finalen EXE nativ geprüft: alle vollständig innerhalb der jeweiligen Windows-Arbeitsfläche. Nur eigene Vorschauprozesse ersetzt; die Benutzerinstallation blieb unberührt.
+- Alle sechs GitHub-Release-Dateien nach Upload anhand der serverseitigen SHA-256-Digests und Dateigrößen mit den geprüften lokalen Dateien verglichen. Version 7.3.0 veröffentlicht und Updatekanal aktiviert.
+- Anschließend die unveränderte offizielle 7.0.0-EXE gegen das öffentliche GitHub-Manifest gestartet: 7.3.0 tatsächlich heruntergeladen, Prüfsumme bestätigt, EXE ersetzt und Neustart quittiert. Einstellungen und bytegenaue Sicherung der alten EXE erhalten (`test-results/github-update.json`).
 
 Geprüfte Artefakte:
 
@@ -43,4 +46,4 @@ python tools/prepare_launcher_release.py --version 7.3.0
 
 Die Audioprüfung öffnet Ressourcen stumm über den Windows-Mediencodec; sie ersetzt keinen manuellen Hörtest. Kein echter Spielstart und keine Änderungen am persönlichen Spielordner, an Mods oder Spielständen. Der isolierte Installertest deaktiviert globale Startmenü-/Deinstallationseinträge und kontrolliert vorhandene Einträge auf Unverändertheit. Kein eigenes Code-Signing-Zertifikat. Das Verhalten auf anderen PCs und bei anderen Windows-/DPI-Konfigurationen ist damit nicht vollständig geprüft.
 
-Der öffentliche Update-Nachweis wird nach Veröffentlichung ergänzt.
+Veröffentlicht: https://github.com/RoveHD/reborn-update/releases/tag/v7.3.0. Das vollständige Spielmanifest einschließlich der bisherigen Löschregeln ist unverändert geblieben.

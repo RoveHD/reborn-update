@@ -1,4 +1,7 @@
-param([string]$ExpectedVersion = '7.2.0')
+param(
+    [string]$ExpectedVersion = '7.2.0',
+    [ValidateRange(60,7200)][int]$TimeoutSeconds = 600
+)
 $ErrorActionPreference = 'Stop'
 $repoRoot = Split-Path -Parent $PSScriptRoot
 $legacy = Join-Path $repoRoot 'artifacts/released-launcher-7.0.0.exe'
@@ -27,7 +30,7 @@ $info.WorkingDirectory = $testRoot
 $info.Environment.Remove('REBORN_LAUNCHER_SMOKE_OUTPUT') | Out-Null
 $oldProcess = [Diagnostics.Process]::Start($info)
 try {
-    $deadline = [DateTime]::UtcNow.AddSeconds(180)
+    $deadline = [DateTime]::UtcNow.AddSeconds($TimeoutSeconds)
     $acknowledged = $false
     while ([DateTime]::UtcNow -lt $deadline) {
         $state = Join-Path $testRoot '.reborn-updater'

@@ -1,56 +1,29 @@
-Patch Notes - Version 2.!
-New
-Added custom Backgrounds
+Launcher 7.0.0 · AllGen 0.9.9 auf Reborn 19.5
 
+Der neue Launcher aktualisiert zuerst sich selbst und danach das Spiel. Beim ersten Wechsel bitte den alten Launcher schließen und die neue launcher.exe in den Spielordner kopieren. Danach erfolgen weitere Aktualisierungen automatisch.
 
+WICHTIG: Zuerst launcher.exe aus diesem Release verwenden. Der alte Updater kann die notwendige Bereinigung umbenannter Mods nicht ausführen. Sein alter Updatekanal bleibt deshalb auf 6.1.0; das neue Spielpaket wird ausschließlich über das neue Update-Manifest verteilt. Die Paketnummer 7.0.0 ist unabhängig von AllGen 0.9.9.
 
+Neu im Launcher:
+• Eigenes Icon und deutsche, skalierbare Oberfläche.
+• Getrennte Versionsprüfung für Launcher und Spiel.
+• Geprüfte Downloads, Fortschritt und Abbruchmöglichkeit.
+• Sicherung und Wiederherstellung bei fehlgeschlagenen Spielupdates.
+• Zwischen aktueller und vorheriger Spielversion wechseln – beide bleiben startbar.
+• Automatische Spielupdates pausieren, solange die vorherige Version ausgewählt ist.
+• Spielstände und persönliche Einstellungen bleiben erhalten.
+• Spielordner frei auswählen und den Pfad für spätere Starts speichern.
+• Bekannte veraltete Dateien hashgesichert entfernen; bei Konflikten mit selbst veränderten Mods vor der Installation abbrechen.
 
+Spielstand des Pakets: AllGen 0.9.9 mit den vorhandenen Anpassungen.
+• Deutsche Attacken, Fähigkeiten und Mega-Stein-Beschreibungen überarbeitet.
+• Custom-Attacke Searing Void heißt Glutabgrund.
+• Zu lange Beschreibungen und Feldnotizen gekürzt.
+• Absturz beim Scrollen über den alten Pottrott-Megastein behoben.
+• Weitere englische Dialoge und Menüs ergänzt; Custom-Evoli-Namen und Pokédex-Texte vereinheitlicht.
+• Doppelten Schaufler-Eintrag unter „VM benutzen“ entfernt.
+• Bestehende angepasste Mods und Verbesserungen der Spielkopie enthalten.
 
-Patch Notes - Version 2.0
-New
-Added custom shiny Pokemon variants
-Added randomized battle music system and Online fix
+Der Download enthält das vollständige Spielpaket. Lokal werden nur abweichende Dateien ersetzt und genau eine vorherige Version bleibt über den Umschalter erreichbar. Neue Spielstände können mit der vorherigen Spielversion inkompatibel sein.
 
-
-Patch Notes - Version 1.0
-
-## New
-
-* Added custom Pokemon Reborn Launcher
-* Added auto-update system
-* Added patch notes viewer
-* Added download progress with speed indicator
-* Added fullscreen UI with fade-in animation
-* Added background and logo support
-
-## Improvements
-
-* Improved launcher stability and startup behavior
-* Improved UI responsiveness during updates
-* Improved download handling and extraction system
-* Improved update detection logic
-
-## Fixes
-
-* Fixed online battles not working with AllGen Reborn
-* Fixed issues with german.dat not loading correctly
-* Fixed multiple translation inconsistencies
-* Fixed crashes related to missing or invalid Pokemon data
-* Fixed Pokedex crashes caused by invalid entries
-* Fixed issues with custom forms not being recognized
-* Fixed problems with mod compatibility
-* Fixed update system errors (server unreachable, extraction issues)
-* Fixed UI bugs (progress bar flicker, layout shifting)
-
-## Technical
-
-* Added safe extraction system (prevents unwanted files)
-* Added cancel update functionality
-* Improved file handling for PyInstaller builds
-* Fixed path issues in onefile mode (_MEIPASS)
-* Improved resource loading (icons, images)
-
-## Known Issues
-
-* Launcher cannot update itself (requires external updater)
-* SSL verification is disabled (not recommended for production)
+Mega-Pottrott wurde vom AllGen-Ersteller entfernt. Der alte Stein bleibt im Inventar sichtbar, hat in dieser Version aber keine Wirkung.

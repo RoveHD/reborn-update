@@ -7,10 +7,10 @@
     "size": 118870261
   },
   "game": {
-    "version": "7.3.2",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.2/Reborn-AllGen-0.9.9.zip",
-    "sha256": "a7016240d9d75df4a2c37ec779bfea581911d8fa234bab68e2b9574ab2c8d87b",
-    "size": 1476960959,
+    "version": "7.3.5",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.5/Reborn-AllGen-0.9.9.zip",
+    "sha256": "9e1fa3b885e051db90ef1b0973d17a56024c687ee25094231b6842c0a9110b54",
+    "size": 1476961003,
     "removedFiles": [
       {
         "path": "Audio/SE/003Cry_2.ogg",
@@ -6391,20 +6391,20 @@
       }
     ]
   },
-  "patchNotes": "# Launcher 7.3.4 – Anime-Szenen mit 2,5D-Bewegung\n\nDer Launcher erhält acht neu gestaltete Anime-Szenen mit fest eingezeichneten Pokémon, passend zu Standard, Halloween, Winter, Frühling/Ostern, Sommer, Herbst, Silvester und Arceus. Pokémon stehen in der Landschaft, schwimmen im Wasser oder schauen hinter Felsen und Pflanzen hervor.\n\n- Landschaft, Vordergrund und Partikel bewegen sich mit unterschiedlicher Tiefe leicht mit der Maus. Zusätzlich generierter Bildinhalt und eine korrigierte Darstellung verhindern sichtbare Bildkanten beim Bewegen.\n- Logo und Startbutton bleiben horizontal zentriert und unbewegt. Untertitel und Versionsinformationen haben gut lesbare Hintergründe.\n- Startseite, Changelog, Extras und Einstellungen sind über die obere Navigation erreichbar. Lange Versionshinweise öffnen in einem eigenen Fenster.\n- Saisonale Dekorationen haben feste Plätze; Geschenke liegen am Boden, Baumschmuck hängt am Baum. Wetter, Feuerwerk und anklickbare Effekte bleiben erhalten.\n- Halloween bietet einen gelegentlichen Gengar-Flug mit Drehung und Lachen. Fünf schnelle Klicks auf das Logo lösen den Blut-Effekt aus.\n- Reduzierte Bewegung, Effektlautstärke und vorhandene Einstellungen werden berücksichtigt. Gemalte Pokémon sind feste Bestandteile ihrer Szene; der frühere Pokémon-Wechsel entfällt.\n\nDie Funktionen aus Launcher 7.3.3 für kleine automatische Spiel-Hotfixes sind enthalten. Spielversion 7.3.2 und ihre Updatepakete bleiben unverändert. Dieses Release aktualisiert den Launcher; ein erneuter vollständiger Spieldownload ist dafür nicht erforderlich.\n\nDie Windows-Setup-Datei eignet sich für eine Neuinstallation. Bestehende Installationen erhalten die neue launcher.exe über die Launcher-Aktualisierung.",
+  "patchNotes": "# Spielhotfix 7.3.5 – Mächtige Aura bei starken Legendären\n\nBei starken Legendären wie Dialga, Palkia, Giratina, Groudon, Kyogre und Rayquaza wird die Reborn-Kugel erst nach 20 anderen gültigen Ballwürfen auf dasselbe Pokémon im selben Kampf freigeschaltet. Die Regel gilt für die 25 großen Legendären der vorhandenen starken Fangklassen.\n\nArktos, Zapdos, Lavados und die anderen gewöhnlichen Legendären-Gruppen können weiterhin sofort mit der Reborn-Kugel gefangen werden. Arceus behält seine Sonderregel mit 30 anderen Würfen. Die normalen Fangchancen bleiben unverändert.\n\nBei einem zu frühen Versuch erscheint beispielsweise:\n„Die Aura von Dialga ist zu mächtig! Es muss erst erschöpft werden. Andere Bälle in diesem Kampf: 19/20.“\n\nEine zurückgewiesene Reborn-Kugel bleibt im Beutel und erhöht den Zähler nicht. Der Fortschritt zählt pro Pokémon und nur für den aktuellen Kampf. Nach Freischaltung wird beim Fang genau eine Reborn-Kugel verbraucht.\n\nDas kleine Hotfix-Paket für Spielstand 7.3.2 ersetzt ausschließlich die Fang-Mod. Der vollständige AllGen-0.9.9-Download enthält denselben Fix für andere Ausgangsversionen. Der Launcher erkennt das passende Paket automatisch; seine veröffentlichte Version 7.3.4 bleibt unverändert. Eigene Mods, Einstellungen und Spielstände bleiben erhalten.\n\nPrüfung: 264 isolierte Tests mit den echten Fang-, Item- und SWM-Routinen in vier Ladevarianten, einschließlich aller 25 starken Arten bei 0, 19 und 20 Würfen, sofortigem Fang der kleinen Gruppen und Inventarschutz. Keine Änderung von Original-PBS-Dateien.",
   "gameHotfixes": [
     {
-      "fromVersion": "7.3.1",
-      "version": "7.3.2",
-      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.2/Reborn-Hotfix-7.3.1-to-7.3.2.zip",
-      "sha256": "1ed868f76b2805794d523cf2cf153bf1b1c598151e221445ffa4f7f679323a97",
-      "size": 4190,
+      "fromVersion": "7.3.2",
+      "version": "7.3.5",
+      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.5/Reborn-Hotfix-7.3.2-to-7.3.5.zip",
+      "sha256": "143593e4e25d405a3f5be578482bca0646105c3dc24c5ff257bf19cffd487562",
+      "size": 4234,
       "files": [
         {
           "path": "patch/Mods/zzLegendaryCatchDifficulty.rb",
-          "beforeSha256": "6d5f5297f06ffad62ae2cb7ace92d13a2c1a01dc462cd6f851d79093d09cca6e",
-          "sha256": "736909fc0eca9785c2a119a7d72f085a1df804de8c8b2e2344cda6ba74c63db3",
-          "size": 10984
+          "beforeSha256": "736909fc0eca9785c2a119a7d72f085a1df804de8c8b2e2344cda6ba74c63db3",
+          "sha256": "2adf338088066a3b67eeb1d17b9d1077acbffac7b03cf23395430ffc7a619dd3",
+          "size": 11337
         }
       ]
     }

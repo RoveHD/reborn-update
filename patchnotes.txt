@@ -1,14 +1,14 @@
-# Launcher 7.3.4 – Anime-Szenen mit 2,5D-Bewegung
+# Spielhotfix 7.3.5 – Mächtige Aura bei starken Legendären
 
-Der Launcher erhält acht neu gestaltete Anime-Szenen mit fest eingezeichneten Pokémon, passend zu Standard, Halloween, Winter, Frühling/Ostern, Sommer, Herbst, Silvester und Arceus. Pokémon stehen in der Landschaft, schwimmen im Wasser oder schauen hinter Felsen und Pflanzen hervor.
+Bei starken Legendären wie Dialga, Palkia, Giratina, Groudon, Kyogre und Rayquaza wird die Reborn-Kugel erst nach 20 anderen gültigen Ballwürfen auf dasselbe Pokémon im selben Kampf freigeschaltet. Die Regel gilt für die 25 großen Legendären der vorhandenen starken Fangklassen.
 
-- Landschaft, Vordergrund und Partikel bewegen sich mit unterschiedlicher Tiefe leicht mit der Maus. Zusätzlich generierter Bildinhalt und eine korrigierte Darstellung verhindern sichtbare Bildkanten beim Bewegen.
-- Logo und Startbutton bleiben horizontal zentriert und unbewegt. Untertitel und Versionsinformationen haben gut lesbare Hintergründe.
-- Startseite, Changelog, Extras und Einstellungen sind über die obere Navigation erreichbar. Lange Versionshinweise öffnen in einem eigenen Fenster.
-- Saisonale Dekorationen haben feste Plätze; Geschenke liegen am Boden, Baumschmuck hängt am Baum. Wetter, Feuerwerk und anklickbare Effekte bleiben erhalten.
-- Halloween bietet einen gelegentlichen Gengar-Flug mit Drehung und Lachen. Fünf schnelle Klicks auf das Logo lösen den Blut-Effekt aus.
-- Reduzierte Bewegung, Effektlautstärke und vorhandene Einstellungen werden berücksichtigt. Gemalte Pokémon sind feste Bestandteile ihrer Szene; der frühere Pokémon-Wechsel entfällt.
+Arktos, Zapdos, Lavados und die anderen gewöhnlichen Legendären-Gruppen können weiterhin sofort mit der Reborn-Kugel gefangen werden. Arceus behält seine Sonderregel mit 30 anderen Würfen. Die normalen Fangchancen bleiben unverändert.
 
-Die Funktionen aus Launcher 7.3.3 für kleine automatische Spiel-Hotfixes sind enthalten. Spielversion 7.3.2 und ihre Updatepakete bleiben unverändert. Dieses Release aktualisiert den Launcher; ein erneuter vollständiger Spieldownload ist dafür nicht erforderlich.
+Bei einem zu frühen Versuch erscheint beispielsweise:
+„Die Aura von Dialga ist zu mächtig! Es muss erst erschöpft werden. Andere Bälle in diesem Kampf: 19/20.“
 
-Die Windows-Setup-Datei eignet sich für eine Neuinstallation. Bestehende Installationen erhalten die neue launcher.exe über die Launcher-Aktualisierung.
+Eine zurückgewiesene Reborn-Kugel bleibt im Beutel und erhöht den Zähler nicht. Der Fortschritt zählt pro Pokémon und nur für den aktuellen Kampf. Nach Freischaltung wird beim Fang genau eine Reborn-Kugel verbraucht.
+
+Das kleine Hotfix-Paket für Spielstand 7.3.2 ersetzt ausschließlich die Fang-Mod. Der vollständige AllGen-0.9.9-Download enthält denselben Fix für andere Ausgangsversionen. Der Launcher erkennt das passende Paket automatisch; seine veröffentlichte Version 7.3.4 bleibt unverändert. Eigene Mods, Einstellungen und Spielstände bleiben erhalten.
+
+Prüfung: 264 isolierte Tests mit den echten Fang-, Item- und SWM-Routinen in vier Ladevarianten, einschließlich aller 25 starken Arten bei 0, 19 und 20 Würfen, sofortigem Fang der kleinen Gruppen und Inventarschutz. Keine Änderung von Original-PBS-Dateien.

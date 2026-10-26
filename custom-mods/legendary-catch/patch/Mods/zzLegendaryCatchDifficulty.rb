@@ -87,6 +87,50 @@ module LegendaryCatchDifficulty
       PBStuff::LEGENDARYLIST.include?(species)
   end
 
+  # Battle moves belong to a Pokemon object, not to a Battler. Match that exact
+  # object on the opposing side so players, allies, trainers and online battles
+  # keep normal PP. Use its original species even after Transform.
+  def self.infinite_wild_pp?(battle, pokemon)
+    return false unless battle && pokemon && battle.opponent.nil?
+    return false if battle.isOnline? || battle.decision != 0
+    return false unless legendary?(pokemon.species)
+    Array(battle.battlers).any? do |battler|
+      battler && battle.pbIsOpposing?(battler.index) &&
+        battler.pokemon.equal?(pokemon)
+    end
+  end
+
+  module WildMovePPHook
+    def pp
+      value = super
+      if value && value >= 0 && totalpp && totalpp > 0 &&
+         LegendaryCatchDifficulty.infinite_wild_pp?(@battle, @user)
+        return totalpp
+      end
+      value
+    end
+
+    # Also covers direct PP drains (Eerie Spell), not just ordinary move use.
+    def pp=(value)
+      if value && value >= 0 && totalpp && totalpp > 0 &&
+         LegendaryCatchDifficulty.infinite_wild_pp?(@battle, @user)
+        value = totalpp
+      end
+      super(value)
+    end
+  end
+
+  module WildBattlerPPHook
+    def pbSetPP(move, pp)
+      if pp && pp >= 0 && move.totalpp && move.totalpp > 0 &&
+         LegendaryCatchDifficulty.infinite_wild_pp?(@battle, @pokemon)
+        pp = move.totalpp
+      end
+      # Keep the underlying Pokemon's move in sync for capture/Transform.
+      super(move, pp)
+    end
+  end
+
   def self.gen3_shake_threshold(ball_rate, battler)
     # Emerald's integer divisions and nested integer square roots matter at
     # low catch rates. Ball handlers have already applied the ball modifier.
@@ -273,6 +317,12 @@ end
 BallHandlers.singleton_class.prepend(LegendaryCatchDifficulty::BallHook)
 ItemHandlers.singleton_class.prepend(LegendaryCatchDifficulty::ItemHook)
 PokeBattle_Battle.prepend(LegendaryCatchDifficulty::RandomHook)
+if defined?(PokeBattle_Move) && !PokeBattle_Move.ancestors.include?(LegendaryCatchDifficulty::WildMovePPHook)
+  PokeBattle_Move.prepend(LegendaryCatchDifficulty::WildMovePPHook)
+end
+if defined?(PokeBattle_Battler) && !PokeBattle_Battler.ancestors.include?(LegendaryCatchDifficulty::WildBattlerPPHook)
+  PokeBattle_Battler.prepend(LegendaryCatchDifficulty::WildBattlerPPHook)
+end
 if defined?(PokeBattle_SafariZone)
   unless PokeBattle_SafariZone.ancestors.include?(LegendaryCatchDifficulty::BattleHook)
     PokeBattle_SafariZone.prepend(LegendaryCatchDifficulty::BattleHook)

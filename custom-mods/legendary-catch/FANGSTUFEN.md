@@ -13,6 +13,8 @@ Lokale Anpassung vom 26.10.2026. Die Prozentwerte sind relative Abzüge von der 
 
 Insgesamt 94 legendäre und mysteriöse Arten. Abysara (ABYSSEON) und Divinara (DIVINEON) sind Evoli-Entwicklungen und verwenden die normalen Fangregeln ohne Legendären-Abzug, ohne Grundfangraten-Begrenzung und mit normalem Glitzerball-Bonus. Ultrabestien und Paradox-Pokémon werden nicht pauschal als Legendäre eingestuft.
 
+Ab Hotfix 7.3.11 haben gegnerische wilde Pokémon dieser 94 Arten unbegrenzte AP, auch bei Erzwinger und AP-Abzug. So entsteht bei langen Fangkämpfen kein Verzweifler durch verbrauchte AP. Eigene Pokémon, Begleiter, Trainer- und Onlinekämpfe behalten normale AP. Nach Kampfende gilt die Sonderregel nicht mehr. Andere Ursachen für Verzweifler (zum Beispiel blockierte Attacken), Abgesang, Rückstoß und Selbstzerstörungsattacken werden dadurch nicht verhindert.
+
 Die Reborn-Kugel-Freigabe zählt gültige andere Ballwürfe im selben Kampf gegen dasselbe Pokémon. Glitzerbälle bleiben normale Fangversuche: x4 Ballbonus bei bereits schillernden Legendären/Mysteriösen, x8 bei anderen bereits schillernden Pokémon; beim erfolgreichen Fang bleibt die vorhandene Schillernd-Funktion erhalten.
 
 Gewünschte Ausnahmen: Regigigas auf Rayquaza-Stufe; Darkrai und Cresselia auf Dialga/Palkia-Stufe; Kapu-Riki 20 % weniger; Arceus bleibt 85 % weniger und benötigt 30 andere Würfe.

@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "checks": 103,
+  "species": 94,
+  "simulated_turns": 23500,
+  "mod_sha256": "3abdad5467530e87c798733c7029a2bdd57713d39b1184fa6b468fa8e0de7b2d",
+  "harness_sha256": "f973d04f9df05fd0ba5685dc8f7a0e5acaf231fe78366c6f8aed82326e87c19f",
+  "engine_pp_sha256": "86690413ac75ff89974e1fdbbaff07c8106d6b0ec29ded31d24a363f8e759c63",
+  "live_audio_or_full_engine_test": false
+}

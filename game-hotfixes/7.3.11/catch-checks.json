@@ -1,0 +1,48 @@
+{
+  "success": true,
+  "sha256": "3abdad5467530e87c798733c7029a2bdd57713d39b1184fa6b468fa8e0de7b2d",
+  "mod_sha256": "3abdad5467530e87c798733c7029a2bdd57713d39b1184fa6b468fa8e0de7b2d",
+  "harness_sha256": "5363cba70cc710df6b10570e5f4aa7ac268fadbc21ffb0fb2db8e5d27bdcf8d5",
+  "base_harness_sha256": "b204e38a831a48c4e9aadffb44bcc7a534a2e70eb7436422f0aa25824fcfa7ff",
+  "fixture_sha256": "30e327a9717b4dc2f749ad144765768f11bc4965a51dcf5759a76f892ca4d7bd",
+  "species": 94,
+  "excludedEeveeEvolutions": [
+    "ABYSSEON",
+    "DIVINEON"
+  ],
+  "total_checks": 1539,
+  "runs": [
+    {
+      "order": "original",
+      "exit_code": 0,
+      "checks": 358
+    },
+    {
+      "order": "swm-first",
+      "exit_code": 0,
+      "checks": 359
+    },
+    {
+      "order": "catch-first",
+      "exit_code": 0,
+      "checks": 359
+    },
+    {
+      "order": "script-reload",
+      "exit_code": 0,
+      "checks": 360
+    }
+  ],
+  "infinite_pp": {
+    "success": true,
+    "checks": 103,
+    "species": 94,
+    "simulated_turns": 23500,
+    "mod_sha256": "3abdad5467530e87c798733c7029a2bdd57713d39b1184fa6b468fa8e0de7b2d",
+    "harness_sha256": "f973d04f9df05fd0ba5685dc8f7a0e5acaf231fe78366c6f8aed82326e87c19f",
+    "engine_pp_sha256": "86690413ac75ff89974e1fdbbaff07c8106d6b0ec29ded31d24a363f8e759c63",
+    "live_audio_or_full_engine_test": false
+  },
+  "tested_on": "2026-10-27",
+  "full_engine_launched": false
+}

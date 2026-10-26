@@ -30,7 +30,9 @@ Check(!hotfix.MatchesBase(fixture, Path.Combine(fixture, "version.txt"), Cancell
 File.WriteAllBytes(mod, original);
 var protectedFiles = new[] { "Game.exe", "Game.ini", "mkxp.json", "settings.json", "Save Data/Game_3.rxdata", "patch/Mods/FriendsOwnMod.rb" }
     .ToDictionary(path => path, path => VerifiedDownload.Hash(SafePaths.Under(fixture, path)));
-string feed = publicDownload ? "https://raw.githubusercontent.com/RoveHD/reborn-update/main/update.json" : "https://isolated.hotfix.test/update.json";
+// Verify the immutable published release snapshot rather than GitHub's briefly
+// cached raw/main response or a later, unrelated launcher publication.
+string feed = publicDownload ? new Uri(new Uri(manifest.Game.Url), "update.json").AbsoluteUri : "https://isolated.hotfix.test/update.json";
 var settings = new LauncherSettings { InstallDirectory = fixture, ManifestUrl = feed };
 using var transport = new CheckedTransport(feed, hotfix.Url, release, publicDownload);
 using var downloader = new VerifiedDownload(transport);
@@ -50,7 +52,7 @@ Check(VerifiedDownload.Hash(mod).Equals(hotfix.Files[0].Sha256, StringComparison
 foreach (var file in protectedFiles)
     Check(VerifiedDownload.Hash(SafePaths.Under(fixture, file.Key)) == file.Value, "Protected fixture changed: " + file.Key);
 var result = new { success = true, version = manifest.Game.Version, fromVersion = hotfix.FromVersion,
-    realPublicGithubDownload = publicDownload, downloadedHotfixBytes = hotfix.Size, fullPackageDownloaded = false,
+    realPublicGithubDownload = publicDownload, manifestUrl = feed, downloadedHotfixBytes = hotfix.Size, fullPackageDownloaded = false,
     hotfixSha256 = hotfix.Sha256, modSha256 = hotfix.Files[0].Sha256, modifiedBaseRejected = true,
     previousAndCurrentVersionSwitchVerified = true, personalFilesUnchanged = protectedFiles.Keys, isolatedInstall = fixture };
 Directory.CreateDirectory(output);

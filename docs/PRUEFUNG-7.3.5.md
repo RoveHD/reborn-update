@@ -25,3 +25,11 @@ Das vollständige ZIP enthält genau 18.864 Dateien. Der Paketbau prüft jede fe
 | Vollständiges Spielpaket | `9e1fa3b885e051db90ef1b0973d17a56024c687ee25094231b6842c0a9110b54` |
 
 Alle Tests liegen unter D:. Der aktuelle Spielordner auf Z: wird nicht verwendet. Der vorhandene Versionswechsel stellt nach dem Update weiterhin die unmittelbar vorherige Spielversion bereit.
+
+## Veröffentlichung und abschließende Prüfung
+
+Veröffentlicht: [Spielhotfix 7.3.5](https://github.com/RoveHD/reborn-update/releases/tag/v7.3.5). Alle zehn Release-Assets wurden anhand ihrer GitHub-Digests und Größen geprüft. Der [GitHub-Build 40250742947](https://github.com/RoveHD/reborn-update/actions/runs/40250742947) reproduzierte das vollständige Archiv bytegenau.
+
+Der öffentliche Integrationstest hat das tatsächlich veröffentlichte Release-Manifest und das 4.234 Byte große Hotfix-ZIP über HTTPS heruntergeladen. Installation, Basisschutz, Rückwechsel und erneuter Wechsel auf 7.3.5 bestanden. Er verwendet bewusst das unveränderliche Release-Manifest; der separat veröffentlichte Hauptkanal kann kurzzeitig noch im GitHub-CDN zwischengespeichert sein.
+
+Die Reparaturprüfung des vollständigen Pakets bestand mit 18.864 geprüften installierten Dateien. Persönliche Testdateien und der Zeitstempel einer unveränderten Spieldatei blieben erhalten. Dies ist eine Reparaturprüfung auf einer isoliert vorbereiteten Installation, kein Nachweis einer vollständigen Erstinstallation. Die kompakten Ergebnisse stehen in `game-hotfixes/7.3.5/updater-checks.json`.

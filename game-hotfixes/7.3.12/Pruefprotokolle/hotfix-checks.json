@@ -1,0 +1,21 @@
+{
+  "success": true,
+  "gameVersion": "7.3.12",
+  "baselineGameVersion": "7.3.11",
+  "launcherUnchanged": true,
+  "onlyChangedPaths": [
+    "Graphics/Characters/Followers/722.png",
+    "Graphics/Characters/Followers/887s.png",
+    "patch/Mods/zzLegendaryWildMusic.rb"
+  ],
+  "newFiles": [
+    "Graphics/Characters/Followers/887s.png",
+    "patch/Mods/zzLegendaryWildMusic.rb"
+  ],
+  "removedCurrentFiles": [],
+  "historicalRemovedFilesPreserved": true,
+  "published": false,
+  "files": 18866,
+  "archiveSha256": "46d25df0aed1bf8c7c30773e753cdff6b97fe4e7dd6554052d1e8bd4e3d0d955",
+  "approvedManifestSha256": "cbe590e7a94aa2a921cd5da4da2f9474fd005806dd6a07e3050909bdd1a9e435"
+}

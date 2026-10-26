@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "installedFilesVerified": 18866,
+  "personalFilesUnchanged": [
+    "mkxp.json",
+    "settings.json",
+    "Save Data/Game_3.rxdata",
+    "patch/Mods/FriendsOwnMigrationMod.rb"
+  ],
+  "version": "7.3.12",
+  "archiveSha256": "46d25df0aed1bf8c7c30773e753cdff6b97fe4e7dd6554052d1e8bd4e3d0d955",
+  "durationSeconds": 57.544516,
+  "isolatedInstall": "D:\\Dokumente\\ChatGPT\\Pokemon reborn\\reborn-update\\artifacts\\release-game-7.3.12\\game-01daa0e8e2e441508a89e01aac87c656",
+  "repair": true,
+  "unchangedFileTimestampPreserved": true
+}

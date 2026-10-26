@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "files": [
+    {
+      "path": "patch/Graphics/Battlers/haxorus.png",
+      "size": [
+        384,
+        768
+      ],
+      "newAllGenRowsStart": 384,
+      "newMegaAndShinyPixelsEqualToAllGen099": true,
+      "existingCustomizedNormalRowsPreserved": true,
+      "releaseFileSha256": "caa579e1ceb8e71b7e37c70cf66505e3f495627d51e6986d27ca9c8b70547757"
+    },
+    {
+      "path": "patch/Graphics/Icons/haxorus.png",
+      "size": [
+        256,
+        128
+      ],
+      "newAllGenRowsStart": 64,
+      "newMegaAndShinyPixelsEqualToAllGen099": true,
+      "existingCustomizedNormalRowsPreserved": true,
+      "releaseFileSha256": "5f4ed721599428aa5dc17cab99383ffd92c47f0a02a52a2fc2dc1d78610b9173"
+    }
+  ],
+  "imageModificationPerformed": false
+}

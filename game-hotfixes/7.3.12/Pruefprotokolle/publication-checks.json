@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "gameVersion": "7.3.12",
+  "launcherVersionUnchanged": "7.3.8",
+  "releaseUrl": "https://github.com/RoveHD/reborn-update/releases/tag/v7.3.12",
+  "ciRun": "https://github.com/RoveHD/reborn-update/actions/runs/40421409652",
+  "reproducibleArchiveSha256": "46d25df0aed1bf8c7c30773e753cdff6b97fe4e7dd6554052d1e8bd4e3d0d955",
+  "archiveBytes": 1476970387,
+  "manualAddOnBytes": 14617,
+  "frozenSourceCommit": "9aa9295",
+  "publishedChannelCommit": "0a885d4",
+  "rawMainChannelVerified": true,
+  "publishedAssetDigestsVerified": 16,
+  "onlyChanges": [
+    "Graphics/Characters/Followers/722.png",
+    "Graphics/Characters/Followers/887s.png",
+    "patch/Mods/zzLegendaryWildMusic.rb"
+  ],
+  "personalGameFolderAccessed": false,
+  "gameStarted": false,
+  "audiblePlaybackTested": false,
+  "realPublicUpdaterPassed": true,
+  "publicUpdaterInventoryFilesVerified": 18866,
+  "publicUpdaterSwitchesVerified": 2
+}

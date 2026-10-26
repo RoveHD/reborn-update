@@ -1,0 +1,34 @@
+{
+  "success": true,
+  "version": "7.3.12",
+  "baselineVersion": "7.3.11",
+  "baselineArchiveSha256": "d6a867b4c2813b2a29c061e48e43365ba4a275c668774d64d0bb67125de0f40e",
+  "baselineInventorySha256": "42fca7980750e19004032569b51584fb77017b13ca90f6980148d0878c59b780",
+  "approvedManifestSha256": "cbe590e7a94aa2a921cd5da4da2f9474fd005806dd6a07e3050909bdd1a9e435",
+  "approvedFiles": [
+    {
+      "path": "Graphics/Characters/Followers/722.png",
+      "sha256": "40ff9ce20e3cbcda66e3961c86a1c2ebe579bdf1b7d79949d7dc73a6dca33991",
+      "size": 5449
+    },
+    {
+      "path": "Graphics/Characters/Followers/887s.png",
+      "sha256": "1f44936016e18de061b5c31d28ffe0962efb8ddf0677cb10fa0a0be61a621a98",
+      "size": 7808
+    },
+    {
+      "path": "patch/Mods/zzLegendaryWildMusic.rb",
+      "sha256": "44384b6b135c805c48f80c3f4c12595734bf49b0a30b05e525edd39bdb2acde0",
+      "size": 3495
+    }
+  ],
+  "newFiles": [
+    "Graphics/Characters/Followers/887s.png",
+    "patch/Mods/zzLegendaryWildMusic.rb"
+  ],
+  "launcherVersion": "7.3.8",
+  "launcherUnchanged": true,
+  "removedFilesPreserved": true,
+  "published": false,
+  "fullFallbackSha256": "46d25df0aed1bf8c7c30773e753cdff6b97fe4e7dd6554052d1e8bd4e3d0d955"
+}

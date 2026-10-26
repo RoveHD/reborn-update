@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "realPublicGithubDownload": false,
+  "requestedURLs": [
+    "https://github.com/RoveHD/reborn-update/releases/download/v7.3.12/update.json",
+    "https://github.com/RoveHD/reborn-update/releases/download/v7.3.12/Reborn-AllGen-0.9.9.zip",
+    "https://github.com/RoveHD/reborn-update/releases/download/v7.3.12/update.json"
+  ],
+  "fullPackageDownloaded": true,
+  "archiveSha256": "46d25df0aed1bf8c7c30773e753cdff6b97fe4e7dd6554052d1e8bd4e3d0d955",
+  "archiveSize": 1476970387,
+  "version": "7.3.12",
+  "previousVersion": "7.3.11",
+  "previousInventoryFilesVerified": 18864,
+  "currentInventoryFilesVerified": 18866,
+  "personalSentinelsPreserved": [
+    "mkxp.json",
+    "settings.json",
+    "Save Data/Game_3.rxdata",
+    "patch/Mods/FriendsOwnFullUpdateMod.rb"
+  ],
+  "switchesBeforeDownload": 0,
+  "switchesAfterDownload": 2,
+  "isolatedInstall": "D:\\Dokumente\\ChatGPT\\Pokemon reborn\\reborn-update\\artifacts\\release-game-7.3.12\\game-full-update-b56521492c26450ead8dbd1366536944",
+  "gameStarted": false
+}

@@ -5,12 +5,12 @@ Deutscher Windows-Launcher für die gemeinsame Reborn-/AllGen-Installation. Er a
 ## Für Mitspieler
 
 1. Spiel und alten Launcher schließen.
-2. [Reborn-Launcher-7.3.4-Setup.exe](https://github.com/RoveHD/reborn-update/releases/download/v7.3.4/Reborn-Launcher-7.3.4-Setup.exe) herunterladen und installieren. Keine Administratorrechte nötig.
+2. [Reborn-Launcher-7.3.7-Setup.exe](https://github.com/RoveHD/reborn-update/releases/download/v7.3.7/Reborn-Launcher-7.3.7-Setup.exe) herunterladen und installieren. Keine Administratorrechte nötig.
 3. Den Launcher über das Startmenü öffnen und einmal den vorhandenen Reborn-Spielordner auswählen.
 
 Der Launcher ist separat unter `%LOCALAPPDATA%\Programs\RebornLauncher` installiert. Das Setup verändert keine Spieldateien. Neue veröffentlichte Launcher-Versionen kommen beim Start automatisch über GitHub. Ein vorhandener C#-Launcher 7.0/7.1 kann sich ebenfalls selbst aktualisieren; für den dauerhaften Installationsordner einmal das Setup verwenden.
 
-Alte Python-Launcher brauchen einmalig das neue Setup. Das alte `version.txt`-Updateverfahren bleibt auf 6.1.0; das Spielpaket heißt `Reborn-AllGen-0.9.9.zip`. Dadurch installiert der alte Updater umbenannte Mods nicht ohne die notwendige Löschmigration. Das aktuelle Spielpaket bleibt bei diesem Launcher-Release auf 7.3.2 / AllGen 0.9.9. Passende kleine Hotfix-Pakete werden seit Launcher 7.3.3 automatisch ausgewählt.
+Alte Python-Launcher brauchen einmalig das neue Setup. Das alte `version.txt`-Updateverfahren bleibt auf 6.1.0; das Spielpaket heißt `Reborn-AllGen-0.9.9.zip`. Dadurch installiert der alte Updater umbenannte Mods nicht ohne die notwendige Löschmigration. Das aktuelle Spielpaket bleibt bei diesem Launcher-Release auf 7.3.5 / AllGen 0.9.9. Passende kleine Hotfix-Pakete werden seit Launcher 7.3.3 automatisch ausgewählt.
 
 ### Jahreszeiten und Gestaltung
 

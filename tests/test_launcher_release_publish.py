@@ -86,6 +86,34 @@ class LauncherReleaseSafety(unittest.TestCase):
         with self.assertRaisesRegex(AssertionError, 'already published'):
             self.run_publisher(publish=True, public_release=True)
 
+    def test_new_draft_uses_creation_response_without_relisting(self):
+        self.stage()
+        listing_reads = []
+        def api(*args, **kwargs):
+            endpoint = args[-1]
+            if '/git/ref/heads/main' in endpoint:
+                return {'object': {'sha': 'a' * 40}}
+            if '/contents/update.json?' in endpoint:
+                return {'content': base64.b64encode(json.dumps(self.baseline).encode()).decode()}
+            if '/commits/' in endpoint:
+                return {'sha': 'b' * 40}
+            if '/releases?' in endpoint:
+                listing_reads.append(endpoint)
+                return []  # A stale listing must not be consulted again.
+            if endpoint.endswith('/releases') and '--method' in args:
+                self.assertEqual(kwargs['body']['tag_name'], 'v2.0.0')
+                self.assertTrue(kwargs['body']['draft'])
+                return {'id': 123, 'draft': True, 'tag_name': 'v2.0.0', 'target_commitish': 'b' * 40, 'assets': []}
+            raise AssertionError('Unexpected API action: ' + str(args))
+        argv = ['publisher', '--release-directory', str(self.release), '--publish']
+        with patch.object(sys, 'argv', argv), patch.object(publisher, 'gh', side_effect=api), \
+                patch.object(publisher.subprocess, 'check_output', return_value='b' * 40), \
+                patch.object(publisher, 'run', side_effect=RuntimeError('upload reached')) as upload:
+            with self.assertRaisesRegex(RuntimeError, 'upload reached'):
+                publisher.main()
+            self.assertEqual(len(listing_reads), 1)
+            self.assertEqual(upload.call_args.args[:3], ('release', 'upload', 'v2.0.0'))
+
 
 if __name__ == '__main__':
     unittest.main()

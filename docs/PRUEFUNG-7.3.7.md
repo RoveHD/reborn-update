@@ -21,7 +21,7 @@ Update-Kanalfelder bleiben unverändert. Tests verwenden isolierte Ordner auf D:
 - Gengar-Flug: echte Timer, Pixel-Isolation und Wiederherstellung der Szene erfolgreich. Bericht: `test-results/gengar-parallax/result.json`.
 - Referenzlayouts: 8 Themes × 2 Lichtmodi × 4 Größen, Randabdeckung und Navigation erfolgreich. Bericht: `test-results/reference-parallax-final/result.json`.
 - Feuerwerk: vorhandene erfolgreiche Prüfung für volle Fensterfläche, durchlässige Mausklicks, Einstellungen, Theme-Wechsel, kompakte Ansicht und gestoppten Timer bei unsichtbarer Szene übernommen. Bericht: `test-results/fireworks-verified/result.json`.
-- Publisher: 5 Sicherheitstests erfolgreich. Änderungen am Spielpaket, entfernte Hotfixes, Änderungen sonstiger Kanalwerte und Überschreiben veröffentlichter Releases werden abgewiesen; der Prüfmodus schreibt nichts.
+- Publisher: 6 Sicherheitstests erfolgreich. Änderungen am Spielpaket, entfernte Hotfixes, Änderungen sonstiger Kanalwerte und Überschreiben veröffentlichter Releases werden abgewiesen; der Prüfmodus schreibt nichts. Neue Entwürfe werden direkt anhand der Erstellungsantwort identifiziert, unabhängig von einer kurzzeitig verzögerten GitHub-Release-Liste.
 - Release-Staging prüft Installer-/EXE-Hashes und UI-Nachweise. Der anschließende Prüfmodus vergleicht alle erhaltenen Kanalfelder mit dem aktuellen GitHub-Stand.
 
 Der öffentliche Download-/Selbstupdate-Nachweis wird nach Veröffentlichung separat ergänzt. Automatisierte UI- und Audioprüfungen ersetzen keine vollständige manuelle Prüfung aller Animationen und Lautsprecherwiedergabe.

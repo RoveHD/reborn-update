@@ -94,9 +94,13 @@ def main():
     draft = next((item for item in releases if item['tag_name'] == tag), None)
     assert draft is None or draft['draft'], 'Never overwrite an already published release'
     if draft is None:
-        run('release', 'create', tag, '--repo', REPO, '--target', source, '--draft',
-            '--title', f'Launcher {version} – Echte Tiefe und feste Standflächen', '--notes-file', str(release / 'patchnotes.txt'))
-        draft = next(item for item in gh('api', f'repos/{REPO}/releases?per_page=100') if item['tag_name'] == tag)
+        # Use the creation response: the release listing can briefly lag behind
+        # a successful creation and must not determine the new draft's identity.
+        draft = gh('api', '--method', 'POST', f'repos/{REPO}/releases', body={
+            'tag_name': tag, 'target_commitish': source, 'draft': True,
+            'name': f'Launcher {version} – Echte Tiefe und feste Standflächen',
+            'body': (release / 'patchnotes.txt').read_text(encoding='utf-8')})
+    assert draft['draft'] and draft['tag_name'] == tag
     assert draft['target_commitish'] == source, 'Draft belongs to different sources'
     for name in assets:
         path = release / name

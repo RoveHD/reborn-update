@@ -258,7 +258,7 @@ static class ReleaseCheck
     {
         string json = await File.ReadAllTextAsync(Path.Combine(releaseDirectory, "update.json"));
         var manifest = UpdateManifest.Parse(json);
-        var hotfix = manifest.GameHotfixes.Single(h => h.FromVersion == "7.3.1");
+        var hotfix = manifest.GameHotfixes.Single();
         string zip = Path.Combine(releaseDirectory, Uri.UnescapeDataString(Path.GetFileName(new Uri(hotfix.Url).AbsolutePath)));
         if (new FileInfo(zip).Length != hotfix.Size || !VerifiedDownload.Hash(zip).Equals(hotfix.Sha256, StringComparison.OrdinalIgnoreCase))
             throw new Exception("Release delta ZIP mismatch");

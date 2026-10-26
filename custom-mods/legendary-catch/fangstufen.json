@@ -1,0 +1,660 @@
+[
+  {
+    "species": "ARCEUS",
+    "name_de": "Arceus",
+    "dex": 493,
+    "factor_units": 150000,
+    "reborn_other_throws": 30
+  },
+  {
+    "species": "MEW",
+    "name_de": "Mew",
+    "dex": 151,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "CELEBI",
+    "name_de": "Celebi",
+    "dex": 251,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "RAYQUAZA",
+    "name_de": "Rayquaza",
+    "dex": 384,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "JIRACHI",
+    "name_de": "Jirachi",
+    "dex": 385,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "DEOXYS",
+    "name_de": "Deoxys",
+    "dex": 386,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "REGIGIGAS",
+    "name_de": "Regigigas",
+    "dex": 486,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "GIRATINA",
+    "name_de": "Giratina",
+    "dex": 487,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "PHIONE",
+    "name_de": "Phione",
+    "dex": 489,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "MANAPHY",
+    "name_de": "Manaphy",
+    "dex": 490,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "SHAYMIN",
+    "name_de": "Shaymin",
+    "dex": 492,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "VICTINI",
+    "name_de": "Victini",
+    "dex": 494,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "KYUREM",
+    "name_de": "Kyurem",
+    "dex": 646,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "KELDEO",
+    "name_de": "Keldeo",
+    "dex": 647,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "MELOETTA",
+    "name_de": "Meloetta",
+    "dex": 648,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "GENESECT",
+    "name_de": "Genesect",
+    "dex": 649,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "ZYGARDE",
+    "name_de": "Zygarde",
+    "dex": 718,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "DIANCIE",
+    "name_de": "Diancie",
+    "dex": 719,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "HOOPA",
+    "name_de": "Hoopa",
+    "dex": 720,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "VOLCANION",
+    "name_de": "Volcanion",
+    "dex": 721,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "NECROZMA",
+    "name_de": "Necrozma",
+    "dex": 800,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "MAGEARNA",
+    "name_de": "Magearna",
+    "dex": 801,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "MARSHADOW",
+    "name_de": "Marshadow",
+    "dex": 802,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "ZERAORA",
+    "name_de": "Zeraora",
+    "dex": 807,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "MELTAN",
+    "name_de": "Meltan",
+    "dex": 808,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "MELMETAL",
+    "name_de": "Melmetal",
+    "dex": 809,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "ETERNATUS",
+    "name_de": "Endynalos",
+    "dex": 890,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "ZARUDE",
+    "name_de": "Zarude",
+    "dex": 893,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "TERAPAGOS",
+    "name_de": "Terapagos",
+    "dex": 1024,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "PECHARUNT",
+    "name_de": "Infamomo",
+    "dex": 1025,
+    "factor_units": 300000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "DIALGA",
+    "name_de": "Dialga",
+    "dex": 483,
+    "factor_units": 450000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "PALKIA",
+    "name_de": "Palkia",
+    "dex": 484,
+    "factor_units": 450000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "CRESSELIA",
+    "name_de": "Cresselia",
+    "dex": 488,
+    "factor_units": 450000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "DARKRAI",
+    "name_de": "Darkrai",
+    "dex": 491,
+    "factor_units": 450000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "MEWTWO",
+    "name_de": "Mewtu",
+    "dex": 150,
+    "factor_units": 600000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "LUGIA",
+    "name_de": "Lugia",
+    "dex": 249,
+    "factor_units": 600000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "HOOH",
+    "name_de": "Ho-Oh",
+    "dex": 250,
+    "factor_units": 600000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "KYOGRE",
+    "name_de": "Kyogre",
+    "dex": 382,
+    "factor_units": 600000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "GROUDON",
+    "name_de": "Groudon",
+    "dex": 383,
+    "factor_units": 600000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "RESHIRAM",
+    "name_de": "Reshiram",
+    "dex": 643,
+    "factor_units": 600000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "ZEKROM",
+    "name_de": "Zekrom",
+    "dex": 644,
+    "factor_units": 600000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "XERNEAS",
+    "name_de": "Xerneas",
+    "dex": 716,
+    "factor_units": 600000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "YVELTAL",
+    "name_de": "Yveltal",
+    "dex": 717,
+    "factor_units": 600000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "SOLGALEO",
+    "name_de": "Solgaleo",
+    "dex": 791,
+    "factor_units": 600000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "LUNALA",
+    "name_de": "Lunala",
+    "dex": 792,
+    "factor_units": 600000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "ZACIAN",
+    "name_de": "Zacian",
+    "dex": 888,
+    "factor_units": 600000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "ZAMAZENTA",
+    "name_de": "Zamazenta",
+    "dex": 889,
+    "factor_units": 600000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "CALYREX",
+    "name_de": "Coronospa",
+    "dex": 898,
+    "factor_units": 600000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "KORAIDON",
+    "name_de": "Koraidon",
+    "dex": 1007,
+    "factor_units": 600000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "MIRAIDON",
+    "name_de": "Miraidon",
+    "dex": 1008,
+    "factor_units": 600000,
+    "reborn_other_throws": 20
+  },
+  {
+    "species": "LATIAS",
+    "name_de": "Latias",
+    "dex": 380,
+    "factor_units": 800000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "LATIOS",
+    "name_de": "Latios",
+    "dex": 381,
+    "factor_units": 800000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "HEATRAN",
+    "name_de": "Heatran",
+    "dex": 485,
+    "factor_units": 800000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "TYPENULL",
+    "name_de": "Typ:Null",
+    "dex": 772,
+    "factor_units": 800000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "SILVALLY",
+    "name_de": "Amigento",
+    "dex": 773,
+    "factor_units": 800000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "TAPUKOKO",
+    "name_de": "Kapu-Riki",
+    "dex": 785,
+    "factor_units": 800000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "COSMOG",
+    "name_de": "Cosmog",
+    "dex": 789,
+    "factor_units": 800000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "COSMOEM",
+    "name_de": "Cosmovum",
+    "dex": 790,
+    "factor_units": 800000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "KUBFU",
+    "name_de": "Dakuma",
+    "dex": 891,
+    "factor_units": 800000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "URSHIFU",
+    "name_de": "Wulaosu",
+    "dex": 892,
+    "factor_units": 800000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "GLASTRIER",
+    "name_de": "Polaross",
+    "dex": 896,
+    "factor_units": 800000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "SPECTRIER",
+    "name_de": "Phantoross",
+    "dex": 897,
+    "factor_units": 800000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "OGERPON",
+    "name_de": "Ogerpon",
+    "dex": 1017,
+    "factor_units": 800000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "ARTICUNO",
+    "name_de": "Arktos",
+    "dex": 144,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "ZAPDOS",
+    "name_de": "Zapdos",
+    "dex": 145,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "MOLTRES",
+    "name_de": "Lavados",
+    "dex": 146,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "RAIKOU",
+    "name_de": "Raikou",
+    "dex": 243,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "ENTEI",
+    "name_de": "Entei",
+    "dex": 244,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "SUICUNE",
+    "name_de": "Suicune",
+    "dex": 245,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "REGIROCK",
+    "name_de": "Regirock",
+    "dex": 377,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "REGICE",
+    "name_de": "Regice",
+    "dex": 378,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "REGISTEEL",
+    "name_de": "Registeel",
+    "dex": 379,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "UXIE",
+    "name_de": "Selfe",
+    "dex": 480,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "MESPRIT",
+    "name_de": "Vesprit",
+    "dex": 481,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "AZELF",
+    "name_de": "Tobutz",
+    "dex": 482,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "COBALION",
+    "name_de": "Kobalium",
+    "dex": 638,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "TERRAKION",
+    "name_de": "Terrakium",
+    "dex": 639,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "VIRIZION",
+    "name_de": "Viridium",
+    "dex": 640,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "TORNADUS",
+    "name_de": "Boreos",
+    "dex": 641,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "THUNDURUS",
+    "name_de": "Voltolos",
+    "dex": 642,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "LANDORUS",
+    "name_de": "Demeteros",
+    "dex": 645,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "TAPULELE",
+    "name_de": "Kapu-Fala",
+    "dex": 786,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "TAPUBULU",
+    "name_de": "Kapu-Toro",
+    "dex": 787,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "TAPUFINI",
+    "name_de": "Kapu-Kime",
+    "dex": 788,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "REGIELEKI",
+    "name_de": "Regieleki",
+    "dex": 894,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "REGIDRAGO",
+    "name_de": "Regidrago",
+    "dex": 895,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "ENAMORUS",
+    "name_de": "Cupidos",
+    "dex": 905,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "WOCHIEN",
+    "name_de": "Chongjian",
+    "dex": 1001,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "CHIENPAO",
+    "name_de": "Baojian",
+    "dex": 1002,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "TINGLU",
+    "name_de": "Dinglu",
+    "dex": 1003,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "CHIYU",
+    "name_de": "Yuyu",
+    "dex": 1004,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "OKIDOGI",
+    "name_de": "Boninu",
+    "dex": 1014,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "MUNKIDORI",
+    "name_de": "Benesaru",
+    "dex": 1015,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  },
+  {
+    "species": "FEZANDIPITI",
+    "name_de": "Beatori",
+    "dex": 1016,
+    "factor_units": 1000000,
+    "reborn_other_throws": 0
+  }
+]

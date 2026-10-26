@@ -1,0 +1,36 @@
+{
+  "success": true,
+  "sha256": "cd68e24dc94d2080cb4b8e7cb462d1d0a1d99b148139404ac8fc1979bbcd0da0",
+  "mod_sha256": "cd68e24dc94d2080cb4b8e7cb462d1d0a1d99b148139404ac8fc1979bbcd0da0",
+  "harness_sha256": "5363cba70cc710df6b10570e5f4aa7ac268fadbc21ffb0fb2db8e5d27bdcf8d5",
+  "base_harness_sha256": "b204e38a831a48c4e9aadffb44bcc7a534a2e70eb7436422f0aa25824fcfa7ff",
+  "fixture_sha256": "30e327a9717b4dc2f749ad144765768f11bc4965a51dcf5759a76f892ca4d7bd",
+  "species": 94,
+  "excludedEeveeEvolutions": [
+    "ABYSSEON",
+    "DIVINEON"
+  ],
+  "total_checks": 1436,
+  "runs": [
+    {
+      "order": "original",
+      "exit_code": 0,
+      "checks": 358
+    },
+    {
+      "order": "swm-first",
+      "exit_code": 0,
+      "checks": 359
+    },
+    {
+      "order": "catch-first",
+      "exit_code": 0,
+      "checks": 359
+    },
+    {
+      "order": "script-reload",
+      "exit_code": 0,
+      "checks": 360
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+Spielhotfix 7.3.9 – Glitzerball-Balance
+
+- Glitzerbälle erhalten bei bereits schillernden legendären und mysteriösen Pokémon jetzt den Fangratenbonus ×4 statt ×8.
+- Gewöhnliche schillernde Pokémon behalten ×8. Bei nicht schillernden Pokémon bleibt der Bonus unverändert.
+- Der Glitzerball macht ein erfolgreich gefangenes Pokémon weiterhin schillernd.
+- Legendären-Stufen, Gen-3-Fangformel, Reborn-Kugel-Sperren und andere Bälle bleiben unverändert.
+- Für eine unveränderte Installation von Spielversion 7.3.5 lädt der Updater nur den kleinen Hotfix. Der Launcher bleibt auf 7.3.8.
+
+Spielstände, persönliche Grafiken, Audio und andere Mods werden von diesem Hotfix nicht verändert. Bei abweichender Fang-Mod verwendet der Updater seinen vorhandenen vollständigen Updatepfad.

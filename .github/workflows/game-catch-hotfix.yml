@@ -6,7 +6,12 @@ on:
         description: Reviewed game hotfix to prepare
         type: choice
         default: '7.3.5'
-        options: ['7.3.2', '7.3.5']
+        options: ['7.3.2', '7.3.5', '7.3.9']
+      expectedArchiveSha256:
+        description: Verified local full archive SHA256 (required for 7.3.9)
+        type: string
+        required: false
+        default: '0d9bfe384cac9ffd34f8fbf48bbeb27c7dafbe2a730bb65112a5c23fcc98df0f'
 
 permissions:
   contents: write
@@ -17,7 +22,7 @@ concurrency:
 
 jobs:
   package:
-    if: inputs.version != '7.3.5'
+    if: inputs.version == '7.3.2'
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -73,4 +78,37 @@ jobs:
           $assets = gh release view v7.3.5 --json assets | ConvertFrom-Json
           $asset = $assets.assets | Where-Object name -eq 'Reborn-AllGen-0.9.9.zip'
           if ($asset.state -ne 'uploaded' -or $asset.size -ne 1476961003 -or $asset.digest -ne 'sha256:9e1fa3b885e051db90ef1b0973d17a56024c687ee25094231b6842c0a9110b54') { throw 'Uploaded archive does not match reviewed bytes.' }
+          Write-Output 'Exact full fallback uploaded. Release and update channel remain unpublished.'
+  glitter_package:
+    if: inputs.version == '7.3.9'
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.8.10'
+      - name: Reproduce exact reviewed glitter-ball fallback archive
+        env:
+          EXPECTED_ARCHIVE_SHA256: ${{ inputs.expectedArchiveSha256 }}
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if ($env:EXPECTED_ARCHIVE_SHA256 -notmatch '^[a-fA-F0-9]{64}$') { throw 'Provide the reviewed local archive SHA256.' }
+          python tools/prepare_glitter_hotfix.py --ci --expected-archive-sha256 $env:EXPECTED_ARCHIVE_SHA256
+          if ($LASTEXITCODE -ne 0) { throw 'Exact fallback reproduction failed.' }
+      - name: Upload exact full fallback to existing draft only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $draft = gh release view v7.3.9 --json isDraft | ConvertFrom-Json
+          if ($LASTEXITCODE -ne 0 -or -not $draft.isDraft) { throw 'Expected unpublished 7.3.9 draft.' }
+          $manifest = Get-Content dist/release-game-7.3.9/update.json -Raw | ConvertFrom-Json
+          gh release upload v7.3.9 dist/release-game-7.3.9/Reborn-AllGen-0.9.9.zip --clobber
+          if ($LASTEXITCODE -ne 0) { throw 'Draft upload failed.' }
+          $assets = gh release view v7.3.9 --json assets | ConvertFrom-Json
+          $asset = $assets.assets | Where-Object name -eq 'Reborn-AllGen-0.9.9.zip'
+          if ($asset.state -ne 'uploaded' -or $asset.size -ne $manifest.game.size -or $asset.digest -ne ('sha256:' + $manifest.game.sha256)) { throw 'Uploaded archive differs from reviewed bytes.' }
           Write-Output 'Exact full fallback uploaded. Release and update channel remain unpublished.'

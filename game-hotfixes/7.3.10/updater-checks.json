@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "gameVersion": "7.3.10",
+  "baselineGameVersion": "7.3.9",
+  "launcherVersionUnchanged": "7.3.8",
+  "publishedUpdaterServicesCommit": "9d83923",
+  "coreHotfixChecksPassed": 23,
+  "actualReleaseBytesChecked": true,
+  "deltaBytes": 4894,
+  "deltaSha256": "587f788c8921414d5595d1d8d329f73aacc6142c7ff0a914c712dec6ea4dcde1",
+  "modSha256": "cd68e24dc94d2080cb4b8e7cb462d1d0a1d99b148139404ac8fc1979bbcd0da0",
+  "singleChangedPath": "patch/Mods/zzLegendaryCatchDifficulty.rb",
+  "installVerified": true,
+  "switchBackVerified": true,
+  "switchForwardVerified": true,
+  "saveAndCustomFileSentinelsPreserved": true,
+  "gameProcessNotStartedByTests": true
+}

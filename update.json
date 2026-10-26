@@ -7,10 +7,10 @@
     "size": 137127669
   },
   "game": {
-    "version": "7.3.9",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.9/Reborn-AllGen-0.9.9.zip",
-    "sha256": "0d9bfe384cac9ffd34f8fbf48bbeb27c7dafbe2a730bb65112a5c23fcc98df0f",
-    "size": 1476961210,
+    "version": "7.3.10",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.10/Reborn-AllGen-0.9.9.zip",
+    "sha256": "c668b926499aacd365cb7783013427c468ab5d25c1f07c2866bf73de7ac40f30",
+    "size": 1476961663,
     "removedFiles": [
       {
         "path": "Audio/SE/003Cry_2.ogg",
@@ -6391,20 +6391,20 @@
       }
     ]
   },
-  "patchNotes": "Spielhotfix 7.3.9 – Glitzerball-Balance\n\n- Glitzerbälle erhalten bei bereits schillernden legendären und mysteriösen Pokémon jetzt den Fangratenbonus ×4 statt ×8.\n- Gewöhnliche schillernde Pokémon behalten ×8. Bei nicht schillernden Pokémon bleibt der Bonus unverändert.\n- Der Glitzerball macht ein erfolgreich gefangenes Pokémon weiterhin schillernd.\n- Legendären-Stufen, Gen-3-Fangformel, Reborn-Kugel-Sperren und andere Bälle bleiben unverändert.\n- Für eine unveränderte Installation von Spielversion 7.3.5 lädt der Updater nur den kleinen Hotfix. Der Launcher bleibt auf 7.3.8.\n\nSpielstände, persönliche Grafiken, Audio und andere Mods werden von diesem Hotfix nicht verändert. Bei abweichender Fang-Mod verwendet der Updater seinen vorhandenen vollständigen Updatepfad.",
+  "patchNotes": "# Spielhotfix 7.3.10 – Fangstufen für Event-Pokémon\n\nMysteriöse/Event-Pokémon erhalten die Fangschwierigkeit von Rayquaza: 70 % weniger berechnete Fangchance. Das gilt auch für Mew, Celebi, Jirachi, Deoxys, Victini und die weiteren Mysteriösen; Regigigas ist ebenfalls dieser Stufe zugeordnet.\n\n- Darkrai und Cresselia liegen zusammen mit Dialga und Palkia bei 55 % weniger Fangchance.\n- Kapu-Riki erhält 20 % weniger Fangchance.\n- Arceus behält seine strengere Stufe mit 85 % weniger Fangchance.\n- Abysara und Divinara sind Evoli-Entwicklungen: keine Legendären-Fangregel, keine Begrenzung ihrer Grundfangrate auf 3 und der normale Glitzerball-Bonus.\n- Die Reborn-Kugel wird bei den starken Stufen nach 20 gültigen anderen Ballwürfen gegen dasselbe Pokémon im selben Kampf freigegeben; bei Arceus nach 30. Vorher abgewehrte Reborn-Kugeln bleiben im Beutel.\n- Glitzerbälle behalten den x4-Bonus gegen bereits schillernde Legendäre/Mysteriöse und x8 gegen andere bereits schillernde Pokémon. Ihre Funktion beim erfolgreichen Fang bleibt erhalten.\n\nDie Prozentwerte sind zusätzliche relative Abzüge, keine festen Fangwahrscheinlichkeiten. Alle 94 Legendären und Mysteriösen sind in der beigefügten Fangstufenliste aufgeführt. Formen derselben Art verwenden dieselbe Stufe.\n\nDer kleine Hotfix von 7.3.9 ersetzt ausschließlich `patch/Mods/zzLegendaryCatchDifficulty.rb`. Spielstände, Pokémon-Daten und Launcher bleiben unverändert. Für ältere Installationen oder abweichende Moddateien steht das vollständig geprüfte Spielpaket bereit. Nach dem Speichern Reborn vollständig schließen und den Launcher das Update installieren lassen.",
   "gameHotfixes": [
     {
-      "fromVersion": "7.3.5",
-      "version": "7.3.9",
-      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.9/Reborn-Hotfix-7.3.5-to-7.3.9.zip",
-      "sha256": "eb858735221a7e2ea714ca56adf674979d4fa94ee8c0b666bb07f8a4b26842af",
-      "size": 4441,
+      "fromVersion": "7.3.9",
+      "version": "7.3.10",
+      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.10/Reborn-Hotfix-7.3.9-to-7.3.10.zip",
+      "sha256": "587f788c8921414d5595d1d8d329f73aacc6142c7ff0a914c712dec6ea4dcde1",
+      "size": 4894,
       "files": [
         {
           "path": "patch/Mods/zzLegendaryCatchDifficulty.rb",
-          "beforeSha256": "2adf338088066a3b67eeb1d17b9d1077acbffac7b03cf23395430ffc7a619dd3",
-          "sha256": "82f918bdd7855ec8e3fb57a5af054ff86308514d8b35e3f197954b21d0b8ddf8",
-          "size": 11908
+          "beforeSha256": "82f918bdd7855ec8e3fb57a5af054ff86308514d8b35e3f197954b21d0b8ddf8",
+          "sha256": "cd68e24dc94d2080cb4b8e7cb462d1d0a1d99b148139404ac8fc1979bbcd0da0",
+          "size": 13254
         }
       ]
     }

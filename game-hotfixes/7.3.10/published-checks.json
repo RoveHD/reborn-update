@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "release": "https://github.com/RoveHD/reborn-update/releases/tag/v7.3.10",
+  "publicAssetsVerified": 12,
+  "publicDeltaVerified": true,
+  "deltaBytes": 4894,
+  "liveApiGame": "7.3.10",
+  "rawLiveGame": "7.3.10",
+  "launcherUnchanged": "7.3.8",
+  "ciRun": "https://github.com/RoveHD/reborn-update/actions/runs/40398210820",
+  "checkedAt": "2026-10-26T20:54:22.656471+00:00"
+}

@@ -1,0 +1,80 @@
+{
+  "success": true,
+  "release": "https://github.com/RoveHD/reborn-update/releases/tag/v7.3.9",
+  "launcherUnchanged": true,
+  "gameMetadataPreserved": true,
+  "rawMainVersionVerified": "7.3.9",
+  "assets": [
+    {
+      "name": "catch-checks.json",
+      "size": 24671,
+      "sha256": "sha256:2d05d58efb93d427d7aab0d26dacc2aad837bef161343e6ad5db4c451eaf2308"
+    },
+    {
+      "name": "game-files.json",
+      "size": 2795553,
+      "sha256": "sha256:1b59c39252ed5256c781083362941c3b62e182617b3d98c3b99aa6ce0cbc1ed7"
+    },
+    {
+      "name": "hotfix-checks.json",
+      "size": 356,
+      "sha256": "sha256:a0387d99af37edf320d929b0141efce6760a544d364d6ef7cf5e10cd876cd0b9"
+    },
+    {
+      "name": "package-checks.json",
+      "size": 355,
+      "sha256": "sha256:82e196924278806256b8359e7a0e5dd186dbd43f68bfe7a9365f935712d21ac0"
+    },
+    {
+      "name": "patchnotes.txt",
+      "size": 808,
+      "sha256": "sha256:d12da28e49b3d784fe87e6433fb66744ae825e5a331bbe70fe4e1b935a47d88c"
+    },
+    {
+      "name": "Reborn-AllGen-0.9.9.zip",
+      "size": 1476961210,
+      "sha256": "sha256:0d9bfe384cac9ffd34f8fbf48bbeb27c7dafbe2a730bb65112a5c23fcc98df0f"
+    },
+    {
+      "name": "Reborn-Hotfix-7.3.5-to-7.3.9.zip",
+      "size": 4441,
+      "sha256": "sha256:eb858735221a7e2ea714ca56adf674979d4fa94ee8c0b666bb07f8a4b26842af"
+    },
+    {
+      "name": "release-repair.json",
+      "size": 413,
+      "sha256": "sha256:2b5d0f5c994584edd842a9d718b901761c0d0dcb6b5dd6001d3904a16970a2eb"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "size": 780,
+      "sha256": "sha256:0a2bdbdc2e47c0ff22f410dd956c61a2f59b7a33f0af06aab6f7ac468b4d25db"
+    },
+    {
+      "name": "update.json",
+      "size": 247919,
+      "sha256": "sha256:9897c71218ca27d2294fbf4dbd0ad686abec89b20747587b6939cadf38991e72"
+    }
+  ],
+  "publicUpdater": {
+    "success": true,
+    "version": "7.3.9",
+    "fromVersion": "7.3.5",
+    "realPublicGithubDownload": true,
+    "manifestUrl": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.9/update.json",
+    "downloadedHotfixBytes": 4441,
+    "fullPackageDownloaded": false,
+    "hotfixSha256": "eb858735221a7e2ea714ca56adf674979d4fa94ee8c0b666bb07f8a4b26842af",
+    "modSha256": "82f918bdd7855ec8e3fb57a5af054ff86308514d8b35e3f197954b21d0b8ddf8",
+    "modifiedBaseRejected": true,
+    "previousAndCurrentVersionSwitchVerified": true,
+    "personalFilesUnchanged": [
+      "Game.exe",
+      "Game.ini",
+      "mkxp.json",
+      "settings.json",
+      "Save Data/Game_3.rxdata",
+      "patch/Mods/FriendsOwnMod.rb"
+    ]
+  }
+}

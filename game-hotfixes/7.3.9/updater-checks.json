@@ -1,0 +1,57 @@
+{
+  "success": true,
+  "gameVersion": "7.3.9",
+  "launcherUnchanged": true,
+  "localUpdate": {
+    "success": true,
+    "version": "7.3.9",
+    "fromVersion": "7.3.5",
+    "realPublicGithubDownload": false,
+    "manifestUrl": "https://isolated.hotfix.test/update.json",
+    "downloadedHotfixBytes": 4441,
+    "fullPackageDownloaded": false,
+    "hotfixSha256": "eb858735221a7e2ea714ca56adf674979d4fa94ee8c0b666bb07f8a4b26842af",
+    "modSha256": "82f918bdd7855ec8e3fb57a5af054ff86308514d8b35e3f197954b21d0b8ddf8",
+    "modifiedBaseRejected": true,
+    "previousAndCurrentVersionSwitchVerified": true,
+    "personalFilesUnchanged": [
+      "Game.exe",
+      "Game.ini",
+      "mkxp.json",
+      "settings.json",
+      "Save Data/Game_3.rxdata",
+      "patch/Mods/FriendsOwnMod.rb"
+    ]
+  },
+  "fullPackageInstallation": {
+    "success": true,
+    "installedFilesVerified": 18864,
+    "personalFilesUnchanged": [
+      "mkxp.json",
+      "settings.json",
+      "Save Data/Game_3.rxdata",
+      "patch/Mods/FriendsOwnMod.rb"
+    ],
+    "version": "7.3.9",
+    "archiveSha256": "0d9bfe384cac9ffd34f8fbf48bbeb27c7dafbe2a730bb65112a5c23fcc98df0f",
+    "durationSeconds": 745.1949831,
+    "repair": false,
+    "unchangedFileTimestampPreserved": false
+  },
+  "fullPackageRepair": {
+    "success": true,
+    "installedFilesVerified": 18864,
+    "personalFilesUnchanged": [
+      "mkxp.json",
+      "settings.json",
+      "Save Data/Game_3.rxdata",
+      "patch/Mods/FriendsOwnMod.rb"
+    ],
+    "version": "7.3.9",
+    "archiveSha256": "0d9bfe384cac9ffd34f8fbf48bbeb27c7dafbe2a730bb65112a5c23fcc98df0f",
+    "durationSeconds": 65.3152175,
+    "repair": true,
+    "unchangedFileTimestampPreserved": true
+  },
+  "reproducibleBuildRun": "https://github.com/RoveHD/reborn-update/actions/runs/40352550976"
+}

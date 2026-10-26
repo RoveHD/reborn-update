@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "launcher": {
-    "version": "7.3.6",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.6/launcher.exe",
-    "sha256": "48d3215b6923aa3546a557d08d59e6df3dbb872a477ad0b35fab2f5dcfeb0dc9",
-    "size": 130748149
+    "version": "7.3.7",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.7/launcher.exe",
+    "sha256": "7ebcc0ae50cadf7b88e62a926f03f1bd1bb2baee859cebfdf226f29613aae289",
+    "size": 137127669
   },
   "game": {
     "version": "7.3.5",
@@ -6391,7 +6391,7 @@
       }
     ]
   },
-  "patchNotes": "# Launcher 7.3.6 – Halloween-Geheimnisse im Anime-Stil\n\nDie Halloween-Dekoration passt jetzt zum Anime-Hintergrund: acht neu gezeichnete Props, feste Standflächen und kleine interaktive Geheimnisse.\n\n- Kürbis und Kessel stehen auf den Steinen, statt darüber zu schweben. Die Spinne hängt am tatsächlichen Ast und bewegt sich mit ihm. Der doppelte durchsichtige Fels-Vordergrund entfällt.\n- Zauberbuch, Trankflasche und Fledermaus ergänzen die Szene. Entdecke die vergessene Formel, den Wächter der Nacht und das Nachtelixier. Entdeckungen werden innerhalb einer Sitzung nur einmal gemeldet.\n- Gengar verschwindet gelegentlich hinter der Mauer und fliegt nach einer kurzen Pause mit Geisterlachen ins Fenster. Danach kehrt die Hintergrundfigur zurück. Zwischen Auftritten liegen mehrere Minuten.\n- Platzierungen berücksichtigen schmale, hohe und breite Fenster sowie die Kamerabewegung. Effekte blockieren keine Launcher-Schaltflächen.\n- Reduzierte Bewegung, ausgeschaltete Effekte und die Lautstärkeeinstellungen werden berücksichtigt. Im minimierten oder inaktiven Launcher pausiert die Gengar-Sequenz.\n\nDieses Release aktualisiert nur den Launcher. Spielversion 7.3.5 und die kleinen automatischen Spiel-Hotfixes bleiben erhalten; ein vollständiger Spieldownload ist dafür nicht erforderlich.\n\nBestehende Installationen erhalten die neue launcher.exe über die Launcher-Aktualisierung. Für eine Neuinstallation steht die Windows-Setup-Datei bereit.",
+  "patchNotes": "# Launcher 7.3.7 – Echte Tiefe und feste Standflächen\n\nDie Halloween-Szene besitzt jetzt fünf getrennte Tiefenebenen: Wald, Schloss, Gengar, Steinflächen sowie die nahen Bäume und unscharfen Büsche. Jede Ebene bewegt sich passend zur Entfernung. Die obere Leiste und alle Bedienelemente bleiben ruhig und gut lesbar.\n\n- Buch, Kerze, Flasche, Kürbis, Kessel und Grabstein stehen auf festen Steinflächen. Sie bleiben bei Mausbewegungen am Boden; kleine, breite und hohe Fenster sind berücksichtigt.\n- Die Dekoration bleibt beim Wechsel zu Changelog, Extras und Einstellungen im Hintergrund erhalten. Die Props werden dabei weder zurückgesetzt noch neu erstellt.\n- Die Fledermaus sitzt am Schlossdach. Beim Anklicken hebt sie mit sechs Flügelposen ab, fliegt in einem Bogen davon und kehrt nach einer Pause zurück.\n- Gengar bewegt sich auf einer eigenen Ebene. Sein gelegentlicher Flug beginnt an seiner tatsächlichen Position; die übrige Landschaft bleibt dabei unverändert.\n- Changelog, Extras und Einstellungen öffnen direkt im Launcher. Zwischen den Seiten kannst du unmittelbar wechseln; Scrollposition, Escape und Downloadabbruch funktionieren weiterhin.\n- Saisonale Musik, Effekte, Tag/Nacht-Designs und reduzierte Bewegung bleiben erhalten.\n\n**Dieses Release aktualisiert ausschließlich den Launcher.** Spielversion 7.3.5 mit AllGen 0.9.9 und die kleinen Spielhotfixes bleiben unverändert. Dafür ist kein erneuter Spieldownload erforderlich.\n\nInstallierte Launcher erhalten 7.3.7 automatisch über GitHub. Für eine Neuinstallation: **Reborn-Launcher-7.3.7-Setup.exe** herunterladen und ausführen. Deine Einstellungen und Spielstände bleiben erhalten.",
   "gameHotfixes": [
     {
       "fromVersion": "7.3.2",

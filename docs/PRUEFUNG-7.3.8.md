@@ -24,4 +24,12 @@ Die Eingabeprüfung verwendet WPF-Hit-Tests des gesamten Fensters und die besteh
 - `launcher.exe`: `56ae36bab431cea27105fa6b5d63528c79d6cb0a6030c61f83bd900a39a6aa0d`
 - `Reborn-Launcher-7.3.8-Setup.exe`: `c6080d04163a6b0cbc8404a84d00cfa3a009463a50c224c07fdd0875040e9cfb`
 
-Das Setup installiert pro Benutzer ohne Administratorrechte. Die Dateien sind nicht codesigniert. Der öffentliche Selbstupdate-Nachweis wird nach Veröffentlichung ergänzt.
+Das Setup installiert pro Benutzer ohne Administratorrechte. Die Dateien sind nicht codesigniert.
+
+## Öffentlicher Selbstupdate-Nachweis
+
+[Release v7.3.8](https://github.com/RoveHD/reborn-update/releases/tag/v7.3.8) ist öffentlich und als aktuelles Release markiert. Alle sieben Assets wurden anhand der auf GitHub gespeicherten SHA-256-Digests bestätigt. Quellen: `02f9a8183a6b9b38ebd2e0e7e6b2bc445a83493b`; Kanalaktivierung: `277f7f186fe5e4a0afbc23244a34788ba026611f`.
+
+`tools/test-github-update.ps1 -ExpectedVersion 7.3.8 -FromVersion 7.3.7 -OldSha256 7ebcc0ae50cadf7b88e62a926f03f1bd1bb2baee859cebfdf226f29613aae289` erfolgreich: Die bisherige EXE erkennt 7.3.8 über den normalen öffentlichen raw/main-Kanal, lädt die veröffentlichte EXE, ersetzt sich und bestätigt den Neustart. Neue Prüfsumme, Sicherung der alten EXE und Erhalt der Einstellungen bestätigt.
+
+Alle Kanalfelder außer `launcher` und `patchNotes` stimmen mit dem Stand vor Veröffentlichung überein; Spielpaket, Löschmigrationen und Spielhotfixes sind erhalten. Das veröffentlichte Release 7.3.7 wurde nicht verändert. Maschinenlesbarer Nachweis: [launcher-7.3.8-public-checks.json](launcher-7.3.8-public-checks.json).

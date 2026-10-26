@@ -7,10 +7,10 @@
     "size": 137127669
   },
   "game": {
-    "version": "7.3.10",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.10/Reborn-AllGen-0.9.9.zip",
-    "sha256": "c668b926499aacd365cb7783013427c468ab5d25c1f07c2866bf73de7ac40f30",
-    "size": 1476961663,
+    "version": "7.3.11",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.11/Reborn-AllGen-0.9.9.zip",
+    "sha256": "d6a867b4c2813b2a29c061e48e43365ba4a275c668774d64d0bb67125de0f40e",
+    "size": 1476962168,
     "removedFiles": [
       {
         "path": "Audio/SE/003Cry_2.ogg",
@@ -6391,20 +6391,20 @@
       }
     ]
   },
-  "patchNotes": "# Spielhotfix 7.3.10 – Fangstufen für Event-Pokémon\n\nMysteriöse/Event-Pokémon erhalten die Fangschwierigkeit von Rayquaza: 70 % weniger berechnete Fangchance. Das gilt auch für Mew, Celebi, Jirachi, Deoxys, Victini und die weiteren Mysteriösen; Regigigas ist ebenfalls dieser Stufe zugeordnet.\n\n- Darkrai und Cresselia liegen zusammen mit Dialga und Palkia bei 55 % weniger Fangchance.\n- Kapu-Riki erhält 20 % weniger Fangchance.\n- Arceus behält seine strengere Stufe mit 85 % weniger Fangchance.\n- Abysara und Divinara sind Evoli-Entwicklungen: keine Legendären-Fangregel, keine Begrenzung ihrer Grundfangrate auf 3 und der normale Glitzerball-Bonus.\n- Die Reborn-Kugel wird bei den starken Stufen nach 20 gültigen anderen Ballwürfen gegen dasselbe Pokémon im selben Kampf freigegeben; bei Arceus nach 30. Vorher abgewehrte Reborn-Kugeln bleiben im Beutel.\n- Glitzerbälle behalten den x4-Bonus gegen bereits schillernde Legendäre/Mysteriöse und x8 gegen andere bereits schillernde Pokémon. Ihre Funktion beim erfolgreichen Fang bleibt erhalten.\n\nDie Prozentwerte sind zusätzliche relative Abzüge, keine festen Fangwahrscheinlichkeiten. Alle 94 Legendären und Mysteriösen sind in der beigefügten Fangstufenliste aufgeführt. Formen derselben Art verwenden dieselbe Stufe.\n\nDer kleine Hotfix von 7.3.9 ersetzt ausschließlich `patch/Mods/zzLegendaryCatchDifficulty.rb`. Spielstände, Pokémon-Daten und Launcher bleiben unverändert. Für ältere Installationen oder abweichende Moddateien steht das vollständig geprüfte Spielpaket bereit. Nach dem Speichern Reborn vollständig schließen und den Launcher das Update installieren lassen.",
+  "patchNotes": "# Spielhotfix 7.3.11 – Unendliche AP für wilde Legendäre\n\nWilde legendäre und mysteriöse Pokémon erhalten unendliche AP. Lange Fangversuche sollen nicht mehr daran scheitern, dass dem Gegner die Attacken-AP ausgehen und er anschließend durch Verzweifler besiegt wird.\n\n- Die Änderung betrifft ausschließlich gegnerische Pokémon in Wildkämpfen, die zur legendären oder mysteriösen Gruppe der Fang-Mod gehören.\n- Eigene Pokémon, Trainerkämpfe und gewöhnliche wilde Pokémon behalten ihren normalen AP-Verbrauch.\n- Andere Ursachen für Selbst-K.-o. wie Abgesang, Rückstoß oder Selbstzerstörung werden dadurch nicht verhindert. Auch komplett blockierte Attacken können weiterhin Verzweifler erzwingen.\n- Die bestehenden Fangstufen, die Glitzerball-Balance und die Freischaltung des Reborn-Balls bleiben erhalten.\n- Der Hotfix ersetzt nur `patch/Mods/zzLegendaryCatchDifficulty.rb`. Persönliche Spielstände und zusätzliche Mods sind kein Bestandteil des Pakets.\n\nPassende Installationen von 7.3.10 erhalten einen kleinen Hotfix-Download. Für andere Ausgangsversionen oder eine veränderte Fang-Mod steht das vollständige Spielpaket als Rückfall bereit. Der Launcher bleibt unverändert.\n\nDas laufende Spiel muss vor der Installation beendet werden; die neue Mod wird beim nächsten Spielstart geladen.",
   "gameHotfixes": [
     {
-      "fromVersion": "7.3.9",
-      "version": "7.3.10",
-      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.10/Reborn-Hotfix-7.3.9-to-7.3.10.zip",
-      "sha256": "587f788c8921414d5595d1d8d329f73aacc6142c7ff0a914c712dec6ea4dcde1",
-      "size": 4894,
+      "fromVersion": "7.3.10",
+      "version": "7.3.11",
+      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.11/Reborn-Hotfix-7.3.10-to-7.3.11.zip",
+      "sha256": "64cd6849078d0bde01a9ef96bbe0dc0fb315c0502a635fc744310f927f9d7a1e",
+      "size": 5399,
       "files": [
         {
           "path": "patch/Mods/zzLegendaryCatchDifficulty.rb",
-          "beforeSha256": "82f918bdd7855ec8e3fb57a5af054ff86308514d8b35e3f197954b21d0b8ddf8",
-          "sha256": "cd68e24dc94d2080cb4b8e7cb462d1d0a1d99b148139404ac8fc1979bbcd0da0",
-          "size": 13254
+          "beforeSha256": "cd68e24dc94d2080cb4b8e7cb462d1d0a1d99b148139404ac8fc1979bbcd0da0",
+          "sha256": "3abdad5467530e87c798733c7029a2bdd57713d39b1184fa6b468fa8e0de7b2d",
+          "size": 15150
         }
       ]
     }

@@ -1,14 +1,13 @@
-# Spielhotfix 7.3.10 – Fangstufen für Event-Pokémon
+# Spielhotfix 7.3.11 – Unendliche AP für wilde Legendäre
 
-Mysteriöse/Event-Pokémon erhalten die Fangschwierigkeit von Rayquaza: 70 % weniger berechnete Fangchance. Das gilt auch für Mew, Celebi, Jirachi, Deoxys, Victini und die weiteren Mysteriösen; Regigigas ist ebenfalls dieser Stufe zugeordnet.
+Wilde legendäre und mysteriöse Pokémon erhalten unendliche AP. Lange Fangversuche sollen nicht mehr daran scheitern, dass dem Gegner die Attacken-AP ausgehen und er anschließend durch Verzweifler besiegt wird.
 
-- Darkrai und Cresselia liegen zusammen mit Dialga und Palkia bei 55 % weniger Fangchance.
-- Kapu-Riki erhält 20 % weniger Fangchance.
-- Arceus behält seine strengere Stufe mit 85 % weniger Fangchance.
-- Abysara und Divinara sind Evoli-Entwicklungen: keine Legendären-Fangregel, keine Begrenzung ihrer Grundfangrate auf 3 und der normale Glitzerball-Bonus.
-- Die Reborn-Kugel wird bei den starken Stufen nach 20 gültigen anderen Ballwürfen gegen dasselbe Pokémon im selben Kampf freigegeben; bei Arceus nach 30. Vorher abgewehrte Reborn-Kugeln bleiben im Beutel.
-- Glitzerbälle behalten den x4-Bonus gegen bereits schillernde Legendäre/Mysteriöse und x8 gegen andere bereits schillernde Pokémon. Ihre Funktion beim erfolgreichen Fang bleibt erhalten.
+- Die Änderung betrifft ausschließlich gegnerische Pokémon in Wildkämpfen, die zur legendären oder mysteriösen Gruppe der Fang-Mod gehören.
+- Eigene Pokémon, Trainerkämpfe und gewöhnliche wilde Pokémon behalten ihren normalen AP-Verbrauch.
+- Andere Ursachen für Selbst-K.-o. wie Abgesang, Rückstoß oder Selbstzerstörung werden dadurch nicht verhindert. Auch komplett blockierte Attacken können weiterhin Verzweifler erzwingen.
+- Die bestehenden Fangstufen, die Glitzerball-Balance und die Freischaltung des Reborn-Balls bleiben erhalten.
+- Der Hotfix ersetzt nur `patch/Mods/zzLegendaryCatchDifficulty.rb`. Persönliche Spielstände und zusätzliche Mods sind kein Bestandteil des Pakets.
 
-Die Prozentwerte sind zusätzliche relative Abzüge, keine festen Fangwahrscheinlichkeiten. Alle 94 Legendären und Mysteriösen sind in der beigefügten Fangstufenliste aufgeführt. Formen derselben Art verwenden dieselbe Stufe.
+Passende Installationen von 7.3.10 erhalten einen kleinen Hotfix-Download. Für andere Ausgangsversionen oder eine veränderte Fang-Mod steht das vollständige Spielpaket als Rückfall bereit. Der Launcher bleibt unverändert.
 
-Der kleine Hotfix von 7.3.9 ersetzt ausschließlich `patch/Mods/zzLegendaryCatchDifficulty.rb`. Spielstände, Pokémon-Daten und Launcher bleiben unverändert. Für ältere Installationen oder abweichende Moddateien steht das vollständig geprüfte Spielpaket bereit. Nach dem Speichern Reborn vollständig schließen und den Launcher das Update installieren lassen.
+Das laufende Spiel muss vor der Installation beendet werden; die neue Mod wird beim nächsten Spielstart geladen.

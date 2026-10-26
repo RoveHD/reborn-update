@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "launcher": {
-    "version": "7.3.4",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.4/launcher.exe",
-    "sha256": "d9207936bd589663e158e76acd1fbf5d74d67dcb9269f93dc0409f7e9bd96c80",
-    "size": 118870261
+    "version": "7.3.6",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.6/launcher.exe",
+    "sha256": "48d3215b6923aa3546a557d08d59e6df3dbb872a477ad0b35fab2f5dcfeb0dc9",
+    "size": 130748149
   },
   "game": {
     "version": "7.3.5",
@@ -6391,7 +6391,7 @@
       }
     ]
   },
-  "patchNotes": "# Spielhotfix 7.3.5 – Mächtige Aura bei starken Legendären\n\nBei starken Legendären wie Dialga, Palkia, Giratina, Groudon, Kyogre und Rayquaza wird die Reborn-Kugel erst nach 20 anderen gültigen Ballwürfen auf dasselbe Pokémon im selben Kampf freigeschaltet. Die Regel gilt für die 25 großen Legendären der vorhandenen starken Fangklassen.\n\nArktos, Zapdos, Lavados und die anderen gewöhnlichen Legendären-Gruppen können weiterhin sofort mit der Reborn-Kugel gefangen werden. Arceus behält seine Sonderregel mit 30 anderen Würfen. Die normalen Fangchancen bleiben unverändert.\n\nBei einem zu frühen Versuch erscheint beispielsweise:\n„Die Aura von Dialga ist zu mächtig! Es muss erst erschöpft werden. Andere Bälle in diesem Kampf: 19/20.“\n\nEine zurückgewiesene Reborn-Kugel bleibt im Beutel und erhöht den Zähler nicht. Der Fortschritt zählt pro Pokémon und nur für den aktuellen Kampf. Nach Freischaltung wird beim Fang genau eine Reborn-Kugel verbraucht.\n\nDas kleine Hotfix-Paket für Spielstand 7.3.2 ersetzt ausschließlich die Fang-Mod. Der vollständige AllGen-0.9.9-Download enthält denselben Fix für andere Ausgangsversionen. Der Launcher erkennt das passende Paket automatisch; seine veröffentlichte Version 7.3.4 bleibt unverändert. Eigene Mods, Einstellungen und Spielstände bleiben erhalten.\n\nPrüfung: 264 isolierte Tests mit den echten Fang-, Item- und SWM-Routinen in vier Ladevarianten, einschließlich aller 25 starken Arten bei 0, 19 und 20 Würfen, sofortigem Fang der kleinen Gruppen und Inventarschutz. Keine Änderung von Original-PBS-Dateien.",
+  "patchNotes": "# Launcher 7.3.6 – Halloween-Geheimnisse im Anime-Stil\n\nDie Halloween-Dekoration passt jetzt zum Anime-Hintergrund: acht neu gezeichnete Props, feste Standflächen und kleine interaktive Geheimnisse.\n\n- Kürbis und Kessel stehen auf den Steinen, statt darüber zu schweben. Die Spinne hängt am tatsächlichen Ast und bewegt sich mit ihm. Der doppelte durchsichtige Fels-Vordergrund entfällt.\n- Zauberbuch, Trankflasche und Fledermaus ergänzen die Szene. Entdecke die vergessene Formel, den Wächter der Nacht und das Nachtelixier. Entdeckungen werden innerhalb einer Sitzung nur einmal gemeldet.\n- Gengar verschwindet gelegentlich hinter der Mauer und fliegt nach einer kurzen Pause mit Geisterlachen ins Fenster. Danach kehrt die Hintergrundfigur zurück. Zwischen Auftritten liegen mehrere Minuten.\n- Platzierungen berücksichtigen schmale, hohe und breite Fenster sowie die Kamerabewegung. Effekte blockieren keine Launcher-Schaltflächen.\n- Reduzierte Bewegung, ausgeschaltete Effekte und die Lautstärkeeinstellungen werden berücksichtigt. Im minimierten oder inaktiven Launcher pausiert die Gengar-Sequenz.\n\nDieses Release aktualisiert nur den Launcher. Spielversion 7.3.5 und die kleinen automatischen Spiel-Hotfixes bleiben erhalten; ein vollständiger Spieldownload ist dafür nicht erforderlich.\n\nBestehende Installationen erhalten die neue launcher.exe über die Launcher-Aktualisierung. Für eine Neuinstallation steht die Windows-Setup-Datei bereit.",
   "gameHotfixes": [
     {
       "fromVersion": "7.3.2",

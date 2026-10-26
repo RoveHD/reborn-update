@@ -1,0 +1,13 @@
+# Spielhotfix 7.3.11 – Unendliche AP für wilde Legendäre
+
+Wilde legendäre und mysteriöse Pokémon erhalten unendliche AP. Lange Fangversuche sollen nicht mehr daran scheitern, dass dem Gegner die Attacken-AP ausgehen und er anschließend durch Verzweifler besiegt wird.
+
+- Die Änderung betrifft ausschließlich gegnerische Pokémon in Wildkämpfen, die zur legendären oder mysteriösen Gruppe der Fang-Mod gehören.
+- Eigene Pokémon, Trainerkämpfe und gewöhnliche wilde Pokémon behalten ihren normalen AP-Verbrauch.
+- Andere Ursachen für Selbst-K.-o. wie Abgesang, Rückstoß oder Selbstzerstörung werden dadurch nicht verhindert. Auch komplett blockierte Attacken können weiterhin Verzweifler erzwingen.
+- Die bestehenden Fangstufen, die Glitzerball-Balance und die Freischaltung des Reborn-Balls bleiben erhalten.
+- Der Hotfix ersetzt nur `patch/Mods/zzLegendaryCatchDifficulty.rb`. Persönliche Spielstände und zusätzliche Mods sind kein Bestandteil des Pakets.
+
+Passende Installationen von 7.3.10 erhalten einen kleinen Hotfix-Download. Für andere Ausgangsversionen oder eine veränderte Fang-Mod steht das vollständige Spielpaket als Rückfall bereit. Der Launcher bleibt unverändert.
+
+Das laufende Spiel muss vor der Installation beendet werden; die neue Mod wird beim nächsten Spielstart geladen.

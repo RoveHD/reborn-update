@@ -7,10 +7,10 @@
     "size": 137127669
   },
   "game": {
-    "version": "7.3.11",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.11/Reborn-AllGen-0.9.9.zip",
-    "sha256": "d6a867b4c2813b2a29c061e48e43365ba4a275c668774d64d0bb67125de0f40e",
-    "size": 1476962168,
+    "version": "7.3.12",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.12/Reborn-AllGen-0.9.9.zip",
+    "sha256": "46d25df0aed1bf8c7c30773e753cdff6b97fe4e7dd6554052d1e8bd4e3d0d955",
+    "size": 1476970387,
     "removedFiles": [
       {
         "path": "Audio/SE/003Cry_2.ogg",
@@ -6391,22 +6391,5 @@
       }
     ]
   },
-  "patchNotes": "# Spielhotfix 7.3.11 – Unendliche AP für wilde Legendäre\n\nWilde legendäre und mysteriöse Pokémon erhalten unendliche AP. Lange Fangversuche sollen nicht mehr daran scheitern, dass dem Gegner die Attacken-AP ausgehen und er anschließend durch Verzweifler besiegt wird.\n\n- Die Änderung betrifft ausschließlich gegnerische Pokémon in Wildkämpfen, die zur legendären oder mysteriösen Gruppe der Fang-Mod gehören.\n- Eigene Pokémon, Trainerkämpfe und gewöhnliche wilde Pokémon behalten ihren normalen AP-Verbrauch.\n- Andere Ursachen für Selbst-K.-o. wie Abgesang, Rückstoß oder Selbstzerstörung werden dadurch nicht verhindert. Auch komplett blockierte Attacken können weiterhin Verzweifler erzwingen.\n- Die bestehenden Fangstufen, die Glitzerball-Balance und die Freischaltung des Reborn-Balls bleiben erhalten.\n- Der Hotfix ersetzt nur `patch/Mods/zzLegendaryCatchDifficulty.rb`. Persönliche Spielstände und zusätzliche Mods sind kein Bestandteil des Pakets.\n\nPassende Installationen von 7.3.10 erhalten einen kleinen Hotfix-Download. Für andere Ausgangsversionen oder eine veränderte Fang-Mod steht das vollständige Spielpaket als Rückfall bereit. Der Launcher bleibt unverändert.\n\nDas laufende Spiel muss vor der Installation beendet werden; die neue Mod wird beim nächsten Spielstart geladen.",
-  "gameHotfixes": [
-    {
-      "fromVersion": "7.3.10",
-      "version": "7.3.11",
-      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.11/Reborn-Hotfix-7.3.10-to-7.3.11.zip",
-      "sha256": "64cd6849078d0bde01a9ef96bbe0dc0fb315c0502a635fc744310f927f9d7a1e",
-      "size": 5399,
-      "files": [
-        {
-          "path": "patch/Mods/zzLegendaryCatchDifficulty.rb",
-          "beforeSha256": "cd68e24dc94d2080cb4b8e7cb462d1d0a1d99b148139404ac8fc1979bbcd0da0",
-          "sha256": "3abdad5467530e87c798733c7029a2bdd57713d39b1184fa6b468fa8e0de7b2d",
-          "size": 15150
-        }
-      ]
-    }
-  ]
+  "patchNotes": "# Spielhotfix 7.3.12 – Legi-Musik und fertige Begleitergrafiken\n\n- Wilde Fangkämpfe verwenden bei 70 legendären und mysteriösen Pokémon die zugehörige vorhandene Boss-Musik. Die Einstellung für das AllGen-Musikpaket bleibt maßgeblich; ausdrücklich von einer Szene gesetzte Musik hat weiterhin Vorrang.\n- Bauz erhält die überarbeitete fertige Begleitergrafik. Shiny-Katapultdra erhält seine bisher fehlende Begleitergrafik.\n- Alle 59 Dateien aus „Characters/Finished“ wurden verglichen: 57 waren nach korrekter Zuordnung bereits enthalten. Abysara und Divinara behalten ihre aktuellen AllGen-Nummern 1037 und 1038.\n- Neuere AllGen-Grafiken bleiben erhalten, einschließlich Maxax, Mega-Maxax und ihrer Shiny-Designs. Unfertiges Altaria außerhalb von „Finished“, Krita-Arbeitsdateien und andere Grafikordner sind nicht enthalten.\n- Die bisherigen Fangregeln und der AP-Hotfix aus 7.3.11 bleiben unverändert. Spielstände, persönliche Einstellungen und der Wechsel zur vorherigen Spielversion bleiben erhalten.\n\nDas Spiel bleibt AllGen 0.9.9. 7.3.12 ist die Paketversion; der Launcher bleibt auf 7.3.8.\n\nDa dieser Hotfix neue Dateien ergänzt, benötigt der aktuelle Launcher den vollständigen Paketdownload. Bei der Installation werden nur abweichende Dateien ersetzt oder ergänzt. Alternativ gibt es das kleine Paket „Reborn-7.3.12-Zusatzdateien.zip“ für die manuelle Ergänzung einer vorhandenen 7.3.11-Installation: Spiel schließen, vorher sichern und in den Spielordner entpacken. Dieses Zusatzpaket setzt keine Versionsmarkierung und erstellt keine Launcher-Rückwechselsicherung; für den automatischen Versionswechsel den Launcher verwenden."
 }

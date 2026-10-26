@@ -6,12 +6,18 @@ using System.Windows.Threading;
 
 namespace PokemonRebornLauncher.UI;
 
-/// <summary>A rare, short Halloween Gengar fly-by. This scene never handles input.</summary>
+/// <summary>A rare Halloween disappearance, approach and return. This scene never handles input.</summary>
 public sealed class GengarScene : FrameworkElement
 {
     private const double FrameSeconds = 1.0 / 30.0;
     private const double WaitTickSeconds = 1;
-    private const double FlightSeconds = 2.45;
+    private const double VanishSeconds = .65;
+    private const double AbsenceSeconds = .75;
+    private const double FlightSeconds = 1.85;
+    private const double ReturnSeconds = .60;
+    private const double FlightStart = VanishSeconds + AbsenceSeconds;
+    private const double FlightEnd = FlightStart + FlightSeconds;
+    private const double EncounterSeconds = FlightEnd + ReturnSeconds;
     private const double MaxTickGapSeconds = 0.4;
     private const double MaxWaitGapSeconds = 5;
     private static readonly ImageSource Artwork = LoadArtwork();
@@ -27,11 +33,18 @@ public sealed class GengarScene : FrameworkElement
     private bool _flying;
     private bool _startsFromLeft;
     private bool _laughPlayed;
-    private double _randomYOffset;
+    private Point? _sceneOrigin;
+    private Point _encounterOrigin;
+    private double _backdropAbsence;
 
     public event Action? LaughRequested;
+    /// <summary>0 shows the original scene; 1 covers its Gengar with the empty clean plate.</summary>
+    public event Action<double>? BackdropAbsenceChanged;
+    public double BackdropAbsence => _backdropAbsence;
+    public bool IsEncounterActive => _flying;
+    public void SetSceneOrigin(Point? point) => _sceneOrigin = point;
     public bool IsAnimating => _timer.IsEnabled || _flying;
-    public bool IsFlying => _flying;
+    public bool IsFlying => _flying && _flightElapsed >= FlightStart && _flightElapsed < FlightEnd;
 
     public GengarScene()
     {
@@ -49,7 +62,7 @@ public sealed class GengarScene : FrameworkElement
         SizeChanged += (_, _) => UpdateTimer();
     }
 
-    /// <summary>Enables a rare, non-blocking fly-by only while the Halloween stage is active.</summary>
+    /// <summary>Enables a rare, non-blocking encounter only while the Halloween stage is active.</summary>
     public void Configure(string? theme, bool decorationsEnabled, bool reduceMotion, bool active)
     {
         _enabled = string.Equals(theme, "halloween", StringComparison.OrdinalIgnoreCase)
@@ -115,22 +128,36 @@ public sealed class GengarScene : FrameworkElement
     private void AdvanceFlight(double elapsed)
     {
         _flightElapsed += elapsed;
-        if (!_laughPlayed && _flightElapsed >= FlightSeconds * .30)
+        double absence = _flightElapsed < VanishSeconds
+            ? SmoothStep(_flightElapsed / VanishSeconds)
+            : _flightElapsed <= FlightEnd ? 1
+            : 1 - SmoothStep((_flightElapsed - FlightEnd) / ReturnSeconds);
+        SetBackdropAbsence(absence);
+        if (!_laughPlayed && _flightElapsed >= FlightStart + .18)
         {
             _laughPlayed = true;
             try { LaughRequested?.Invoke(); }
             catch { /* Optional sound callbacks must never interrupt the launcher UI. */ }
         }
-        if (_flightElapsed >= FlightSeconds)
+        if (_flightElapsed >= EncounterSeconds)
         {
             _flying = false;
             _flightElapsed = 0;
+            SetBackdropAbsence(0);
             _secondsUntilNext = NextDelay();
             _timer.Interval = TimeSpan.FromSeconds(WaitTickSeconds);
         }
     }
 
-    /// <summary>Starts one controlled fly-by for UI verification, without waiting for the random idle delay.</summary>
+    private void SetBackdropAbsence(double value)
+    {
+        value = Math.Clamp(value, 0, 1);
+        if (Math.Abs(value - _backdropAbsence) < .00001) return;
+        _backdropAbsence = value;
+        BackdropAbsenceChanged?.Invoke(value);
+    }
+
+    /// <summary>Starts one controlled encounter for UI verification, without waiting for the random idle delay.</summary>
     public void TriggerFlyByForTest()
     {
         if (!_enabled) throw new InvalidOperationException("Gengar muss für den Test aktiviert sein.");
@@ -139,7 +166,7 @@ public sealed class GengarScene : FrameworkElement
         InvalidateVisual();
     }
 
-    /// <summary>Advances a controlled fly-by without relying on wall-clock timer ticks.</summary>
+    /// <summary>Advances a controlled encounter without relying on wall-clock timer ticks.</summary>
     public void AdvanceForTest(double seconds)
     {
         if (!double.IsFinite(seconds) || seconds <= 0 || !_flying) return;
@@ -159,10 +186,12 @@ public sealed class GengarScene : FrameworkElement
         _startsFromLeft = _random.Next(2) == 0;
         _flightElapsed = 0;
         _laughPlayed = false;
-        _randomYOffset = _random.NextDouble() * .1;
+        // Freeze the authored origin for this appearance, even if the pointer moves later.
+        _encounterOrigin = _sceneOrigin ?? new Point(ActualWidth * .18, ActualHeight * .55);
+        SetBackdropAbsence(0);
     }
 
-    private double NextDelay() => 42 + _random.NextDouble() * 58;
+    private double NextDelay() => 180 + _random.NextDouble() * 180;
 
     private void StopAndClear()
     {
@@ -170,6 +199,7 @@ public sealed class GengarScene : FrameworkElement
         _flying = false;
         _flightElapsed = 0;
         _laughPlayed = false;
+        SetBackdropAbsence(0);
         _secondsUntilNext = _enabled ? NextDelay() : 0;
         _previousTick = _clock.Elapsed;
         _timer.Interval = TimeSpan.FromSeconds(WaitTickSeconds);
@@ -179,36 +209,27 @@ public sealed class GengarScene : FrameworkElement
     protected override void OnRender(DrawingContext context)
     {
         base.OnRender(context);
-        if (!_flying || ActualWidth <= 0 || ActualHeight <= 0) return;
+        if (!IsFlying || ActualWidth <= 0 || ActualHeight <= 0) return;
 
-        double t = Math.Clamp(_flightElapsed / FlightSeconds, 0, 1);
-        double aspectRatio = Artwork.Height / Artwork.Width;
-        double rotatedExtentPerBaseWidth = 1.1 * Math.Sqrt(1 + aspectRatio * aspectRatio);
-        double inset = 8;
-        double largestFittingWidth = Math.Max(1, (Math.Min(ActualWidth, ActualHeight) - inset * 2) / rotatedExtentPerBaseWidth);
-        double baseWidth = Math.Min(270, Math.Min(ActualHeight * .4, largestFittingWidth));
-        // Enter fast, hang just long enough for the laugh and full turn, then dart away.
-        double travel = t < .34
-            ? EaseOutCubic(t / .34) * .44
-            : t < .69
-                ? .44 + (t - .34) / .35 * .12
-                : .56 + EaseInCubic((t - .69) / .31) * .44;
+        double t = Math.Clamp((_flightElapsed - FlightStart) / FlightSeconds, 0, 1);
+        double approach = EaseOutCubic(Math.Min(1, t / .70));
+        double exit = EaseInCubic((t - .73) / .27);
         double direction = _startsFromLeft ? 1 : -1;
-        double x = direction > 0
-            ? -baseWidth * .35 + travel * (ActualWidth + baseWidth * .7)
-            : ActualWidth + baseWidth * .35 - travel * (ActualWidth + baseWidth * .7);
-        double requestedY = ActualHeight * (.18 + _randomYOffset);
-        double rotatedHalfDiagonal = baseWidth * rotatedExtentPerBaseWidth / 2;
-        double y = Math.Clamp(requestedY, inset + rotatedHalfDiagonal, ActualHeight - inset - rotatedHalfDiagonal);
-
-        // A fresh path is selected per appearance, then held stable for the whole flight.
-        double scale = t < .22 ? .55 + EaseOutCubic(t / .22) * .55 : t > .84 ? 1 - (t - .84) / .16 * .35 : 1.1;
-        double rotation = Math.Min(360, Math.Max(0, (t - .16) / .53) * 360) * direction;
-        double opacity = t < .08 ? t / .08 : t > .93 ? (1 - t) / .07 : 1;
-        double width = baseWidth * scale;
+        double targetX = ActualWidth * .52;
+        double targetY = ActualHeight * .46;
+        double x = _encounterOrigin.X + (targetX - _encounterOrigin.X) * approach
+            + direction * exit * ActualWidth * .85;
+        double y = _encounterOrigin.Y + (targetY - _encounterOrigin.Y) * approach
+            - Math.Sin(t * Math.PI) * ActualHeight * .035 - exit * ActualHeight * .12;
+        double maximumWidth = Math.Min(620, Math.Min(ActualWidth * .64, ActualHeight * .73));
+        double width = maximumWidth * (.14 + approach * .86);
         double height = Artwork.Height * (width / Artwork.Width);
+        double rotation = direction * (-10 + 17 * approach + exit * 19);
+        double opacity = t < .07 ? t / .07 : t > .89 ? (1 - t) / .11 : 1;
         var center = new Point(x, y);
 
+        // Gengar approaches the viewer from its actual wall location, then slips away.
+        // Keep the artwork intact: no full spins, flashes or input-blocking layer.
         context.PushOpacity(Math.Clamp(opacity, 0, 1));
         context.PushTransform(new RotateTransform(rotation, center.X, center.Y));
         context.DrawImage(Artwork, new Rect(center.X - width / 2, center.Y - height / 2, width, height));
@@ -216,6 +237,11 @@ public sealed class GengarScene : FrameworkElement
         context.Pop();
     }
 
+    private static double SmoothStep(double value)
+    {
+        value = Math.Clamp(value, 0, 1);
+        return value * value * (3 - 2 * value);
+    }
     private static double EaseOutCubic(double value) => 1 - Math.Pow(1 - Math.Clamp(value, 0, 1), 3);
     private static double EaseInCubic(double value) => Math.Pow(Math.Clamp(value, 0, 1), 3);
 

@@ -13,6 +13,47 @@ public readonly record struct SceneDecorationAnchor(
 /// <summary>Small authored compositions that keep decoration on the matching scenery.</summary>
 public static class SceneDecorationLayout
 {
+    // Underside of the upper-left branch in anime/halloween-foreground.png.
+    // Image coordinates stay attached across cover crops and camera transforms.
+    public const double HalloweenSpiderBranchX = 240d / 1671;
+    public const double HalloweenSpiderBranchY = 224d / 941;
+    // Feet on the actual courtyard stones/wall ledges; the ghost hovers by the castle.
+    // Coordinates refer to inhabited/halloween-landscape.png (1672 x 941).
+    public static IReadOnlyList<(PropKind Kind, double X, double Y)> HalloweenLandscapeAnchors { get; } =
+    [
+        (PropKind.Pumpkin, 380d / 1672, 720d / 941),
+        (PropKind.Gravestone, 1450d / 1672, 800d / 941),
+        (PropKind.Cauldron, 1295d / 1672, 790d / 941),
+        (PropKind.Candle, 262d / 1672, 620d / 941),
+        (PropKind.Ghost, 1460d / 1672, 355d / 941),
+        (PropKind.Spellbook, 230d / 1672, 730d / 941),
+        (PropKind.Potion, 1490d / 1672, 690d / 941),
+        (PropKind.Bat, 1290d / 1672, 540d / 941)
+    ];
+    private static readonly (PropKind Kind, double X, double Y)[] HalloweenTallAnchors =
+    [
+        (PropKind.Pumpkin, 440d / 1672, 785d / 941),
+        (PropKind.Gravestone, 1270d / 1672, 735d / 941),
+        (PropKind.Cauldron, 1170d / 1672, 835d / 941),
+        (PropKind.Candle, 450d / 1672, 700d / 941),
+        (PropKind.Ghost, 1255d / 1672, 370d / 941),
+        (PropKind.Spellbook, 415d / 1672, 850d / 941),
+        (PropKind.Potion, 1285d / 1672, 640d / 941),
+        (PropKind.Bat, 1290d / 1672, 540d / 941)
+    ];
+    private static readonly (PropKind Kind, double X, double Y)[] HalloweenWideAnchors =
+    [
+        (PropKind.Pumpkin, 380d / 1672, 720d / 941),
+        (PropKind.Gravestone, 1450d / 1672, 800d / 941),
+        (PropKind.Cauldron, 1295d / 1672, 790d / 941),
+        (PropKind.Candle, 262d / 1672, 620d / 941),
+        (PropKind.Ghost, 1520d / 1672, 500d / 941),
+        (PropKind.Spellbook, 230d / 1672, 730d / 941),
+        (PropKind.Potion, 1490d / 1672, 690d / 941),
+        (PropKind.Bat, 1290d / 1672, 570d / 941)
+    ];
+    public static IReadOnlyList<(PropKind Kind, double X, double Y)> HalloweenAnchorsForAspect(double aspect) =>
+        aspect < 1.35 ? HalloweenTallAnchors : aspect > 2.35 ? HalloweenWideAnchors : HalloweenLandscapeAnchors;
     private static readonly SceneDecorationAnchor[] Standard =
     [
         new(PropKind.Star, .19, .24), new(PropKind.Star, .81, .31),
@@ -43,7 +84,9 @@ public static class SceneDecorationLayout
     [
         new(PropKind.Pumpkin, .18, .90, .92), new(PropKind.Gravestone, .82, .90, .92),
         new(PropKind.Cauldron, .64, .90, .92), new(PropKind.Candle, .89, .90, .92),
-        new(PropKind.Spider, .17, .27, TetherUp: true), new(PropKind.Ghost, .77, .45)
+        new(PropKind.Spider, .17, .27, TetherUp: true), new(PropKind.Ghost, .77, .45),
+        new(PropKind.Spellbook, .08, .90, .94), new(PropKind.Potion, .92, .80, .90),
+        new(PropKind.Bat, .84, .62)
     ];
     private static readonly SceneDecorationAnchor[] NewYear =
     [

@@ -20,6 +20,10 @@ public partial class MainWindow
         FireworksView.SoundRequested += PlayEventSound;
         GengarView.LaughRequested += () => _halloweenAmbient?.PlayJumpscareLaugh();
         EventPropsView.EggsFoundChanged += count => SetStatus($"Osterentdeckungen · {count} gefunden");
+        EventPropsView.SecretDiscovered += discovery =>
+        {
+            if (!_isBusy) SetStatus($"Entdeckung: {discovery.Name} · {discovery.Hint}");
+        };
         Closed += (_, _) => { _eventsReady = false; _eventSounds.Dispose(); _halloweenAmbient.Dispose(); };
         ApplyEventPresentation();
     }

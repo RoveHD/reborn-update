@@ -5,7 +5,7 @@ var themes = new[] { "standard", "winter", "spring", "halloween", "newyear", "su
 foreach (string theme in themes)
 {
     var anchors = SceneDecorationLayout.ForTheme(theme);
-    Check(anchors.Count is >= 3 and <= 6, $"{theme} has {anchors.Count} visible anchors, expected 3–6.");
+    Check(anchors.Count >= 3 && anchors.Count <= (theme == "halloween" ? 9 : 6), $"{theme} has unexpected authored prop count {anchors.Count}.");
     Check(anchors.All(a => a.X is >= 0 and <= 1 && a.Y is >= 0 and <= 1), $"{theme} has off-stage anchors.");
     double groundBand = SceneDecorationLayout.GroundBandTop(theme);
     Check(anchors.All(a => a.GroundFootY is null || a.GroundFootY.Value >= groundBand && a.GroundFootY.Value <= .97), $"{theme} has ground decor away from its terrain band.");
@@ -91,6 +91,7 @@ static RectD VisualBounds(PropKind kind) => kind switch
     PropKind.Ornament => new(-15,-17,30,36), PropKind.Bell => new(-18,-21,36,40), PropKind.CandyCane => new(-14,-25,28,48),
     PropKind.Scarecrow => new(-26,-41,52,70), PropKind.Candle => new(-12,-32,24,56), PropKind.Rocket => new(-12,-29,24,63),
     PropKind.Pumpkin => new(-25,-22,50,45), PropKind.Gravestone => new(-22,-34,44,62), PropKind.Cauldron => new(-27,-25,54,48),
+    PropKind.Spellbook => new(-43,-41,86,66), PropKind.Potion => new(-21,-51,42,76),
     PropKind.Spider => new(-27,-20,54,40), PropKind.Star => new(-22,-22,44,44), PropKind.LightCrystal => new(-20,-30,40,58),
     PropKind.Egg => new(-17,-22,34,44), PropKind.Nest => new(-29,-21,58,42), PropKind.Flower => new(-20,-34,40,62),
     PropKind.Butterfly => new(-26,-22,52,44), PropKind.LeafPile => new(-31,-22,62,45), PropKind.Acorn => new(-17,-21,34,43),

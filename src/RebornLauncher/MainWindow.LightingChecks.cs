@@ -29,6 +29,7 @@ public partial class MainWindow
         }
         PreviewTheme("standard", false);
         await capture("standard-night");
+        VerifyScaledFeedbackAlignment();
         var night = Current("Ink");
         var day = ColorOf(DayPalettes["standard"][0]);
         _daylight = true;
@@ -67,5 +68,31 @@ public partial class MainWindow
         ApplyTheme("standard", _themeDay, animate: true);
         if (!SameColor(Current("Ink"), day)) throw new InvalidOperationException("Reduzierte Bewegung animiert weiter.");
         _settings.ReduceMotion = false;
+    }
+
+    private void VerifyScaledFeedbackAlignment()
+    {
+        var original = StartGameButton.RenderTransform;
+        try
+        {
+            // Hover, keyboard focus and press feedback scale around the button's
+            // center. Verify the rendered bounds rather than mixing layout width
+            // with a transformed left edge.
+            foreach (double scale in new[] { 1.025, 1.01, .965 })
+            {
+                StartGameButton.SetCurrentValue(RenderTransformProperty, new ScaleTransform(scale, scale));
+                VerifySceneryLayout();
+            }
+            StartGameButton.SetCurrentValue(RenderTransformProperty, new TranslateTransform(6, 0));
+            bool rejectedOffset = false;
+            try { VerifySceneryLayout(); }
+            catch (InvalidOperationException error) when (error.Message.StartsWith("Logo, Hauptspalte oder Startknopf"))
+            {
+                rejectedOffset = true;
+            }
+            if (!rejectedOffset)
+                throw new InvalidOperationException("Die Zentrierungsprüfung erkennt einen echten Startknopf-Versatz nicht.");
+        }
+        finally { StartGameButton.SetCurrentValue(RenderTransformProperty, original); }
     }
 }

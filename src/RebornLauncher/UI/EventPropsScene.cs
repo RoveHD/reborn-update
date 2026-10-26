@@ -37,6 +37,40 @@ public sealed class EventPropsScene : FrameworkElement
     private bool _placementDirty = true;
     private int _placedCount = -1;
     private string? _placementFailure;
+    private Point? _spiderBranch;
+    private readonly Dictionary<PropKind, Point> _landscapeAnchors = [];
+    private readonly HalloweenSecretSession _secrets = new();
+    public event Action<HalloweenSecretDiscovery>? SecretDiscovered;
+    public IReadOnlyCollection<string> DiscoveredSecrets => _secrets.Discovered;
+
+    public void SetLandscapeAttachments(IReadOnlyDictionary<PropKind, Point> anchors)
+    {
+        if (_landscapeAnchors.Count == anchors.Count && anchors.All(p => _landscapeAnchors.GetValueOrDefault(p.Key) == p.Value)) return;
+        _landscapeAnchors.Clear();
+        foreach (var pair in anchors)
+            if (double.IsFinite(pair.Value.X) && double.IsFinite(pair.Value.Y)) _landscapeAnchors.Add(pair.Key, pair.Value);
+        _placementDirty = true; InvalidateVisual();
+    }
+
+    public void SetSpiderAttachment(Point? branch)
+    {
+        if (branch is Point point && (!double.IsFinite(point.X) || !double.IsFinite(point.Y))) return;
+        if (_spiderBranch == branch) return;
+        _spiderBranch = branch;
+        _placementDirty = true;
+        InvalidateVisual();
+    }
+
+    public (Point Branch, Point Head)? GetSpiderTether()
+    {
+        EventProp? spider = VisibleProps.FirstOrDefault(p => p.Kind == PropKind.Spider && !p.IsTemporary);
+        if (_theme != "halloween" || _spiderBranch is not Point branch || spider is null) return null;
+        Point center = RenderCenterDip(spider);
+        double angle = (spider.Rotation + (_reduceMotion ? 0 : Math.Sin(_phase * 1.1 + spider.Id) * 2)) * Math.PI / 180;
+        double y = -13 - (spider.Id == _hoveredPropId ? 1.5 : 0);
+        double scale = PropDipScale(spider);
+        return (branch, new Point(center.X - y * Math.Sin(angle) * scale, center.Y + y * Math.Cos(angle) * scale));
+    }
 
     /// <summary>Actor/text bounds in this element's DIP coordinates, retained across theme configuration.</summary>
     public void SetExclusionZones(IEnumerable<Rect> zones)
@@ -101,6 +135,7 @@ public sealed class EventPropsScene : FrameworkElement
     {
         Focusable = false;
         SnapsToDevicePixels = true;
+        RenderOptions.SetBitmapScalingMode(this, BitmapScalingMode.HighQuality);
         _timer = new DispatcherTimer(DispatcherPriority.Render) { Interval = TimeSpan.FromSeconds(FrameSeconds) };
         _timer.Tick += OnFrame;
         Loaded += OnLoaded;
@@ -122,6 +157,7 @@ public sealed class EventPropsScene : FrameworkElement
         string nextTheme = string.IsNullOrWhiteSpace(theme) ? "standard" : theme.Trim().ToLowerInvariant();
         if (_theme != nextTheme || _christmas != christmas)
         {
+            _secrets.Interrupt();
             _theme = nextTheme;
             _christmas = christmas;
             _simulation.Reset(_theme, _christmas);
@@ -132,6 +168,7 @@ public sealed class EventPropsScene : FrameworkElement
         }
         _enabled = enabled;
         _interactive = interactive;
+        if (!enabled || !interactive) _secrets.Interrupt();
         _reduceMotion = reduceMotion;
         _active = active;
         _simulation.Configure(enabled && !reduceMotion, Math.Max(0, particleLimit), intensity);
@@ -166,9 +203,8 @@ public sealed class EventPropsScene : FrameworkElement
     public bool ActivateForTest(int id)
     {
         EnsurePlacement();
-        bool activated = _simulation.Activate(id);
-        if (activated) { PublishEggCountIfChanged(); InvalidateVisual(); UpdateTimerState(); }
-        return activated;
+        var prop = VisibleProps.FirstOrDefault(p => p.Id == id);
+        return prop is not null && TryActivateProp(prop);
     }
 
     protected override HitTestResult? HitTestCore(PointHitTestParameters hitTestParameters)
@@ -201,7 +237,17 @@ public sealed class EventPropsScene : FrameworkElement
         dc.Pop(); dc.Pop();
     }
 
-    private IEnumerable<EventProp> VisibleProps => _simulation.Props.Where(p => p.IsTemporary || _visiblePropIds.Contains(p.Id));
+    private IEnumerable<EventProp> VisibleProps => _simulation.Props.Where(p => p.IsTemporary ||
+        (_visiblePropIds.Contains(p.Id) && SpiderFitsArtworkCrop(p)));
+
+    private bool SpiderFitsArtworkCrop(EventProp prop)
+    {
+        if (prop.Kind != PropKind.Spider || _theme != "halloween" || _spiderBranch is not Point branch) return true;
+        var viewport = new Rect(0, 0, Math.Max(0, ActualWidth), Math.Max(0, ActualHeight));
+        // A crop may remove the authored branch in very wide/tall windows. Hide
+        // that entire attachment, including hit target, rather than moving it off the tree.
+        return viewport.Contains(branch) && viewport.Contains(BoxAt(prop, new Point(branch.X, branch.Y + 76), true));
+    }
 
     private void DrawAttachmentTethers(DrawingContext dc)
     {
@@ -221,6 +267,16 @@ public sealed class EventPropsScene : FrameworkElement
         }
         foreach (EventProp prop in VisibleProps.Where(p => !p.IsTemporary && _authoredAnchors.GetValueOrDefault(p.Id).TetherUp))
         {
+            if (prop.Kind == PropKind.Spider && GetSpiderTether() is { } tether)
+            {
+                // Both ends use their actual rendered positions: the fixed branch
+                // and the rotating/hovering head during the existing drop interaction.
+                double sx = ActualWidth / WorldWidth, sy = ActualHeight / WorldHeight;
+                dc.DrawLine(P(213, 201, 184, 1 / sx),
+                    new Point(tether.Branch.X / sx, tether.Branch.Y / sy),
+                    new Point(tether.Head.X / sx, tether.Head.Y / sy));
+                continue;
+            }
             PropLayout layout = GetPropLayout(prop);
             double top = layout.Center.Y + layout.Bounds.Top * layout.ScaleY;
             double lengthDip = prop.Kind == PropKind.Spider ? 62 : 30;
@@ -231,6 +287,20 @@ public sealed class EventPropsScene : FrameworkElement
         }
     }
 
+    private static readonly Brush GroundContactShadow = CreateGroundContactShadow();
+
+    private static Brush CreateGroundContactShadow()
+    {
+        var brush = new RadialGradientBrush(new GradientStopCollection
+        {
+            new(Color.FromArgb(155, 8, 10, 23), 0),
+            new(Color.FromArgb(90, 8, 10, 23), .55),
+            new(Color.FromArgb(0, 8, 10, 23), 1)
+        });
+        brush.Freeze();
+        return brush;
+    }
+
     private void DrawProp(DrawingContext dc, EventProp prop)
     {
         dc.PushOpacity(Math.Clamp(prop.Opacity, 0, 1));
@@ -239,9 +309,29 @@ public sealed class EventPropsScene : FrameworkElement
         // Position stays in the normalized world, while artwork keeps a circular, legible shape.
         // A nominal 45-world-unit prop stays at least 24 DIP and scales with the smaller stage axis.
         dc.PushTransform(new ScaleTransform(layout.ScaleX, layout.ScaleY));
-        dc.PushTransform(new RotateTransform(prop.Rotation + (_reduceMotion ? 0 : Math.Sin(_phase * 1.1 + prop.Id) * 2)));
-        dc.PushTransform(new TranslateTransform(0, prop.Id == _hoveredPropId ? -1.5 : 0));
-        DrawKind(dc, prop.Kind, prop.State);
+        var painted = _theme == "halloween" ? HalloweenPropArtwork.For(prop.Kind) : null;
+        bool groundedArtwork = painted is not null && StandsOnGround(prop.Kind);
+        if (groundedArtwork && prop.State != PropState.Broken && prop.Kind is PropKind.Pumpkin or PropKind.Cauldron)
+            dc.DrawEllipse(GroundContactShadow, null, new Point(0, painted!.Bounds.Bottom - 1),
+                painted.Bounds.Width * .42, prop.Kind == PropKind.Cauldron ? 6 : 4);
+        // Grounded art rocks around its contact point, never around a floating centre.
+        dc.PushTransform(new RotateTransform(prop.Rotation + (_reduceMotion || groundedArtwork ? 0 : Math.Sin(_phase * 1.1 + prop.Id) * 2),
+            0, groundedArtwork ? painted!.Bounds.Bottom : 0));
+        dc.PushTransform(new TranslateTransform(0, prop.Id == _hoveredPropId && !groundedArtwork ? -1.5 : 0));
+        if (painted is not null && prop.State != PropState.Broken)
+            dc.DrawImage(painted.Image, painted.Bounds);
+        else DrawKind(dc, prop.Kind, prop.State);
+        if (prop.Kind == PropKind.Spellbook && prop.State == PropState.Active && painted is not null && !_reduceMotion)
+        {
+            double y = painted.Bounds.Top - 8;
+            for (int i = -1; i <= 1; i++)
+            {
+                double x = i * 18;
+                dc.DrawLine(new Pen(Gold, 1.5), new Point(x, y - 8), new Point(x, y + 6));
+                dc.DrawLine(new Pen(Gold, 1.5), new Point(x, y - 6), new Point(x + 6, y - 1));
+                dc.DrawLine(new Pen(Gold, 1.5), new Point(x, y), new Point(x - 5, y + 4));
+            }
+        }
         if (prop.IsRare) DrawSpark(dc, 22, -31, 4, Gold);
         if (prop.Id == _selectedPropId && IsKeyboardFocused) dc.DrawEllipse(Gold, null, new Point(0, GetVisualBounds(prop.Kind).Bottom + 5), 2, 2);
         dc.Pop(); dc.Pop(); dc.Pop(); dc.Pop(); dc.Pop();
@@ -531,7 +621,7 @@ public sealed class EventPropsScene : FrameworkElement
             minY <= maxY ? Math.Clamp(center.Y, minY, maxY) : ActualHeight / 2);
     }
 
-    private static bool StandsOnGround(PropKind kind) => kind is not
+    private bool StandsOnGround(PropKind kind) => (_theme == "halloween" && kind == PropKind.Bat) || kind is not
         (PropKind.Ghost or PropKind.Bat or PropKind.Butterfly or PropKind.Firefly or PropKind.Bubble or
         PropKind.Spider or PropKind.Icicle or PropKind.Ornament or PropKind.Bell or PropKind.LightString or PropKind.Star or PropKind.Confetti);
 
@@ -605,6 +695,17 @@ public sealed class EventPropsScene : FrameworkElement
             Point preferred = new(authored.X / WorldWidth * ActualWidth, authored.Y / WorldHeight * ActualHeight);
             SceneDecorationAnchor anchor = _authoredAnchors[prop.Id];
             bool attached = _anchorParents.TryGetValue(prop.Id, out int parentId);
+            bool sceneryAttached = _theme == "halloween" &&
+                ((prop.Kind == PropKind.Spider && _spiderBranch is not null) || _landscapeAnchors.ContainsKey(prop.Kind));
+            if (sceneryAttached)
+            {
+                if (prop.Kind == PropKind.Spider) preferred = new Point(_spiderBranch!.Value.X, _spiderBranch.Value.Y + 76);
+                else
+                {
+                    preferred = _landscapeAnchors[prop.Kind];
+                    if (StandsOnGround(prop.Kind)) preferred.Y -= GetVisualBounds(prop.Kind).Bottom * PropDipScale(prop);
+                }
+            }
             if (attached)
             {
                 EventProp parent = _simulation.Props.First(p => p.Id == parentId);
@@ -615,11 +716,11 @@ public sealed class EventPropsScene : FrameworkElement
                     preferred.Y = parent.HomeY / WorldHeight * ActualHeight
                         + (GetVisualBounds(parent.Kind).Bottom * parentScale - GetVisualBounds(prop.Kind).Bottom * PropDipScale(prop));
             }
-            else if (anchor.GroundFootY is double footY)
+            else if (!sceneryAttached && anchor.GroundFootY is double footY)
                 preferred.Y = ActualHeight * footY - GetVisualBounds(prop.Kind).Bottom * PropDipScale(prop);
             // Parent-relative decorations stay on their authored branch point. Overlap
             // with the parent is intentional and children render/hit-test above it.
-            Point? found = attached ? ClampCenter(prop, preferred) : NearestFree(prop, preferred, occupied);
+            Point? found = sceneryAttached ? preferred : attached ? ClampCenter(prop, preferred) : NearestFree(prop, preferred, occupied);
             var center = found ?? ClampCenter(prop, preferred);
             if (found is null) _placementFailure = $"Keine freie Prop-Fläche: {_theme}/{prop.Kind}, Bühne {ActualWidth:0}×{ActualHeight:0}";
             // One authoritative location for drawing, hit testing, particles, children and respawn.
@@ -650,7 +751,10 @@ public sealed class EventPropsScene : FrameworkElement
 
     private double GetPropBob(EventProp prop) => _reduceMotion || prop.State != PropState.Idle || StandsOnGround(prop.Kind) ? 0 : Math.Sin(_phase * 1.4 + prop.Id * 1.73) * 2.2;
 
-    private static Rect GetVisualBounds(PropKind kind) => kind switch
+    private Rect GetVisualBounds(PropKind kind)
+    {
+        if (_theme == "halloween" && HalloweenPropArtwork.For(kind) is { } painted) return painted.Bounds;
+        return kind switch
     {
         PropKind.Snowman => new Rect(-25, -39, 50, 69),
         PropKind.Rabbit or PropKind.ChocolateBunny => new Rect(-19, -47, 38, 65),
@@ -669,7 +773,8 @@ public sealed class EventPropsScene : FrameworkElement
         PropKind.Candle => new Rect(-12, -32, 24, 56),
         PropKind.Rocket => new Rect(-12, -29, 24, 63),
         _ => new Rect(-24, -24, 48, 48)
-    };
+        };
+    }
 
     private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
@@ -738,8 +843,16 @@ public sealed class EventPropsScene : FrameworkElement
     }
     private bool TryActivateProp(EventProp prop)
     {
+        if (!_enabled || !_interactive) return false;
         EnsurePlacement();
         if (!_simulation.Activate(prop.Id)) return false;
+        if (_theme == "halloween" && _secrets.Activate(prop.Kind) is { } discovery)
+        {
+            if (discovery.Name == "Nachtelixier") _simulation.CelebrateHalloweenSecret(prop.Id, _reduceMotion);
+            ToolTip = $"Entdeckung: {discovery.Name} · {discovery.Hint}";
+            AutomationProperties.SetHelpText(this, ToolTip.ToString());
+            SecretDiscovered?.Invoke(discovery);
+        }
         PublishEggCountIfChanged();
         InvalidateVisual();
         UpdateTimerState();

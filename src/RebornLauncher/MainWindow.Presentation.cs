@@ -33,6 +33,7 @@ public partial class MainWindow
         InitializeEvents();
         InitializeBloodEasterEgg();
         InitializeAtmosphere();
+        InitializeGengarEncounter();
         Activated += (_, _) => { ApplyMotion(); ApplyEventPresentation(); };
         Deactivated += (_, _) => { ApplyMotion(); ApplyEventPresentation(); };
         if (!_smokeTest)
@@ -93,13 +94,16 @@ public partial class MainWindow
         if (Math.Abs(SeasonalBackdrop.Opacity) > .001 || Math.Abs(PokemonSceneryForeground.Opacity) > .001)
             throw new InvalidOperationException("Eine alte separate Bühnenebene liegt über der integrierten Illustration.");
         var logo = WindowBounds(LogoFrame);
+        var operations = WindowBounds(OperationsPanel);
+        var start = WindowBounds(StartGameButton);
+        var hero = WindowBounds(HeroPanel);
         var viewport = WindowBounds(HeroScroller);
         double centre = ActualWidth / 2;
         if (LogoFrame.ActualWidth < 240 || LogoFrame.ActualWidth > 440 || Math.Abs(logo.Left + logo.Width / 2 - centre) > 2
-            || Math.Abs(WindowBounds(OperationsPanel).Left + OperationsPanel.ActualWidth / 2 - centre) > 2
-            || Math.Abs(WindowBounds(StartGameButton).Left + StartGameButton.ActualWidth / 2 - centre) > 2
-            || Math.Abs(WindowBounds(HeroPanel).Left + HeroPanel.ActualWidth / 2 - centre) > 2)
-            throw new InvalidOperationException("Logo, Hauptspalte oder Startknopf sind nicht exakt zentriert.");
+            || Math.Abs(operations.Left + operations.Width / 2 - centre) > 2
+            || Math.Abs(start.Left + start.Width / 2 - centre) > 2
+            || Math.Abs(hero.Left + hero.Width / 2 - centre) > 2)
+            throw new InvalidOperationException($"Logo, Hauptspalte oder Startknopf sind nicht exakt zentriert. Fenster={ActualWidth:0.##}; Logo={logo}; Operations={operations}; Start={start}; Hero={hero}; StartTransform={StartGameButton.RenderTransform.Value}.");
         if (!viewport.Contains(logo) || !viewport.Contains(WindowBounds(StartGameButton)) || !viewport.Contains(WindowBounds(OperationsPanel)))
             throw new InvalidOperationException("Logo, Startknopf oder Versionsstatus sind abgeschnitten.");
         int propsLayer = StageArtArea.Children.IndexOf(EventPropsView);

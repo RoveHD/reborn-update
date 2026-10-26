@@ -46,7 +46,7 @@ Test("Authored themes have distinct compositions with safe margins and clear pro
 {
     var sim = new EventPropSimulation();
     var starts = new HashSet<(double X, double Y)>();
-    foreach (var (theme, expectedCount) in new[] { ("standard", 4), ("winter", 6), ("spring", 8), ("halloween", 8), ("newyear", 7), ("summer", 6), ("harvest", 6), ("arceus", 6) })
+    foreach (var (theme, expectedCount) in new[] { ("standard", 4), ("winter", 6), ("spring", 8), ("halloween", 10), ("newyear", 7), ("summer", 6), ("harvest", 6), ("arceus", 6) })
     {
         sim.Reset(theme);
         Check(sim.Props.Count == expectedCount, theme + " count");
@@ -390,7 +390,7 @@ Test("Gravestone raises a temporary hand, cauldron bubbles, spider returns and s
     Check(Math.Abs(spider.Y - spiderY) <= 12 && scarecrow.Y == scarecrowY);
 });
 
-Test("Gift alternates flowers and confetti, ghost fades idly and bat flies away", () =>
+Test("Gift alternates flowers and confetti, ghost fades idly and perched bat flies briefly then returns", () =>
 {
     var sim = new EventPropSimulation(19); sim.Reset("winter", true);
     var gift = sim.Props.Single(p => p.Kind == PropKind.Gift);
@@ -409,8 +409,10 @@ Test("Gift alternates flowers and confetti, ghost fades idly and bat flies away"
     Check(opacitySamples.Max() - opacitySamples.Min() > .7);
     double batX = bat.X, batY = bat.Y;
     sim.Activate(bat.Id); Advance(sim, .5);
-    Check(Math.Abs(bat.X - batX) > 20 && bat.Y < batY - 20);
-    Advance(sim, 1.3); Check(bat.State == PropState.Broken && bat.Opacity == 0);
+    Check(Math.Abs(bat.X - batX) > 5 && Math.Abs(bat.X - batX) <= 12 && bat.Y < batY - 20);
+    Advance(sim, 1.3);
+    Check(bat.State == PropState.Idle && bat.Opacity == 1 && Math.Abs(bat.X-batX) < .001 && Math.Abs(bat.Y-batY) < .001,
+        "Perched bat must return exactly to its authored ledge, fully visible");
     Bounds(sim);
 });
 

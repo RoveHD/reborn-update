@@ -6,7 +6,7 @@ public enum PropKind
     Confetti, PartyHat, Egg, ChocolateBunny, Nest, Flower, Butterfly, Pumpkin,
     Scarecrow, Gravestone, Spider, Cauldron, Candle, Gift, Ornament, Bell,
     SnowGlobe, CandyCane, Bubble, WaterBalloon, Firefly, LeafPile, Acorn,
-    Mushroom, Star, LightCrystal, Ghost, Bat, SkeletonHand, Chick, Rabbit, LightString
+    Mushroom, Star, LightCrystal, Ghost, Bat, SkeletonHand, Chick, Rabbit, LightString, Spellbook, Potion
 }
 
 public enum PropState { Idle, Active, Broken, Cooldown }
@@ -129,7 +129,8 @@ public sealed class EventPropSimulation
                 (PropKind.Pumpkin, 190, 327, 1.04), (PropKind.Scarecrow, 863, 313, 1.03),
                 (PropKind.Gravestone, 716, 332, .91), (PropKind.Spider, 100, 86, .84),
                 (PropKind.Cauldron, 348, 327, 1.04), (PropKind.Candle, 586, 294, .79),
-                (PropKind.Ghost, 825, 119, .95), (PropKind.Bat, 282, 110, .86)
+                (PropKind.Ghost, 825, 119, .95), (PropKind.Bat, 282, 110, .86),
+                (PropKind.Spellbook, 470, 330, .96), (PropKind.Potion, 792, 244, .85)
             ],
             "newyear" =>
             [
@@ -225,7 +226,7 @@ public sealed class EventPropSimulation
             prop.EggCollected = true;
         }
         if (prop.Kind is not (PropKind.Ornament or PropKind.Gravestone or PropKind.Bell or PropKind.Cauldron
-            or PropKind.Spider or PropKind.LightString or PropKind.Gift)) EmitInteraction(prop);
+            or PropKind.Spider or PropKind.LightString or PropKind.Gift or PropKind.Spellbook or PropKind.Potion or PropKind.Bat)) EmitInteraction(prop);
         SoundRequested?.Invoke(prop.Kind switch
         {
             PropKind.Bell => "bell",
@@ -240,6 +241,7 @@ public sealed class EventPropSimulation
             PropKind.Bat => "bat-flap",
             PropKind.Gravestone => "wood-creak",
             PropKind.Pumpkin => "pumpkin-pop",
+            PropKind.Spellbook or PropKind.Potion => "magic",
             PropKind.Gift => "gift-rip",
             PropKind.Star or PropKind.LightCrystal or PropKind.LightString => "magic",
             PropKind.Sparkler or PropKind.Firefly => "sparkle",
@@ -300,6 +302,16 @@ public sealed class EventPropSimulation
         _props.AddRange(_pendingSpawns);
         _pendingSpawns.Clear();
         StepParticles(dt, reduceMotion);
+    }
+
+    public void CelebrateHalloweenSecret(int sourceId, bool reducedMotion)
+    {
+        if (reducedMotion || !_particlesEnabled || _intensity <= 0) return;
+        var source = _props.Find(p => p.Id == sourceId);
+        if (source is null) return;
+        for (int i = 0; i < 18; i++)
+            Emit(source.X, source.Y - 12, "spark", 0xFFFFD677, Next(2, 5), Next(-45, 45), -Next(25, 70), 1.3, 12, 0);
+        SpawnChild(source, PropKind.Ghost, 1.6);
     }
 
     private void StepActive(EventProp p, double dt, bool reduced)
@@ -395,6 +407,14 @@ public sealed class EventPropSimulation
                 }
                 if (t >= 3) ReturnIdle(p);
                 return;
+            case PropKind.Spellbook:
+                p.Rotation = Math.Sin(t * 8) * 3 * motion;
+                if (t >= 1.4) ReturnIdle(p);
+                return;
+            case PropKind.Potion:
+                p.Rotation = Math.Sin(t * 10) * 9 * motion;
+                if (t >= 1) ReturnIdle(p);
+                return;
             case PropKind.Cauldron:
                 p.Rotation = Math.Sin(t * 12) * 3 * motion;
                 p.EmitClock += dt;
@@ -411,6 +431,12 @@ public sealed class EventPropSimulation
                 if (t >= 1.9) ReturnIdle(p);
                 return;
             case PropKind.Bat:
+                double flight = Math.Sin(Math.Min(1, t / 1.3) * Math.PI);
+                p.X = p.HomeX + (p.HomeX < 500 ? 1 : -1) * flight * 12 * motion;
+                p.Y = p.HomeY - flight * 45 * motion;
+                p.Rotation = Math.Sin(t * 15) * 10 * motion;
+                if (t >= 1.3) ReturnIdle(p);
+                return;
             case PropKind.Butterfly:
             case PropKind.Rabbit:
                 p.X = Math.Clamp(p.HomeX + (p.HomeX < 500 ? 1 : -1) * t * 105 * motion, 20, 980);
@@ -519,7 +545,6 @@ public sealed class EventPropSimulation
             case PropKind.Butterfly:
             case PropKind.Firefly:
             case PropKind.Bubble:
-            case PropKind.Bat:
                 p.X += Math.Sin(phase * .6) * 12;
                 p.Y += Math.Cos(phase) * 14;
                 p.Rotation = Math.Sin(phase) * 8;

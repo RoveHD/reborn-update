@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "launcher": {
-    "version": "7.3.7",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.7/launcher.exe",
-    "sha256": "7ebcc0ae50cadf7b88e62a926f03f1bd1bb2baee859cebfdf226f29613aae289",
+    "version": "7.3.8",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.8/launcher.exe",
+    "sha256": "56ae36bab431cea27105fa6b5d63528c79d6cb0a6030c61f83bd900a39a6aa0d",
     "size": 137127669
   },
   "game": {
@@ -6391,7 +6391,7 @@
       }
     ]
   },
-  "patchNotes": "# Launcher 7.3.7 – Echte Tiefe und feste Standflächen\n\nDie Halloween-Szene besitzt jetzt fünf getrennte Tiefenebenen: Wald, Schloss, Gengar, Steinflächen sowie die nahen Bäume und unscharfen Büsche. Jede Ebene bewegt sich passend zur Entfernung. Die obere Leiste und alle Bedienelemente bleiben ruhig und gut lesbar.\n\n- Buch, Kerze, Flasche, Kürbis, Kessel und Grabstein stehen auf festen Steinflächen. Sie bleiben bei Mausbewegungen am Boden; kleine, breite und hohe Fenster sind berücksichtigt.\n- Die Dekoration bleibt beim Wechsel zu Changelog, Extras und Einstellungen im Hintergrund erhalten. Die Props werden dabei weder zurückgesetzt noch neu erstellt.\n- Die Fledermaus sitzt am Schlossdach. Beim Anklicken hebt sie mit sechs Flügelposen ab, fliegt in einem Bogen davon und kehrt nach einer Pause zurück.\n- Gengar bewegt sich auf einer eigenen Ebene. Sein gelegentlicher Flug beginnt an seiner tatsächlichen Position; die übrige Landschaft bleibt dabei unverändert.\n- Changelog, Extras und Einstellungen öffnen direkt im Launcher. Zwischen den Seiten kannst du unmittelbar wechseln; Scrollposition, Escape und Downloadabbruch funktionieren weiterhin.\n- Saisonale Musik, Effekte, Tag/Nacht-Designs und reduzierte Bewegung bleiben erhalten.\n\n**Dieses Release aktualisiert ausschließlich den Launcher.** Spielversion 7.3.5 mit AllGen 0.9.9 und die kleinen Spielhotfixes bleiben unverändert. Dafür ist kein erneuter Spieldownload erforderlich.\n\nInstallierte Launcher erhalten 7.3.7 automatisch über GitHub. Für eine Neuinstallation: **Reborn-Launcher-7.3.7-Setup.exe** herunterladen und ausführen. Deine Einstellungen und Spielstände bleiben erhalten.",
+  "patchNotes": "# Launcher 7.3.8 – Props wieder anklickbar\n\nBehebt den Klickfehler aus 7.3.7: Die unsichtbare Eingabefläche der Startansicht lag vor den Saisonobjekten und fing ihre Mausklicks ab. Die Props liegen jetzt wieder davor und reagieren an ihren sichtbaren Positionen.\n\n- Alle acht Saison-Designs berücksichtigt; Startbutton und obere Navigation bleiben bedienbar.\n- Die Fledermaus am Schlossdach ist nach ihrer Rückkehr wieder anklickbar. Während Flug und Abwesenheit blockiert sie keine Klicks.\n- Die Dekoration bleibt beim Wechsel zu Changelog, Extras und Einstellungen sichtbar. Die festen Bodenpositionen und fünf Halloween-Tiefenebenen bleiben erhalten.\n\nInstallierte Launcher erhalten 7.3.8 automatisch über GitHub. Für eine Neuinstallation **Reborn-Launcher-7.3.8-Setup.exe** verwenden.\n\n**Reiner Launcher-Hotfix:** Spielpaket 7.3.5 / AllGen 0.9.9 und alle Spielhotfixes bleiben unverändert. Kein erneuter Spieldownload erforderlich.",
   "gameHotfixes": [
     {
       "fromVersion": "7.3.2",

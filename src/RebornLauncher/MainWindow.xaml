@@ -190,7 +190,9 @@
 
             <Grid x:Name="ViewHost" Grid.Row="1" ClipToBounds="True">
                 <!-- The scene persists behind every page; only the home UI changes. -->
-                        <Grid x:Name="PokemonStage">
+                        <!-- Props hit-test only their own shapes. Keep them in front
+                             of the full-window ScrollViewer input surface. -->
+                        <Grid x:Name="PokemonStage" Panel.ZIndex="1">
                             <Grid x:Name="StageArtArea" ClipToBounds="True">
                                 <ui:SeasonalScene x:Name="SeasonalBackdrop" ParticlesOnly="True" IsHitTestVisible="False" OpacityMask="{StaticResource SceneryEdgeFade}"/>
                                 <Grid Visibility="Collapsed"><ui:SeasonalScene x:Name="LeftEdgeScene" IsHitTestVisible="False"/><ui:SeasonalScene x:Name="RightEdgeScene" IsHitTestVisible="False"/></Grid>

@@ -11,9 +11,9 @@
     <Authors>Elias</Authors>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>assets/reborn.ico</ApplicationIcon>
-    <Version>7.3.7</Version>
-    <AssemblyVersion>7.3.7.0</AssemblyVersion>
-    <FileVersion>7.3.7.0</FileVersion>
+    <Version>7.3.8</Version>
+    <AssemblyVersion>7.3.8.0</AssemblyVersion>
+    <FileVersion>7.3.8.0</FileVersion>
     <Description>Reborn Launcher mit automatischer Selbstaktualisierung</Description>
   </PropertyGroup>
 

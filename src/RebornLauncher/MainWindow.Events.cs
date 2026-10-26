@@ -95,8 +95,9 @@ public partial class MainWindow
         EventPropsView.Configure("winter", true, true, true, 80, 1, false, true);
         var snowman = EventPropsView.Props.First(prop => prop.Kind == PropKind.Snowman);
         var snowmanBounds = EventPropsView.GetPlacementBounds().First(item => item.Id == snowman.Id).Bounds;
-        var hit = VisualTreeHelper.HitTest(EventPropsView, new Point(snowmanBounds.X + snowmanBounds.Width / 2, snowmanBounds.Y + snowmanBounds.Height / 2));
-        if (hit?.VisualHit != EventPropsView) throw new InvalidOperationException("Props reagieren nicht auf Treffer.");
+        var center = new Point(snowmanBounds.X + snowmanBounds.Width / 2, snowmanBounds.Y + snowmanBounds.Height / 2);
+        if (InputHitTest(EventPropsView.TranslatePoint(center, this)) != EventPropsView)
+            throw new InvalidOperationException("Eine Fensterebene blockiert die Prop-Klicks.");
         EventPropsView.Configure("winter", true, false, false, 0, 1, true, false);
         if (EventPropsView.IsHitTestVisible || EventPropsView.IsAnimating || EventPropsView.ActiveParticleCount != 0)
             throw new InvalidOperationException("Deaktivierte Props bleiben aktiv.");

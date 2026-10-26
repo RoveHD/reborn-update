@@ -98,7 +98,7 @@ def main():
         # a successful creation and must not determine the new draft's identity.
         draft = gh('api', '--method', 'POST', f'repos/{REPO}/releases', body={
             'tag_name': tag, 'target_commitish': source, 'draft': True,
-            'name': f'Launcher {version} – Echte Tiefe und feste Standflächen',
+            'name': manifest['patchNotes'].splitlines()[0].lstrip('#').strip(),
             'body': (release / 'patchnotes.txt').read_text(encoding='utf-8')})
     assert draft['draft'] and draft['tag_name'] == tag
     assert draft['target_commitish'] == source, 'Draft belongs to different sources'

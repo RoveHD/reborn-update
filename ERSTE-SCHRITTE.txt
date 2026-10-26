@@ -1,8 +1,8 @@
-Pokémon Reborn – Launcher 7.3.7
+Pokémon Reborn – Launcher 7.3.8
 
 EINMALIGER WECHSEL
 1. Reborn und den bisherigen Launcher schließen.
-2. Reborn-Launcher-7.3.7-Setup.exe starten und den Launcher installieren.
+2. Reborn-Launcher-7.3.8-Setup.exe starten und den Launcher installieren.
    Keine Administratorrechte nötig. Spielstände nicht verschieben.
 3. Den Launcher über das Windows-Startmenü starten.
 

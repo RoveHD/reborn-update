@@ -37,6 +37,8 @@ assert lighting['palettes'] == 8
 assert all(lighting[key] for key in ['continuousColors', 'reversal', 'reducedMotion', 'artworkBlend'])
 fireworks = read(root / 'test-results/fireworks-verified/result.json')
 assert all(fireworks[key] for key in ['success', 'fullWindow', 'clickThrough', 'settings', 'themeReset', 'compact', 'hiddenStopped'])
+props = read(root / 'test-results/prop-input-final/result.json')
+assert all(props[key] for key in ['success', 'homeSceneChecks', 'windowPropHitTests', 'batReturnClickable', 'persistentProps', 'directNavigation', 'downloadCancel'])
 manifest = read(root / 'update.json')
 assert tuple(map(int, version.split('.'))) > tuple(map(int, manifest['launcher']['version'].split('.')))
 # A launcher-only release retains the current game package, migrations and
@@ -52,6 +54,7 @@ evidence = {k: v for k, v in check.items() if k != 'testDirectory'}
 evidence.update(themeAudioSeconds=smoke['themeAudioSeconds'], calendarRolloverVerified=True, mouseEffectsVerified=True, musicTransitionsVerified=True)
 evidence['lightingMorph'] = lighting
 evidence['fireworksUi'] = fireworks
+evidence['propInputRegression'] = props
 evidence['gameVersionUnchanged'] = manifest['game']['version']
 evidence['gameSha256Unchanged'] = manifest['game']['sha256']
 evidence['gameHotfixesPreserved'] = len(manifest.get('gameHotfixes', []))

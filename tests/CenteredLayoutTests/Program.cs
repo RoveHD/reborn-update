@@ -37,6 +37,7 @@ internal static class Program
                 Render((FrameworkElement)window.Content, Path.Combine(output, $"layout-{width}x{height}.png"));
             }
             VerifyPersistentProps(window, output);
+            VerifyBatInputLifecycle(window);
             var host = (Border)window.FindName("PatchNotesHost");
             var notes = (TextBlock)window.FindName("PatchNotesText");
             var scroll = (ScrollViewer)window.FindName("PatchNotesScroller");
@@ -118,7 +119,7 @@ internal static class Program
                 Render((FrameworkElement)window.Content, Path.Combine(output, screenshot + ".png"));
             }
             Click(window, "HomeNavButton");
-            File.WriteAllText(Path.Combine(output, "result.json"), System.Text.Json.JsonSerializer.Serialize(new { success = true, sizes = 4, homeSceneChecks = !args.Contains("--menus-only"), directNavigation = true, persistentProps = true, liveNotes = true, scrollPreserved = true, escape = true, nestedDialog = true, downloadCancel = true }));
+            File.WriteAllText(Path.Combine(output, "result.json"), System.Text.Json.JsonSerializer.Serialize(new { success = true, sizes = 4, homeSceneChecks = !args.Contains("--menus-only"), directNavigation = true, persistentProps = true, windowPropHitTests = true, batReturnClickable = true, liveNotes = true, scrollPreserved = true, escape = true, nestedDialog = true, downloadCancel = true }));
             Console.WriteLine(args.Contains("--menus-only")
                 ? "NAVIGATION_OK direct menu switching at 4 sizes, live notes, preserved scroll, Escape, nested dialog owner, download cancellation (home scene checks not requested)"
                 : "CENTERED_LAYOUT_OK home across 8 themes; direct menu switching, live notes, preserved scroll, Escape, nested dialog owner, download cancellation");
@@ -147,6 +148,7 @@ internal static class Program
             var stageBounds = stage.TransformToVisual(root).TransformBounds(new Rect(stage.RenderSize));
             var groundBounds = props.GetPlacementBounds().ToDictionary(p => p.Id, p => p.Bounds);
             Check(groundBounds.Count >= (theme == "halloween" ? 6 : 1), "Props missing on home screen: " + theme);
+            VerifyPropInput(window, props, theme);
             foreach (var button in new[] { "OpenPatchNotesButton", "ExtrasNavButton", "SettingsNavButton", "HomeNavButton" })
             {
                 Click(window, button); window.UpdateLayout(); Pump();
@@ -163,8 +165,49 @@ internal static class Program
                 int painted = 0; for (int i = 3; i < pixels.Length; i += 4) if (pixels[i] > 32) painted++;
                 Check(painted > 1000, "Prop scene is visible but paints no decorations behind " + button);
                 Check(unloads == 0, "Navigation unloaded the permanent prop scene");
+                if (button == "HomeNavButton") VerifyPropInput(window, props, theme);
             }
         }
+    }
+    private static void VerifyPropInput(MainWindow window, EventPropsScene props, string theme)
+    {
+        foreach (var item in props.GetPlacementBounds())
+        {
+            Point center = new(item.Bounds.Left + item.Bounds.Width / 2, item.Bounds.Top + item.Bounds.Height / 2);
+            if (!new Rect(props.RenderSize).Contains(center)) continue;
+            var hit = window.InputHitTest(props.TranslatePoint(center, window));
+            Check(ReferenceEquals(hit, props), $"Prop clicks intercepted: {theme}/{item.Kind} by {hit?.GetType().Name}");
+        }
+        var start = (Button)window.FindName("StartGameButton");
+        var startHit = window.InputHitTest(start.TranslatePoint(new Point(start.ActualWidth / 2, start.ActualHeight / 2), window)) as DependencyObject;
+        while (startHit is not null && startHit != start) startHit = VisualTreeHelper.GetParent(startHit);
+        Check(startHit == start, "Prop layer intercepts the start button");
+    }
+    private static void VerifyBatInputLifecycle(MainWindow window)
+    {
+        Click(window, "HomeNavButton");
+        window.Width = 1280; window.Height = 800; Pump();
+        Invoke(window, "PreviewTheme", "halloween", false); Pump();
+        var props = (EventPropsScene)window.FindName("EventPropsView");
+        props.Configure("halloween", false, true, true, 0, 1, false, false); Pump();
+        var bat = props.Props.Single(p => p.Kind == PropKind.Bat);
+        bool BatReceivesInput()
+        {
+            var box = props.GetPlacementBounds().Single(item => item.Id == bat.Id).Bounds;
+            Point center = props.TranslatePoint(new Point(box.Left + box.Width / 2, box.Top + box.Height / 2), window);
+            return ReferenceEquals(window.InputHitTest(center), props);
+        }
+        Check(BatReceivesInput(), "Perched bat is blocked by a window layer");
+        Check(props.ActivateForTest(bat.Id), "Bat cannot take off");
+        foreach (double step in new[] { .5, 3.0 })
+        {
+            props.AdvanceForTest(step);
+            Check(!BatReceivesInput(), "Flying/absent bat intercepts clicks");
+        }
+        props.AdvanceForTest(20);
+        Check(bat.BatPhase == BatFlightPhase.Perched && bat.State == PropState.Idle, "Bat did not return");
+        Check(BatReceivesInput(), "Returned bat is blocked by a window layer");
+        Check(props.ActivateForTest(bat.Id), "Returned bat cannot take off again");
     }
     private static void Click(MainWindow window, string name)
     {

@@ -1,16 +1,23 @@
-name: Build catch hotfix 7.3.2
+name: Build game catch hotfix
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: Reviewed game hotfix to prepare
+        type: choice
+        default: '7.3.5'
+        options: ['7.3.2', '7.3.5']
 
 permissions:
   contents: write
 
 concurrency:
-  group: game-catch-hotfix-7.3.2
+  group: game-catch-hotfix-${{ inputs.version || '7.3.2' }}
   cancel-in-progress: false
 
 jobs:
   package:
+    if: inputs.version != '7.3.5'
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -42,3 +49,28 @@ jobs:
               assert asset['digest'] == 'sha256:' + digest, path.name
           print('Draft assets verified. Live update channel unchanged.')
           PY
+  gate_package:
+    if: inputs.version == '7.3.5'
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.8.10'
+      - name: Reproduce exact verified full fallback archive
+        run: python tools/build_gate_hotfix_ci.py
+      - name: Upload full fallback to existing draft only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $draft = gh release view v7.3.5 --json isDraft | ConvertFrom-Json
+          if ($LASTEXITCODE -ne 0 -or -not $draft.isDraft) { throw 'Expected unpublished release draft.' }
+          gh release upload v7.3.5 dist/release-game-7.3.5/Reborn-AllGen-0.9.9.zip --clobber
+          if ($LASTEXITCODE -ne 0) { throw 'Draft upload failed.' }
+          $assets = gh release view v7.3.5 --json assets | ConvertFrom-Json
+          $asset = $assets.assets | Where-Object name -eq 'Reborn-AllGen-0.9.9.zip'
+          if ($asset.state -ne 'uploaded' -or $asset.size -ne 1476961003 -or $asset.digest -ne 'sha256:9e1fa3b885e051db90ef1b0973d17a56024c687ee25094231b6842c0a9110b54') { throw 'Uploaded archive does not match reviewed bytes.' }
+          Write-Output 'Exact full fallback uploaded. Release and update channel remain unpublished.'

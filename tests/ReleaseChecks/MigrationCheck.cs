@@ -55,7 +55,16 @@ internal static class MigrationCheck
             Directory.CreateDirectory(Path.GetDirectoryName(path)!);
             File.WriteAllText(path, text);
         }
-        Write("version.txt", "6.1.0");
+        string previousManifest = Path.Combine(Path.GetDirectoryName(previousArchive)!, "update.json");
+        string previousVersion = "6.1.0";
+        if (File.Exists(previousManifest))
+        {
+            var previous = UpdateManifest.Parse(File.ReadAllText(previousManifest));
+            if (!previous.Game.Sha256.Equals(previousArchiveSha256, StringComparison.OrdinalIgnoreCase))
+                throw new Exception("Previous manifest does not match the migration archive");
+            previousVersion = previous.Game.Version;
+        }
+        Write("version.txt", previousVersion);
         Write("mkxp.json", "friend display settings migration sentinel");
         Write("settings.json", "friend launcher settings migration sentinel");
         Write("Save Data/Game_3.rxdata", "unique friend save migration sentinel");
@@ -108,7 +117,7 @@ internal static class MigrationCheck
             if (actual.Count != old.Count) throw new Exception("Old release file set differs after switch");
             foreach (var file in old)
                 if (!actual.TryGetValue(file.Key, out string? hash) || hash != file.Value) throw new Exception("Restored old file differs: " + file.Key);
-            if (File.ReadAllText(Path.Combine(root, "version.txt")) != "6.1.0") throw new Exception("Wrong old active version");
+            if (File.ReadAllText(Path.Combine(root, "version.txt")) != previousVersion) throw new Exception("Wrong old active version");
             VerifyPersonal();
         }
         var installer = new GameInstaller(root);
@@ -127,7 +136,7 @@ internal static class MigrationCheck
             var result = new { success = true, oldFilesVerified = old.Count, newFilesVerified = current.Count,
                 removedHistoricalFilesVerified = expectedRemoved, renamedPathsInManifest = renamed, switches = 4,
                 personalFilesUnchanged = personal.Keys, previousArchiveSha256, archiveSha256 = manifest.Game.Sha256,
-                isolatedInstall = root, baselineSource = baseline, baselineFilesAdded,
+                isolatedInstall = root, baselineSource = baseline, baselineFilesAdded, previousVersion,
                 gameExecutableBytesVerified = old.ContainsKey("Game.exe"), activeVersion = manifest.Game.Version, durationSeconds = timer.Elapsed.TotalSeconds,
                 gameStarted = false };
             string json = JsonSerializer.Serialize(result, new JsonSerializerOptions { WriteIndented = true });

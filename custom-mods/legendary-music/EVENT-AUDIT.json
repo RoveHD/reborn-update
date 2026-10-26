@@ -1,0 +1,6845 @@
+{
+  "maps": 915,
+  "wild_pages": [
+    {
+      "map": "Map017.rxdata",
+      "event": 43,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PYUKUMUKU,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map017.rxdata",
+      "event": 48,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PYUKUMUKU,32)"
+        }
+      ]
+    },
+    {
+      "map": "Map018.rxdata",
+      "event": 22,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PYUKUMUKU,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map018.rxdata",
+      "event": 23,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PYUKUMUKU,36)"
+        }
+      ]
+    },
+    {
+      "map": "Map018.rxdata",
+      "event": 24,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PYUKUMUKU,33)"
+        }
+      ]
+    },
+    {
+      "map": "Map018.rxdata",
+      "event": 25,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PYUKUMUKU,34)"
+        }
+      ]
+    },
+    {
+      "map": "Map018.rxdata",
+      "event": 26,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PYUKUMUKU,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map020.rxdata",
+      "event": 16,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PYUKUMUKU,31)"
+        }
+      ]
+    },
+    {
+      "map": "Map020.rxdata",
+      "event": 15,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PYUKUMUKU,37)"
+        }
+      ]
+    },
+    {
+      "map": "Map024.rxdata",
+      "event": 6,
+      "page": 0,
+      "commands": [
+        {
+          "index": 3,
+          "script": "pbWildBattle(:HEATMOR,40)"
+        }
+      ]
+    },
+    {
+      "map": "Map024.rxdata",
+      "event": 56,
+      "page": 0,
+      "commands": [
+        {
+          "index": 19,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map024.rxdata",
+      "event": 80,
+      "page": 0,
+      "commands": [
+        {
+          "index": 39,
+          "script": "pbWildBattle(:RAIKOU,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map026.rxdata",
+      "event": 10,
+      "page": 4,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:MARSHADOW,120)"
+        }
+      ]
+    },
+    {
+      "map": "Map027.rxdata",
+      "event": 24,
+      "page": 0,
+      "commands": [
+        {
+          "index": 12,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map027.rxdata",
+      "event": 3,
+      "page": 0,
+      "commands": [
+        {
+          "index": 8,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map031.rxdata",
+      "event": 24,
+      "page": 0,
+      "commands": [
+        {
+          "index": 23,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map033.rxdata",
+      "event": 1,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MAGCARGO,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map033.rxdata",
+      "event": 2,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MAGCARGO,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map033.rxdata",
+      "event": 3,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MAGCARGO,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map034.rxdata",
+      "event": 1,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MAGCARGO,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map034.rxdata",
+      "event": 2,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MAGCARGO,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map034.rxdata",
+      "event": 3,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MAGCARGO,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map035.rxdata",
+      "event": 4,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MAGCARGO,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map037.rxdata",
+      "event": 111,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:WHISMUR,5)"
+        }
+      ]
+    },
+    {
+      "map": "Map037.rxdata",
+      "event": 130,
+      "page": 0,
+      "commands": [
+        {
+          "index": 3,
+          "script": "pbWildBattle(:BLITZLE,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map037.rxdata",
+      "event": 130,
+      "page": 1,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:WIMPOD,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map037.rxdata",
+      "event": 96,
+      "page": 0,
+      "commands": [
+        {
+          "index": 3,
+          "script": "pbWildBattle(:TEDDIURSA,14)"
+        }
+      ]
+    },
+    {
+      "map": "Map037.rxdata",
+      "event": 97,
+      "page": 0,
+      "commands": [
+        {
+          "index": 3,
+          "script": "pbWildBattle(:TEDDIURSA,14)"
+        }
+      ]
+    },
+    {
+      "map": "Map037.rxdata",
+      "event": 80,
+      "page": 0,
+      "commands": [
+        {
+          "index": 3,
+          "script": "pbWildBattle(:TEDDIURSA,14)"
+        }
+      ]
+    },
+    {
+      "map": "Map037.rxdata",
+      "event": 65,
+      "page": 0,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 17,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 27,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 33,
+          "script": "pbWildBattle(:GULPIN,10)"
+        }
+      ]
+    },
+    {
+      "map": "Map037.rxdata",
+      "event": 52,
+      "page": 0,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 17,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 27,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 33,
+          "script": "pbWildBattle(:GULPIN,10)"
+        }
+      ]
+    },
+    {
+      "map": "Map040.rxdata",
+      "event": 14,
+      "page": 1,
+      "commands": [
+        {
+          "index": 4,
+          "script": "pbWildBattle(:PANPOUR,10)"
+        }
+      ]
+    },
+    {
+      "map": "Map040.rxdata",
+      "event": 14,
+      "page": 3,
+      "commands": [
+        {
+          "index": 4,
+          "script": "pbWildBattle(:PANPOUR,10)"
+        }
+      ]
+    },
+    {
+      "map": "Map040.rxdata",
+      "event": 16,
+      "page": 0,
+      "commands": [
+        {
+          "index": 3,
+          "script": "pbWildBattle(:TEDDIURSA,14)"
+        }
+      ]
+    },
+    {
+      "map": "Map043.rxdata",
+      "event": 2,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:WHISMUR,5)"
+        }
+      ]
+    },
+    {
+      "map": "Map043.rxdata",
+      "event": 2,
+      "page": 1,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:IMPIDIMP,5)"
+        }
+      ]
+    },
+    {
+      "map": "Map043.rxdata",
+      "event": 2,
+      "page": 2,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:MACHOP,5)"
+        }
+      ]
+    },
+    {
+      "map": "Map043.rxdata",
+      "event": 2,
+      "page": 3,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:ROGGENROLA,5)"
+        }
+      ]
+    },
+    {
+      "map": "Map052.rxdata",
+      "event": 24,
+      "page": 0,
+      "commands": [
+        {
+          "index": 16,
+          "script": "pbWildBattle(:TYNAMO,10)"
+        }
+      ]
+    },
+    {
+      "map": "Map057.rxdata",
+      "event": 18,
+      "page": 0,
+      "commands": [
+        {
+          "index": 3,
+          "script": "pbWildBattle(:TEDDIURSA,14)"
+        }
+      ]
+    },
+    {
+      "map": "Map057.rxdata",
+      "event": 31,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:SURSKIT,10)"
+        }
+      ]
+    },
+    {
+      "map": "Map057.rxdata",
+      "event": 32,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:SURSKIT,10)"
+        }
+      ]
+    },
+    {
+      "map": "Map057.rxdata",
+      "event": 33,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:SURSKIT,10)"
+        }
+      ]
+    },
+    {
+      "map": "Map057.rxdata",
+      "event": 34,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:SURSKIT,10)"
+        }
+      ]
+    },
+    {
+      "map": "Map057.rxdata",
+      "event": 72,
+      "page": 0,
+      "commands": [
+        {
+          "index": 3,
+          "script": "pbWildBattle(:TEDDIURSA,14)"
+        }
+      ]
+    },
+    {
+      "map": "Map057.rxdata",
+      "event": 73,
+      "page": 0,
+      "commands": [
+        {
+          "index": 3,
+          "script": "pbWildBattle(:TEDDIURSA,14)"
+        }
+      ]
+    },
+    {
+      "map": "Map057.rxdata",
+      "event": 138,
+      "page": 0,
+      "commands": [
+        {
+          "index": 3,
+          "script": "pbWildBattle(:TEDDIURSA,14)"
+        }
+      ]
+    },
+    {
+      "map": "Map063.rxdata",
+      "event": 6,
+      "page": 0,
+      "commands": [
+        {
+          "index": 4,
+          "script": "pbWildBattle(:JOLTIK,10)"
+        }
+      ]
+    },
+    {
+      "map": "Map063.rxdata",
+      "event": 6,
+      "page": 1,
+      "commands": [
+        {
+          "index": 4,
+          "script": "pbWildBattle(:GRUBBIN,10)"
+        }
+      ]
+    },
+    {
+      "map": "Map063.rxdata",
+      "event": 6,
+      "page": 2,
+      "commands": [
+        {
+          "index": 4,
+          "script": "pbWildBattle(:DRIFLOON,10)"
+        }
+      ]
+    },
+    {
+      "map": "Map066.rxdata",
+      "event": 56,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:TEDDIURSA,14)"
+        }
+      ]
+    },
+    {
+      "map": "Map088.rxdata",
+      "event": 60,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:MAKUHITA,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map122.rxdata",
+      "event": 2,
+      "page": 0,
+      "commands": [
+        {
+          "index": 15,
+          "script": "pbWildBattle(:PORYGON,28)"
+        }
+      ]
+    },
+    {
+      "map": "Map128.rxdata",
+      "event": 7,
+      "page": 0,
+      "commands": [
+        {
+          "index": 10,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map130.rxdata",
+      "event": 76,
+      "page": 0,
+      "commands": [
+        {
+          "index": 16,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map146.rxdata",
+      "event": 6,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map146.rxdata",
+      "event": 6,
+      "page": 1,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 41,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 136,
+      "page": 0,
+      "commands": [
+        {
+          "index": 13,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 205,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 206,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 207,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 208,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 209,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 210,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 212,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 213,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 214,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 215,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 216,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 217,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 218,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 219,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 222,
+      "page": 0,
+      "commands": [
+        {
+          "index": 11,
+          "script": "pbWildBattle(:BALTOY,27)"
+        },
+        {
+          "index": 29,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 222,
+      "page": 1,
+      "commands": [
+        {
+          "index": 16,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 32,
+          "script": "pbWildBattle(:NATU,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 222,
+      "page": 2,
+      "commands": [
+        {
+          "index": 11,
+          "script": "pbWildBattle(:GOLETT,27)"
+        },
+        {
+          "index": 27,
+          "script": "pbWildBattle(:NATU,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 235,
+      "page": 0,
+      "commands": [
+        {
+          "index": 8,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 240,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:TAILLOW,12)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 240,
+      "page": 1,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:TAILLOW,12)"
+        }
+      ]
+    },
+    {
+      "map": "Map150.rxdata",
+      "event": 240,
+      "page": 2,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:ROOKIDEE,12)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 18,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 129,
+      "page": 0,
+      "commands": [
+        {
+          "index": 12,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 21,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 115,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 116,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 24,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 117,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 25,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 118,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 26,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 119,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 27,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 120,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 157,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 121,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 122,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 123,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 124,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 125,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 126,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map153.rxdata",
+      "event": 17,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map164.rxdata",
+      "event": 25,
+      "page": 0,
+      "commands": [
+        {
+          "index": 19,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map165.rxdata",
+      "event": 35,
+      "page": 0,
+      "commands": [
+        {
+          "index": 3,
+          "script": "pbWildBattle(:HOUNDOUR,22)"
+        }
+      ]
+    },
+    {
+      "map": "Map170.rxdata",
+      "event": 27,
+      "page": 0,
+      "commands": [
+        {
+          "index": 8,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map179.rxdata",
+      "event": 10,
+      "page": 4,
+      "commands": [
+        {
+          "index": 4,
+          "script": "pbWildBattle(:TINKATUFF,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map179.rxdata",
+      "event": 11,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:LUNATONE,28)"
+        }
+      ]
+    },
+    {
+      "map": "Map179.rxdata",
+      "event": 11,
+      "page": 1,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SOLROCK,28)"
+        }
+      ]
+    },
+    {
+      "map": "Map179.rxdata",
+      "event": 12,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:LUNATONE,28)"
+        }
+      ]
+    },
+    {
+      "map": "Map179.rxdata",
+      "event": 12,
+      "page": 1,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SOLROCK,28)"
+        }
+      ]
+    },
+    {
+      "map": "Map197.rxdata",
+      "event": 32,
+      "page": 0,
+      "commands": [
+        {
+          "index": 8,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map199.rxdata",
+      "event": 4,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MAGCARGO,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map200.rxdata",
+      "event": 4,
+      "page": 0,
+      "commands": [
+        {
+          "index": 11,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map200.rxdata",
+      "event": 5,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MAGCARGO,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map200.rxdata",
+      "event": 5,
+      "page": 1,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:TURTONATOR,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map200.rxdata",
+      "event": 5,
+      "page": 2,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MAGCARGO,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map201.rxdata",
+      "event": 5,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MAGCARGO,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map201.rxdata",
+      "event": 6,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MAGCARGO,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map201.rxdata",
+      "event": 7,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MAGCARGO,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map202.rxdata",
+      "event": 5,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MAGCARGO,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map202.rxdata",
+      "event": 6,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MAGCARGO,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map202.rxdata",
+      "event": 7,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MAGCARGO,35)"
+        }
+      ]
+    },
+    {
+      "map": "Map206.rxdata",
+      "event": 38,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map206.rxdata",
+      "event": 39,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map206.rxdata",
+      "event": 40,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map206.rxdata",
+      "event": 41,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map206.rxdata",
+      "event": 42,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map206.rxdata",
+      "event": 43,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map206.rxdata",
+      "event": 44,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map206.rxdata",
+      "event": 45,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map206.rxdata",
+      "event": 46,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map206.rxdata",
+      "event": 47,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map206.rxdata",
+      "event": 88,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLAMIGO,33)"
+        }
+      ]
+    },
+    {
+      "map": "Map206.rxdata",
+      "event": 89,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLAMIGO,33)"
+        }
+      ]
+    },
+    {
+      "map": "Map206.rxdata",
+      "event": 90,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLAMIGO,33)"
+        }
+      ]
+    },
+    {
+      "map": "Map206.rxdata",
+      "event": 91,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLAMIGO,33)"
+        }
+      ]
+    },
+    {
+      "map": "Map218.rxdata",
+      "event": 14,
+      "page": 0,
+      "commands": [
+        {
+          "index": 18,
+          "script": "pbWildBattle(:BELDUM,1)"
+        }
+      ]
+    },
+    {
+      "map": "Map220.rxdata",
+      "event": 2,
+      "page": 0,
+      "commands": [
+        {
+          "index": 18,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map220.rxdata",
+      "event": 3,
+      "page": 0,
+      "commands": [
+        {
+          "index": 18,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map231.rxdata",
+      "event": 46,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:SOLROCK,40)"
+        }
+      ]
+    },
+    {
+      "map": "Map231.rxdata",
+      "event": 46,
+      "page": 1,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:LUNATONE,40)"
+        }
+      ]
+    },
+    {
+      "map": "Map231.rxdata",
+      "event": 46,
+      "page": 2,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:SOLROCK,40)"
+        }
+      ]
+    },
+    {
+      "map": "Map231.rxdata",
+      "event": 46,
+      "page": 3,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:LUNATONE,40)"
+        }
+      ]
+    },
+    {
+      "map": "Map234.rxdata",
+      "event": 267,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:REMORAID,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map234.rxdata",
+      "event": 269,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:REMORAID,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map234.rxdata",
+      "event": 271,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:REMORAID,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map234.rxdata",
+      "event": 273,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:REMORAID,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 4,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 5,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 7,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 8,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 9,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 10,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 11,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 12,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 13,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 14,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 15,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 16,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 17,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 18,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 19,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 21,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 22,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map248.rxdata",
+      "event": 23,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPOINK,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map268.rxdata",
+      "event": 191,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:GULPIN,5)"
+        }
+      ]
+    },
+    {
+      "map": "Map270.rxdata",
+      "event": 208,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:REMORAID,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map270.rxdata",
+      "event": 210,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:REMORAID,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map270.rxdata",
+      "event": 212,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:REMORAID,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map270.rxdata",
+      "event": 214,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:REMORAID,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map280.rxdata",
+      "event": 2,
+      "page": 1,
+      "commands": [
+        {
+          "index": 11,
+          "script": "pbWildBattle(:DHELMISE,50)"
+        }
+      ]
+    },
+    {
+      "map": "Map281.rxdata",
+      "event": 3,
+      "page": 1,
+      "commands": [
+        {
+          "index": 113,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map282.rxdata",
+      "event": 93,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map282.rxdata",
+      "event": 94,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map282.rxdata",
+      "event": 95,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map282.rxdata",
+      "event": 96,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map282.rxdata",
+      "event": 101,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map282.rxdata",
+      "event": 102,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map282.rxdata",
+      "event": 103,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map282.rxdata",
+      "event": 104,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map282.rxdata",
+      "event": 105,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map282.rxdata",
+      "event": 106,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map282.rxdata",
+      "event": 120,
+      "page": 0,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattle(:FLABEBE,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map282.rxdata",
+      "event": 121,
+      "page": 0,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattle(:FLABEBE,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map283.rxdata",
+      "event": 107,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map283.rxdata",
+      "event": 108,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map283.rxdata",
+      "event": 109,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map283.rxdata",
+      "event": 110,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map283.rxdata",
+      "event": 111,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map283.rxdata",
+      "event": 112,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map283.rxdata",
+      "event": 113,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map283.rxdata",
+      "event": 114,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map283.rxdata",
+      "event": 115,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map283.rxdata",
+      "event": 116,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map283.rxdata",
+      "event": 125,
+      "page": 0,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattle(:FLABEBE,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map283.rxdata",
+      "event": 126,
+      "page": 0,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattle(:FLABEBE,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map283.rxdata",
+      "event": 127,
+      "page": 0,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattle(:FLABEBE,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map284.rxdata",
+      "event": 66,
+      "page": 0,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattle(:FLABEBE,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map284.rxdata",
+      "event": 57,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map284.rxdata",
+      "event": 67,
+      "page": 0,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattle(:FLABEBE,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map284.rxdata",
+      "event": 58,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map284.rxdata",
+      "event": 59,
+      "page": 0,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattle(:FLABEBE,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map284.rxdata",
+      "event": 53,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map284.rxdata",
+      "event": 54,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map285.rxdata",
+      "event": 66,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:BOUFFALANT,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map285.rxdata",
+      "event": 11,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:BOUFFALANT,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map285.rxdata",
+      "event": 12,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:TAUROS,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map285.rxdata",
+      "event": 60,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:BOUFFALANT,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map285.rxdata",
+      "event": 61,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:BOUFFALANT,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map285.rxdata",
+      "event": 62,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:TAUROS,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map285.rxdata",
+      "event": 63,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:TAUROS,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map285.rxdata",
+      "event": 65,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:TAUROS,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map286.rxdata",
+      "event": 48,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:BOUFFALANT,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map286.rxdata",
+      "event": 49,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:TAUROS,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map286.rxdata",
+      "event": 50,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:BOUFFALANT,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map286.rxdata",
+      "event": 51,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:BOUFFALANT,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map286.rxdata",
+      "event": 52,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:TAUROS,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map286.rxdata",
+      "event": 53,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:TAUROS,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map286.rxdata",
+      "event": 54,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:BOUFFALANT,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map286.rxdata",
+      "event": 55,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:TAUROS,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map286.rxdata",
+      "event": 64,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:BOUFFALANT,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map286.rxdata",
+      "event": 65,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:TAUROS,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map287.rxdata",
+      "event": 23,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:BOUFFALANT,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map287.rxdata",
+      "event": 24,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:TAUROS,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map287.rxdata",
+      "event": 25,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:BOUFFALANT,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map287.rxdata",
+      "event": 26,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:TAUROS,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map287.rxdata",
+      "event": 27,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:BOUFFALANT,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map287.rxdata",
+      "event": 28,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:TAUROS,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map288.rxdata",
+      "event": 11,
+      "page": 0,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattle(:FLABEBE,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map288.rxdata",
+      "event": 34,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map288.rxdata",
+      "event": 35,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map288.rxdata",
+      "event": 48,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map288.rxdata",
+      "event": 49,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map288.rxdata",
+      "event": 62,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map288.rxdata",
+      "event": 63,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map288.rxdata",
+      "event": 82,
+      "page": 0,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattle(:FLABEBE,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map289.rxdata",
+      "event": 66,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map289.rxdata",
+      "event": 59,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map289.rxdata",
+      "event": 41,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map289.rxdata",
+      "event": 60,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map289.rxdata",
+      "event": 42,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:PINSIR,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map289.rxdata",
+      "event": 93,
+      "page": 0,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattle(:FLABEBE,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map289.rxdata",
+      "event": 65,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattle(:HERACROSS,49)"
+        }
+      ]
+    },
+    {
+      "map": "Map290.rxdata",
+      "event": 92,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:BOUFFALANT,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map290.rxdata",
+      "event": 93,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:TAUROS,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map290.rxdata",
+      "event": 94,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:BOUFFALANT,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map290.rxdata",
+      "event": 95,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:TAUROS,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map290.rxdata",
+      "event": 96,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:BOUFFALANT,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map290.rxdata",
+      "event": 97,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:TAUROS,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map290.rxdata",
+      "event": 82,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:TAUROS,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map290.rxdata",
+      "event": 83,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:BOUFFALANT,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map291.rxdata",
+      "event": 23,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:TAUROS,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map291.rxdata",
+      "event": 24,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattle(:BOUFFALANT,47)"
+        }
+      ]
+    },
+    {
+      "map": "Map329.rxdata",
+      "event": 124,
+      "page": 0,
+      "commands": [
+        {
+          "index": 30,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 50,
+          "script": "pbWildBattle(:LITWICK,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map333.rxdata",
+      "event": 55,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map353.rxdata",
+      "event": 28,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:ELECTRIKE,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map353.rxdata",
+      "event": 62,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:TEDDIURSA,14)"
+        }
+      ]
+    },
+    {
+      "map": "Map355.rxdata",
+      "event": 139,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:TANDEMAUS,56)"
+        }
+      ]
+    },
+    {
+      "map": "Map355.rxdata",
+      "event": 105,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:TANDEMAUS,56)"
+        }
+      ]
+    },
+    {
+      "map": "Map358.rxdata",
+      "event": 301,
+      "page": 0,
+      "commands": [
+        {
+          "index": 16,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        },
+        {
+          "index": 32,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map358.rxdata",
+      "event": 301,
+      "page": 1,
+      "commands": [
+        {
+          "index": 10,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map358.rxdata",
+      "event": 45,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map358.rxdata",
+      "event": 252,
+      "page": 0,
+      "commands": [
+        {
+          "index": 16,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        },
+        {
+          "index": 32,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map358.rxdata",
+      "event": 252,
+      "page": 1,
+      "commands": [
+        {
+          "index": 35,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map358.rxdata",
+      "event": 276,
+      "page": 0,
+      "commands": [
+        {
+          "index": 19,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        },
+        {
+          "index": 35,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map358.rxdata",
+      "event": 276,
+      "page": 1,
+      "commands": [
+        {
+          "index": 10,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map360.rxdata",
+      "event": 2,
+      "page": 0,
+      "commands": [
+        {
+          "index": 16,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        },
+        {
+          "index": 32,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map360.rxdata",
+      "event": 2,
+      "page": 1,
+      "commands": [
+        {
+          "index": 10,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map360.rxdata",
+      "event": 123,
+      "page": 0,
+      "commands": [
+        {
+          "index": 16,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        },
+        {
+          "index": 32,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map360.rxdata",
+      "event": 123,
+      "page": 1,
+      "commands": [
+        {
+          "index": 57,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map360.rxdata",
+      "event": 137,
+      "page": 0,
+      "commands": [
+        {
+          "index": 16,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        },
+        {
+          "index": 32,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map360.rxdata",
+      "event": 137,
+      "page": 1,
+      "commands": [
+        {
+          "index": 37,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map360.rxdata",
+      "event": 198,
+      "page": 0,
+      "commands": [
+        {
+          "index": 16,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        },
+        {
+          "index": 32,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map360.rxdata",
+      "event": 198,
+      "page": 1,
+      "commands": [
+        {
+          "index": 56,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map375.rxdata",
+      "event": 9,
+      "page": 0,
+      "commands": [
+        {
+          "index": 17,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map377.rxdata",
+      "event": 16,
+      "page": 1,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map377.rxdata",
+      "event": 16,
+      "page": 3,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map381.rxdata",
+      "event": 7,
+      "page": 0,
+      "commands": [
+        {
+          "index": 31,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map381.rxdata",
+      "event": 7,
+      "page": 1,
+      "commands": [
+        {
+          "index": 31,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map381.rxdata",
+      "event": 7,
+      "page": 2,
+      "commands": [
+        {
+          "index": 31,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map402.rxdata",
+      "event": 3,
+      "page": 0,
+      "commands": [
+        {
+          "index": 8,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map402.rxdata",
+      "event": 3,
+      "page": 1,
+      "commands": [
+        {
+          "index": 8,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map409.rxdata",
+      "event": 3,
+      "page": 0,
+      "commands": [
+        {
+          "index": 34,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map412.rxdata",
+      "event": 25,
+      "page": 0,
+      "commands": [
+        {
+          "index": 32,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map439.rxdata",
+      "event": 166,
+      "page": 0,
+      "commands": [
+        {
+          "index": 8,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map477.rxdata",
+      "event": 2,
+      "page": 2,
+      "commands": [
+        {
+          "index": 4,
+          "script": "pbWildBattle(:ELECTRODE,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map514.rxdata",
+      "event": 145,
+      "page": 0,
+      "commands": [
+        {
+          "index": 15,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        },
+        {
+          "index": 31,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map514.rxdata",
+      "event": 145,
+      "page": 1,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map514.rxdata",
+      "event": 175,
+      "page": 0,
+      "commands": [
+        {
+          "index": 15,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        },
+        {
+          "index": 31,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map514.rxdata",
+      "event": 175,
+      "page": 1,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map514.rxdata",
+      "event": 179,
+      "page": 0,
+      "commands": [
+        {
+          "index": 15,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        },
+        {
+          "index": 31,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map514.rxdata",
+      "event": 179,
+      "page": 1,
+      "commands": [
+        {
+          "index": 32,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map515.rxdata",
+      "event": 2,
+      "page": 0,
+      "commands": [
+        {
+          "index": 15,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        },
+        {
+          "index": 31,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map515.rxdata",
+      "event": 2,
+      "page": 1,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map515.rxdata",
+      "event": 123,
+      "page": 0,
+      "commands": [
+        {
+          "index": 15,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        },
+        {
+          "index": 31,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map515.rxdata",
+      "event": 123,
+      "page": 1,
+      "commands": [
+        {
+          "index": 54,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map515.rxdata",
+      "event": 137,
+      "page": 0,
+      "commands": [
+        {
+          "index": 15,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        },
+        {
+          "index": 31,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map515.rxdata",
+      "event": 137,
+      "page": 1,
+      "commands": [
+        {
+          "index": 34,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map515.rxdata",
+      "event": 198,
+      "page": 0,
+      "commands": [
+        {
+          "index": 15,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        },
+        {
+          "index": 31,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map515.rxdata",
+      "event": 198,
+      "page": 1,
+      "commands": [
+        {
+          "index": 53,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map515.rxdata",
+      "event": 252,
+      "page": 0,
+      "commands": [
+        {
+          "index": 15,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        },
+        {
+          "index": 31,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map515.rxdata",
+      "event": 252,
+      "page": 1,
+      "commands": [
+        {
+          "index": 32,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map515.rxdata",
+      "event": 276,
+      "page": 0,
+      "commands": [
+        {
+          "index": 15,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        },
+        {
+          "index": 31,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map515.rxdata",
+      "event": 276,
+      "page": 1,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map515.rxdata",
+      "event": 301,
+      "page": 0,
+      "commands": [
+        {
+          "index": 15,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        },
+        {
+          "index": 31,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map515.rxdata",
+      "event": 301,
+      "page": 1,
+      "commands": [
+        {
+          "index": 7,
+          "script": "pbWildBattle(:CRUSTLE,58)"
+        }
+      ]
+    },
+    {
+      "map": "Map524.rxdata",
+      "event": 89,
+      "page": 0,
+      "commands": [
+        {
+          "index": 4,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map525.rxdata",
+      "event": 27,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map525.rxdata",
+      "event": 28,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map525.rxdata",
+      "event": 29,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map525.rxdata",
+      "event": 30,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map525.rxdata",
+      "event": 31,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map525.rxdata",
+      "event": 32,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map527.rxdata",
+      "event": 62,
+      "page": 0,
+      "commands": [
+        {
+          "index": 4,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map529.rxdata",
+      "event": 14,
+      "page": 0,
+      "commands": [
+        {
+          "index": 19,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map543.rxdata",
+      "event": 12,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map543.rxdata",
+      "event": 41,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 23,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 24,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 25,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 26,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 27,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 28,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 29,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 30,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 31,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 32,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 33,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 34,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 35,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 36,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 37,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 38,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 39,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 40,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map544.rxdata",
+      "event": 51,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map545.rxdata",
+      "event": 31,
+      "page": 0,
+      "commands": [
+        {
+          "index": 67,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map548.rxdata",
+      "event": 16,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map548.rxdata",
+      "event": 12,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map548.rxdata",
+      "event": 51,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map548.rxdata",
+      "event": 13,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map548.rxdata",
+      "event": 14,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map548.rxdata",
+      "event": 15,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map549.rxdata",
+      "event": 26,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map549.rxdata",
+      "event": 27,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map549.rxdata",
+      "event": 28,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map549.rxdata",
+      "event": 29,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map550.rxdata",
+      "event": 9,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map550.rxdata",
+      "event": 10,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map550.rxdata",
+      "event": 11,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map550.rxdata",
+      "event": 12,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map550.rxdata",
+      "event": 13,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map550.rxdata",
+      "event": 14,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map550.rxdata",
+      "event": 15,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map550.rxdata",
+      "event": 16,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map551.rxdata",
+      "event": 3,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map551.rxdata",
+      "event": 4,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map551.rxdata",
+      "event": 14,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map551.rxdata",
+      "event": 17,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map552.rxdata",
+      "event": 1,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map552.rxdata",
+      "event": 22,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map552.rxdata",
+      "event": 24,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map552.rxdata",
+      "event": 26,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map553.rxdata",
+      "event": 27,
+      "page": 0,
+      "commands": [
+        {
+          "index": 10,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map565.rxdata",
+      "event": 12,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PINCURCHIN,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map565.rxdata",
+      "event": 18,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PINCURCHIN,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map565.rxdata",
+      "event": 19,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PINCURCHIN,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map565.rxdata",
+      "event": 20,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PINCURCHIN,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map565.rxdata",
+      "event": 21,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PINCURCHIN,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map567.rxdata",
+      "event": 41,
+      "page": 0,
+      "commands": [
+        {
+          "index": 11,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map567.rxdata",
+      "event": 43,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PYUKUMUKU,57)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 9,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 38,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:AMOONGUSS,75)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 10,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 68,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLAMIGO,70)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 11,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 69,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLAMIGO,70)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 12,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 3,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 70,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLAMIGO,70)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 32,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 13,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 4,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 71,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLAMIGO,70)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 14,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 33,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 5,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 34,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:AMOONGUSS,75)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 6,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 35,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:AMOONGUSS,75)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 7,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 36,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:AMOONGUSS,75)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 8,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map569.rxdata",
+      "event": 37,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:AMOONGUSS,75)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 3,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 4,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 5,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 6,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 7,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 8,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 9,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 10,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 11,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 12,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:FOONGUS,30)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 13,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:AMOONGUSS,75)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 14,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:AMOONGUSS,75)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 33,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:AMOONGUSS,75)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 34,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:AMOONGUSS,75)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 35,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:AMOONGUSS,75)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 36,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:AMOONGUSS,75)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 37,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:AMOONGUSS,75)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 38,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:AMOONGUSS,75)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 39,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:AMOONGUSS,75)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 40,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:AMOONGUSS,75)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 42,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:AMOONGUSS,75)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 43,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:AMOONGUSS,75)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 94,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLAMIGO,70)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 95,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLAMIGO,70)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 96,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLAMIGO,70)"
+        }
+      ]
+    },
+    {
+      "map": "Map586.rxdata",
+      "event": 97,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLAMIGO,70)"
+        }
+      ]
+    },
+    {
+      "map": "Map599.rxdata",
+      "event": 11,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map599.rxdata",
+      "event": 12,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map599.rxdata",
+      "event": 13,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map599.rxdata",
+      "event": 14,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map600.rxdata",
+      "event": 8,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map600.rxdata",
+      "event": 9,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattle(:KECLEON,65)"
+        }
+      ]
+    },
+    {
+      "map": "Map602.rxdata",
+      "event": 26,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:WOOBAT,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map602.rxdata",
+      "event": 28,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:WOOBAT,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map602.rxdata",
+      "event": 29,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:WOOBAT,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map602.rxdata",
+      "event": 30,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:WOOBAT,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map602.rxdata",
+      "event": 31,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:WOOBAT,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map602.rxdata",
+      "event": 32,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:WOOBAT,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map602.rxdata",
+      "event": 33,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:WOOBAT,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map602.rxdata",
+      "event": 34,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:WOOBAT,15)"
+        }
+      ]
+    },
+    {
+      "map": "Map604.rxdata",
+      "event": 13,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PYUKUMUKU,70)"
+        }
+      ]
+    },
+    {
+      "map": "Map604.rxdata",
+      "event": 14,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PYUKUMUKU,70)"
+        }
+      ]
+    },
+    {
+      "map": "Map605.rxdata",
+      "event": 16,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PYUKUMUKU,70)"
+        }
+      ]
+    },
+    {
+      "map": "Map605.rxdata",
+      "event": 18,
+      "page": 0,
+      "commands": [
+        {
+          "index": 10,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map605.rxdata",
+      "event": 15,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:PYUKUMUKU,70)"
+        }
+      ]
+    },
+    {
+      "map": "Map621.rxdata",
+      "event": 114,
+      "page": 0,
+      "commands": [
+        {
+          "index": 11,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map636.rxdata",
+      "event": 6,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SALANDIT,50)"
+        }
+      ]
+    },
+    {
+      "map": "Map637.rxdata",
+      "event": 6,
+      "page": 3,
+      "commands": [
+        {
+          "index": 91,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map660.rxdata",
+      "event": 42,
+      "page": 2,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:GIMMIGHOUL,20)"
+        }
+      ]
+    },
+    {
+      "map": "Map669.rxdata",
+      "event": 2,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map669.rxdata",
+      "event": 24,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:DREEPY,5)"
+        }
+      ]
+    },
+    {
+      "map": "Map669.rxdata",
+      "event": 25,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:DREEPY,5)"
+        }
+      ]
+    },
+    {
+      "map": "Map688.rxdata",
+      "event": 14,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map695.rxdata",
+      "event": 14,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map702.rxdata",
+      "event": 10,
+      "page": 0,
+      "commands": [
+        {
+          "index": 59,
+          "script": "pbWildBattle(:CHARCADET, 20)"
+        }
+      ]
+    },
+    {
+      "map": "Map735.rxdata",
+      "event": 43,
+      "page": 0,
+      "commands": [
+        {
+          "index": 29,
+          "script": "pbWildBattle(:MAGEARNA,110)"
+        }
+      ]
+    },
+    {
+      "map": "Map747.rxdata",
+      "event": 13,
+      "page": 0,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map748.rxdata",
+      "event": 9,
+      "page": 1,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map748.rxdata",
+      "event": 9,
+      "page": 2,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map748.rxdata",
+      "event": 9,
+      "page": 3,
+      "commands": [
+        {
+          "index": 5,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map779.rxdata",
+      "event": 85,
+      "page": 0,
+      "commands": [
+        {
+          "index": 33,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 80,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 127,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 212,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 259,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 347,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 394,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 441,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 488,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 581,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 628,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 675,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 725,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 772,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 819,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 866,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 913,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 1000,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 1047,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 1094,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 1141,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 1188,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map807.rxdata",
+      "event": 23,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map825.rxdata",
+      "event": 86,
+      "page": 0,
+      "commands": [
+        {
+          "index": 15,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map825.rxdata",
+      "event": 99,
+      "page": 0,
+      "commands": [
+        {
+          "index": 15,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map825.rxdata",
+      "event": 103,
+      "page": 0,
+      "commands": [
+        {
+          "index": 15,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map825.rxdata",
+      "event": 133,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map825.rxdata",
+      "event": 135,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map831.rxdata",
+      "event": 46,
+      "page": 8,
+      "commands": [
+        {
+          "index": 119,
+          "script": "pbWildBattle(:CRESSELIA,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map833.rxdata",
+      "event": 19,
+      "page": 0,
+      "commands": [
+        {
+          "index": 36,
+          "script": "pbWildBattle(:ENTEI,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map834.rxdata",
+      "event": 17,
+      "page": 0,
+      "commands": [
+        {
+          "index": 37,
+          "script": "pbWildBattle(:SUICUNE,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map834.rxdata",
+      "event": 18,
+      "page": 0,
+      "commands": [
+        {
+          "index": 36,
+          "script": "pbWildBattle(:SUICUNE,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map834.rxdata",
+      "event": 19,
+      "page": 0,
+      "commands": [
+        {
+          "index": 37,
+          "script": "pbWildBattle(:SUICUNE,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map834.rxdata",
+      "event": 20,
+      "page": 0,
+      "commands": [
+        {
+          "index": 41,
+          "script": "pbWildBattle(:RAIKOU,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map834.rxdata",
+      "event": 21,
+      "page": 0,
+      "commands": [
+        {
+          "index": 40,
+          "script": "pbWildBattle(:RAIKOU,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map835.rxdata",
+      "event": 56,
+      "page": 0,
+      "commands": [
+        {
+          "index": 10,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map835.rxdata",
+      "event": 57,
+      "page": 0,
+      "commands": [
+        {
+          "index": 10,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map837.rxdata",
+      "event": 14,
+      "page": 0,
+      "commands": [
+        {
+          "index": 8,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map837.rxdata",
+      "event": 15,
+      "page": 0,
+      "commands": [
+        {
+          "index": 8,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map837.rxdata",
+      "event": 130,
+      "page": 0,
+      "commands": [
+        {
+          "index": 8,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map837.rxdata",
+      "event": 163,
+      "page": 0,
+      "commands": [
+        {
+          "index": 9,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map838.rxdata",
+      "event": 22,
+      "page": 1,
+      "commands": [
+        {
+          "index": 37,
+          "script": "pbWildBattle(:REGIGIGAS,105)"
+        }
+      ]
+    },
+    {
+      "map": "Map839.rxdata",
+      "event": 4,
+      "page": 1,
+      "commands": [
+        {
+          "index": 129,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map849.rxdata",
+      "event": 77,
+      "page": 0,
+      "commands": [
+        {
+          "index": 14,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map850.rxdata",
+      "event": 130,
+      "page": 2,
+      "commands": [
+        {
+          "index": 626,
+          "script": "pbWildBattleObject(pokemon)"
+        },
+        {
+          "index": 735,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map854.rxdata",
+      "event": 52,
+      "page": 0,
+      "commands": [
+        {
+          "index": 36,
+          "script": "pbWildBattle(:JIRACHI,115)"
+        }
+      ]
+    },
+    {
+      "map": "Map855.rxdata",
+      "event": 12,
+      "page": 0,
+      "commands": [
+        {
+          "index": 6,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map855.rxdata",
+      "event": 13,
+      "page": 0,
+      "commands": [
+        {
+          "index": 68,
+          "script": "pbWildBattle(:TAPUKOKO,115)"
+        }
+      ]
+    },
+    {
+      "map": "Map855.rxdata",
+      "event": 15,
+      "page": 0,
+      "commands": [
+        {
+          "index": 65,
+          "script": "pbWildBattle(:TAPULELE,115)"
+        }
+      ]
+    },
+    {
+      "map": "Map855.rxdata",
+      "event": 17,
+      "page": 0,
+      "commands": [
+        {
+          "index": 52,
+          "script": "pbWildBattle(:TAPUBULU,115)"
+        }
+      ]
+    },
+    {
+      "map": "Map855.rxdata",
+      "event": 19,
+      "page": 0,
+      "commands": [
+        {
+          "index": 66,
+          "script": "pbWildBattle(:TAPUFINI,115)"
+        }
+      ]
+    },
+    {
+      "map": "Map860.rxdata",
+      "event": 73,
+      "page": 0,
+      "commands": [
+        {
+          "index": 75,
+          "script": "pbWildBattle(:DIANCIE,115)"
+        }
+      ]
+    },
+    {
+      "map": "Map862.rxdata",
+      "event": 129,
+      "page": 0,
+      "commands": [
+        {
+          "index": 80,
+          "script": "pbWildBattle(:MANAPHY,115)"
+        }
+      ]
+    },
+    {
+      "map": "Map868.rxdata",
+      "event": 5,
+      "page": 0,
+      "commands": [
+        {
+          "index": 39,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map871.rxdata",
+      "event": 189,
+      "page": 0,
+      "commands": [
+        {
+          "index": 30,
+          "script": "pbWildBattle(:PALKIA,120)"
+        }
+      ]
+    },
+    {
+      "map": "Map871.rxdata",
+      "event": 202,
+      "page": 0,
+      "commands": [
+        {
+          "index": 33,
+          "script": "pbWildBattle(:DIALGA,120)"
+        }
+      ]
+    },
+    {
+      "map": "Map873.rxdata",
+      "event": 16,
+      "page": 0,
+      "commands": [
+        {
+          "index": 43,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map877.rxdata",
+      "event": 201,
+      "page": 0,
+      "commands": [
+        {
+          "index": 44,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map880.rxdata",
+      "event": 249,
+      "page": 0,
+      "commands": [
+        {
+          "index": 187,
+          "script": "pbWildBattle(:HOOH,125)"
+        }
+      ]
+    },
+    {
+      "map": "Map882.rxdata",
+      "event": 32,
+      "page": 0,
+      "commands": [
+        {
+          "index": 184,
+          "script": "pbWildBattle(:LUGIA,125)"
+        }
+      ]
+    },
+    {
+      "map": "Map883.rxdata",
+      "event": 11,
+      "page": 0,
+      "commands": [
+        {
+          "index": 11,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map883.rxdata",
+      "event": 12,
+      "page": 0,
+      "commands": [
+        {
+          "index": 11,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map884.rxdata",
+      "event": 11,
+      "page": 0,
+      "commands": [
+        {
+          "index": 82,
+          "script": "pbWildBattle(:DEOXYS,125)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 3,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:ESPEON,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 4,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:UMBREON,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 5,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:UMBREON,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 6,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:ESPEON,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 7,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:ESPEON,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 16,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:ESPEON,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 17,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:CHINGLING,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 18,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:CHINGLING,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 19,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MIGHTYENA,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 37,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:TOGETIC,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 38,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:UMBREON,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 39,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MISMAGIUS,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 42,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:TOGETIC,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 43,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:ESPEON,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 44,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:CLEFFA,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 45,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MISMAGIUS,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 46,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MISMAGIUS,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 49,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:UMBREON,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 50,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:UMBREON,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 51,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:UMBREON,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 52,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLORGES,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 53,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLABEBE,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 54,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLOETTE,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 64,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:ZWEILOUS,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 65,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:ZWEILOUS,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 66,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLOETTE,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 67,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLOETTE,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 68,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:FLORGES,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 69,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:ESPEON,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 70,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:CHINGLING,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 71,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:ESPEON,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 72,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:GRANBULL,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 73,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:ZWEILOUS,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 74,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MURKROW,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 75,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:HOUNDOUR,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 76,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:SPRITZEE,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 77,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:KADABRA,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 78,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:KADABRA,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 79,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:HOUNDOUR,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 80,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:GRANBULL,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 81,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:TOGETIC,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 82,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:DRIFLOON,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 83,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MANDIBUZZ,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 84,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:CHIMECHO,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 85,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:CLEFABLE,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 86,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:HYDREIGON,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 87,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:DEINO,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 88,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:DEINO,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 89,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:DEINO,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 90,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:VULLABY,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 91,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:POOCHYENA,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 92,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:EEVEE,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map886.rxdata",
+      "event": 93,
+      "page": 0,
+      "commands": [
+        {
+          "index": 1,
+          "script": "pbWildBattle(:MISDREAVUS,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 202,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 203,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 204,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 205,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 206,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 207,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 208,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 209,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 210,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 211,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 212,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 213,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 214,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 215,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 216,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 217,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 218,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 219,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 220,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 221,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map887.rxdata",
+      "event": 222,
+      "page": 0,
+      "commands": [
+        {
+          "index": 0,
+          "script": "pbWildBattle(:SUNKERN,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map888.rxdata",
+      "event": 16,
+      "page": 0,
+      "commands": [
+        {
+          "index": 13,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map888.rxdata",
+      "event": 17,
+      "page": 0,
+      "commands": [
+        {
+          "index": 13,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map888.rxdata",
+      "event": 18,
+      "page": 1,
+      "commands": [
+        {
+          "index": 13,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map888.rxdata",
+      "event": 40,
+      "page": 0,
+      "commands": [
+        {
+          "index": 42,
+          "script": "pbWildBattle(:KYUREM,110)"
+        }
+      ]
+    },
+    {
+      "map": "Map889.rxdata",
+      "event": 32,
+      "page": 0,
+      "commands": [
+        {
+          "index": 98,
+          "script": "pbWildBattle(:YVELTAL,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map890.rxdata",
+      "event": 143,
+      "page": 0,
+      "commands": [
+        {
+          "index": 12,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map892.rxdata",
+      "event": 3,
+      "page": 0,
+      "commands": [
+        {
+          "index": 201,
+          "script": "pbWildBattle(:GIRATINA,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map892.rxdata",
+      "event": 3,
+      "page": 1,
+      "commands": [
+        {
+          "index": 156,
+          "script": "pbWildBattle(:GIRATINA,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map893.rxdata",
+      "event": 21,
+      "page": 0,
+      "commands": [
+        {
+          "index": 88,
+          "script": "pbWildBattle(:DARKRAI,120)"
+        }
+      ]
+    },
+    {
+      "map": "Map895.rxdata",
+      "event": 126,
+      "page": 3,
+      "commands": [
+        {
+          "index": 3,
+          "script": "pbWildBattle(:MEW,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map895.rxdata",
+      "event": 130,
+      "page": 0,
+      "commands": [
+        {
+          "index": 3,
+          "script": "pbWildBattle(:MEWTWO,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map896.rxdata",
+      "event": 165,
+      "page": 0,
+      "commands": [
+        {
+          "index": 163,
+          "script": "pbWildBattle(:NECROZMA,130)"
+        }
+      ]
+    },
+    {
+      "map": "Map897.rxdata",
+      "event": 301,
+      "page": 0,
+      "commands": [
+        {
+          "index": 13,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map898.rxdata",
+      "event": 301,
+      "page": 0,
+      "commands": [
+        {
+          "index": 12,
+          "script": "pbWildBattleObject(pokemon)"
+        }
+      ]
+    },
+    {
+      "map": "Map907.rxdata",
+      "event": 15,
+      "page": 0,
+      "commands": [
+        {
+          "index": 11,
+          "script": "pbWildBattle(:OKIDOGI, 120)"
+        }
+      ]
+    },
+    {
+      "map": "Map909.rxdata",
+      "event": 11,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:IRONVALIANT,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map909.rxdata",
+      "event": 2,
+      "page": 0,
+      "commands": [
+        {
+          "index": 174,
+          "script": "pbWildBattle(:ROARINGMOON,115)"
+        }
+      ]
+    },
+    {
+      "map": "Map909.rxdata",
+      "event": 3,
+      "page": 0,
+      "commands": [
+        {
+          "index": 177,
+          "script": "pbWildBattle(:IRONVALIANT,115)"
+        }
+      ]
+    },
+    {
+      "map": "Map909.rxdata",
+      "event": 10,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:ROARINGMOON,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map910.rxdata",
+      "event": 16,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:SANDYSHOCKS,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map910.rxdata",
+      "event": 17,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:SCREAMTAIL,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map910.rxdata",
+      "event": 18,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:SLITHERWING,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map910.rxdata",
+      "event": 13,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:BRUTEBONNET,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map910.rxdata",
+      "event": 14,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:GREATTUSK,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map910.rxdata",
+      "event": 15,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:FLUTTERMANE,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map911.rxdata",
+      "event": 27,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:IRONBUNDLE,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map911.rxdata",
+      "event": 28,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:IRONJUGULIS,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map911.rxdata",
+      "event": 23,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:IRONTREADS,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map911.rxdata",
+      "event": 24,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:IRONHANDS,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map911.rxdata",
+      "event": 25,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:IRONMOTH,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map911.rxdata",
+      "event": 26,
+      "page": 0,
+      "commands": [
+        {
+          "index": 2,
+          "script": "pbWildBattle(:IRONTHORNS,100)"
+        }
+      ]
+    },
+    {
+      "map": "Map921.rxdata",
+      "event": 3,
+      "page": 0,
+      "commands": [
+        {
+          "index": 31,
+          "script": "pbWildBattle(:TINGLU,117)"
+        }
+      ]
+    },
+    {
+      "map": "Map922.rxdata",
+      "event": 2,
+      "page": 0,
+      "commands": [
+        {
+          "index": 31,
+          "script": "pbWildBattle(:CHIYU,117)"
+        }
+      ]
+    },
+    {
+      "map": "Map923.rxdata",
+      "event": 2,
+      "page": 0,
+      "commands": [
+        {
+          "index": 31,
+          "script": "pbWildBattle(:WOCHIEN,117)"
+        }
+      ]
+    },
+    {
+      "map": "Map924.rxdata",
+      "event": 3,
+      "page": 0,
+      "commands": [
+        {
+          "index": 31,
+          "script": "pbWildBattle(:CHIENPAO,117)"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "path": "Graphics/Characters/Followers/722.png",
+      "sha256": "40ff9ce20e3cbcda66e3961c86a1c2ebe579bdf1b7d79949d7dc73a6dca33991",
+      "size": 5449
+    },
+    {
+      "path": "Graphics/Characters/Followers/887s.png",
+      "sha256": "1f44936016e18de061b5c31d28ffe0962efb8ddf0677cb10fa0a0be61a621a98",
+      "size": 7808
+    },
+    {
+      "path": "patch/Mods/zzLegendaryWildMusic.rb",
+      "sha256": "44384b6b135c805c48f80c3f4c12595734bf49b0a30b05e525edd39bdb2acde0",
+      "size": 3495
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "success": true,
+  "resolver_sha256": "a1def40681852e5432a4a17adf390e947132630bc18d5bc3c56335090c2b5e3d",
+  "checks": 11,
+  "cases": [
+    {
+      "dex": 722,
+      "form": 0,
+      "shiny": false,
+      "charset": "Followers/722",
+      "effective_path": "Graphics/Characters/Followers/722.png"
+    },
+    {
+      "dex": 887,
+      "form": 0,
+      "shiny": true,
+      "charset": "Followers/887s",
+      "effective_path": "Graphics/Characters/Followers/887s.png"
+    },
+    {
+      "dex": 1037,
+      "form": 0,
+      "shiny": false,
+      "charset": "Followers/1037",
+      "effective_path": "patch/Graphics/Characters/Followers/1037.png"
+    },
+    {
+      "dex": 1037,
+      "form": 0,
+      "shiny": true,
+      "charset": "Followers/1037s",
+      "effective_path": "patch/Graphics/Characters/Followers/1037s.png"
+    },
+    {
+      "dex": 1038,
+      "form": 0,
+      "shiny": false,
+      "charset": "Followers/1038",
+      "effective_path": "patch/Graphics/Characters/Followers/1038.png"
+    },
+    {
+      "dex": 1038,
+      "form": 0,
+      "shiny": true,
+      "charset": "Followers/1038s",
+      "effective_path": "patch/Graphics/Characters/Followers/1038s.png"
+    },
+    {
+      "dex": 612,
+      "form": 0,
+      "shiny": false,
+      "charset": "Followers/612",
+      "effective_path": "Graphics/Characters/Followers/612.png"
+    },
+    {
+      "dex": 612,
+      "form": 0,
+      "shiny": true,
+      "charset": "Followers/612s",
+      "effective_path": "Graphics/Characters/Followers/612s.png"
+    },
+    {
+      "dex": 612,
+      "form": 1,
+      "shiny": false,
+      "charset": "Followers/612_1",
+      "effective_path": "Graphics/Characters/Followers/612_1.png"
+    }
+  ],
+  "game_started": false,
+  "scope": "Real follower selection methods with inventory-backed engine bitmap resolution"
+}

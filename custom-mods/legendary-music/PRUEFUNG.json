@@ -1,0 +1,717 @@
+{
+  "success": true,
+  "checks": 447,
+  "mapped_species": 70,
+  "selected_tracks": [
+    {
+      "species": "MEW",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "MEWTWO",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "ENTEI",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "RAIKOU",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "SUICUNE",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "LUGIA",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "HOOH",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "LATIAS",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "LATIOS",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "GROUDON",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "KYOGRE",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "RAYQUAZA",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "DEOXYS",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "REGIROCK",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "REGICE",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "REGISTEEL",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "REGIELEKI",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "REGIDRAGO",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "REGIGIGAS",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "DARKRAI",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "CRESSELIA",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "HEATRAN",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "DIALGA",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "PALKIA",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "GIRATINA",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "RESHIRAM",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "ZEKROM",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "KYUREM",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "KELDEO",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "COBALION",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "TERRAKION",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "VIRIZION",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "TORNADUS",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "THUNDURUS",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "LANDORUS",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "ENAMORUS",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "NECROZMA",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "XERNEAS",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "YVELTAL",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "ZYGARDE",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "TAPUBULU",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "TAPUFINI",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "TAPULELE",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "TAPUKOKO",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "JIRACHI",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "MAGEARNA",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "DIANCIE",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "VOLCANION",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "HOOPA",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "GENESECT",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "MELOETTA",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "MANAPHY",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "SHAYMIN",
+      "music_pack": false,
+      "theme": "Battle- Postgame.ogg"
+    },
+    {
+      "species": "CELEBI",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "ARCEUS",
+      "music_pack": false,
+      "theme": "Battle- Elite.ogg"
+    },
+    {
+      "species": "KORAIDON",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "MIRAIDON",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "ETERNATUS",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "ZACIAN",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "ZAMAZENTA",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "ZARUDE",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "WOCHIEN",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "CHIENPAO",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "TINGLU",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "CHIYU",
+      "music_pack": false,
+      "theme": "Battle- Legendary.ogg"
+    },
+    {
+      "species": "OGERPON",
+      "music_pack": false,
+      "theme": "Battle- Misc.ogg"
+    },
+    {
+      "species": "PECHARUNT",
+      "music_pack": false,
+      "theme": "Battle- Misc.ogg"
+    },
+    {
+      "species": "OKIDOGI",
+      "music_pack": false,
+      "theme": "Battle- Misc.ogg"
+    },
+    {
+      "species": "MUNKIDORI",
+      "music_pack": false,
+      "theme": "Battle- Misc.ogg"
+    },
+    {
+      "species": "FEZANDIPITI",
+      "music_pack": false,
+      "theme": "Battle- Misc.ogg"
+    },
+    {
+      "species": "MEW",
+      "music_pack": true,
+      "theme": "CLBattle- Mewtwo"
+    },
+    {
+      "species": "MEWTWO",
+      "music_pack": true,
+      "theme": "CBattle- Fierce"
+    },
+    {
+      "species": "ENTEI",
+      "music_pack": true,
+      "theme": "CLBattle- Beast Trio"
+    },
+    {
+      "species": "RAIKOU",
+      "music_pack": true,
+      "theme": "CLBattle- Beast Trio"
+    },
+    {
+      "species": "SUICUNE",
+      "music_pack": true,
+      "theme": "CLBattle- Beast Trio"
+    },
+    {
+      "species": "LUGIA",
+      "music_pack": true,
+      "theme": "CLBattle- Storm"
+    },
+    {
+      "species": "HOOH",
+      "music_pack": true,
+      "theme": "CLBattle- Radiance"
+    },
+    {
+      "species": "LATIAS",
+      "music_pack": true,
+      "theme": "CLBattle- Latis"
+    },
+    {
+      "species": "LATIOS",
+      "music_pack": true,
+      "theme": "CLBattle- Latis"
+    },
+    {
+      "species": "GROUDON",
+      "music_pack": true,
+      "theme": "CLBattle- Weather Trio"
+    },
+    {
+      "species": "KYOGRE",
+      "music_pack": true,
+      "theme": "CLBattle- Weather Trio"
+    },
+    {
+      "species": "RAYQUAZA",
+      "music_pack": true,
+      "theme": "CLBattle- Weather Trio"
+    },
+    {
+      "species": "DEOXYS",
+      "music_pack": true,
+      "theme": "CLBattle- Deoxys"
+    },
+    {
+      "species": "REGIROCK",
+      "music_pack": true,
+      "theme": "CLBattle- Regis"
+    },
+    {
+      "species": "REGICE",
+      "music_pack": true,
+      "theme": "CLBattle- Regis"
+    },
+    {
+      "species": "REGISTEEL",
+      "music_pack": true,
+      "theme": "CLBattle- Regis"
+    },
+    {
+      "species": "REGIELEKI",
+      "music_pack": true,
+      "theme": "CLBattle- Regis"
+    },
+    {
+      "species": "REGIDRAGO",
+      "music_pack": true,
+      "theme": "CLBattle- Regis"
+    },
+    {
+      "species": "REGIGIGAS",
+      "music_pack": true,
+      "theme": "CLBattle- Regis"
+    },
+    {
+      "species": "DARKRAI",
+      "music_pack": true,
+      "theme": "CLBattle- Moon"
+    },
+    {
+      "species": "CRESSELIA",
+      "music_pack": true,
+      "theme": "CLBattle- Moon"
+    },
+    {
+      "species": "HEATRAN",
+      "music_pack": true,
+      "theme": "CLBattle- Forge"
+    },
+    {
+      "species": "DIALGA",
+      "music_pack": true,
+      "theme": "CLBattle- Dialga-Palkia"
+    },
+    {
+      "species": "PALKIA",
+      "music_pack": true,
+      "theme": "CLBattle- Dialga-Palkia"
+    },
+    {
+      "species": "GIRATINA",
+      "music_pack": true,
+      "theme": "CLBattle- Giratina"
+    },
+    {
+      "species": "RESHIRAM",
+      "music_pack": true,
+      "theme": "CLBattle- Tao Trio"
+    },
+    {
+      "species": "ZEKROM",
+      "music_pack": true,
+      "theme": "CLBattle- Tao Trio"
+    },
+    {
+      "species": "KYUREM",
+      "music_pack": true,
+      "theme": "CLBattle- Tao Trio"
+    },
+    {
+      "species": "KELDEO",
+      "music_pack": true,
+      "theme": "CLBattle- Unova Misc"
+    },
+    {
+      "species": "COBALION",
+      "music_pack": true,
+      "theme": "CLBattle- Unova Misc"
+    },
+    {
+      "species": "TERRAKION",
+      "music_pack": true,
+      "theme": "CLBattle- Unova Misc"
+    },
+    {
+      "species": "VIRIZION",
+      "music_pack": true,
+      "theme": "CLBattle- Unova Misc"
+    },
+    {
+      "species": "TORNADUS",
+      "music_pack": true,
+      "theme": "CLBattle- Unova Misc"
+    },
+    {
+      "species": "THUNDURUS",
+      "music_pack": true,
+      "theme": "CLBattle- Unova Misc"
+    },
+    {
+      "species": "LANDORUS",
+      "music_pack": true,
+      "theme": "CLBattle- Unova Misc"
+    },
+    {
+      "species": "ENAMORUS",
+      "music_pack": true,
+      "theme": "CLBattle- Unova Misc"
+    },
+    {
+      "species": "NECROZMA",
+      "music_pack": true,
+      "theme": "CLBattle- Necrozma"
+    },
+    {
+      "species": "XERNEAS",
+      "music_pack": true,
+      "theme": "CLBattle- Aura Trio"
+    },
+    {
+      "species": "YVELTAL",
+      "music_pack": true,
+      "theme": "CLBattle- Aura Trio"
+    },
+    {
+      "species": "ZYGARDE",
+      "music_pack": true,
+      "theme": "CLBattle- Aura Trio"
+    },
+    {
+      "species": "TAPUBULU",
+      "music_pack": true,
+      "theme": "CLBattle- Tapus"
+    },
+    {
+      "species": "TAPUFINI",
+      "music_pack": true,
+      "theme": "CLBattle- Tapus"
+    },
+    {
+      "species": "TAPULELE",
+      "music_pack": true,
+      "theme": "CLBattle- Tapus"
+    },
+    {
+      "species": "TAPUKOKO",
+      "music_pack": true,
+      "theme": "CLBattle- Tapus"
+    },
+    {
+      "species": "JIRACHI",
+      "music_pack": true,
+      "theme": "CLBattle- Unique"
+    },
+    {
+      "species": "MAGEARNA",
+      "music_pack": true,
+      "theme": "CLBattle- Unique"
+    },
+    {
+      "species": "DIANCIE",
+      "music_pack": true,
+      "theme": "CLBattle- Unique"
+    },
+    {
+      "species": "VOLCANION",
+      "music_pack": true,
+      "theme": "CLBattle- Unique"
+    },
+    {
+      "species": "HOOPA",
+      "music_pack": true,
+      "theme": "CLBattle- Unique"
+    },
+    {
+      "species": "GENESECT",
+      "music_pack": true,
+      "theme": "CLBattle- Unique"
+    },
+    {
+      "species": "MELOETTA",
+      "music_pack": true,
+      "theme": "CLBattle- Mythic"
+    },
+    {
+      "species": "MANAPHY",
+      "music_pack": true,
+      "theme": "CLBattle- Mythic"
+    },
+    {
+      "species": "SHAYMIN",
+      "music_pack": true,
+      "theme": "CLBattle- Mythic"
+    },
+    {
+      "species": "CELEBI",
+      "music_pack": true,
+      "theme": "CLBattle- Mythic"
+    },
+    {
+      "species": "ARCEUS",
+      "music_pack": true,
+      "theme": "CBattle- Supreme"
+    },
+    {
+      "species": "KORAIDON",
+      "music_pack": true,
+      "theme": "CLBattle- Paradox"
+    },
+    {
+      "species": "MIRAIDON",
+      "music_pack": true,
+      "theme": "CLBattle- Paradox"
+    },
+    {
+      "species": "ETERNATUS",
+      "music_pack": true,
+      "theme": "CLBattle- Eternatus"
+    },
+    {
+      "species": "ZACIAN",
+      "music_pack": true,
+      "theme": "CLBattle- Guardians"
+    },
+    {
+      "species": "ZAMAZENTA",
+      "music_pack": true,
+      "theme": "CLBattle- Guardians"
+    },
+    {
+      "species": "ZARUDE",
+      "music_pack": true,
+      "theme": "CLBattle- Guardians"
+    },
+    {
+      "species": "WOCHIEN",
+      "music_pack": true,
+      "theme": "CLBattle- Treasures"
+    },
+    {
+      "species": "CHIENPAO",
+      "music_pack": true,
+      "theme": "CLBattle- Treasures"
+    },
+    {
+      "species": "TINGLU",
+      "music_pack": true,
+      "theme": "CLBattle- Treasures"
+    },
+    {
+      "species": "CHIYU",
+      "music_pack": true,
+      "theme": "CLBattle- Treasures"
+    },
+    {
+      "species": "OGERPON",
+      "music_pack": true,
+      "theme": "CLBattle- Ogerpon"
+    },
+    {
+      "species": "PECHARUNT",
+      "music_pack": true,
+      "theme": "CLBattle- Pecharunt"
+    },
+    {
+      "species": "OKIDOGI",
+      "music_pack": true,
+      "theme": "CLBattle- Ogerpon"
+    },
+    {
+      "species": "MUNKIDORI",
+      "music_pack": true,
+      "theme": "CLBattle- Ogerpon"
+    },
+    {
+      "species": "FEZANDIPITI",
+      "music_pack": true,
+      "theme": "CLBattle- Ogerpon"
+    }
+  ],
+  "mod_sha256": "44384b6b135c805c48f80c3f4c12595734bf49b0a30b05e525edd39bdb2acde0",
+  "actual_sources": [
+    "Scripts/Utilities.rb",
+    "Scripts/Audio.rb",
+    "patch/Mods/AGMusicPack.rb",
+    "patch/Mods/PBS/ttypetext.rb"
+  ],
+  "audio_files_checked": true,
+  "game_started": false,
+  "audible_playback_tested": false
+}

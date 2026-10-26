@@ -1,0 +1,21 @@
+{
+  "success": true,
+  "release": "https://github.com/RoveHD/reborn-update/releases/tag/v7.3.7",
+  "channelCommit": "5201cfe9073e4ffcc6ce15c3c2188b787ab54e63",
+  "sourceCommit": "fbd2f2359a5d5e68617936ff85c9e5ec9b9082f6",
+  "assetsVerified": 7,
+  "gameVersionPreserved": "7.3.5",
+  "publicSelfUpdate": {
+    "from": "7.3.6",
+    "success": true,
+    "restartAcknowledged": true,
+    "realPublicGithubDownload": true,
+    "settingsPreserved": true,
+    "manifestUrl": "https://raw.githubusercontent.com/RoveHD/reborn-update/main/update.json",
+    "oldExeBackupVerified": true,
+    "launcherSha256": "7ebcc0ae50cadf7b88e62a926f03f1bd1bb2baee859cebfdf226f29613aae289",
+    "to": "7.3.7"
+  },
+  "nonLauncherChannelFieldsPreserved": true,
+  "previousChannelCommit": "8b505cee001a58fb8fa27a199201780fb0224587"
+}

@@ -24,4 +24,16 @@ Update-Kanalfelder bleiben unverändert. Tests verwenden isolierte Ordner auf D:
 - Publisher: 6 Sicherheitstests erfolgreich. Änderungen am Spielpaket, entfernte Hotfixes, Änderungen sonstiger Kanalwerte und Überschreiben veröffentlichter Releases werden abgewiesen; der Prüfmodus schreibt nichts. Neue Entwürfe werden direkt anhand der Erstellungsantwort identifiziert, unabhängig von einer kurzzeitig verzögerten GitHub-Release-Liste.
 - Release-Staging prüft Installer-/EXE-Hashes und UI-Nachweise. Der anschließende Prüfmodus vergleicht alle erhaltenen Kanalfelder mit dem aktuellen GitHub-Stand.
 
-Der öffentliche Download-/Selbstupdate-Nachweis wird nach Veröffentlichung separat ergänzt. Automatisierte UI- und Audioprüfungen ersetzen keine vollständige manuelle Prüfung aller Animationen und Lautsprecherwiedergabe.
+## Öffentliche Freigabe und Selbstupdate
+
+[Release v7.3.7](https://github.com/RoveHD/reborn-update/releases/tag/v7.3.7) ist seit 26.10.2026, 13:50:04 UTC öffentlich. Alle 7 Assets besitzen die geprüften Größen und SHA-256-Digests. Quellen: `fbd2f2359a5d5e68617936ff85c9e5ec9b9082f6`; Aktivierung: `5201cfe9073e4ffcc6ce15c3c2188b787ab54e63`.
+
+`tools/test-github-update.ps1 -ExpectedVersion 7.3.7 -FromVersion 7.3.6 -OldSha256 48d3215b6923aa3546a557d08d59e6df3dbb872a477ad0b35fab2f5dcfeb0dc9` erfolgreich:
+
+- Die originale öffentliche 7.3.6-EXE erkennt 7.3.7 über den normalen Kanal `https://raw.githubusercontent.com/RoveHD/reborn-update/main/update.json`.
+- Echter öffentlicher GitHub-Download, Austausch der EXE und Neustart bestätigt.
+- Neue EXE stimmt mit der veröffentlichten Prüfsumme überein; alte EXE ist unter `.previous` gesichert.
+- Einstellungen bleiben erhalten. Automatische Spielupdates sind ausschließlich in dieser isolierten Testinstallation ausgeschaltet.
+- Alle Kanalfelder außer `launcher` und `patchNotes` stimmen mit dem Stand vor Veröffentlichung überein, einschließlich Spielpaket, Löschmigrationen und kleinen Hotfixes.
+
+Maschinenlesbarer Nachweis: [launcher-7.3.7-public-checks.json](launcher-7.3.7-public-checks.json). Automatisierte UI- und Audioprüfungen ersetzen keine vollständige manuelle Prüfung aller Animationen und Lautsprecherwiedergabe.

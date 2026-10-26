@@ -1,16 +1,19 @@
 param(
     [string]$ExpectedVersion = '7.2.0',
+    [ValidatePattern('^\d+\.\d+\.\d+$')][string]$FromVersion = '7.0.0',
+    [ValidatePattern('^[a-fA-F0-9]{64}$')][string]$OldSha256 = '0cce75b7f5ae28b28ffd447622fb17edcf2f0c3c2dd1b729922f2e3e4d87073a',
+    [string]$ManifestUrl = 'https://raw.githubusercontent.com/RoveHD/reborn-update/main/update.json',
     [ValidateRange(60,7200)][int]$TimeoutSeconds = 600
 )
 $ErrorActionPreference = 'Stop'
 $repoRoot = Split-Path -Parent $PSScriptRoot
-$legacy = Join-Path $repoRoot 'artifacts/released-launcher-7.0.0.exe'
+$legacy = Join-Path $repoRoot "artifacts/released-launcher-$FromVersion.exe"
 if (-not (Test-Path -LiteralPath $legacy)) {
     New-Item -ItemType Directory -Path (Split-Path -Parent $legacy) -Force | Out-Null
-    Invoke-WebRequest -Uri 'https://github.com/RoveHD/reborn-update/releases/download/v7.0.0/launcher.exe' -OutFile $legacy
+    Invoke-WebRequest -Uri "https://github.com/RoveHD/reborn-update/releases/download/v$FromVersion/launcher.exe" -OutFile $legacy
 }
-if ((Get-FileHash -LiteralPath $legacy -Algorithm SHA256).Hash -ine '0cce75b7f5ae28b28ffd447622fb17edcf2f0c3c2dd1b729922f2e3e4d87073a') { throw 'Nicht die bekannte veröffentlichte Launcher-7.0.0-EXE.' }
-$manifestUrl = 'https://raw.githubusercontent.com/RoveHD/reborn-update/main/update.json'
+if ((Get-FileHash -LiteralPath $legacy -Algorithm SHA256).Hash -ine $OldSha256) { throw "Nicht die bekannte veröffentlichte Launcher-$FromVersion-EXE." }
+$manifestUrl = $ManifestUrl
 $manifest = Invoke-RestMethod -Uri $manifestUrl
 if ($manifest.launcher.version -ne $ExpectedVersion) { throw 'Die neue Version ist im öffentlichen Kanal noch nicht sichtbar.' }
 $testRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot ('test-results/github-update-' + [guid]::NewGuid().ToString('N'))))
@@ -47,10 +50,10 @@ try {
     }
     if (-not $acknowledged) { throw 'Der echte GitHub-Selbstupdate-Neustart wurde nicht bestätigt.' }
     if ((Get-FileHash -LiteralPath $target).Hash -ine $manifest.launcher.sha256) { throw 'Die installierte EXE stimmt nicht mit dem öffentlichen Manifest überein.' }
-    if ((Get-FileHash -LiteralPath ($target+'.previous')).Hash -ine '0cce75b7f5ae28b28ffd447622fb17edcf2f0c3c2dd1b729922f2e3e4d87073a') { throw 'Alte EXE nicht gesichert.' }
+    if ((Get-FileHash -LiteralPath ($target+'.previous')).Hash -ine $OldSha256) { throw 'Alte EXE nicht gesichert.' }
     $after = Get-Content -LiteralPath $settingsPath -Raw | ConvertFrom-Json
     if ($after.autoUpdate -ne $false -or $after.musicEnabled -ne $false -or $after.friendSetting -ne 'keep-live-test' -or $after.installDirectory -ne $testRoot) { throw 'Benutzereinstellungen nicht erhalten.' }
-    $report = @{success=$true; from='7.0.0'; to=$ExpectedVersion; realPublicGithubDownload=$true; restartAcknowledged=$true; oldExeBackupVerified=$true; settingsPreserved=$true; launcherSha256=$manifest.launcher.sha256; testDirectory=$testRoot}
+    $report = @{success=$true; from=$FromVersion; to=$ExpectedVersion; realPublicGithubDownload=$true; manifestUrl=$manifestUrl; restartAcknowledged=$true; oldExeBackupVerified=$true; settingsPreserved=$true; launcherSha256=$manifest.launcher.sha256; testDirectory=$testRoot}
     $report | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $repoRoot 'test-results/github-update.json') -Encoding utf8
     $report | ConvertTo-Json
 }

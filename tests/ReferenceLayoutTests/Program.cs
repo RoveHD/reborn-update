@@ -27,7 +27,6 @@ internal static class Program
             var atmosphere = (AtmosphericBackdrop)window.FindName("AtmosphereView");
             var landscape = Field<Image>(atmosphere, "_landscape");
             var foreground = Field<Image>(atmosphere, "_foreground");
-            var far = (TranslateTransform)landscape.RenderTransform;
             var near = (TranslateTransform)foreground.RenderTransform;
             if (args.Contains("--gallery"))
             {
@@ -63,8 +62,8 @@ internal static class Program
                     {
                         Invoke(window, "PreviewTheme", theme, day); Pump(); window.UpdateLayout();
                         Invoke(window, "VerifyVisibleControls");
-                        Check(((BitmapImage)landscape.Source).UriSource.ToString().Contains(theme + "-landscape"), "Wrong landscape");
-                        Check(((BitmapImage)foreground.Source).UriSource.ToString().Contains(theme + "-foreground"), "Wrong foreground");
+                        Check(((BitmapImage)landscape.Source).UriSource.ToString().Contains(theme == "halloween" ? "halloween-terrain" : theme + "-landscape"), "Wrong landscape");
+                        Check(((BitmapImage)foreground.Source).UriSource.ToString().Contains(theme == "halloween" ? "halloween-near" : theme + "-foreground"), "Wrong foreground");
                         Check(!atmosphere.IsHitTestVisible, "Background intercepts clicks");
                         VerifyAlpha((BitmapSource)foreground.Source);
                         if (width == 1280 && !day) Render((FrameworkElement)window.Content, Path.Combine(output, theme + ".png"));
@@ -88,6 +87,7 @@ internal static class Program
                 window.Width = width; window.Height = height; Pump(); window.UpdateLayout();
                 Invoke(window, "PreviewTheme", "halloween", false); Pump(); window.UpdateLayout();
                 atmosphere.Configure("halloween", false, true, false);
+                var terrain = (TranslateTransform)landscape.RenderTransform;
                 var logoOrigin = logo.TranslatePoint(new Point(), window);
                 var buttonOrigin = start.TranslatePoint(new Point(), window);
                 var corners = new[]
@@ -102,11 +102,11 @@ internal static class Program
                     var corner = corners[i];
                     atmosphere.SetPointer(corner.Point);
                     WaitUntil(() => !Field<DispatcherTimer>(atmosphere, "_camera").IsEnabled, "Camera did not settle");
-                    Check(Math.Abs(far.X - corner.X * 4) < .01 && Math.Abs(far.Y - corner.Y * 2.5) < .01 &&
-                          Math.Abs(near.X - corner.X * 17) < .01 && Math.Abs(near.Y - corner.Y * 10) < .01,
+                    Check(Math.Abs(terrain.X - corner.X * 15) < .01 && Math.Abs(terrain.Y - corner.Y * 8.5) < .01 &&
+                          Math.Abs(near.X - corner.X * 24) < .01 && Math.Abs(near.Y - corner.Y * 14) < .01,
                         "Parallax did not reach the expected corner offsets");
                     VerifyLayerCoverage(landscape, atmosphere, new Rect(0, 0, atmosphere.ActualWidth, atmosphere.ActualHeight), $"landscape {width}x{height}, corner {i}");
-                    VerifyLayerCoverage(foreground, atmosphere, new Rect(0, 64, atmosphere.ActualWidth, Math.Max(0, atmosphere.ActualHeight - 98)), $"foreground {width}x{height}, corner {i}");
+                    VerifyLayerCoverage(foreground, atmosphere, new Rect(0, 0, atmosphere.ActualWidth, atmosphere.ActualHeight), $"foreground {width}x{height}, corner {i}");
                     Check(logo.TranslatePoint(new Point(), window) == logoOrigin && start.TranslatePoint(new Point(), window) == buttonOrigin, "Camera moves interface");
                     if (width == 1920 && height == 1080 && i == corners.Length - 1)
                         Render((FrameworkElement)window.Content, Path.Combine(output, "parallax-corner.png"));
@@ -131,13 +131,9 @@ internal static class Program
             Check(!Field<DispatcherTimer>(atmosphere, "_camera").IsEnabled && near.X == 0, "Hidden window camera runs");
             window.IsHitTestVisible = true;
             window.Show(); Pump();
-            foreach (string kind in new[] { "Extras", "Settings" })
-            {
-                for (int attempt = 0; attempt < 2; attempt++)
-                    VerifyDialog(window, kind, attempt == 1, output);
-            }
-            File.WriteAllText(Path.Combine(output, "result.json"), "{\"success\":true,\"themes\":8,\"lightingStates\":2,\"sizes\":4,\"alphaLayers\":true,\"parallax\":true,\"edgeCoverage\":true,\"fixedUI\":true,\"motionGates\":true,\"modalDialogs\":true,\"downloadCancel\":true}");
-            Console.WriteLine("REFERENCE_LAYOUT_OK 8 themes x 2 lighting states x 4 sizes; alpha, parallax edge coverage at four corners, stationary UI, gates, downloads, modal dialogs/reopen/minsize");
+            VerifyMenus(window, output);
+            File.WriteAllText(Path.Combine(output, "result.json"), "{\"success\":true,\"themes\":8,\"lightingStates\":2,\"sizes\":4,\"alphaLayers\":true,\"parallax\":true,\"edgeCoverage\":true,\"fixedUI\":true,\"motionGates\":true,\"inWindowMenus\":true,\"directMenuSwitching\":true,\"downloadCancel\":true}");
+            Console.WriteLine("REFERENCE_LAYOUT_OK 8 themes x 2 lighting states x 4 sizes; parallax, edge coverage, stationary UI, in-window menus, direct switching, scroll, download cancel");
             return 0;
         }
         catch (Exception ex)
@@ -153,42 +149,57 @@ internal static class Program
         finally { window.Close(); app.Shutdown(); }
     }
 
-    private static void VerifyDialog(MainWindow window, string kind, bool compact, string output)
+    private static void VerifyMenus(MainWindow window, string output)
     {
-        Exception? failure = null;
-        var host = (Border)window.FindName(kind + "Host");
-        window.Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(() =>
+        var panel = (FrameworkElement)window.FindName("NavigationPanel");
+        var navigation = new Dictionary<string, string>
         {
-            Window? dialog = null;
-            try
+            ["Changelog"] = "PatchNotesHost",
+            ["Extras"] = "ExtrasHost",
+            ["Einstellungen"] = "SettingsHost"
+        };
+        var sizes = new[] { (960, 640), (1280, 800), (1920, 640), (1920, 1080) };
+        foreach (var (width, height) in sizes)
+        {
+            window.Width = width; window.Height = height; Pump(); window.UpdateLayout();
+            foreach (var (page, hostName) in navigation)
             {
-                dialog = window.OwnedWindows.Cast<Window>().Single();
-                if (compact) { dialog.Width = dialog.MinWidth; dialog.Height = dialog.MinHeight; }
-                dialog.UpdateLayout(); Pump();
-                Check(host.IsVisible && Window.GetWindow(host) == dialog, "Controls not in owned window");
-                var scroll = (ScrollViewer)host.Child;
-                var panel = (FrameworkElement)window.FindName(kind + "Panel");
-                Check(panel.ActualWidth <= scroll.ViewportWidth + 1, "Dialog clips content horizontally");
-                foreach (FrameworkElement control in Descendants(panel).OfType<FrameworkElement>().Where(c => c is Button or CheckBox or Slider))
+                string buttonName = page switch { "Changelog" => "OpenPatchNotesButton", "Extras" => "ExtrasNavButton", _ => "SettingsNavButton" };
+                ((Button)window.FindName(buttonName)).RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                Pump(); window.UpdateLayout();
+                var host = (Border)window.FindName(hostName);
+                Check(panel.IsVisible && host.IsVisible && Window.GetWindow(host) == window, $"{page} not in main window");
+                Check(!((FrameworkElement)window.FindName("StageArtArea")).IsHitTestVisible, "Scene remains clickable behind menu");
+                var panelBounds = panel.TransformToAncestor(window).TransformBounds(new Rect(panel.RenderSize));
+                Check(panelBounds.Left >= -1 && panelBounds.Right <= window.ActualWidth + 1 && panel.ActualWidth <= 1041,
+                    $"Menu width/placement is wrong at {width}x{height}: {panelBounds}");
+                var content = (FrameworkElement)window.FindName(page == "Changelog" ? "ScenePanel" : page == "Extras" ? "ExtrasPanel" : "SettingsPanel");
+                foreach (FrameworkElement control in Descendants(content).OfType<FrameworkElement>().Where(c => c is Button or CheckBox or Slider))
                 {
                     if (!control.IsVisible) continue;
                     var bounds = control.TransformToAncestor(panel).TransformBounds(new Rect(control.RenderSize));
-                    Check(bounds.Left >= -1 && bounds.Right <= panel.ActualWidth + 1, "Dialog control clipped: " + control.Name);
+                    Check(bounds.Left >= -1 && bounds.Right <= panel.ActualWidth + 1, $"{page} control clipped: {control.Name}");
                 }
-                if (compact && kind == "Settings") Check(scroll.ScrollableHeight > 0, "Settings must scroll at minimum height");
-                scroll.ScrollToEnd(); Pump();
-                Check(Math.Abs(scroll.VerticalOffset - scroll.ScrollableHeight) < 1, "Cannot reach last setting");
-                scroll.ScrollToTop(); Pump();
-                Render((FrameworkElement)dialog.Content, Path.Combine(output, kind.ToLowerInvariant() + (compact ? "-compact" : "") + ".png"));
-                var close = Descendants((DependencyObject)dialog.Content).OfType<Button>().Single(b => b.IsCancel);
-                close.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                var scroll = Descendants(host).OfType<ScrollViewer>().FirstOrDefault();
+                if (scroll is not null && scroll.ScrollableHeight > 0)
+                {
+                    scroll.ScrollToEnd(); Pump();
+                    Check(Math.Abs(scroll.VerticalOffset - scroll.ScrollableHeight) < 1, $"Cannot scroll to end of {page}");
+                    scroll.ScrollToTop(); Pump();
+                }
+                Render((FrameworkElement)window.Content, Path.Combine(output, $"menu-{page.ToLowerInvariant()}-{width}x{height}.png"));
             }
-            catch (Exception ex) { failure = ex; }
-            finally { dialog?.Close(); }
-        }));
-        ((Button)window.FindName(kind + "NavButton")).RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-        if (failure is not null) throw failure;
-        Check(!host.IsVisible && Window.GetWindow(host) == window && window.IsEnabled, "Dialog host not restored");
+        }
+        Invoke(window, "PreviewDownload"); Pump();
+        ((Button)window.FindName("ExtrasNavButton")).RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); Pump(); window.UpdateLayout();
+        var menuCancel = (Button)window.FindName("MenuCancelButton");
+        Check(menuCancel.IsVisible && menuCancel.IsEnabled, "Menu download cancellation is hidden or disabled");
+        menuCancel.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); Pump();
+        Check(Field<System.Threading.CancellationTokenSource?>(window, "_operationCts")?.IsCancellationRequested == true,
+            "Menu cancel did not request cancellation");
+        Invoke(window, "EndDownloadPreview");
+        ((Button)window.FindName("HomeNavButton")).RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); Pump(); window.UpdateLayout();
+        Check(!panel.IsVisible && ((FrameworkElement)window.FindName("StageArtArea")).IsHitTestVisible, "Home did not restore scene input");
     }
 
     private static void VerifyAlpha(BitmapSource source)

@@ -32,9 +32,9 @@ public partial class MainWindow
     private void UpdateWeatherReadingZones(object? sender, EventArgs args)
     {
         var zones = new List<Rect>();
-        foreach (FrameworkElement element in new FrameworkElement[] { HeroPanel, OperationsPanel, PatchNotesHost, SettingsHost, ExtrasHost })
+        foreach (FrameworkElement element in new FrameworkElement[] { HeroPanel, OperationsPanel, NavigationPanel })
         {
-            // Settings/Extras/Changelog hosts move into owned modal windows.
+            // Only the active in-window page contributes a reading zone.
             if (!element.IsVisible || !Root.IsAncestorOf(element) || element.ActualWidth <= 0 || element.ActualHeight <= 0) continue;
             var bounds = element.TransformToAncestor(Root).TransformBounds(new Rect(element.RenderSize));
             bounds.Inflate(8, 8);

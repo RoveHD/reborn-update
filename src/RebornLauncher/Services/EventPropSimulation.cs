@@ -10,6 +10,7 @@ public enum PropKind
 }
 
 public enum PropState { Idle, Active, Broken, Cooldown }
+public enum BatFlightPhase { Perched, Anticipation, Flying, Away, Returning }
 
 /// <summary>Coordinates describe the prop's centre in a 1000 by 400 world, Y downwards.</summary>
 public sealed class EventProp
@@ -21,6 +22,7 @@ public sealed class EventProp
     public double Scale { get; internal set; } = 1;
     public double Rotation { get; internal set; }
     public PropState State { get; internal set; }
+    public BatFlightPhase BatPhase { get; internal set; }
     public double Age { get; internal set; }
     public double Opacity { get; internal set; } = 1;
     public bool IsRare { get; internal set; }
@@ -198,6 +200,11 @@ public sealed class EventPropSimulation
         if (prop.Activations++ > 0) prop.Variant = (prop.Variant + 1) % 4;
         switch (prop.Kind)
         {
+            case PropKind.Bat:
+                prop.BatPhase = BatFlightPhase.Anticipation;
+                prop.RespawnAfter = 3.2 + Next(8, 15);
+                SoundRequested?.Invoke("bat-flap");
+                return true;
             case PropKind.Rocket:
                 prop.Vx = Next(-20, 20); prop.Vy = -Next(180, 230);
                 SoundRequested?.Invoke("rocket-launch");
@@ -282,6 +289,11 @@ public sealed class EventPropSimulation
             }
             prop.StateAge += dt;
             prop.SinceActivation += dt;
+            if (prop.Kind == PropKind.Bat)
+            {
+                StepBatFlight(prop, reduceMotion);
+                continue;
+            }
             if (prop.SinceActivation >= prop.RespawnAfter)
             {
                 ReturnIdle(prop);
@@ -312,6 +324,53 @@ public sealed class EventPropSimulation
         for (int i = 0; i < 18; i++)
             Emit(source.X, source.Y - 12, "spark", 0xFFFFD677, Next(2, 5), Next(-45, 45), -Next(25, 70), 1.3, 12, 0);
         SpawnChild(source, PropKind.Ghost, 1.6);
+    }
+
+    public void CancelBatFlights()
+    {
+        foreach (var prop in _props.Where(p => p.Kind == PropKind.Bat && !p.IsTemporary)) ReturnIdle(prop);
+    }
+
+    private static void StepBatFlight(EventProp p, bool reduced)
+    {
+        double t = p.SinceActivation;
+        if (t >= p.RespawnAfter)
+        {
+            p.BatPhase = BatFlightPhase.Returning; p.State = PropState.Cooldown;
+            p.X = p.HomeX; p.Y = p.HomeY; p.Scale = p.HomeScale; p.Rotation = 0;
+            double fade = Math.Clamp((t - p.RespawnAfter) / .55, 0, 1);
+            p.Opacity = fade * fade * (3 - 2 * fade);
+            if (fade >= 1) ReturnIdle(p);
+            return;
+        }
+        if (reduced)
+        {
+            p.X = p.HomeX; p.Y = p.HomeY; p.Scale = p.HomeScale; p.Rotation = 0;
+            p.Opacity = 1 - Math.Clamp(t / .35, 0, 1);
+            p.BatPhase = t < .35 ? BatFlightPhase.Anticipation : BatFlightPhase.Away;
+            if (t >= .35) p.State = PropState.Cooldown;
+            return;
+        }
+        if (t <= .2)
+        {
+            p.BatPhase = BatFlightPhase.Anticipation;
+            return;
+        }
+        if (t >= 3.2)
+        {
+            p.BatPhase = BatFlightPhase.Away; p.State = PropState.Cooldown; p.Opacity = 0;
+            return;
+        }
+        p.BatPhase = BatFlightPhase.Flying;
+        double u = Math.Clamp((t - .2) / 3, 0, 1), s = u * u * (2 - u), r = 1 - s;
+        double endX = Math.Min(960, p.HomeX + 120), endY = Math.Max(35, p.HomeY - 140);
+        p.X = r*r*r*p.HomeX + 3*r*r*s*Math.Min(960,p.HomeX+14) + 3*r*s*s*Math.Min(960,p.HomeX+80) + s*s*s*endX;
+        p.Y = Math.Max(30, r*r*r*p.HomeY + 3*r*r*s*Math.Max(30,p.HomeY-65) +
+            3*r*s*s*Math.Max(30,p.HomeY-120) + s*s*s*endY + Math.Sin(t*42)*1.5*(1-u));
+        p.Scale = p.HomeScale * (1 - .55*s);
+        p.Rotation = -14*Math.Sin(s*Math.PI) + Math.Sin(t*42)*1.5;
+        double fadeOut = Math.Clamp((u - .72) / .28, 0, 1);
+        p.Opacity = 1 - fadeOut*fadeOut*(3-2*fadeOut);
     }
 
     private void StepActive(EventProp p, double dt, bool reduced)
@@ -430,13 +489,6 @@ public sealed class EventPropSimulation
                 p.Rotation = Math.Sin(t * 13) * 12 * motion;
                 if (t >= 1.9) ReturnIdle(p);
                 return;
-            case PropKind.Bat:
-                double flight = Math.Sin(Math.Min(1, t / 1.3) * Math.PI);
-                p.X = p.HomeX + (p.HomeX < 500 ? 1 : -1) * flight * 12 * motion;
-                p.Y = p.HomeY - flight * 45 * motion;
-                p.Rotation = Math.Sin(t * 15) * 10 * motion;
-                if (t >= 1.3) ReturnIdle(p);
-                return;
             case PropKind.Butterfly:
             case PropKind.Rabbit:
                 p.X = Math.Clamp(p.HomeX + (p.HomeX < 500 ? 1 : -1) * t * 105 * motion, 20, 980);
@@ -493,6 +545,7 @@ public sealed class EventPropSimulation
         p.StateAge = p.Age = p.SinceActivation = 0;
         p.X = p.HomeX; p.Y = p.HomeY; p.Scale = p.HomeScale;
         p.Rotation = 0; p.Opacity = 1; p.Vx = p.Vy = 0;
+        p.BatPhase = BatFlightPhase.Perched;
         // EggCollected intentionally survives respawn: the discovery counter cannot be farmed.
     }
 

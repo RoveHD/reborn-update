@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -9,7 +9,7 @@ using PokemonRebornLauncher.Services;
 
 namespace PokemonRebornLauncher.UI;
 
-/// <summary>Independent landscape, atmosphere and transparent foreground planes.
+/// <summary>Independent painted depth planes, atmosphere and transparent near frame.
 /// Transforms are composited by WPF; the camera timer runs only while settling.</summary>
 public sealed class AtmosphericBackdrop : Grid
 {
@@ -18,7 +18,12 @@ public sealed class AtmosphericBackdrop : Grid
     private readonly Canvas _farCanvas = new() { IsHitTestVisible = false };
     private readonly Canvas _foregroundCanvas = new() { IsHitTestVisible = false };
     private readonly Image _landscape = new() { Stretch = Stretch.UniformToFill };
-    private readonly Image _gengarEmpty = new() { Stretch = Stretch.Fill, Opacity = 0, IsHitTestVisible = false };
+    private readonly Image _forest = new() { Stretch = Stretch.Fill };
+    private readonly Image _castle = new() { Stretch = Stretch.Fill };
+    private readonly Image _gengar = new() { Stretch = Stretch.Fill };
+    private readonly TranslateTransform _castleTransform = new();
+    private readonly TranslateTransform _gengarTransform = new();
+    private readonly TranslateTransform _terrainTransform = new();
     private readonly Image _foreground = new() { Stretch = Stretch.UniformToFill };
     private readonly Border _light = new() { IsHitTestVisible = false };
     private readonly Border _shade = new() { IsHitTestVisible = false };
@@ -38,12 +43,27 @@ public sealed class AtmosphericBackdrop : Grid
     public event Action<string, bool, bool, bool>? ConfigurationChanged;
     private Grid? _foregroundHost;
     private Brush? _defaultForegroundMask;
+    private bool HasDepthLayers => _theme == "halloween";
+
+    /// <summary>The fly-by starts on the independently moving character plane.</summary>
+    public Point? GengarPointIn(Visual destination)
+    {
+        if (!HasDepthLayers || !_gengar.IsLoaded || _gengar.ActualWidth <= 0) return null;
+        return _gengar.TransformToVisual(destination).Transform(new Point(_gengar.ActualWidth / 2, _gengar.ActualHeight / 2));
+    }
 
     public Point? LandscapePointIn(Visual destination, Point normalizedPoint)
     {
         if (!IsLoaded || !_landscape.IsLoaded || _landscape.ActualWidth <= 0 || _landscape.ActualHeight <= 0) return null;
         return _landscape.TransformToVisual(destination).Transform(new Point(
             normalizedPoint.X * _landscape.ActualWidth, normalizedPoint.Y * _landscape.ActualHeight));
+    }
+
+    public Point? CastlePointIn(Visual destination, Point normalizedPoint)
+    {
+        if (!HasDepthLayers || !_castle.IsLoaded || _castle.ActualWidth <= 0 || _castle.ActualHeight <= 0) return null;
+        return _castle.TransformToVisual(destination).Transform(new Point(
+            normalizedPoint.X * _castle.ActualWidth, normalizedPoint.Y * _castle.ActualHeight));
     }
 
     /// <summary>Project an authored foreground pixel through cover/crop and near-camera motion.
@@ -71,13 +91,16 @@ public sealed class AtmosphericBackdrop : Grid
         Background = new SolidColorBrush(Color.FromRgb(9, 10, 23));
         // Oversized pictures live in Canvas so WPF cannot apply the parent Grid's
         // automatic layout clip before the RenderTransform is applied.
+        _farCanvas.Children.Add(_forest);
+        _farCanvas.Children.Add(_castle);
+        _farCanvas.Children.Add(_gengar);
         _farCanvas.Children.Add(_landscape);
-        _farCanvas.Children.Add(_gengarEmpty);
         _foregroundCanvas.Children.Add(_foreground);
         _farHost.Children.Add(_farCanvas);
         _landscape.RenderTransform = _farTransform;
-        _gengarEmpty.RenderTransform = _farTransform;
-        _gengarEmpty.OpacityMask = CreateGengarMask();
+        _forest.RenderTransform = _farTransform;
+        _castle.RenderTransform = _castleTransform;
+        _gengar.RenderTransform = _gengarTransform;
         _air.RenderTransform = _airTransform;
         _foreground.RenderTransform = _nearTransform;
         // The illustration already occludes the Pokémon with local terrain.
@@ -119,19 +142,18 @@ public sealed class AtmosphericBackdrop : Grid
         bool changedTheme = _theme != theme;
         if (changedTheme)
         {
-            SetGengarAbsence(0);
-            _landscape.Source = Load(theme + "-landscape");
-            _gengarEmpty.Source = theme == "halloween" ? Load("halloween-gengar-empty") : null;
-            _foreground.Source = Load(theme + "-foreground");
-            // Halloween's courtyard already supplies solid ground. Keep its upper
-            // tree (and attached spider), without a second translucent rocky floor.
-            _foreground.OpacityMask = theme == "halloween"
-                ? new LinearGradientBrush(new GradientStopCollection
-                {
-                    new(Colors.White, 0), new(Colors.White, .32), new(Colors.Transparent, .50),
-                    new(Colors.Transparent, 1)
-                }, new Point(0, 0), new Point(0, 1)) : _defaultForegroundMask;
             _theme = theme;
+            bool layered = HasDepthLayers;
+            _landscape.Source = Load(layered ? "halloween-terrain" : theme + "-landscape");
+            _forest.Source = layered ? Load("halloween-forest") : null;
+            _castle.Source = layered ? Load("halloween-castle") : null;
+            _gengar.Source = layered ? Load("gengar") : null;
+            _foreground.Source = Load(layered ? "halloween-near" : theme + "-foreground");
+            _landscape.RenderTransform = layered ? _terrainTransform : _farTransform;
+            // Authored transparent foliage includes both treetops and blurred bottom
+            // bushes. No gradient erases the near bushes or cuts a band off the tree.
+            _foreground.OpacityMask = layered ? null : _defaultForegroundMask;
+            _gengar.Opacity = 1;
             FitLandscape();
             _air.SetTheme(theme);
             StopCamera();
@@ -178,17 +200,34 @@ public sealed class AtmosphericBackdrop : Grid
 
     private void FitLandscape()
     {
-        if (_foregroundHost is not null)
-            _foregroundHost.Clip = new RectangleGeometry(new Rect(0, 64, Math.Max(0, ActualWidth), Math.Max(0, ActualHeight - 98)));
-        FitCover(_landscape, _farCanvas, ActualWidth, ActualHeight, 4, 2.5);
-        // Exactly the same dimensions, cover offset and camera transform as the original.
-        _gengarEmpty.Width = _landscape.Width;
-        _gengarEmpty.Height = _landscape.Height;
-        Canvas.SetLeft(_gengarEmpty, Canvas.GetLeft(_landscape));
-        Canvas.SetTop(_gengarEmpty, Canvas.GetTop(_landscape));
-        double foregroundWidth = _foregroundHost?.ActualWidth ?? ActualWidth;
-        double foregroundHeight = _foregroundHost?.ActualHeight ?? ActualHeight;
-        FitCover(_foreground, _foregroundCanvas, foregroundWidth, foregroundHeight, 17, 10);
+        // The entire nearest frame sits behind the fixed interface. Clipping it at
+        // the title bar produced a horizontal seam as its branches moved.
+        if (_foregroundHost is not null) _foregroundHost.Clip = null;
+        if (HasDepthLayers)
+        {
+            // All extracted planes share one registration and one overscan. Giving
+            // each PNG its own cover scale would change their relative positions.
+            double scale = Math.Max((ActualWidth + 48) / 1672, (ActualHeight + 28) / 941);
+            double width = 1672 * scale, height = 941 * scale;
+            double left = (ActualWidth - width) / 2, top = ActualHeight - height + 14;
+            foreach (var image in new[] { _forest, _castle, _landscape, _foreground })
+            {
+                image.Width = width; image.Height = height;
+                Canvas.SetLeft(image, left); Canvas.SetTop(image, top);
+            }
+            // Reuse the existing opaque character artwork; lower body is naturally
+            // occluded by the independent stone-wall plane in front of it.
+            _gengar.Width = 210 * scale; _gengar.Height = 210 * scale;
+            Canvas.SetLeft(_gengar, left + 258 * scale);
+            Canvas.SetTop(_gengar, top + 415 * scale);
+        }
+        else
+        {
+            FitCover(_landscape, _farCanvas, ActualWidth, ActualHeight, 4, 2.5);
+            double foregroundWidth = _foregroundHost?.ActualWidth ?? ActualWidth;
+            double foregroundHeight = _foregroundHost?.ActualHeight ?? ActualHeight;
+            FitCover(_foreground, _foregroundCanvas, foregroundWidth, foregroundHeight, 17, 10);
+        }
     }
 
     private static void FitCover(Image image, Canvas canvas, double viewportWidth, double viewportHeight, double travelX, double travelY)
@@ -236,56 +275,26 @@ public sealed class AtmosphericBackdrop : Grid
     {
         _farTransform.X = -_position.X * 4;
         _farTransform.Y = -_position.Y * 2.5;
+        _castleTransform.X = -_position.X * 7;
+        _castleTransform.Y = -_position.Y * 4;
+        _gengarTransform.X = -_position.X * 11;
+        _gengarTransform.Y = -_position.Y * 6;
+        _terrainTransform.X = -_position.X * 15;
+        _terrainTransform.Y = -_position.Y * 8.5;
         _airTransform.X = -_position.X * 9;
         _airTransform.Y = -_position.Y * 5;
-        _nearTransform.X = -_position.X * 17;
-        _nearTransform.Y = -_position.Y * 10;
+        _nearTransform.X = -_position.X * (HasDepthLayers ? 24 : 17);
+        _nearTransform.Y = -_position.Y * (HasDepthLayers ? 14 : 10);
         CameraChanged?.Invoke(new Point(_airTransform.X, _airTransform.Y));
     }
 
-    /// <summary>Blend only the authored Gengar region; the rest of the landscape stays untouched.</summary>
+    /// <summary>Hide only the character plane during the fly-by; every background
+    /// plane stays untouched and there is no replacement-image patch to expose.</summary>
     public void SetGengarAbsence(double amount)
     {
-        _gengarEmpty.Opacity = _theme == "halloween" && _active && !_reduce
-            && double.IsFinite(amount) ? Math.Clamp(amount, 0, 1) : 0;
-    }
-
-    private static Brush CreateGengarMask()
-    {
-        // Source pixels in the 1672 x 941 illustration. The opaque center covers
-        // Gengar's entire silhouette; 16-pixel feathering hides the inpaint boundary.
-        var center = new Rect(274, 393, 178, 196);
-        const double feather = 16;
-        var drawing = new DrawingGroup();
-        using (var dc = drawing.Open())
-        {
-            dc.DrawRectangle(Brushes.Transparent, null, new Rect(0, 0, 1672, 941));
-            dc.DrawRectangle(Brushes.White, null, center);
-            dc.DrawRectangle(new LinearGradientBrush(Colors.Transparent, Colors.White, 0), null,
-                new Rect(center.Left - feather, center.Top, feather, center.Height));
-            dc.DrawRectangle(new LinearGradientBrush(Colors.White, Colors.Transparent, 0), null,
-                new Rect(center.Right, center.Top, feather, center.Height));
-            dc.DrawRectangle(new LinearGradientBrush(Colors.Transparent, Colors.White, 90), null,
-                new Rect(center.Left, center.Top - feather, center.Width, feather));
-            dc.DrawRectangle(new LinearGradientBrush(Colors.White, Colors.Transparent, 90), null,
-                new Rect(center.Left, center.Bottom, center.Width, feather));
-            // Corner opacity is the same smooth radial falloff as the feathered edges.
-            foreach (var corner in new[] { center.TopLeft, center.TopRight, center.BottomLeft, center.BottomRight })
-            {
-                var gradient = new RadialGradientBrush(Colors.White, Colors.Transparent)
-                {
-                    MappingMode = BrushMappingMode.Absolute, Center = corner, GradientOrigin = corner,
-                    RadiusX = feather, RadiusY = feather
-                };
-                double x = corner.X == center.Left ? corner.X - feather : corner.X;
-                double y = corner.Y == center.Top ? corner.Y - feather : corner.Y;
-                dc.DrawRectangle(gradient, null, new Rect(x, y, feather, feather));
-            }
-        }
-        drawing.Freeze();
-        var mask = new DrawingBrush(drawing) { Stretch = Stretch.Fill };
-        mask.Freeze();
-        return mask;
+        double absence = HasDepthLayers && _active && !_reduce && double.IsFinite(amount)
+            ? Math.Clamp(amount, 0, 1) : 0;
+        _gengar.Opacity = 1 - absence;
     }
 
     private static BitmapSource Load(string name)
@@ -294,9 +303,10 @@ public sealed class AtmosphericBackdrop : Grid
         var source = new BitmapImage();
         source.BeginInit();
         source.CacheOption = BitmapCacheOption.OnLoad;
-        string folder = name.EndsWith("-landscape", StringComparison.Ordinal) || name == "halloween-gengar-empty"
-            ? "inhabited" : "anime";
-        source.UriSource = new Uri($"pack://application:,,,/launcher;component/assets/scenery/{folder}/{name}.png", UriKind.Absolute);
+        string folder = name is "halloween-forest" or "halloween-castle" or "halloween-terrain" or "halloween-near"
+            ? "parallax" : name.EndsWith("-landscape", StringComparison.Ordinal) ? "inhabited" : "anime";
+        string path = name == "gengar" ? "artwork/gengar" : $"scenery/{folder}/{name}";
+        source.UriSource = new Uri($"pack://application:,,,/launcher;component/assets/{path}.png", UriKind.Absolute);
         source.EndInit();
         source.Freeze();
         Images.Add(name, source);

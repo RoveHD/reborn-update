@@ -218,11 +218,7 @@ public partial class MainWindow
 
     private MessageBoxResult ShowPrompt(string message, string title, MessageBoxButton buttons, MessageBoxImage image)
     {
-        // Settings actions can open a prompt while the settings window is modal.
-        // Parent it to that active window so the prompt remains in front and modal
-        // input is nested correctly.
-        var owner = _settingsWindow ?? _extrasWindow ?? _patchNotesWindow ?? this;
-        var dialog = new LauncherDialog(owner, message, title, buttons) { Tag = Tag };
+        var dialog = new LauncherDialog(this, message, title, buttons) { Tag = Tag };
         dialog.ShowDialog();
         return dialog.Result;
     }

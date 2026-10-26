@@ -11,9 +11,9 @@
     <Authors>Elias</Authors>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>assets/reborn.ico</ApplicationIcon>
-    <Version>7.3.6</Version>
-    <AssemblyVersion>7.3.6.0</AssemblyVersion>
-    <FileVersion>7.3.6.0</FileVersion>
+    <Version>7.3.7</Version>
+    <AssemblyVersion>7.3.7.0</AssemblyVersion>
+    <FileVersion>7.3.7.0</FileVersion>
     <Description>Reborn Launcher mit automatischer Selbstaktualisierung</Description>
   </PropertyGroup>
 
@@ -38,10 +38,14 @@
     <Resource Include="assets/artwork/*.png" />
     <Resource Include="assets/scenery/anime/*-foreground.png" />
     <Resource Include="assets/scenery/inhabited/*.png" />
+    <Resource Include="assets/scenery/parallax/*.png" />
     <Resource Include="assets/scenery/props/halloween-*.png" />
     <EmbeddedResource Include="assets/audio/events/*.wav" LogicalName="PokemonRebornLauncher.events.%(Filename).wav"/>
     <None Include="../../docs/EVENT-SOUND-CREDITS.md" Link="credits/EVENT-SOUND-CREDITS.md" CopyToPublishDirectory="PreserveNewest"/>
     <None Include="../../docs/HALLOWEEN-AMBIENT-AUDIO.md" Link="credits/HALLOWEEN-AMBIENT-AUDIO.md" CopyToPublishDirectory="PreserveNewest"/>
+    <None Include="../../docs/HALLOWEEN-BAT-FLIGHT.md" Link="credits/HALLOWEEN-BAT-FLIGHT.md" CopyToPublishDirectory="PreserveNewest"/>
+    <None Include="../../docs/HALLOWEEN-PARALLAX.md" Link="credits/HALLOWEEN-PARALLAX.md" CopyToPublishDirectory="PreserveNewest"/>
+    <None Include="../../docs/HALLOWEEN-PROPS-GROUNDING.md" Link="credits/HALLOWEEN-PROPS-GROUNDING.md" CopyToPublishDirectory="PreserveNewest"/>
     <EmbeddedResource Include="assets/audio/music-*.mp3" LogicalName="PokemonRebornLauncher.%(Filename)%(Extension)" />
     <EmbeddedResource Include="assets/audio/reborn-theme.mp3" LogicalName="PokemonRebornLauncher.reborn-theme.mp3" />
     <None Include="background.png" Condition="Exists('background.png')" CopyToOutputDirectory="PreserveNewest" />

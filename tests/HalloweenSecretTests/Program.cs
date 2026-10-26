@@ -27,7 +27,7 @@ foreach (var kind in new[] { PropKind.Bat, PropKind.Spellbook, PropKind.Potion }
 {
     var prop = simulation.Props.Single(p => p.Kind == kind); double x = prop.X, y = prop.Y;
     Check(simulation.Activate(prop.Id), kind + " activates");
-    for (int i = 0; i < 40; i++) simulation.Step(.05);
+    for (int i = 0; i < (kind == PropKind.Bat ? 400 : 40); i++) simulation.Step(.05);
     Check(prop.State == PropState.Idle && Math.Abs(prop.X-x) < .001 && Math.Abs(prop.Y-y) < .001, kind + " returns to authored home");
 }
 var cauldron = simulation.Props.Single(p => p.Kind == PropKind.Cauldron);

@@ -71,7 +71,7 @@ public partial class MainWindow
 
     private async void EventSettings_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new EventSettingsDialog(_settingsWindow ?? this, _settings);
+        var dialog = new EventSettingsDialog(this, _settings);
         dialog.ShowDialog();
         if (!dialog.Accepted) return;
         dialog.ApplyTo(_settings);

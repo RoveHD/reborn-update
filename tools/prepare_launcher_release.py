@@ -44,6 +44,7 @@ assert tuple(map(int, version.split('.'))) > tuple(map(int, manifest['launcher']
 assert manifest['game']['version'] and len(manifest['game']['sha256']) == 64
 manifest['launcher'] = dict(version=version, url=f'https://github.com/RoveHD/reborn-update/releases/download/v{version}/launcher.exe', sha256=sha(exe), size=exe.stat().st_size)
 manifest['patchNotes'] = (root / f'release-notes-{version}.md').read_text(encoding='utf-8').strip()
+(release / 'patchnotes.txt').write_text(manifest['patchNotes'] + '\n', encoding='utf-8')
 (release / 'update.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 for source in [exe, setup, root / 'ERSTE-SCHRITTE.txt']:
     shutil.copy2(source, release / source.name)
@@ -58,7 +59,7 @@ for key in ['propInteractions', 'eventSoundCodecs', 'halloweenAmbient', 'compact
     if key in smoke:
         evidence[key] = smoke[key]
 (release / 'checks.json').write_text(json.dumps(evidence, indent=2) + '\n', encoding='utf-8')
-names = ['launcher.exe', setup.name, 'update.json', 'ERSTE-SCHRITTE.txt', 'checks.json']
+names = ['launcher.exe', setup.name, 'update.json', 'ERSTE-SCHRITTE.txt', 'checks.json', 'patchnotes.txt']
 (release / 'SHA256SUMS.txt').write_text('\n'.join(sha(release / name) + '  ' + name for name in names) + '\n', encoding='utf-8')
 screens = root / 'docs/screenshots'
 screens.mkdir(exist_ok=True)

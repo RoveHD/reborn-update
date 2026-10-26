@@ -169,6 +169,7 @@ public sealed class EventPropsScene : FrameworkElement
         _enabled = enabled;
         _interactive = interactive;
         if (!enabled || !interactive) _secrets.Interrupt();
+        if (!enabled || !interactive || !active) _simulation.CancelBatFlights();
         _reduceMotion = reduceMotion;
         _active = active;
         _simulation.Configure(enabled && !reduceMotion, Math.Max(0, particleLimit), intensity);
@@ -238,7 +239,14 @@ public sealed class EventPropsScene : FrameworkElement
     }
 
     private IEnumerable<EventProp> VisibleProps => _simulation.Props.Where(p => p.IsTemporary ||
-        (_visiblePropIds.Contains(p.Id) && SpiderFitsArtworkCrop(p)));
+        (_visiblePropIds.Contains(p.Id) && SpiderFitsArtworkCrop(p) && BatFitsArtworkCrop(p)));
+
+    private bool BatFitsArtworkCrop(EventProp prop)
+    {
+        if (prop.Kind != PropKind.Bat || _theme != "halloween" || !_landscapeAnchors.TryGetValue(PropKind.Bat, out Point foot)) return true;
+        double y = foot.Y - GetVisualBounds(prop.Kind).Bottom * PropDipScale(prop);
+        return new Rect(0,0,Math.Max(0,ActualWidth),Math.Max(0,ActualHeight)).Contains(BoxAt(prop,new Point(foot.X,y),true));
+    }
 
     private bool SpiderFitsArtworkCrop(EventProp prop)
     {
@@ -310,16 +318,32 @@ public sealed class EventPropsScene : FrameworkElement
         // A nominal 45-world-unit prop stays at least 24 DIP and scales with the smaller stage axis.
         dc.PushTransform(new ScaleTransform(layout.ScaleX, layout.ScaleY));
         var painted = _theme == "halloween" ? HalloweenPropArtwork.For(prop.Kind) : null;
-        bool groundedArtwork = painted is not null && StandsOnGround(prop.Kind);
+        bool flyingBat = prop.Kind == PropKind.Bat && prop.BatPhase == BatFlightPhase.Flying;
+        bool groundedArtwork = painted is not null && StandsOnGround(prop.Kind) && !flyingBat;
         if (groundedArtwork && prop.State != PropState.Broken && prop.Kind is PropKind.Pumpkin or PropKind.Cauldron)
             dc.DrawEllipse(GroundContactShadow, null, new Point(0, painted!.Bounds.Bottom - 1),
                 painted.Bounds.Width * .42, prop.Kind == PropKind.Cauldron ? 6 : 4);
         // Grounded art rocks around its contact point, never around a floating centre.
-        dc.PushTransform(new RotateTransform(prop.Rotation + (_reduceMotion || groundedArtwork ? 0 : Math.Sin(_phase * 1.1 + prop.Id) * 2),
+        dc.PushTransform(new RotateTransform(prop.Rotation + (_reduceMotion || groundedArtwork || prop.Kind == PropKind.Bat ? 0 : Math.Sin(_phase * 1.1 + prop.Id) * 2),
             0, groundedArtwork ? painted!.Bounds.Bottom : 0));
         dc.PushTransform(new TranslateTransform(0, prop.Id == _hoveredPropId && !groundedArtwork ? -1.5 : 0));
         if (painted is not null && prop.State != PropState.Broken)
-            dc.DrawImage(painted.Image, painted.Bounds);
+        {
+            if (flyingBat)
+            {
+                double blend = Math.Clamp((prop.SinceActivation-.2)/.12,0,1);
+                if (blend < 1) { dc.PushOpacity(1-blend); dc.DrawImage(painted.Image,painted.Bounds); dc.Pop(); }
+                var frame = BatFlightArtwork.Frame(prop.SinceActivation-.2,painted.Bounds);
+                dc.PushOpacity(blend); dc.DrawImage(frame.Image,frame.Bounds); dc.Pop();
+            }
+            else if (prop.Kind == PropKind.Bat && prop.BatPhase == BatFlightPhase.Anticipation && !_reduceMotion)
+            {
+                double squat = Math.Sin(Math.Clamp(prop.SinceActivation/.2,0,1)*Math.PI);
+                dc.PushTransform(new ScaleTransform(1+.04*squat,1-.12*squat,0,painted.Bounds.Bottom));
+                dc.DrawImage(painted.Image,painted.Bounds); dc.Pop();
+            }
+            else dc.DrawImage(painted.Image, painted.Bounds);
+        }
         else DrawKind(dc, prop.Kind, prop.State);
         if (prop.Kind == PropKind.Spellbook && prop.State == PropState.Active && painted is not null && !_reduceMotion)
         {
@@ -582,7 +606,9 @@ public sealed class EventPropsScene : FrameworkElement
     {
         double multiplier = _authoredAnchors.TryGetValue(prop.Id, out SceneDecorationAnchor anchor) ? anchor.ScaleMultiplier : 1;
         double minimum = multiplier < 1 ? .25 : .54;
-        return Math.Clamp(Math.Min(ActualWidth / 1700, ActualHeight / 1000) * prop.Scale * multiplier, minimum, 1.25);
+        double sourceScale = prop.Kind == PropKind.Bat && prop.BatPhase == BatFlightPhase.Flying ? prop.HomeScale : prop.Scale;
+        double scale = Math.Clamp(Math.Min(ActualWidth / 1700, ActualHeight / 1000) * sourceScale * multiplier, minimum, 1.25);
+        return prop.Kind == PropKind.Bat && prop.BatPhase == BatFlightPhase.Flying ? scale * prop.Scale / prop.HomeScale : scale;
     }
 
     private Rect BoxAt(EventProp prop, Point center, bool reserve = false)

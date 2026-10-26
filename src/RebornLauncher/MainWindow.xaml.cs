@@ -138,7 +138,7 @@ public partial class MainWindow : Window
             PatchNotesText.Text = string.IsNullOrWhiteSpace(manifest.PatchNotes)
                 ? "Für diese Version gibt es keine Versionshinweise."
                 : ReadablePatchNotes(manifest.PatchNotes);
-            PatchNotesSubtitle.Text = $"Änderungen für Version {_remoteVersion}";
+            PatchNotesSubtitle.Text = $"Launcher {manifest.Launcher.Version} · Spiel {_remoteVersion}";
             SetStatus("Spielstatus geladen.");
         }
         catch (OperationCanceledException)
@@ -799,7 +799,13 @@ public partial class MainWindow : Window
 
     private void Window_KeyDown(object sender, KeyEventArgs e)
     {
-        if (e.Key == Key.F11)
+        if (e.Key == Key.Escape && (PatchNotesHost.IsVisible || ExtrasHost.IsVisible || SettingsHost.IsVisible))
+        {
+            SetNavigationState("home");
+            HomeNavButton.Focus();
+            e.Handled = true;
+        }
+        else if (e.Key == Key.F11)
         {
             ToggleFullscreen();
         }

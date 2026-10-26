@@ -46,8 +46,9 @@ internal static class Program
             scene.Configure("halloween", decorationsEnabled: true, reduceMotion: false, active: true);
             Check(scene.IsAnimating, "Eligible Halloween scene did not start its wait timer.");
             var backdrop = (AtmosphericBackdrop)window.FindName("AtmosphereView");
-            var patch = (Image)typeof(AtmosphericBackdrop).GetField("_gengarEmpty", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(backdrop)!;
-            Check(patch.Source is BitmapSource { PixelWidth: 1672, PixelHeight: 941 }, "Clean plate dimensions differ from the authored landscape.");
+            var patch = (Image)typeof(AtmosphericBackdrop).GetField("_gengar", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(backdrop)!;
+            Check(patch.Source is BitmapSource { PixelWidth: 475, PixelHeight: 475 }, "Gengar artwork dimensions differ from the existing character artwork.");
+            Check(patch.Opacity == 1, "Halloween did not show the independent Gengar layer initially.");
             // Settle camera and any preview lighting transition before comparing exact pixels.
             backdrop.Configure("halloween", daylight: false, active: true, reduceMotion: true);
             backdrop.Configure("halloween", daylight: false, active: true, reduceMotion: false);
@@ -55,14 +56,14 @@ internal static class Program
             var before = Capture(backdrop);
             scene.TriggerFlyByForTest();
             scene.AdvanceForTest(.32);
-            Check(scene.IsEncounterActive && !scene.IsFlying && scene.BackdropAbsence > .3 && scene.BackdropAbsence < .7,
-                "Gengar did not fade smoothly out of the original wall.");
+            Check(scene.IsEncounterActive && !scene.IsFlying && scene.BackdropAbsence > .3 && scene.BackdropAbsence < .7 && patch.Opacity > .3 && patch.Opacity < .7,
+                "Gengar did not fade smoothly out of the independent Gengar layer.");
             scene.AdvanceForTest(.55);
-            Check(!scene.IsFlying && scene.BackdropAbsence == 1 && patch.Opacity == 1 && laughs == 0,
+            Check(!scene.IsFlying && scene.BackdropAbsence == 1 && patch.Opacity == 0 && laughs == 0,
                 "The short absence phase did not hide only the original Gengar before flight.");
             Render(content, Path.Combine(output, "gengar-vanished.png"));
             var vanished = Capture(backdrop);
-            CheckLocalPatch(before, vanished, backdrop, patch);
+            CheckLocalGengarChange(before, vanished, backdrop, patch);
             scene.AdvanceForTest(.80);
             Check(scene.IsFlying && laughs == 1, "The approach did not produce exactly one laugh cue.");
             scene.AdvanceForTest(.50);
@@ -79,7 +80,7 @@ internal static class Program
                 && flightPixels[((sceneHeight - 1) * sceneWidth + x) * 4 + 3] == 0),
                 "The approaching Gengar silhouette was clipped by the top or bottom window edge.");
             scene.AdvanceForTest(2);
-            Check(!scene.IsEncounterActive && !scene.IsFlying && scene.BackdropAbsence == 0 && patch.Opacity == 0 && laughs == 1,
+            Check(!scene.IsEncounterActive && !scene.IsFlying && scene.BackdropAbsence == 0 && patch.Opacity == 1 && laughs == 1,
                 "Gengar encounter did not restore its original scene or repeated the laugh.");
             Render(content, Path.Combine(output, "gengar-restored.png"));
             Check(Capture(backdrop).SequenceEqual(before), "The completed encounter did not restore the exact original backdrop.");
@@ -91,7 +92,7 @@ internal static class Program
             PumpFor(TimeSpan.FromSeconds(1.2));
             Check(scene.IsEncounterActive, "The real idle timer did not start an encounter.");
             PumpFor(TimeSpan.FromSeconds(4.4));
-            Check(!scene.IsEncounterActive && scene.IsAnimating && patch.Opacity == 0,
+            Check(!scene.IsEncounterActive && scene.IsAnimating && patch.Opacity == 1,
                 "The real timer did not restore the scene and return to its idle schedule.");
             var timer = (DispatcherTimer)typeof(GengarScene).GetField("_timer", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(scene)!;
             Check(timer.IsEnabled && Math.Abs(timer.Interval.TotalSeconds - 1) < .01,
@@ -104,10 +105,10 @@ internal static class Program
             {
                 scene.Configure("halloween", decorationsEnabled: true, reduceMotion: false, active: true);
                 scene.TriggerFlyByForTest(); scene.AdvanceForTest(.85);
-                Check(patch.Opacity == 1, "Test encounter did not hide the original Gengar.");
+                Check(patch.Opacity == 0, "Test encounter did not hide the independent Gengar layer.");
             }
             void CheckRestored(string reason) => Check(!scene.IsAnimating && !scene.IsEncounterActive && !scene.IsFlying
-                && scene.BackdropAbsence == 0 && patch.Opacity == 0, reason);
+                && scene.BackdropAbsence == 0 && patch.Opacity == 1, reason);
             BeginAbsent();
             scene.Configure("halloween", decorationsEnabled: true, reduceMotion: true, active: true);
             CheckRestored("Reduced motion did not stop Gengar and restore the original backdrop.");
@@ -197,23 +198,20 @@ internal static class Program
         bitmap.CopyPixels(pixels, bitmap.PixelWidth * 4, 0);
         return pixels;
     }
-    private static void CheckLocalPatch(byte[] before, byte[] after, AtmosphericBackdrop backdrop, Image patch)
+    private static void CheckLocalGengarChange(byte[] before, byte[] after, AtmosphericBackdrop backdrop, Image gengar)
     {
         int width = (int)Math.Ceiling(backdrop.ActualWidth);
         int changed = 0;
-        var origin = patch.TransformToAncestor(backdrop).Transform(new Point());
-        // Include the 16-source-pixel feather outside the opaque center.
-        var allowed = new Rect(origin.X + 258d / 1672 * patch.ActualWidth - 2,
-            origin.Y + 377d / 941 * patch.ActualHeight - 2,
-            210d / 1672 * patch.ActualWidth + 4, 228d / 941 * patch.ActualHeight + 4);
+        var allowed = gengar.TransformToAncestor(backdrop).TransformBounds(new Rect(0, 0, gengar.ActualWidth, gengar.ActualHeight));
+        allowed.Inflate(2, 2);
         for (int i = 0; i < before.Length; i += 4)
         {
             if (before.AsSpan(i, 4).SequenceEqual(after.AsSpan(i, 4))) continue;
             int pixel = i / 4; int x = pixel % width; int y = pixel / width;
-            Check(allowed.Contains(new Point(x, y)), $"Clean plate altered pixels outside Gengar at {x},{y}.");
+            Check(allowed.Contains(new Point(x, y)), $"Hiding Gengar altered pixels outside its visual bounds at {x},{y}.");
             changed++;
         }
-        Check(changed > 500, "The actual landscape did not visibly lose Gengar.");
+        Check(changed > 500, "The independent Gengar layer did not visibly disappear.");
     }
     private static void Render(FrameworkElement view, string path)
     {

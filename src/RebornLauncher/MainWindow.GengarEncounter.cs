@@ -8,7 +8,7 @@ public partial class MainWindow
     {
         GengarView.BackdropAbsenceChanged += AtmosphereView.SetGengarAbsence;
         void UpdateGengarOrigin() => GengarView.SetSceneOrigin(
-            AtmosphereView.LandscapePointIn(GengarView, new Point(350d / 1672, 500d / 941)));
+            AtmosphereView.GengarPointIn(GengarView));
         GengarView.LayoutUpdated += (_, _) => UpdateGengarOrigin();
         AtmosphereView.CameraChanged += _ => UpdateGengarOrigin();
     }

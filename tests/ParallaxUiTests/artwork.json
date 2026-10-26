@@ -1,0 +1,27 @@
+{
+  "method": "built-in image_gen editing of existing Halloween scene",
+  "reference": "src/RebornLauncher/assets/scenery/inhabited/halloween-landscape.png",
+  "referenceSha256": "1f72334137c56eebc6536ef1ec0accc74611a77ac02ddfdffb24bda0b9fef4c1",
+  "planes": [
+    {
+      "path": "src/RebornLauncher/assets/scenery/parallax/halloween-castle.png",
+      "sha256": "9bb2e913a13ed31cf4a9c3632e8d7ebe3364dddd2cba7d0efb7cebf441d94254",
+      "bytes": 638100
+    },
+    {
+      "path": "src/RebornLauncher/assets/scenery/parallax/halloween-forest.png",
+      "sha256": "8d97e3691afc78321bcc8b69fc0f39cb1b89024292f6bee30482c8443b773789",
+      "bytes": 1974806
+    },
+    {
+      "path": "src/RebornLauncher/assets/scenery/parallax/halloween-near.png",
+      "sha256": "0430dea5bd3d35470d1c3b2c47f4af94adff215db6cc5e5a9b195e1a310981c3",
+      "bytes": 1019748
+    },
+    {
+      "path": "src/RebornLauncher/assets/scenery/parallax/halloween-terrain.png",
+      "sha256": "c26ef00a1a0839b5c0ac9bfe0ab73138c946a8a8c167234ed64135dd5a971103",
+      "bytes": 1305922
+    }
+  ]
+}

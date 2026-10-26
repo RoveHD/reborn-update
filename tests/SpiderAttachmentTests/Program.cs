@@ -38,7 +38,7 @@ internal static class Program
                 Check(Math.Abs(bounds.Width / bounds.Height - (double)bitmap.PixelWidth / bitmap.PixelHeight) < .00001, "Painted prop aspect distorted");
                 frozenArt[anchor.Kind] = art;
             }
-            foreach (var (width, height) in new[] { (960, 640), (1280, 800), (1920, 1080), (1920, 640), (960, 900) })
+            foreach (var (width, height) in new[] { (960, 640), (1280, 800), (1920, 1080), (1920, 640), (960, 900), (960, 1000) })
             {
                 window.Width = width; window.Height = height; Pump();
                 typeof(MainWindow).GetMethod("PreviewTheme", BindingFlags.NonPublic | BindingFlags.Instance)!.Invoke(window, ["halloween", false]);
@@ -48,7 +48,7 @@ internal static class Program
                     typeof(AtmosphericBackdrop).GetField("_position", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(backdrop, camera);
                     typeof(AtmosphericBackdrop).GetMethod("ApplyCamera", BindingFlags.NonPublic | BindingFlags.Instance)!.Invoke(backdrop, null); Pump();
                     bool ordinaryAspect = width != 1920 || height != 640;
-                    ordinaryAspect &= width != 960 || height != 900;
+                    ordinaryAspect &= width != 960 || height < 900;
                     var maybeTether = props.GetSpiderTether();
                     Check(ordinaryAspect == maybeTether.HasValue, "Spider crop visibility mismatch");
                     Point expected = foreground.TransformToVisual(root).Transform(new Point(foreground.ActualWidth * 240 / 1671, foreground.ActualHeight * 224 / 941));
@@ -74,11 +74,18 @@ internal static class Program
                     foreach (var anchor in SceneDecorationLayout.HalloweenAnchorsForAspect((double)width / height))
                     {
                         var actor = props.Props.First(p => p.Kind == anchor.Kind);
+                        if (anchor.Kind == PropKind.Bat && width == 1920 && height == 640)
+                        {
+                            Check(props.GetPlacementBounds().All(p => p.Kind != PropKind.Bat) && !props.ActivateForTest(actor.Id), "Cropped castle roof retains visible/clickable bat");
+                            continue;
+                        }
                         Rect actorBox = props.GetPlacementBounds().First(p => p.Id == actor.Id).Bounds;
                         Check(new Rect(0,0,props.ActualWidth,props.ActualHeight).Contains(actorBox), "Painted prop clipped: " + anchor.Kind);
                         Point actorCenter = new(actorBox.X + actorBox.Width / 2, actorBox.Y + actorBox.Height / 2);
                         Check(VisualTreeHelper.HitTest(props, actorCenter)?.VisualHit == props, "Painted prop hitbox missing: " + anchor.Kind);
-                        Point expectedFoot = landscape.TransformToVisual(root).Transform(new Point(landscape.ActualWidth * anchor.X, landscape.ActualHeight * anchor.Y));
+                        Point expectedFoot = anchor.Kind == PropKind.Bat
+                            ? props.TransformToVisual(root).Transform(backdrop.CastlePointIn(props,new Point(anchor.X,anchor.Y))!.Value)
+                            : landscape.TransformToVisual(root).Transform(new Point(landscape.ActualWidth * anchor.X, landscape.ActualHeight * anchor.Y));
                         var actualCenter = (Point)typeof(EventPropsScene).GetMethod("RenderCenterDip",BindingFlags.NonPublic|BindingFlags.Instance)!.Invoke(props,[actor])!;
                         if (anchor.Kind != PropKind.Ghost)
                         {
@@ -88,6 +95,20 @@ internal static class Program
                             Point actualFoot = props.TransformToVisual(root).Transform(actualCenter);
                             Check((actualFoot - expectedFoot).Length < .01, "Painted foot detached from landscape: " + anchor.Kind);
                         }
+                    }
+                    props.AdvanceForTest(.75);
+                    foreach (var anchor in SceneDecorationLayout.HalloweenAnchorsForAspect((double)width / height)
+                        .Where(a => a.Kind is PropKind.Pumpkin or PropKind.Gravestone or PropKind.Cauldron or PropKind.Candle or PropKind.Spellbook or PropKind.Potion))
+                    {
+                        Point expectedFoot = landscape.TransformToVisual(root).Transform(new Point(
+                            landscape.ActualWidth * anchor.X, landscape.ActualHeight * anchor.Y));
+                        EventProp actor = props.Props.First(p => p.Kind == anchor.Kind);
+                        Point center = (Point)typeof(EventPropsScene).GetMethod("RenderCenterDip",BindingFlags.NonPublic|BindingFlags.Instance)!.Invoke(props,[actor])!;
+                        Rect artworkBounds = (Rect)artworkType.GetProperty("Bounds")!.GetValue(frozenArt[anchor.Kind])!;
+                        double actorScale = (double)typeof(EventPropsScene).GetMethod("PropDipScale",BindingFlags.NonPublic|BindingFlags.Instance)!.Invoke(props,[actor])!;
+                        center.Y += artworkBounds.Bottom * actorScale;
+                        Point actualFoot = props.TransformToVisual(root).Transform(center);
+                        Check((actualFoot - expectedFoot).Length < .01, "Idle ground contact moved off the stone: " + anchor.Kind);
                     }
                     rows.Add(new { width, height, cameraX = camera.X, cameraY = camera.Y, branchX = actual.X, branchY = actual.Y, error = (actual-expected).Length, authoredSpiderCropped = !ordinaryAspect });
                     if (camera == new Point() || camera == new Point(1,1)) Render(root, Path.Combine(output, $"halloween-{width}x{height}-{camera.X}-{camera.Y}.png"));
@@ -112,7 +133,7 @@ internal static class Program
             Check(props.GetSpiderTether() is null, "Spider branch leaked into another theme");
             typeof(MainWindow).GetMethod("PreviewTheme", BindingFlags.NonPublic | BindingFlags.Instance)!.Invoke(window, ["halloween", false]); Pump();
             Check(props.GetSpiderTether() is not null, "Spider branch not restored after theme change");
-            Check(((LinearGradientBrush)foreground.OpacityMask).GradientStops.Last().Color.A == 0, "Halloween floor still half transparent");
+            Check(foreground.Source is BitmapSource { PixelWidth: 1672, PixelHeight: 941 } && foreground.OpacityMask is null, "Halloween near plane is not the full unmasked foliage artwork.");
             foreach (var anchor in SceneDecorationLayout.HalloweenLandscapeAnchors)
             {
                 Check(ReferenceEquals(frozenArt[anchor.Kind], artworkType.GetMethod("For")!.Invoke(null,[anchor.Kind])), "Artwork reloaded during theme change");
@@ -156,6 +177,56 @@ internal static class Program
             props.Configure("halloween", false, true, false,64,1,false,false);
             Check(!props.ActivateForTest(props.Props.First(p => p.Kind == PropKind.Bat).Id), "Disabled interactions still activate");
             ResetScene();
+            foreach (var (width,height) in new[]{(960,640),(1280,800),(1920,1080),(960,900)})
+            {
+                window.Width=width;window.Height=height;Pump();ResetScene();
+                var bat=props.Props.Single(p=>p.Kind==PropKind.Bat);
+                Rect perch=props.GetPlacementBounds().Single(p=>p.Id==bat.Id).Bounds;
+                Render(root,Path.Combine(output,$"bat-{width}x{height}-roof.png"));
+                Click(PropKind.Bat);Check(!props.ActivateForTest(bat.Id),"Flying bat can be clicked twice");
+                double deadline=(double)typeof(EventProp).GetField("RespawnAfter",BindingFlags.NonPublic|BindingFlags.Instance)!.GetValue(bat)!;
+                double previous=0;
+                foreach(var (time,label) in new[]{(.1,"squat"),(.35,"launch"),(1.2,"midflight"),(2.8,"fade"),(3.3,"away"),(deadline+.275,"return"),(deadline+.7,"perched")})
+                {
+                    props.AdvanceForTest(time-previous);previous=time;
+                    Render(root,Path.Combine(output,$"bat-{width}x{height}-{label}.png"));
+                    if(label=="away")
+                    {
+                        Check(bat.Opacity==0 && bat.State==PropState.Cooldown,"Flight must leave an empty roof during cooldown");
+                        Check(VisualTreeHelper.HitTest(props,new Point(perch.X+perch.Width/2,perch.Y+perch.Height/2)) is null,"Invisible bat retains hit target");
+                    }
+                }
+                Check(bat.State==PropState.Idle && bat.Opacity==1,"Bat failed to fade back onto roof");
+            }
+            window.Width=1280;window.Height=800;Pump();ResetScene();
+            Type flightType=typeof(EventPropsScene).Assembly.GetType("PokemonRebornLauncher.UI.BatFlightArtwork")!;
+            Rect batBounds=(Rect)artworkType.GetProperty("Bounds")!.GetValue(frozenArt[PropKind.Bat])!;
+            var registeredFrames=new List<BitmapSource>();
+            for(int i=0;i<6;i++)
+            {
+                var frame=((BitmapSource Image,Rect Bounds))flightType.GetMethod("Frame")!.Invoke(null,[i/32d+.001,batBounds])!;
+                Check(frame.Image.IsFrozen && frame.Image.PixelWidth==512 && frame.Image.PixelHeight==512,"Sprite frame missing, distorted or not frozen");
+                registeredFrames.Add(frame.Image);
+            }
+            Check(registeredFrames.Distinct().Count()==6,"Flight must use six actual sprite frames");
+            Click(PropKind.Bat);
+            var gif=new GifBitmapEncoder();
+            Rect crop=new(root.ActualWidth*.65,64,root.ActualWidth*.35,Math.Min(460,root.ActualHeight-64));
+            for(int i=0;i<36;i++)
+            {
+                if(i>0)props.AdvanceForTest(.1);Pump();
+                var visual=new DrawingVisual();
+                using(var dc=visual.RenderOpen())
+                {
+                    dc.PushTransform(new TranslateTransform(-crop.X,-crop.Y));
+                    dc.DrawRectangle(new VisualBrush(root),null,new Rect(0,0,root.ActualWidth,root.ActualHeight));
+                }
+                var bitmap=new RenderTargetBitmap((int)crop.Width,(int)crop.Height,96,96,PixelFormats.Pbgra32);bitmap.Render(visual);
+                var metadata=new BitmapMetadata("gif");metadata.SetQuery("/grctlext/Delay",(ushort)10);metadata.SetQuery("/grctlext/Disposal",(byte)2);
+                gif.Frames.Add(BitmapFrame.Create(bitmap,null,metadata,null));
+            }
+            using(var stream=File.Create(Path.Combine(output,"bat-roof-flight.gif")))gif.Save(stream);
+            ResetScene();
             var cameraWatch = System.Diagnostics.Stopwatch.StartNew();
             for (int i = 0; i < 120; i++)
             {
@@ -166,7 +237,7 @@ internal static class Program
             cameraWatch.Stop();
             Console.WriteLine($"Camera projection + prop placement: {cameraWatch.Elapsed.TotalMilliseconds / 120:F3}ms/frame (120 deterministic changes, excludes WPF composition)");
             File.WriteAllText(Path.Combine(output,"result.json"), System.Text.Json.JsonSerializer.Serialize(new { success = true, cases = rows }, new System.Text.Json.JsonSerializerOptions { WriteIndented = true }));
-            Console.WriteLine("HALLOWEEN_PAINTED_OK 25 size/camera cases, 8 frozen bitmaps, grounded anchors, hit tests, keyboard/click secrets, duplicates/disabled, update status, particles, theme switch + spider regression"); return 0;
+            Console.WriteLine($"HALLOWEEN_PAINTED_OK {rows.Count} size/camera cases, 8 frozen bitmaps, grounded anchors, hit tests, keyboard/click secrets, duplicates/disabled, update status, particles, theme switch + spider regression"); return 0;
         }
         catch (Exception ex) { Console.WriteLine(ex); return 1; }
         finally { window.Close(); app.Shutdown(); }

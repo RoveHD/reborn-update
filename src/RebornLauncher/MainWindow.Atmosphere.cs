@@ -21,7 +21,9 @@ public partial class MainWindow
             var anchors = new Dictionary<PropKind, Point>();
             if (_activeTheme == "halloween")
                 foreach (var anchor in SceneDecorationLayout.HalloweenAnchorsForAspect(AtmosphereView.ActualWidth / Math.Max(1, AtmosphereView.ActualHeight)))
-                    if (AtmosphereView.LandscapePointIn(EventPropsView, new Point(anchor.X, anchor.Y)) is Point point)
+                    if ((anchor.Kind == PropKind.Bat
+                        ? AtmosphereView.CastlePointIn(EventPropsView, new Point(anchor.X, anchor.Y))
+                        : AtmosphereView.LandscapePointIn(EventPropsView, new Point(anchor.X, anchor.Y))) is Point point)
                         anchors[anchor.Kind] = point;
             EventPropsView.SetLandscapeAttachments(anchors);
         }

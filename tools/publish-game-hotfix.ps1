@@ -11,7 +11,12 @@ $version = $manifest.game.version
 $tag = "v$version"
 $gameAsset = [IO.Path]::GetFileName(([Uri]$manifest.game.url).AbsolutePath)
 if ($gameAsset -ne 'Reborn-AllGen-0.9.9.zip') { throw 'Unerwarteter Spielpaketname. Legacy-Clients dürfen dieses Paket nicht installieren.' }
-if ($manifest.schemaVersion -ne 1 -or $manifest.launcher.version -ne '7.3.0' -or $version -notin @('7.3.1','7.3.2')) { throw 'Unerwartete Hotfix-Version.' }
+$launcherVersion = [Version]::new()
+$gameVersion = [Version]::new()
+if ($manifest.schemaVersion -ne 1 -or
+    $manifest.launcher.version -notmatch '^\d+\.\d+\.\d+$' -or $version -notmatch '^\d+\.\d+\.\d+$' -or
+    -not [Version]::TryParse($manifest.launcher.version, [ref]$launcherVersion) -or
+    -not [Version]::TryParse($version, [ref]$gameVersion)) { throw 'Unerwartete Hotfix-Version.' }
 foreach ($entry in ,@($gameAsset, $manifest.game)) {
     $path = Join-Path $releaseRoot $entry[0]
     $hash = (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash
@@ -25,6 +30,7 @@ foreach ($name in @('package-checks.json','hotfix-checks.json','release-repair.j
 }
 $hotfixChecks = Get-Content -LiteralPath (Join-Path $releaseRoot 'hotfix-checks.json') -Raw | ConvertFrom-Json
 if (-not $hotfixChecks.launcherUnchanged -or $hotfixChecks.archiveSha256 -ne $manifest.game.sha256) { throw 'Hotfix-Nachweis passt nicht.' }
+if ($gameVersion -le [Version]::Parse($hotfixChecks.baselineGameVersion)) { throw 'Der Hotfix muss neuer als seine Ausgangsversion sein.' }
 foreach ($name in @('release-repair.json')) {
     $checks = Get-Content -LiteralPath (Join-Path $releaseRoot $name) -Raw | ConvertFrom-Json
     if ($checks.archiveSha256 -ne $manifest.game.sha256 -or $checks.version -ne $version) { throw "Pruefung gehoert zu anderem Paket: $name" }

@@ -7,10 +7,10 @@
     "size": 137127669
   },
   "game": {
-    "version": "7.3.5",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.5/Reborn-AllGen-0.9.9.zip",
-    "sha256": "9e1fa3b885e051db90ef1b0973d17a56024c687ee25094231b6842c0a9110b54",
-    "size": 1476961003,
+    "version": "7.3.9",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.9/Reborn-AllGen-0.9.9.zip",
+    "sha256": "0d9bfe384cac9ffd34f8fbf48bbeb27c7dafbe2a730bb65112a5c23fcc98df0f",
+    "size": 1476961210,
     "removedFiles": [
       {
         "path": "Audio/SE/003Cry_2.ogg",
@@ -6391,20 +6391,20 @@
       }
     ]
   },
-  "patchNotes": "# Launcher 7.3.8 – Props wieder anklickbar\n\nBehebt den Klickfehler aus 7.3.7: Die unsichtbare Eingabefläche der Startansicht lag vor den Saisonobjekten und fing ihre Mausklicks ab. Die Props liegen jetzt wieder davor und reagieren an ihren sichtbaren Positionen.\n\n- Alle acht Saison-Designs berücksichtigt; Startbutton und obere Navigation bleiben bedienbar.\n- Die Fledermaus am Schlossdach ist nach ihrer Rückkehr wieder anklickbar. Während Flug und Abwesenheit blockiert sie keine Klicks.\n- Die Dekoration bleibt beim Wechsel zu Changelog, Extras und Einstellungen sichtbar. Die festen Bodenpositionen und fünf Halloween-Tiefenebenen bleiben erhalten.\n\nInstallierte Launcher erhalten 7.3.8 automatisch über GitHub. Für eine Neuinstallation **Reborn-Launcher-7.3.8-Setup.exe** verwenden.\n\n**Reiner Launcher-Hotfix:** Spielpaket 7.3.5 / AllGen 0.9.9 und alle Spielhotfixes bleiben unverändert. Kein erneuter Spieldownload erforderlich.",
+  "patchNotes": "Spielhotfix 7.3.9 – Glitzerball-Balance\n\n- Glitzerbälle erhalten bei bereits schillernden legendären und mysteriösen Pokémon jetzt den Fangratenbonus ×4 statt ×8.\n- Gewöhnliche schillernde Pokémon behalten ×8. Bei nicht schillernden Pokémon bleibt der Bonus unverändert.\n- Der Glitzerball macht ein erfolgreich gefangenes Pokémon weiterhin schillernd.\n- Legendären-Stufen, Gen-3-Fangformel, Reborn-Kugel-Sperren und andere Bälle bleiben unverändert.\n- Für eine unveränderte Installation von Spielversion 7.3.5 lädt der Updater nur den kleinen Hotfix. Der Launcher bleibt auf 7.3.8.\n\nSpielstände, persönliche Grafiken, Audio und andere Mods werden von diesem Hotfix nicht verändert. Bei abweichender Fang-Mod verwendet der Updater seinen vorhandenen vollständigen Updatepfad.",
   "gameHotfixes": [
     {
-      "fromVersion": "7.3.2",
-      "version": "7.3.5",
-      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.5/Reborn-Hotfix-7.3.2-to-7.3.5.zip",
-      "sha256": "143593e4e25d405a3f5be578482bca0646105c3dc24c5ff257bf19cffd487562",
-      "size": 4234,
+      "fromVersion": "7.3.5",
+      "version": "7.3.9",
+      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.9/Reborn-Hotfix-7.3.5-to-7.3.9.zip",
+      "sha256": "eb858735221a7e2ea714ca56adf674979d4fa94ee8c0b666bb07f8a4b26842af",
+      "size": 4441,
       "files": [
         {
           "path": "patch/Mods/zzLegendaryCatchDifficulty.rb",
-          "beforeSha256": "736909fc0eca9785c2a119a7d72f085a1df804de8c8b2e2344cda6ba74c63db3",
-          "sha256": "2adf338088066a3b67eeb1d17b9d1077acbffac7b03cf23395430ffc7a619dd3",
-          "size": 11337
+          "beforeSha256": "2adf338088066a3b67eeb1d17b9d1077acbffac7b03cf23395430ffc7a619dd3",
+          "sha256": "82f918bdd7855ec8e3fb57a5af054ff86308514d8b35e3f197954b21d0b8ddf8",
+          "size": 11908
         }
       ]
     }

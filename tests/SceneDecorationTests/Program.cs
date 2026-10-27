@@ -18,17 +18,17 @@ foreach (string theme in themes)
 var winter = SceneDecorationLayout.ForTheme("winter");
 var festival = SceneDecorationLayout.ForTheme("winter", winterFestival: true);
 Check(winter.Count is >= 3 and <= 6 && festival.Count is >= 3 and <= 6, "Winter variants exceed the sparse prop budget.");
-Check(festival.Any(a => a.Kind == PropKind.Snowman && a.GroundFootY is not null), "Winter festival has no grounded snowman.");
+Check(HasSceneryContact("winter", PropKind.Snowman, true), "Winter festival has no snowman scenery contact.");
 Check(festival.Any(a => a.Kind == PropKind.Gift && a.ParentKind == PropKind.PineTree && a.AlignGroundToParent), "Gift is not grouped under the tree base.");
 Check(festival.Count(a => a.ParentKind == PropKind.PineTree && a.Kind is PropKind.Ornament or PropKind.Bell) == 2, "Tree decorations are not attached to the pine anchor.");
 Check(festival.Single(a => a.Kind == PropKind.PineTree).ScaleMultiplier > 1.4, "Winter tree has not been enlarged for its attachments.");
 Check(festival.Where(a => a.ParentKind == PropKind.PineTree && a.Kind is PropKind.Ornament or PropKind.Bell).All(a => a.ScaleMultiplier < .7), "Baubles and bell are not scaled down for the tree.");
-Check(festival.Any(a => a.Kind == PropKind.CandyCane && a.GroundFootY is not null), "Candy cane is not grounded in the snow.");
+Check(HasSceneryContact("winter", PropKind.CandyCane, true), "Candy cane has no snow scenery contact.");
 Check(SceneDecorationLayout.ForTheme("winter").Single(a => a.Kind == PropKind.Icicle).TetherUp, "Winter icicle has no branch connection.");
 Check(SceneDecorationLayout.ForTheme("halloween").Single(a => a.Kind == PropKind.Spider).TetherUp, "Halloween spider has no hanging thread.");
 var arceus = SceneDecorationLayout.ForTheme("arceus");
 Check(arceus.Count(a => a.Kind == PropKind.LightCrystal) == 2, "Arceus platform crystals include a floating center crystal.");
-Check(arceus.Where(a => a.Kind == PropKind.LightCrystal).Select(a => a.GroundFootY).SequenceEqual(new double?[] { .78, .82 }), "Arceus crystals are not pinned to the two terrace levels.");
+Check(HasSceneryContact("arceus", PropKind.LightCrystal), "Arceus crystals are missing terrace scenery contacts.");
 
 for (int w = 960; w <= 1920; w += 160)
 foreach (int h in new[] { 640, 800, 1080 })
@@ -71,6 +71,17 @@ foreach (string theme in themes)
             $"{theme}/{anchor.Kind} visual bounds are outside {w}x{h}: {box}.");
         placed.Add((anchor.Kind, box));
     }
+}
+
+bool HasSceneryContact(string theme, PropKind kind, bool festival = false)
+{
+    var composition = SceneDecorationLayout.ForTheme(theme, festival);
+    int[] indices = Enumerable.Range(0, composition.Count).Where(i => composition[i].Kind == kind).ToArray();
+    return indices.Length > 0 && new[] { .96, 1.6, 3.0 }.All(aspect =>
+    {
+        var contacts = SceneDecorationLayout.SeasonalAnchorsForAspect(theme, aspect, festival);
+        return indices.All(index => contacts.Count(a => a.Index == index && a.X is >= 0 and <= 1 && a.Y is >= 0 and <= 1) == 1);
+    });
 }
 
 void Check(bool condition, string message)

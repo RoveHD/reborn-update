@@ -35,7 +35,7 @@
             </DrawingBrush.Drawing>
         </DrawingBrush>
         <sys:Boolean x:Key="ReduceMotion">False</sys:Boolean>
-        <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">6</sys:Double>
+        <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">8</sys:Double>
         <SolidColorBrush x:Key="Ink" Color="#0B090F" />
         <SolidColorBrush x:Key="Surface" Color="#131018" />
         <SolidColorBrush x:Key="Text" Color="#F4F0F0" />
@@ -45,6 +45,10 @@
         <SolidColorBrush x:Key="Mint" Color="#9BE6D2" />
         <SolidColorBrush x:Key="CtaText" Color="#100B15"/>
         <SolidColorBrush x:Key="Line" Color="#39313F" />
+        <SolidColorBrush x:Key="NavigationSurface" Color="#18141F" />
+        <SolidColorBrush x:Key="NavigationHeader" Color="#241B2C" />
+        <SolidColorBrush x:Key="NavigationFooter" Color="#201A28" />
+        <SolidColorBrush x:Key="NavigationLine" Color="#493B55" />
         <Style x:Key="Eyebrow" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="pack://application:,,,/assets/fonts/#Barlow" />
             <Setter Property="FontSize" Value="12" />
@@ -55,6 +59,12 @@
             <Setter Property="FontFamily" Value="pack://application:,,,/assets/fonts/#Barlow" />
             <Setter Property="Foreground" Value="{DynamicResource Muted}" />
             <Setter Property="FontSize" Value="16" />
+        </Style>
+        <Style x:Key="SettingsHeading" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="pack://application:,,,/assets/fonts/#Barlow" />
+            <Setter Property="Foreground" Value="{DynamicResource Text}" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
         </Style>
         <Style x:Key="SecondaryButton" TargetType="Button">
             <Setter Property="ui:ReactiveFeedback.Enabled" Value="True"/><Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
@@ -76,7 +86,7 @@
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="ButtonSurface" Property="BorderBrush" Value="{DynamicResource Mint}"/><Setter TargetName="ButtonSurface" Property="Background" Value="{DynamicResource Line}"/></Trigger>
+                            <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="ButtonSurface" Property="BorderBrush" Value="{DynamicResource Mint}"/><Setter TargetName="ButtonSurface" Property="Background" Value="{DynamicResource NavigationHeader}"/></Trigger>
                             <Trigger Property="IsPressed" Value="True"><Setter TargetName="ButtonSurface" Property="Opacity" Value="0.72"/></Trigger>
                             <Trigger Property="IsEnabled" Value="False"><Setter TargetName="ButtonSurface" Property="Opacity" Value="0.4"/></Trigger>
                             <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="ButtonSurface" Property="BorderBrush" Value="{DynamicResource Mint}"/></Trigger>
@@ -89,6 +99,7 @@
             <Setter Property="Foreground" Value="#FFB8C0" />
             <Setter Property="BorderBrush" Value="#854357" />
         </Style>
+        <Style x:Key="SettingsButton" TargetType="Button" BasedOn="{StaticResource SecondaryButton}"><Setter Property="FontSize" Value="16"/><Setter Property="MinHeight" Value="44"/></Style>
         <Style x:Key="PrimaryButton" TargetType="Button">
             <Setter Property="ui:ReactiveFeedback.Enabled" Value="True"/><Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
             <Setter Property="Foreground" Value="{DynamicResource CtaText}" />
@@ -134,19 +145,20 @@
         </Style>
         <Style x:Key="ToggleCheckBox" TargetType="CheckBox">
             <Setter Property="ui:ReactiveFeedback.Enabled" Value="True"/><Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
-            <Setter Property="Foreground" Value="{DynamicResource Muted}"/><Setter Property="FontFamily" Value="pack://application:,,,/assets/fonts/#Barlow"/><Setter Property="FontSize" Value="13"/><Setter Property="Cursor" Value="{DynamicResource ThemeCursor}"/><Setter Property="Focusable" Value="True"/>
-            <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="CheckBox"><Grid MinHeight="30"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="44"/></Grid.ColumnDefinitions><ContentPresenter VerticalAlignment="Center" RecognizesAccessKey="True"/><Border x:Name="SwitchTrack" Grid.Column="1" Width="36" Height="20" Background="{DynamicResource Surface}" BorderBrush="{DynamicResource Line}" BorderThickness="1" CornerRadius="10" HorizontalAlignment="Right" VerticalAlignment="Center"><Ellipse x:Name="SwitchThumb" Width="12" Height="12" Fill="#B9AFBF" HorizontalAlignment="Left" Margin="3,0,0,0"><Ellipse.RenderTransform><TranslateTransform x:Name="SwitchPosition" X="0" /></Ellipse.RenderTransform></Ellipse></Border><Border x:Name="FocusMark" Grid.ColumnSpan="2" BorderBrush="Transparent" BorderThickness="1" CornerRadius="1" IsHitTestVisible="False"/></Grid><ControlTemplate.Triggers><Trigger Property="IsChecked" Value="True"><Setter TargetName="SwitchTrack" Property="Background" Value="{DynamicResource Surface}"/><Setter TargetName="SwitchTrack" Property="BorderBrush" Value="{DynamicResource Violet}"/><Setter TargetName="SwitchThumb" Property="Fill" Value="{DynamicResource Mint}"/><Trigger.EnterActions><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="SwitchPosition" Storyboard.TargetProperty="X" To="16" Duration="0:0:0.16"/></Storyboard></BeginStoryboard></Trigger.EnterActions><Trigger.ExitActions><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="SwitchPosition" Storyboard.TargetProperty="X" To="0" Duration="0:0:0.16"/></Storyboard></BeginStoryboard></Trigger.ExitActions></Trigger><Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="FocusMark" Property="BorderBrush" Value="{DynamicResource Mint}"/></Trigger><Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.45"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter>
+            <Setter Property="Foreground" Value="{DynamicResource Text}"/><Setter Property="FontFamily" Value="pack://application:,,,/assets/fonts/#Barlow"/><Setter Property="FontSize" Value="16"/><Setter Property="Cursor" Value="{DynamicResource ThemeCursor}"/><Setter Property="Focusable" Value="True"/>
+            <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="CheckBox"><Grid MinHeight="44"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="44"/></Grid.ColumnDefinitions><ContentPresenter VerticalAlignment="Center" RecognizesAccessKey="True"/><Border x:Name="SwitchTrack" Grid.Column="1" Width="38" Height="22" Background="{DynamicResource Surface}" BorderBrush="{DynamicResource Line}" BorderThickness="1" CornerRadius="11" HorizontalAlignment="Right" VerticalAlignment="Center"><Ellipse x:Name="SwitchThumb" Width="14" Height="14" Fill="{DynamicResource Muted}" HorizontalAlignment="Left" Margin="3,0,0,0"><Ellipse.RenderTransform><TranslateTransform x:Name="SwitchPosition" X="0" /></Ellipse.RenderTransform></Ellipse></Border><Border x:Name="FocusMark" Grid.ColumnSpan="2" BorderBrush="Transparent" BorderThickness="1" CornerRadius="5" IsHitTestVisible="False"/></Grid><ControlTemplate.Triggers><Trigger Property="IsChecked" Value="True"><Setter TargetName="SwitchTrack" Property="Background" Value="{DynamicResource Surface}"/><Setter TargetName="SwitchTrack" Property="BorderBrush" Value="{DynamicResource Violet}"/><Setter TargetName="SwitchThumb" Property="Fill" Value="{DynamicResource Mint}"/><Trigger.EnterActions><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="SwitchPosition" Storyboard.TargetProperty="X" To="16" Duration="0:0:0.16"/></Storyboard></BeginStoryboard></Trigger.EnterActions><Trigger.ExitActions><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="SwitchPosition" Storyboard.TargetProperty="X" To="0" Duration="0:0:0.16"/></Storyboard></BeginStoryboard></Trigger.ExitActions></Trigger><Trigger Property="IsMouseOver" Value="True"><Setter TargetName="FocusMark" Property="BorderBrush" Value="{DynamicResource NavigationLine}"/></Trigger><Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="FocusMark" Property="BorderBrush" Value="{DynamicResource Mint}"/></Trigger><Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.45"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter>
         </Style>
+        <Style x:Key="SettingsToggle" TargetType="CheckBox" BasedOn="{StaticResource ToggleCheckBox}"><Setter Property="MinHeight" Value="44"/></Style>
         <Style x:Key="ModernProgressBar" TargetType="ProgressBar">
             <Setter Property="Height" Value="5"/><Setter Property="Background" Value="#302738"/><Setter Property="Foreground" Value="{DynamicResource Mint}"/>
             <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ProgressBar"><Grid ClipToBounds="True"><Border Background="{TemplateBinding Background}"/><Border x:Name="PART_Track"/><Decorator x:Name="PART_Indicator" HorizontalAlignment="Left"><Border Background="{TemplateBinding Foreground}"/></Decorator></Grid></ControlTemplate></Setter.Value></Setter>
         </Style>
         <Style TargetType="ScrollBar">
-            <Setter Property="Width" Value="5"/><Setter Property="Opacity" Value="0.5"/><Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Width" Value="8"/><Setter Property="Opacity" Value="0.6"/><Setter Property="Background" Value="Transparent"/>
             <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ScrollBar">
                 <Grid Background="Transparent"><Track x:Name="PART_Track" IsDirectionReversed="True" Orientation="{TemplateBinding Orientation}">
                     <Track.DecreaseRepeatButton><RepeatButton Command="ScrollBar.PageUpCommand" Focusable="False" Opacity="0"/></Track.DecreaseRepeatButton>
-                    <Track.Thumb><Thumb><Thumb.Template><ControlTemplate TargetType="Thumb"><Border Background="#42314F" CornerRadius="3" Margin="1"/></ControlTemplate></Thumb.Template></Thumb></Track.Thumb>
+                    <Track.Thumb><Thumb><Thumb.Template><ControlTemplate TargetType="Thumb"><Border Background="{DynamicResource Mint}" CornerRadius="3" Margin="1"/></ControlTemplate></Thumb.Template></Thumb></Track.Thumb>
                     <Track.IncreaseRepeatButton><RepeatButton Command="ScrollBar.PageDownCommand" Focusable="False" Opacity="0"/></Track.IncreaseRepeatButton>
                 </Track></Grid>
             </ControlTemplate></Setter.Value></Setter>
@@ -154,7 +166,7 @@
         <Style TargetType="Slider">
           <Setter Property="ui:ReactiveFeedback.Enabled" Value="True"/><Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
           <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Slider"><Border x:Name="SliderFocus" BorderThickness="1" BorderBrush="Transparent" Padding="3">
-            <Grid><Border Background="#4A3C55" Height="3" VerticalAlignment="Center" CornerRadius="2"/>
+            <Grid><Border Background="{DynamicResource Line}" Height="3" VerticalAlignment="Center" CornerRadius="2"/>
               <Track x:Name="PART_Track" Minimum="{TemplateBinding Minimum}" Maximum="{TemplateBinding Maximum}" Value="{TemplateBinding Value}">
                 <Track.DecreaseRepeatButton><RepeatButton Command="Slider.DecreaseLarge" Focusable="False" Opacity="0"/></Track.DecreaseRepeatButton>
                 <Track.Thumb><Thumb Width="12" Height="12"><Thumb.Template><ControlTemplate TargetType="Thumb"><Ellipse Fill="{DynamicResource Mint}"/></ControlTemplate></Thumb.Template></Thumb></Track.Thumb>
@@ -169,6 +181,8 @@
         <Border x:Name="AccentGlow" Width="520" Height="310" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,105,0,0" Opacity="0.11" IsHitTestVisible="False">
             <Border.Background><RadialGradientBrush><GradientStop Color="#A95BCD" Offset="0"/><GradientStop Color="#585BCD" Offset="0.48"/><GradientStop Color="#00585BCD" Offset="1"/></RadialGradientBrush></Border.Background>
         </Border>
+        <!-- Near branches, controls and reading panels stay in front of the sky show. -->
+        <ui:FireworkScene x:Name="FireworksView" IsHitTestVisible="False" ClipToBounds="True"/>
         <Grid x:Name="NearSceneLayer" IsHitTestVisible="False" ClipToBounds="True"/>
 
         <Grid x:Name="MainShell">
@@ -245,22 +259,18 @@
             </Grid>
 
 
-            <Border x:Name="NavigationPanel" Grid.Row="1" Visibility="Collapsed" Margin="28,18" MaxWidth="1040" HorizontalAlignment="Stretch" Background="#F012192A" BorderBrush="#5A7B91B2" BorderThickness="1" CornerRadius="18" IsHitTestVisible="True">
-                <Border.Resources>
-                    <SolidColorBrush x:Key="Surface" Color="#202D43"/>
-                    <SolidColorBrush x:Key="Line" Color="#435878"/>
-                </Border.Resources>
+            <Border x:Name="NavigationPanel" Grid.Row="1" Visibility="Collapsed" Margin="28,18" MaxWidth="1040" HorizontalAlignment="Stretch" Background="{DynamicResource NavigationSurface}" BorderBrush="{DynamicResource NavigationLine}" BorderThickness="1" CornerRadius="18" IsHitTestVisible="True">
                 <Border.Effect><DropShadowEffect Color="#080C16" BlurRadius="32" ShadowDepth="8" Opacity="0.48"/></Border.Effect>
                 <Grid>
                     <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
-                    <Border Padding="26,17,24,15" Background="#7A182238" CornerRadius="18,18,0,0" BorderBrush="#303D526D" BorderThickness="0,0,0,1">
+                    <Border Padding="26,17,24,15" Background="{DynamicResource NavigationHeader}" CornerRadius="18,18,0,0" BorderBrush="{DynamicResource NavigationLine}" BorderThickness="0,0,0,1">
                         <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="REBORN LAUNCHER" Foreground="{DynamicResource Mint}" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="10" FontWeight="Bold"/>
+                                <TextBlock Text="REBORN LAUNCHER" Foreground="{DynamicResource Mint}" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="14" FontWeight="Bold"/>
                                 <TextBlock x:Name="NavigationTitle" Text="Changelog" Margin="0,2,0,0" Foreground="{DynamicResource Text}" FontFamily="pack://application:,,,/assets/fonts/#Barlow Condensed" FontSize="30" FontWeight="Bold"/>
-                                <TextBlock x:Name="NavigationSubtitle" Text="Neuigkeiten und Änderungen" Margin="0,1,0,0" Foreground="{DynamicResource Muted}" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="13"/>
+                                <TextBlock x:Name="NavigationSubtitle" Text="Neuigkeiten und Änderungen" Margin="0,1,0,0" Foreground="{DynamicResource Muted}" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="16"/>
                             </StackPanel>
-                            <Button Grid.Column="1" Content="⌂   Startseite" ToolTip="Zurück zur Startseite" Style="{StaticResource SecondaryButton}" Padding="14,8" VerticalAlignment="Center" Click="HomeNav_Click" shell:WindowChrome.IsHitTestVisibleInChrome="True"/>
+                            <Button Grid.Column="1" Content="⌂   Startseite" ToolTip="Zurück zur Startseite" Style="{StaticResource SettingsButton}" Padding="14,8" VerticalAlignment="Center" Click="HomeNav_Click" shell:WindowChrome.IsHitTestVisibleInChrome="True"/>
                         </Grid>
                     </Border>
                     <Grid Grid.Row="1" Margin="24,14,24,14">
@@ -288,30 +298,31 @@
         <Border x:Name="SettingsHost" Visibility="Collapsed" Background="Transparent" Padding="10,4">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel x:Name="SettingsPanel" MaxWidth="720" HorizontalAlignment="Stretch">
-                    <TextBlock Text="ALLGEMEIN" Style="{StaticResource Eyebrow}" Margin="0,0,0,10"/>
-                    <CheckBox x:Name="AutoUpdateCheckBox" Content="Vor dem Start automatisch aktualisieren" Style="{StaticResource ToggleCheckBox}" Checked="AutoUpdateCheckBox_Changed" Unchecked="AutoUpdateCheckBox_Changed"/>
-                    <CheckBox x:Name="CloseAfterStartCheckBox" Content="Launcher nach Spielstart schließen" Style="{StaticResource ToggleCheckBox}" Checked="CloseAfterStartCheckBox_Changed" Unchecked="CloseAfterStartCheckBox_Changed"/>
-                    <Border Height="1" Background="#354B5E79" Margin="0,12,0,12"/>
-                    <TextBlock Text="DARSTELLUNG UND BEDIENUNG" Style="{StaticResource Eyebrow}" Margin="0,0,0,8"/>
-                    <CheckBox x:Name="ReduceMotionCheckBox" Content="Ruhig · Animationen reduzieren" ToolTip="Animationen, Parallax und Effekte reduzieren" Style="{StaticResource ToggleCheckBox}" Checked="ReduceMotion_Changed" Unchecked="ReduceMotion_Changed"/>
-                    <CheckBox x:Name="MouseTrailCheckBox" Content="Mausspur" ToolTip="Leuchtspur hinter dem Mauszeiger" Style="{StaticResource ToggleCheckBox}" Checked="MouseTrail_Changed" Unchecked="MouseTrail_Changed"/>
-                    <Border Height="1" Background="#354B5E79" Margin="0,12,0,12"/>
-                    <TextBlock Text="MUSIK" Style="{StaticResource Eyebrow}" Margin="0,0,0,8"/>
-                    <CheckBox x:Name="MusicCheckBox" Content="Hintergrundmusik" ToolTip="Hintergrundmusik an oder aus" Style="{StaticResource ToggleCheckBox}" Checked="MusicToggle_Changed" Unchecked="MusicToggle_Changed"/>
-                    <Grid Margin="0,3,0,8"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="180"/></Grid.ColumnDefinitions><TextBlock Text="Musiklautstärke" Style="{StaticResource BodyText}" VerticalAlignment="Center"/><Slider x:Name="MusicVolumeSlider" Grid.Column="1" ToolTip="Musiklautstärke" Minimum="0" Maximum="1" Value="0.22" SmallChange="0.02" LargeChange="0.1" IsMoveToPointEnabled="True" Focusable="True" ValueChanged="MusicVolume_Changed"/></Grid>
+                    <TextBlock Text="ALLGEMEIN" Style="{StaticResource SettingsHeading}" Margin="0,0,0,8"/>
+                    <CheckBox x:Name="AutoUpdateCheckBox" Content="Vor dem Start automatisch aktualisieren" Style="{StaticResource SettingsToggle}" Checked="AutoUpdateCheckBox_Changed" Unchecked="AutoUpdateCheckBox_Changed"/>
+                    <CheckBox x:Name="CloseAfterStartCheckBox" Content="Launcher nach Spielstart schließen" Style="{StaticResource SettingsToggle}" Checked="CloseAfterStartCheckBox_Changed" Unchecked="CloseAfterStartCheckBox_Changed"/>
+                    <Border Height="1" Background="{DynamicResource NavigationLine}" Margin="0,12,0,12"/>
+                    <TextBlock Text="DARSTELLUNG UND BEDIENUNG" Style="{StaticResource SettingsHeading}" Margin="0,0,0,4"/>
+                    <CheckBox x:Name="ReduceMotionCheckBox" Content="Ruhig · Animationen reduzieren" ToolTip="Animationen, Parallax und Effekte reduzieren" Style="{StaticResource SettingsToggle}" Checked="ReduceMotion_Changed" Unchecked="ReduceMotion_Changed"/>
+                    <CheckBox x:Name="MouseTrailCheckBox" Content="Mausspur" ToolTip="Leuchtspur hinter dem Mauszeiger" Style="{StaticResource SettingsToggle}" Checked="MouseTrail_Changed" Unchecked="MouseTrail_Changed"/>
+                    <Border Height="1" Background="{DynamicResource NavigationLine}" Margin="0,12,0,12"/>
+                    <TextBlock Text="MUSIK" Style="{StaticResource SettingsHeading}" Margin="0,0,0,4"/>
+                    <CheckBox x:Name="MusicCheckBox" Content="Hintergrundmusik" ToolTip="Hintergrundmusik an oder aus" Style="{StaticResource SettingsToggle}" Checked="MusicToggle_Changed" Unchecked="MusicToggle_Changed"/>
+                    <Grid MinHeight="44" Margin="0,2,0,4"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="180"/></Grid.ColumnDefinitions><TextBlock Text="Musiklautstärke" Style="{StaticResource BodyText}" Foreground="{DynamicResource Text}" FontSize="16" VerticalAlignment="Center"/><Slider x:Name="MusicVolumeSlider" Grid.Column="1" ToolTip="Musiklautstärke" Minimum="0" Maximum="1" Value="0.22" SmallChange="0.02" LargeChange="0.1" IsMoveToPointEnabled="True" Focusable="True" VerticalAlignment="Center" ValueChanged="MusicVolume_Changed"/></Grid>
                     <TextBlock x:Name="MusicStatusText" Visibility="Collapsed" Text="AN" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" Foreground="{DynamicResource Mint}" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="10" IsHitTestVisible="False"/>
-                    <Border Height="1" Background="#354B5E79" Margin="0,12,0,12"/>
-                    <TextBlock Text="LICHT UND EVENTS" Style="{StaticResource Eyebrow}" Margin="0,0,0,8"/>
-                    <StackPanel Orientation="Horizontal">
-                        <Button x:Name="LightingModeButton" Content="IMMER NACHT ▾" ToolTip="Helligkeit wählen: immer Nacht, immer Tag oder automatisch" Style="{StaticResource SecondaryButton}" Margin="0,0,8,0" Click="LightingModeButton_Click">
-                            <Button.ContextMenu><ContextMenu Background="{DynamicResource Surface}" Foreground="{DynamicResource Text}" BorderBrush="{DynamicResource Line}" BorderThickness="1" Padding="4">
-                                <ContextMenu.Resources><Style TargetType="MenuItem"><Setter Property="Foreground" Value="{DynamicResource Text}"/><Setter Property="Background" Value="Transparent"/><Setter Property="FontFamily" Value="pack://application:,,,/assets/fonts/#Barlow"/><Setter Property="FontSize" Value="14"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="MenuItem"><Border x:Name="MenuRow" Background="{TemplateBinding Background}" Padding="14,9"><ContentPresenter ContentSource="Header"/></Border><ControlTemplate.Triggers><Trigger Property="IsHighlighted" Value="True"><Setter TargetName="MenuRow" Property="Background" Value="{DynamicResource Line}"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter></Style></ContextMenu.Resources>
+                    <Border Height="1" Background="{DynamicResource NavigationLine}" Margin="0,12,0,12"/>
+                    <TextBlock Text="LICHT UND EVENTS" Style="{StaticResource SettingsHeading}" Margin="0,0,0,4"/>
+                    <WrapPanel>
+                        <Button x:Name="LightingModeButton" Content="IMMER NACHT ▾" ToolTip="Helligkeit wählen: immer Nacht, immer Tag oder automatisch" Style="{StaticResource SettingsButton}" Margin="0,0,8,8" Click="LightingModeButton_Click">
+                            <Button.ContextMenu><ContextMenu Background="{DynamicResource NavigationSurface}" Foreground="{DynamicResource Text}" BorderBrush="{DynamicResource NavigationLine}" BorderThickness="1" Padding="0" HasDropShadow="True">
+                                <ContextMenu.Template><ControlTemplate TargetType="ContextMenu"><Border Background="{DynamicResource NavigationSurface}" BorderBrush="{DynamicResource NavigationLine}" BorderThickness="1" CornerRadius="8" Padding="5"><ItemsPresenter KeyboardNavigation.DirectionalNavigation="Cycle"/></Border></ControlTemplate></ContextMenu.Template>
+                                <ContextMenu.Resources><Style TargetType="MenuItem"><Setter Property="Foreground" Value="{DynamicResource Text}"/><Setter Property="Background" Value="Transparent"/><Setter Property="FontFamily" Value="pack://application:,,,/assets/fonts/#Barlow"/><Setter Property="FontSize" Value="16"/><Setter Property="FontWeight" Value="SemiBold"/><Setter Property="MinHeight" Value="44"/><Setter Property="Padding" Value="14,8"/><Setter Property="IsCheckable" Value="True"/><Setter Property="HorizontalContentAlignment" Value="Left"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="MenuItem"><Border x:Name="MenuRow" Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="1" CornerRadius="5" Padding="{TemplateBinding Padding}"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="20"/></Grid.ColumnDefinitions><ContentPresenter ContentSource="Header" VerticalAlignment="Center" RecognizesAccessKey="True"/><TextBlock x:Name="SelectedMark" Grid.Column="1" Text="✓" Foreground="{DynamicResource Mint}" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed"/></Grid></Border><ControlTemplate.Triggers><Trigger Property="IsHighlighted" Value="True"><Setter TargetName="MenuRow" Property="Background" Value="{DynamicResource NavigationHeader}"/><Setter Property="Foreground" Value="{DynamicResource Mint}"/></Trigger><Trigger Property="IsChecked" Value="True"><Setter TargetName="SelectedMark" Property="Visibility" Value="Visible"/><Setter TargetName="MenuRow" Property="Background" Value="{DynamicResource NavigationHeader}"/></Trigger><Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="MenuRow" Property="BorderBrush" Value="{DynamicResource Mint}"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter></Style></ContextMenu.Resources>
                                 <MenuItem Header="Immer Nacht" Tag="night" Click="LightingMode_Click"/><MenuItem Header="Immer Tag" Tag="day" Click="LightingMode_Click"/><MenuItem Header="Automatisch · 07–19 Uhr Tag" Tag="auto" Click="LightingMode_Click"/>
                             </ContextMenu></Button.ContextMenu>
                         </Button>
-                        <Button x:Name="ThemeInfoButton" Content="Saisonkalender" ToolTip="Saisonkalender und Musikquellen" Style="{StaticResource SecondaryButton}" Click="ThemeInfo_Click"/>
-                    </StackPanel>
-                    <Button x:Name="EventSettingsButton" Content="Effekte und Event-Geräusche" Style="{StaticResource SecondaryButton}" HorizontalAlignment="Stretch" Margin="0,12,0,0" Click="EventSettings_Click"/>
+                        <Button x:Name="ThemeInfoButton" Content="Saisonkalender" ToolTip="Saisonkalender und Musikquellen" Style="{StaticResource SettingsButton}" Margin="0,0,8,8" Click="ThemeInfo_Click"/>
+                    </WrapPanel>
+                    <Button x:Name="EventSettingsButton" Content="Effekte und Event-Geräusche" Style="{StaticResource SettingsButton}" HorizontalAlignment="Left" Margin="0,2,0,0" Click="EventSettings_Click"/>
                 </StackPanel>
             </ScrollViewer>
         </Border>
@@ -324,7 +335,7 @@
             </Grid>
         </Border>
                     </Grid>
-                    <Border Grid.Row="2" Margin="24,0,24,16" Padding="14,9" Background="#3A202D43" BorderBrush="#3A65758D" BorderThickness="1" CornerRadius="10">
+                    <Border Grid.Row="2" Margin="24,0,24,16" Padding="14,9" Background="{DynamicResource NavigationFooter}" BorderBrush="{DynamicResource NavigationLine}" BorderThickness="1" CornerRadius="10">
                         <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock Text="{Binding Text, ElementName=StatusText}" Foreground="{DynamicResource Text}" FontFamily="pack://application:,,,/assets/fonts/#Barlow" FontSize="12" TextTrimming="CharacterEllipsis"/>
@@ -342,7 +353,6 @@
             </Grid>
         </Grid>
 
-        <ui:FireworkScene x:Name="FireworksView" IsHitTestVisible="False" ClipToBounds="True"/>
         <ui:GengarScene x:Name="GengarView" IsHitTestVisible="False" ClipToBounds="True"/>
         <ui:BloodSplashScene x:Name="BloodView" IsHitTestVisible="False" ClipToBounds="True"/>
         <ui:MouseTrail x:Name="MouseTrailView" IsHitTestVisible="False"/>

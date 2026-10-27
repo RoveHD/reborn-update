@@ -96,6 +96,8 @@ public partial class MainWindow
     private void SyncLightingButton()
     {
         LightingModeButton.Content = LightingLabel.ToUpperInvariant() + " ▾";
+        foreach (var item in LightingModeButton.ContextMenu.Items.OfType<MenuItem>())
+            item.IsChecked = item.Tag as string == _settings.ThemeLightingMode;
         if (_themeDay != default)
             ThemeInfoButton.ToolTip = $"Saison nach Datum: {_themeDay:dd.MM.yyyy} · Licht: {LightingLabel} · Kalender und Musikquellen";
     }
@@ -104,6 +106,7 @@ public partial class MainWindow
     {
         LightingModeButton.ContextMenu.PlacementTarget = LightingModeButton;
         LightingModeButton.ContextMenu.Placement = PlacementMode.Bottom;
+        LightingModeButton.ContextMenu.VerticalOffset = 6;
         LightingModeButton.ContextMenu.IsOpen = true;
     }
 
@@ -161,6 +164,7 @@ public partial class MainWindow
         var palette = _daylight ? DayPalettes[id] : [theme.Ink, theme.Surface, theme.Line, theme.Accent, theme.Highlight];
         foreach (var (key, color) in new[] { ("Ink", palette[0]), ("Surface", palette[1]), ("Line", palette[2]), ("Violet", palette[3]), ("Mint", palette[4]), ("Text", _daylight ? "#F0E9E2" : "#F4F0F0"), ("Muted", "#D1CFDA"), ("Faint", "#BFC0CD"), ("CtaText", "#100B15") })
             MorphResource(key, color, animate);
+        MorphNavigationPalette(palette, animate);
         Background = (Brush)Resources["Ink"];
         UpdatePointer((Color)ColorConverter.ConvertFromString(palette[3]));
         var accent = (Color)ColorConverter.ConvertFromString(palette[3]);

@@ -11,6 +11,21 @@ public partial class MainWindow
     private readonly Dictionary<string, string> _lightingTargets = new();
     private readonly Dictionary<Image, ImageSource> _artworkTargets = new();
 
+    private void MorphNavigationPalette(string[] palette, bool animate)
+    {
+        static Color Read(string hex) => (Color)ColorConverter.ConvertFromString(hex);
+        var ink = Read(palette[0]);
+        var surface = Read(palette[1]);
+        var line = Read(palette[2]);
+        static string Hex(Color color, byte alpha) => $"#{alpha:X2}{color.R:X2}{color.G:X2}{color.B:X2}";
+        var header = Color.FromRgb((byte)Math.Round(surface.R * .82 + line.R * .18),
+            (byte)Math.Round(surface.G * .82 + line.G * .18), (byte)Math.Round(surface.B * .82 + line.B * .18));
+        MorphResource("NavigationSurface", Hex(surface, 248), animate);
+        MorphResource("NavigationHeader", Hex(header, 255), animate);
+        MorphResource("NavigationFooter", Hex(ink, 230), animate);
+        MorphResource("NavigationLine", Hex(line, 220), animate);
+    }
+
     private static ColorAnimation LightingColor(Color from, Color to) => new(from, to, LightingDuration)
     {
         EasingFunction = new SineEase { EasingMode = EasingMode.EaseInOut },

@@ -69,19 +69,24 @@ public sealed class UpdateService : IDisposable
             throw new InvalidOperationException("Eine neuere Reborn-Version ist bereits installiert. Eine Rückstufung wird nicht durchgeführt.");
         GameHotfix? hotfix = null;
         // Same-release repair always uses the full package. A delta is safe only
-        // for its exact declared base, including every file it will replace.
+        // for its exact declared base, including presence/absence of every path.
         if (ReleaseVersion.Parse(localVersion).CompareTo(ReleaseVersion.Parse(manifest.Game.Version)) < 0)
         {
-            var candidate = manifest.GameHotfixes.FirstOrDefault(h => h.FromVersion.Equals(localVersion.Trim(), StringComparison.Ordinal));
-            if (candidate is not null && await Task.Run(() => candidate.MatchesBase(directory, versionPath, cancellationToken), cancellationToken))
+            var candidate = manifest.GameHotfixesV2.Concat(manifest.GameHotfixes)
+                .FirstOrDefault(h => h.FromVersion.Equals(localVersion.Trim(), StringComparison.Ordinal));
+            if (candidate is not null)
+            {
+                if (!await Task.Run(() => candidate.MatchesBase(directory, versionPath, cancellationToken), cancellationToken))
+                    throw new InvalidOperationException("Die Spieldateien passen nicht zur Hotfix-Ausgangsversion. Eine Datei wurde verändert, fehlt oder belegt einen neuen Hotfix-Pfad. Bitte eigene Dateien außerhalb des Spielordners sichern und den Konflikt prüfen. Es wurden keine Spieldateien geändert.");
                 hotfix = candidate;
+            }
         }
         UpdateAsset asset = hotfix?.Asset ?? manifest.Game;
         IProgress<UpdateProgress> selectedProgress = hotfix is null ? progress : new HotfixProgress(progress);
         string stage = installer.CreateStage();
         try
         {
-            selectedProgress.Report(new(UpdateStage.Checking, null, 0, null, 0, "Update wird vorbereitet …"));
+            selectedProgress.Report(new(UpdateStage.Checking, null, 0, null, 0, "Freier Speicher für Download und Sicherung wird geprüft …"));
             var drive = new DriveInfo(Path.GetPathRoot(directory)!);
             long requiredSpace = hotfix?.RequiredSpace(directory) ?? checked(asset.Size * 3);
             if (drive.AvailableFreeSpace < requiredSpace) throw new IOException("Zu wenig freier Speicher für Download und Sicherung.");
@@ -93,7 +98,7 @@ public sealed class UpdateService : IDisposable
             if (hotfix is null && !File.Exists(SafePaths.Under(payload, settings.GameExecutable))) throw new InvalidDataException("Das Update enthält keine Game.exe im Spielordner.");
             GameInstaller.EnsureGameStopped(directory, settings.GameExecutable);
             await Task.Run(() => installer.Install(payload, versionPath, manifest.Game.Version,
-                hotfix is null ? manifest.Game.RemovedFiles : [], selectedProgress, cancellationToken, beforeMutation: () =>
+                hotfix is null ? manifest.Game.RemovedFiles : hotfix.Removals, selectedProgress, cancellationToken, beforeMutation: () =>
                 {
                     GameInstaller.EnsureGameStopped(directory, settings.GameExecutable);
                     if (hotfix is not null && !hotfix.MatchesBase(directory, versionPath, cancellationToken))

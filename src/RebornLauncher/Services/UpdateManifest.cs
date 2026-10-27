@@ -43,6 +43,10 @@ public sealed class UpdateManifest
     public UpdateAsset Launcher { get; set; } = new();
     public UpdateAsset Game { get; set; } = new();
     public List<GameHotfix> GameHotfixes { get; set; } = [];
+    // Older launchers ignore this field and can still use the full package.
+    // Keep additions/deletions out of GameHotfixes, whose legacy readers require
+    // a hash and ZIP payload for every existing replacement file.
+    public List<GameHotfix> GameHotfixesV2 { get; set; } = [];
     public string PatchNotes { get; set; } = "";
     public static UpdateManifest Parse(string json)
     {
@@ -51,13 +55,18 @@ public sealed class UpdateManifest
         if (manifest.SchemaVersion != 1) throw new InvalidDataException("Dieses Update-Format wird nicht unterstützt.");
         manifest.Launcher.Validate();
         manifest.Game.Validate();
-        if (manifest.GameHotfixes is null) throw new InvalidDataException("Ungültige Hotfix-Liste.");
-        var bases = new HashSet<string>(StringComparer.Ordinal);
-        foreach (var hotfix in manifest.GameHotfixes)
+        if (manifest.GameHotfixes is null || manifest.GameHotfixesV2 is null) throw new InvalidDataException("Ungültige Hotfix-Liste.");
+        foreach (var list in new[] { manifest.GameHotfixes, manifest.GameHotfixesV2 })
         {
-            if (hotfix is null) throw new InvalidDataException("Leerer Hotfix-Eintrag.");
-            hotfix.Validate(manifest.Game.Version);
-            if (!bases.Add(hotfix.FromVersion)) throw new InvalidDataException("Doppelte Hotfix-Ausgangsversion.");
+            var bases = new HashSet<string>(StringComparer.Ordinal);
+            foreach (var hotfix in list)
+            {
+                if (hotfix is null) throw new InvalidDataException("Leerer Hotfix-Eintrag.");
+                hotfix.Validate(manifest.Game.Version);
+                if (ReferenceEquals(list, manifest.GameHotfixes) && hotfix.Files.Any(f => !f.BeforeExists || f.Delete))
+                    throw new InvalidDataException("Neue und entfernte Hotfix-Dateien müssen in GameHotfixesV2 deklariert werden.");
+                if (!bases.Add(hotfix.FromVersion)) throw new InvalidDataException("Doppelte Hotfix-Ausgangsversion.");
+            }
         }
         return manifest;
     }

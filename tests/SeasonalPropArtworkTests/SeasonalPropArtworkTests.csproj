@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <AssemblyName>launcher</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../src/RebornLauncher/UI/SeasonalPropArtwork.cs" Link="SeasonalPropArtwork.cs" />
+    <Compile Include="../../src/RebornLauncher/Services/EventPropSimulation.cs" Link="EventPropSimulation.cs" />
+    <Compile Include="../../src/RebornLauncher/Services/HalloweenSecretSession.cs" Link="HalloweenSecretSession.cs" />
+    <Compile Include="../../src/RebornLauncher/Services/SceneDecorationLayout.cs" Link="SceneDecorationLayout.cs" />
+    <Compile Include="../../src/RebornLauncher/UI/BatFlightArtwork.cs" Link="BatFlightArtwork.cs" />
+    <Compile Include="../../src/RebornLauncher/UI/HalloweenPropArtwork.cs" Link="HalloweenPropArtwork.cs" />
+    <Compile Include="../../src/RebornLauncher/UI/EventPropsScene.cs" Link="EventPropsScene.cs" />
+    <Resource Include="../../src/RebornLauncher/assets/scenery/props/*-props.png" Link="assets/scenery/props/%(Filename)%(Extension)" />
+    <Content Include="../../src/RebornLauncher/assets/scenery/inhabited/winter-landscape.png" Link="assets/scenery/inhabited/winter-landscape.png" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="../../src/RebornLauncher/assets/scenery/winter-foreground.png" Link="assets/scenery/winter-foreground.png" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="../../src/RebornLauncher/assets/scenery/parallax/*.png" Link="assets/scenery/parallax/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

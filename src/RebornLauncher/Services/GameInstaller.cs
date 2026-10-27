@@ -13,6 +13,9 @@ public sealed partial class GameInstaller
         public bool Ready { get; set; }
         public bool Delete { get; set; }
         public string? Sha256 { get; set; }
+        // Expected active bytes for version switching; empty means absent.
+        // Null supports snapshots made by launchers that did not record this state.
+        public string? InstalledSha256 { get; set; }
     }
     public sealed class Journal
     {
@@ -88,7 +91,6 @@ public sealed partial class GameInstaller
             var files = Directory.EnumerateFiles(payload, "*", SearchOption.AllDirectories)
                 .Select(path => (Source: path, Relative: SafePaths.ValidateRelative(Path.GetRelativePath(payload, path))))
                 .Where(file => !SafePaths.IsProtected(file.Relative) && !file.Relative.Equals(versionRelative, StringComparison.OrdinalIgnoreCase)).ToList();
-            if (files.Count == 0) throw new InvalidDataException("Das Paket enthält keine installierbaren Spieldateien.");
             var journal = new Journal { Transaction = Path.GetFileName(transaction), PreviousSnapshot = selection?.Snapshot };
             var used = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             int checkedFiles = 0;
@@ -122,6 +124,7 @@ public sealed partial class GameInstaller
                     throw new InvalidDataException("Widersprüchliche Ersatzpfade im Löschmanifest: " + relative);
                 group.Hashes.Add(removal.Sha256);
             }
+            if (files.Count == 0 && removalHashes.Count == 0) throw new InvalidDataException("Das Paket enthält keine installierbaren Spieldateien.");
             foreach (var removal in removalHashes)
             {
                 ct.ThrowIfCancellationRequested();
@@ -157,19 +160,16 @@ public sealed partial class GameInstaller
                 operation.Ready = true;
                 progress.Report(new(UpdateStage.Installing, ++backedUp * 35d / journal.Operations.Count, 0, null, 0, "Vorherige Spieldateien werden gesichert …"));
             }
+            var sources = files.ToDictionary(f => f.Relative, f => f.Source, StringComparer.OrdinalIgnoreCase);
+            sources[versionRelative] = versionSource;
+            foreach (var operation in journal.Operations)
+                operation.InstalledSha256 = operation.Delete ? "" : VerifiedDownload.Hash(sources[operation.Path], ct);
             // A repair of the same release keeps the previous release unchanged.
             if (ReleaseVersion.Parse(installedVersion ?? "0.0.0").CompareTo(ReleaseVersion.Parse(version)) < 0)
                 journal.NextSelection = MakeSelection(journal, versionRelative, version, installedVersion ?? "0.0.0", version);
-            var sources = files.ToDictionary(f => f.Relative, f => f.Source, StringComparer.OrdinalIgnoreCase);
-            sources[versionRelative] = versionSource;
             ct.ThrowIfCancellationRequested();
             beforeMutation?.Invoke();
-            foreach (var operation in journal.Operations.Where(o => o.Delete))
-            {
-                string target = SafePaths.Under(root, operation.Path);
-                if (File.Exists(target) != operation.Existed || (operation.Existed && !VerifiedDownload.Hash(target, ct).Equals(operation.Sha256, StringComparison.OrdinalIgnoreCase)))
-                    throw new IOException("Eine zu entfernende Datei wurde während der Sicherung geändert. Bitte das Update erneut starten: " + operation.Path);
-            }
+            ValidateActiveFiles(journal.Operations, ct);
             SaveJournal(journalPath, journal);
             try
             {
@@ -241,6 +241,17 @@ public sealed partial class GameInstaller
                 File.Move(restore, target, true);
             }
             else if (File.Exists(target)) File.Delete(target);
+        }
+    }
+    private void ValidateActiveFiles(IEnumerable<Operation> operations, CancellationToken ct)
+    {
+        foreach (var operation in operations)
+        {
+            ct.ThrowIfCancellationRequested();
+            string target = SafePaths.Under(root, operation.Path);
+            if (Directory.Exists(target) || File.Exists(target) != operation.Existed ||
+                (operation.Existed && !VerifiedDownload.Hash(target, ct).Equals(operation.Sha256, StringComparison.OrdinalIgnoreCase)))
+                throw new IOException("Eine Spieldatei wurde während der Sicherung geändert. Bitte den Vorgang erneut starten: " + operation.Path);
         }
     }
     private static void CopyDurable(string source, string target, CancellationToken ct = default)

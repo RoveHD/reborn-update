@@ -43,8 +43,9 @@ public partial class MainWindow
         double intensity = _settings.EventAnimationIntensity switch { "reduced" => .4, "high" => 1.6, _ => 1 };
         var day = _smokeTest ? _themeDay : DateOnly.FromDateTime(DateTime.Now);
         bool newYear = _activeTheme == "newyear";
-        int fireworksLimit = newYear ? limit * 3 / 4 : 0;
-        EventPropsView.Configure(_activeTheme, day.Month == 12, _settings.EventDecorationsEnabled, _settings.InteractivePropsEnabled, limit - fireworksLimit, intensity, reduced, active);
+        int fireworksLimit = newYear ? limit * 3 : 0;
+        int propLimit = newYear ? limit / 4 : limit;
+        EventPropsView.Configure(_activeTheme, day.Month == 12, _settings.EventDecorationsEnabled, _settings.InteractivePropsEnabled, propLimit, intensity, reduced, active);
         FireworksView.Configure(newYear && _settings.EventDecorationsEnabled, fireworksLimit, intensity, reduced, active);
         bool halloween = string.Equals(_activeTheme, "halloween", StringComparison.OrdinalIgnoreCase);
         GengarView.Configure(_activeTheme, _settings.EventDecorationsEnabled, reduced, active);

@@ -13,6 +13,7 @@ namespace PokemonRebornLauncher.UI;
 /// Transforms are composited by WPF; the camera timer runs only while settling.</summary>
 public sealed class AtmosphericBackdrop : Grid
 {
+    private const double WinterPlaneSplit = 390d / 941d;
     private static readonly Dictionary<string, BitmapSource> Images = new(StringComparer.Ordinal);
     private readonly Grid _farHost = new() { ClipToBounds = true, IsHitTestVisible = false };
     private readonly Canvas _farCanvas = new() { IsHitTestVisible = false };
@@ -42,8 +43,8 @@ public sealed class AtmosphericBackdrop : Grid
     public double IllustratedWidth => ActualWidth;
     public event Action<string, bool, bool, bool>? ConfigurationChanged;
     private Grid? _foregroundHost;
-    private Brush? _defaultForegroundMask;
     private bool HasDepthLayers => _theme == "halloween";
+    private bool HasSeasonalDepthLayers => _theme is not null && !HasDepthLayers;
 
     /// <summary>The fly-by starts on the independently moving character plane.</summary>
     public Point? GengarPointIn(Visual destination)
@@ -59,6 +60,12 @@ public sealed class AtmosphericBackdrop : Grid
             normalizedPoint.X * _landscape.ActualWidth, normalizedPoint.Y * _landscape.ActualHeight));
     }
 
+    /// <summary>Project a seasonal source-image contact through its authored depth plane.</summary>
+    public Point? TerrainPointIn(Visual destination, Point normalizedPoint) =>
+        !HasSeasonalDepthLayers ? null : _theme == "winter"
+            ? ProjectPoint(_forest, destination, normalizedPoint)
+            : LandscapePointIn(destination, normalizedPoint);
+
     public Point? CastlePointIn(Visual destination, Point normalizedPoint)
     {
         if (!HasDepthLayers || !_castle.IsLoaded || _castle.ActualWidth <= 0 || _castle.ActualHeight <= 0) return null;
@@ -70,9 +77,15 @@ public sealed class AtmosphericBackdrop : Grid
     /// TransformToVisual also removes the destination stage's independent camera transform.</summary>
     public Point? ForegroundPointIn(Visual destination, Point normalizedPoint)
     {
-        if (!IsLoaded || !_foreground.IsLoaded || _foreground.ActualWidth <= 0 || _foreground.ActualHeight <= 0) return null;
-        return _foreground.TransformToVisual(destination).Transform(new Point(
-            normalizedPoint.X * _foreground.ActualWidth, normalizedPoint.Y * _foreground.ActualHeight));
+        Image plane = _theme == "winter" && normalizedPoint.Y < WinterPlaneSplit ? _landscape : _foreground;
+        return ProjectPoint(plane, destination, normalizedPoint);
+    }
+
+    private Point? ProjectPoint(Image plane, Visual destination, Point normalizedPoint)
+    {
+        if (!IsLoaded || !plane.IsLoaded || plane.ActualWidth <= 0 || plane.ActualHeight <= 0) return null;
+        return plane.TransformToVisual(destination).Transform(new Point(
+            normalizedPoint.X * plane.ActualWidth, normalizedPoint.Y * plane.ActualHeight));
     }
 
     public void AttachForeground(Grid host)
@@ -110,7 +123,6 @@ public sealed class AtmosphericBackdrop : Grid
             new(Colors.White, 0), new(Colors.White, .32), new(Colors.Transparent, .50),
             new(Colors.Transparent, .88), new(Colors.White, 1)
         }, new Point(0, 0), new Point(0, 1));
-        _defaultForegroundMask = _foreground.OpacityMask;
         _light.Background = new LinearGradientBrush(Color.FromArgb(44, 255, 221, 163), Color.FromArgb(0, 240, 227, 200), 90);
         _shade.Background = new LinearGradientBrush(new GradientStopCollection
         {
@@ -144,15 +156,21 @@ public sealed class AtmosphericBackdrop : Grid
         {
             _theme = theme;
             bool layered = HasDepthLayers;
-            _landscape.Source = Load(layered ? "halloween-terrain" : theme + "-landscape");
-            _forest.Source = layered ? Load("halloween-forest") : null;
+            _landscape.Clip = null;
+            _foreground.Clip = null;
+            _landscape.Source = Load(layered ? "halloween-terrain" : theme == "winter" ? "winter-foreground" : theme + "-terrain");
+            _forest.Source = layered ? Load("halloween-forest") : Load(theme == "winter" ? "winter-landscape" : theme + "-far");
             _castle.Source = layered ? Load("halloween-castle") : null;
             _gengar.Source = layered ? Load("gengar") : null;
-            _foreground.Source = Load(layered ? "halloween-near" : theme + "-foreground");
-            _landscape.RenderTransform = layered ? _terrainTransform : _farTransform;
+            _foreground.Source = Load(layered ? "halloween-near" : theme == "winter" ? "winter-foreground" : theme + "-near");
+            // Far, terrain, and near artwork always use separate camera depths.
+            // Summer's waterline is painted into its terrain plane with the swimmers.
+            _landscape.RenderTransform = _terrainTransform;
+            _landscape.Stretch = layered ? Stretch.UniformToFill : Stretch.Fill;
+            _foreground.Stretch = layered ? Stretch.UniformToFill : Stretch.Fill;
             // Authored transparent foliage includes both treetops and blurred bottom
             // bushes. No gradient erases the near bushes or cuts a band off the tree.
-            _foreground.OpacityMask = layered ? null : _defaultForegroundMask;
+            _foreground.OpacityMask = null;
             _gengar.Opacity = 1;
             FitLandscape();
             _air.SetTheme(theme);
@@ -221,6 +239,33 @@ public sealed class AtmosphericBackdrop : Grid
             Canvas.SetLeft(_gengar, left + 258 * scale);
             Canvas.SetTop(_gengar, top + 415 * scale);
         }
+        else if (HasSeasonalDepthLayers && _landscape.Source is BitmapSource)
+        {
+            // These planes are authored on one normalized source frame. Their
+            // independent movement must never change the shared cover/crop.
+            // Harvest/New Year terrain exports are 1671 pixels wide. Stretch.Fill
+            // normalizes that one-pixel export difference onto the authored
+            // 1672x941 frame, including its normalized terrain contacts.
+            double scale = Math.Max((ActualWidth + 48) / 1672, (ActualHeight + 28) / 941);
+            double width = 1672 * scale, height = 941 * scale;
+            double left = (ActualWidth - width) / 2, top = ActualHeight - height + 14;
+            foreach (var image in new[] { _forest, _landscape, _foreground }.Where(image => image.Source is not null))
+            {
+                image.Width = width; image.Height = height;
+                Canvas.SetLeft(image, left); Canvas.SetTop(image, top);
+            }
+            if (_theme == "winter")
+            {
+                double split = height * WinterPlaneSplit;
+                _landscape.Clip = new RectangleGeometry(new Rect(0, 0, width, split));
+                _foreground.Clip = new RectangleGeometry(new Rect(0, split, width, height - split));
+            }
+            else
+            {
+                _landscape.Clip = null;
+                _foreground.Clip = null;
+            }
+        }
         else
         {
             FitCover(_landscape, _farCanvas, ActualWidth, ActualHeight, 4, 2.5);
@@ -283,8 +328,8 @@ public sealed class AtmosphericBackdrop : Grid
         _terrainTransform.Y = -_position.Y * 8.5;
         _airTransform.X = -_position.X * 9;
         _airTransform.Y = -_position.Y * 5;
-        _nearTransform.X = -_position.X * (HasDepthLayers ? 24 : 17);
-        _nearTransform.Y = -_position.Y * (HasDepthLayers ? 14 : 10);
+        _nearTransform.X = -_position.X * (HasDepthLayers || HasSeasonalDepthLayers ? 24 : 17);
+        _nearTransform.Y = -_position.Y * (HasDepthLayers || HasSeasonalDepthLayers ? 14 : 10);
         CameraChanged?.Invoke(new Point(_airTransform.X, _airTransform.Y));
     }
 
@@ -303,7 +348,8 @@ public sealed class AtmosphericBackdrop : Grid
         var source = new BitmapImage();
         source.BeginInit();
         source.CacheOption = BitmapCacheOption.OnLoad;
-        string folder = name is "halloween-forest" or "halloween-castle" or "halloween-terrain" or "halloween-near"
+        string folder = name is "halloween-forest" or "halloween-castle" || name.EndsWith("-far", StringComparison.Ordinal)
+            || name.EndsWith("-terrain", StringComparison.Ordinal) || name.EndsWith("-near", StringComparison.Ordinal)
             ? "parallax" : name.EndsWith("-landscape", StringComparison.Ordinal) ? "inhabited" : "anime";
         string path = name == "gengar" ? "artwork/gengar" : $"scenery/{folder}/{name}";
         source.UriSource = new Uri($"pack://application:,,,/launcher;component/assets/{path}.png", UriKind.Absolute);

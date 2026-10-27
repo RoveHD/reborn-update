@@ -62,7 +62,8 @@ public sealed partial class GameInstaller
         ValidateOperations(pair.Entries);
         if (!pair.Entries.Any(o => o.Path.Equals(version, StringComparison.OrdinalIgnoreCase))) throw new InvalidDataException("Die Versionssicherung enthält keine Versionsdatei.");
         foreach (var entry in pair.Entries)
-            if (!entry.Ready || (entry.Existed && (entry.Sha256 is null || !Regex.IsMatch(entry.Sha256, "^[a-fA-F0-9]{64}$"))))
+            if (!entry.Ready || (entry.Existed && (entry.Sha256 is null || !Regex.IsMatch(entry.Sha256, "^[a-fA-F0-9]{64}$"))) ||
+                (entry.InstalledSha256 is not null && entry.InstalledSha256 != "" && !Regex.IsMatch(entry.InstalledSha256, "^[a-fA-F0-9]{64}$")))
                 throw new InvalidDataException("Die Versionssicherung enthält keine gültige Prüfsumme.");
         SafePaths.Under(state, pair.Snapshot);
     }
@@ -89,7 +90,7 @@ public sealed partial class GameInstaller
     {
         ActiveVersion = active.Trim(), OtherVersion = other.Trim(), LatestVersion = latest.Trim(), VersionPath = versionPath,
         Snapshot = journal.Transaction,
-        Entries = journal.Operations.Select(o => new Operation { Path = o.Path, Existed = o.Existed, Ready = true, Sha256 = o.Sha256 }).ToList()
+        Entries = journal.Operations.Select(o => new Operation { Path = o.Path, Existed = o.Existed, Ready = true, Sha256 = o.Sha256, InstalledSha256 = o.InstalledSha256 }).ToList()
     };
     private void FinishCommit(Journal journal)
     {
@@ -150,13 +151,20 @@ public sealed partial class GameInstaller
                 ct.ThrowIfCancellationRequested();
                 string target = SafePaths.Under(root, entry.Path);
                 if (Directory.Exists(target)) throw new IOException("Am Dateipfad befindet sich ein Ordner: " + entry.Path);
-                var operation = new Operation { Path = entry.Path, Delete = !entry.Existed, Existed = File.Exists(target), Ready = true };
+                bool exists = File.Exists(target);
+                if (entry.InstalledSha256 is not null && (exists != (entry.InstalledSha256 != "") ||
+                    (exists && !VerifiedDownload.Hash(target, ct).Equals(entry.InstalledSha256, StringComparison.OrdinalIgnoreCase))))
+                    throw new InvalidOperationException("Eine Datei der aktiven Version wurde verändert, entfernt oder neu angelegt. Bitte die eigene Datei vor dem Versionswechsel sichern und den Konflikt prüfen: " + entry.Path);
+                var operation = new Operation { Path = entry.Path, Delete = !entry.Existed, Existed = exists, Ready = true,
+                    InstalledSha256 = entry.Existed ? entry.Sha256 : "" };
                 if (operation.Existed)
                 {
                     string backup = SafePaths.Under(Path.Combine(transaction, "backup"), entry.Path);
                     Directory.CreateDirectory(Path.GetDirectoryName(backup)!);
                     CopyDurable(target, backup, ct);
                     operation.Sha256 = VerifiedDownload.Hash(backup, ct);
+                    if (entry.InstalledSha256 is not null && !operation.Sha256.Equals(entry.InstalledSha256, StringComparison.OrdinalIgnoreCase))
+                        throw new IOException("Eine Spieldatei wurde während der Sicherung geändert: " + entry.Path);
                 }
                 if (entry.Existed) sources[entry.Path] = SafePaths.Under(Path.Combine(incoming, "backup"), entry.Path);
                 journal.Operations.Add(operation);
@@ -164,6 +172,7 @@ public sealed partial class GameInstaller
             journal.NextSelection = MakeSelection(journal, pair.VersionPath, pair.OtherVersion, pair.ActiveVersion, pair.LatestVersion);
             ct.ThrowIfCancellationRequested();
             beforeMutation?.Invoke();
+            ValidateActiveFiles(journal.Operations, ct);
             SaveJournal(journalPath, journal);
             try
             {

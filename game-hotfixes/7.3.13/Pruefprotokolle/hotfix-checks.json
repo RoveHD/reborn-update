@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "version": "7.3.13",
+  "baseline": "7.3.12",
+  "published": false,
+  "automaticUpdaterChanged": false,
+  "approvedFiles": [
+    {
+      "path": "patch/Mods/zzzzByteonEvolutionHotfix.rb",
+      "sha256": "67600075475000a02de809c5ea107c4c7a35a33a0c5c15af090b00fd48cbfe59",
+      "size": 731
+    }
+  ],
+  "zipSha256": "00236cab6610af644b15a102ca69a6b0aaf7bf828d3d4bce7693bcdd977fc59a",
+  "zipSize": 553,
+  "verifiedBaseFilesAgainstPublicInventory": true,
+  "loadOrderVerified": true,
+  "evolutionHandlerAndMapIDsVerified": true,
+  "inGameLevelUpTested": false
+}

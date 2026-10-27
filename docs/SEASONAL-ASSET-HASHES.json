@@ -1,0 +1,127 @@
+[
+  {
+    "path": "src/RebornLauncher/assets/scenery/props/standard-props.png",
+    "bytes": 1176100,
+    "sha256": "bf7b875a5ea96af22d6eb23d22ee728d309132079d8efe645b581f8c8145640b"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/standard-far.png",
+    "bytes": 2445459,
+    "sha256": "65f32f76739d73f3fbc36a1ef76c21246bdaf51a4d93d32a5d702bfcd736d181"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/standard-terrain.png",
+    "bytes": 1321332,
+    "sha256": "4fca692b67bec190e4a2c3b02e56bacd54ce3e542d7afe8e2b1b604f193cacb7"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/standard-near.png",
+    "bytes": 1185440,
+    "sha256": "648d5a5b3783e132f4d38f7f5eddd7b90e1b7fa5059ecd4a8a66cbd93bc9d3be"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/props/winter-props.png",
+    "bytes": 2072542,
+    "sha256": "aec766fc9e4908813708628267993f0edd62572047e2ee5eb4e92cb5efb6a860"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/props/spring-props.png",
+    "bytes": 2223179,
+    "sha256": "8e3ea566ca2334a14e7b6f9b07e5c586a072b0ac60ffdfae84325c3827e8e9ee"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/spring-far.png",
+    "bytes": 2524019,
+    "sha256": "de93895f63c86d249787d71766aaca812d92ce5321759c8089928f5d955f3c02"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/spring-terrain.png",
+    "bytes": 1312988,
+    "sha256": "024ecc83befb4e932ce86a2c749b63c6ba5634c180b4a54140811842bb14fc71"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/spring-near.png",
+    "bytes": 1318277,
+    "sha256": "49ff3606428ebfa1b16a3c271c3970b53c3268fc6f570e24e9722c3f8a0ae34a"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/props/summer-props.png",
+    "bytes": 1440994,
+    "sha256": "e9f7643ad7998e4fc513b0624f87ca6c2bd1288912afcd28aae7514a17731499"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/summer-far.png",
+    "bytes": 2533607,
+    "sha256": "2c2067b2f42f6378272b12de3fe6fdc7610acb7bf83266d45520bdd4f143c0c0"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/summer-terrain.png",
+    "bytes": 1723866,
+    "sha256": "3135a209180a31772f22ae82156e6a98feea02c6e465074b74eb06a18b51427c"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/summer-near.png",
+    "bytes": 1206291,
+    "sha256": "69cc8f3defb85a68e4b94602f75c14de72a398a43e9cf1d2e1a97508939e1f0b"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/props/harvest-props.png",
+    "bytes": 1562628,
+    "sha256": "e6741749887e049c61a68ccec9417e028cb144b8d36bd745215d589f4dc44b87"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/harvest-far.png",
+    "bytes": 2787197,
+    "sha256": "c0e1d0419534133f61ddc6c114dd329665f19a2788bf2d9a3074856bb8bfd5f5"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/harvest-terrain.png",
+    "bytes": 1858247,
+    "sha256": "4d61d31bcd79934dcd91c47d9a71d9ddefac8538710c93530ec352d416516583"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/harvest-near.png",
+    "bytes": 1037865,
+    "sha256": "d986ce1c2f63de9e9c3b27159df95b5c1bc6226edbe40f98ab6954b471a1d98e"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/props/newyear-props.png",
+    "bytes": 1640807,
+    "sha256": "17050bcf8910615669846ddbccfe4b674f7e057b8c470b01b1de9eb1a1b0379d"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/newyear-far.png",
+    "bytes": 2561925,
+    "sha256": "032ea7345508794a1e80bd7b27d09df65eade858f51d034768d9e15a26c523cd"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/newyear-terrain.png",
+    "bytes": 1646595,
+    "sha256": "965175229446dfbe6403e3cf439b2d544c3f7f0d0343776c6ca3f4149c4eec87"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/newyear-near.png",
+    "bytes": 1369892,
+    "sha256": "c4e130c1d403358582593c0fc22e3d7aea38a62dfdff66d041a3760cf6cb00f0"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/props/arceus-props.png",
+    "bytes": 1336947,
+    "sha256": "57e23f5c8503a1406d50217165a8d77470a5f64f99834aff97579c487bc05bcf"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/arceus-far.png",
+    "bytes": 2416788,
+    "sha256": "cb8de4086d7a63ff8925bde2ce9c09ff0f9981f9671408d240db28eb35d36789"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/arceus-terrain.png",
+    "bytes": 1967674,
+    "sha256": "622333d146de49f405292db9ecd89b910cc1869500048045ccf353ba277bb2de"
+  },
+  {
+    "path": "src/RebornLauncher/assets/scenery/parallax/arceus-near.png",
+    "bytes": 946606,
+    "sha256": "5d6854f7d9a041161c710c104ac4fab5b5f535bce7b304b522f5069e61a42d25"
+  }
+]

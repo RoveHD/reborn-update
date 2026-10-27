@@ -31,8 +31,8 @@ public sealed class GameHotfix
             if (file is null) throw new InvalidDataException("Leere Hotfix-Datei.");
             string path = SafePaths.ValidateRelative(file.Path);
             if (SafePaths.IsProtected(path) || !seen.Add(path) || file.Size < 0 ||
-                !Regex.IsMatch(file.BeforeSha256, "^[a-fA-F0-9]{64}$") ||
-                !Regex.IsMatch(file.Sha256, "^[a-fA-F0-9]{64}$"))
+                (file.BeforeExists ? !IsHash(file.BeforeSha256) : file.BeforeSha256 != "") ||
+                (file.Delete ? !file.BeforeExists || file.Sha256 != "" || file.Size != 0 : !IsHash(file.Sha256)))
                 throw new InvalidDataException("Ungültige oder geschützte Hotfix-Datei.");
             expanded = checked(expanded + file.Size);
             if (expanded > 30L * 1024 * 1024 * 1024) throw new InvalidDataException("Entpackter Hotfix ist zu groß.");
@@ -59,17 +59,27 @@ public sealed class GameHotfix
             if (SafePaths.ValidateRelative(file.Path).Equals(versionRelative, StringComparison.OrdinalIgnoreCase))
                 throw new InvalidDataException("Ein Hotfix darf die Versionsdatei nicht als Spieldatei ersetzen.");
             string path = SafePaths.Under(directory, file.Path);
-            if (!File.Exists(path) || !VerifiedDownload.Hash(path, ct).Equals(file.BeforeSha256, StringComparison.OrdinalIgnoreCase)) return false;
+            if (Directory.Exists(path) || File.Exists(path) != file.BeforeExists ||
+                (file.BeforeExists && !VerifiedDownload.Hash(path, ct).Equals(file.BeforeSha256, StringComparison.OrdinalIgnoreCase))) return false;
+            // A file occupying a new path's parent must not trigger a full-package fallback.
+            for (string? parent = Path.GetDirectoryName(path); parent is not null && !parent.Equals(Path.GetFullPath(directory), StringComparison.OrdinalIgnoreCase); parent = Path.GetDirectoryName(parent))
+                if (File.Exists(parent)) return false;
         }
         return true;
     }
 
     public long RequiredSpace(string directory) => checked(Size + Files.Sum(f => f.Size) * 2 +
-        Files.Sum(f => new FileInfo(SafePaths.Under(directory, f.Path)).Length) + 1024 * 1024);
+        Files.Sum(f => { var info = new FileInfo(SafePaths.Under(directory, f.Path)); return info.Exists ? info.Length : 0; }) + 1024 * 1024);
+
+    private static bool IsHash(string? value) => value is not null && Regex.IsMatch(value, "^[a-fA-F0-9]{64}$");
+
+    [System.Text.Json.Serialization.JsonIgnore]
+    public IEnumerable<RemovedFile> Removals => Files.Where(f => f.Delete)
+        .Select(f => new RemovedFile { Path = f.Path, Sha256 = f.BeforeSha256 });
 
     public string ExtractVerified(string archive, string destination, IProgress<UpdateProgress> progress, CancellationToken ct)
     {
-        var expected = Files.ToDictionary(f => SafePaths.ValidateRelative(f.Path), StringComparer.OrdinalIgnoreCase);
+        var expected = Files.Where(f => !f.Delete).ToDictionary(f => SafePaths.ValidateRelative(f.Path), StringComparer.OrdinalIgnoreCase);
         var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         using (var zip = ZipFile.OpenRead(archive))
         {
@@ -90,7 +100,9 @@ public sealed class GameHotfix
         }
         // SafePaths checks links, traversal, collisions and extraction bounds.
         // Ignore its optional single-wrapper return: hotfix paths are always root-relative.
-        SafePaths.Extract(archive, destination, progress, ct);
+        // A deletion-only hotfix deliberately carries an empty ZIP.
+        if (expected.Count == 0) Directory.CreateDirectory(destination);
+        else SafePaths.Extract(archive, destination, progress, ct);
         var actual = Directory.EnumerateFiles(destination, "*", SearchOption.AllDirectories).ToArray();
         if (actual.Length != expected.Count) throw new InvalidDataException("Hotfix-Dateimenge ist unvollständig.");
         foreach (string path in actual)
@@ -108,6 +120,10 @@ public sealed class GameHotfix
 public sealed class GameHotfixFile
 {
     public string Path { get; set; } = "";
+    // Defaults preserve existing replacement-only manifests. Absence is explicit,
+    // never inferred from a missing hash or a missing local file.
+    public bool BeforeExists { get; set; } = true;
+    public bool Delete { get; set; }
     public string BeforeSha256 { get; set; } = "";
     public string Sha256 { get; set; } = "";
     public long Size { get; set; }

@@ -86,7 +86,8 @@ internal static class Program
             Check(layers.All(layer => ((TranslateTransform)layer.RenderTransform).X == 0 && ((TranslateTransform)layer.RenderTransform).Y == 0), "Reduced motion did not reset all depth layers");
             Check(!Field<DispatcherTimer>(backdrop, "_camera").IsEnabled, "Reduced motion leaves camera timer running");
             Invoke(window, "PreviewTheme", "summer", false); Pump();
-            Check(layers.Take(3).All(layer => layer.Source is null), "Halloween layers leak into other themes");
+            Check(layers.Skip(1).Take(2).All(layer => layer.Source is null), "Halloween castle or character leaks into other themes");
+            Check(((BitmapImage)layers[0].Source).UriSource.ToString().Contains("summer-far"), "Seasonal far plane did not replace the Halloween forest");
             Invoke(window, "PreviewTheme", "halloween", false); Pump();
             Check(layers.All(layer => layer.Source is not null), "Theme switch did not restore layered scene");
             File.WriteAllText(Path.Combine(output, "checks.json"), JsonSerializer.Serialize(new { success = true, independentDepthPlanes = 5, cameraLayouts = rows, fixedInterface = true, blurredNearBushes = true, reducedMotion = true, themeSwitch = true }, new JsonSerializerOptions { WriteIndented = true }));

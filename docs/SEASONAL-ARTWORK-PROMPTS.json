@@ -1,0 +1,122 @@
+{
+  "tool": "Built-in image_gen",
+  "created": "2026-10-26",
+  "assets": [
+    {
+      "name": "winter-props",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-21076fbe-99cd-4cc5-bed2-1dc4a9b162b5.png",
+      "prompt": "Create a production game sprite atlas, 1536x1024 pixels, genuinely transparent background. Beautiful Japanese anime environment art, hand-painted cel shading, fine dark contours, luminous soft reflected light, richly illustrated yet readable small. Each object isolated, no ground plane, no backdrop, no labels, no text, no grid lines. Strict equal grid; center each sprite within its cell with at least 40px transparent gutters on every side. Never cross cell boundaries. No detached shadow. 4 columns by 3 rows, row-major order exactly: row1 snowman with midnight blue scarf, round snowball, low fluffy snow mound, hanging tapering icicle; row2 small snow-dusted pine tree with visible trunk, angular cyan ice crystal cluster, small wrapped golden gift with burgundy ribbon, blue glass hanging ornament; row3 golden hanging bell, red-white candy cane, EMPTY, EMPTY. Cool blue aurora moonlight, gold accents, polished winter fantasy style. Bottom cells remain transparent when empty.",
+      "destination": "src/RebornLauncher/assets/scenery/props/winter-props.png"
+    },
+    {
+      "name": "standard-props",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-827c24dd-0a60-4e6f-953b-50b5d0088ec2.png",
+      "prompt": "Production Japanese anime game environment PROP SPRITE ATLAS, 1536x1024. TRUE transparent background. Six equal cells in strict 3-column x 2-row grid (512x512 per cell). No text or grid. Each required sprite perfectly centered in its assigned cell, at least 60px empty transparent gutters. Hand-painted cel-shaded anime fantasy artwork with clean expressive outlines, bright rimlight and deep colored shadows, NO realistic 3D rendering. Small silhouettes readable, fine details limited. No background, no ground patch, no detached cast shadows. Unused cells completely empty alpha. Exactly TWO sprites on top row: top-left a delicate four-point blue-silver floating magical star with subtle small aura; top-middle a group of 3 faceted blue moon crystals growing from a tiny stone base. Top-right and all bottom cells EMPTY. Midnight blue moonlit castle setting. Crisp anime, magical but restrained.",
+      "destination": "src/RebornLauncher/assets/scenery/props/standard-props.png"
+    },
+    {
+      "name": "arceus-props",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-93f713d7-73d1-49d8-bf7c-b2638483cf6f.png",
+      "prompt": "Production Japanese anime game environment PROP SPRITE ATLAS, 1536x1024. TRUE transparent background. Six equal cells in strict 3-column x 2-row grid (512x512 per cell). No text or grid. Each required sprite perfectly centered in its assigned cell, at least 60px empty transparent gutters. Hand-painted cel-shaded anime fantasy artwork with clean expressive outlines, bright rimlight and deep colored shadows, NO realistic 3D rendering. Small silhouettes readable, fine details limited. No background, no ground patch, no detached cast shadows. Unused cells completely empty alpha. Exactly TWO sprites on top row: top-left a delicate gold four-point celestial star with tiny orbit fragments, top-middle a translucent ivory-and-gold quartz cluster on small dark stone base, warm golden inner radiance. Top-right and all bottom cells EMPTY. Sacred ancient sky-temple palette, ivory gold with deep violet shadows. Elegant divine anime style.",
+      "destination": "src/RebornLauncher/assets/scenery/props/arceus-props.png"
+    },
+    {
+      "name": "spring-props",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-2b0edf4a-8598-4411-aae3-05bc49337e6b.png",
+      "destination": "src/RebornLauncher/assets/scenery/props/spring-props.png",
+      "prompt": "Keep these exact five decorative objects and their style but FIX the atlas spacing. Output same1536x1024, true transparent background, exactly3cols2rows. Each sprite should be scaled down to fit INSIDE the middle 340x340 pixels of its512x512cell, with minimum86px empty alpha all around. Row1 egg,bunny,nest. Row2 flower,butterfly,EMPTY. Whole flower cluster must not touch/cross rightcellboundary; butterfly must not touch/cross leftcellboundary. Remove any background illumination or colored matte outside objects. Preserve full object silhouettes and opaque painted materials. No gridlines, no cellbackground."
+    },
+    {
+      "name": "summer-props",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-aab13f69-7220-46f6-a3f5-03e5a072e9fc.png",
+      "destination": "src/RebornLauncher/assets/scenery/props/summer-props.png",
+      "prompt": "Fix only the transparency and spacing of this three-object sprite atlas. Canvas1536x1024, grid3cols2rows512x512. Toprow bubble,waterballoon,firefly; bottomrow completely empty transparent. Remove all background gradients, gridlines, rectangular glows, matte and vignette. Everything outside the exact three object silhouettes must be full alpha0, apart from a very small organic glow around fireflytail. Each object fits central340x340ofitscell with86pxtransparentborder. Preserve anime colors and detail. Bubble inside may be translucent, waterballoon and insect opaque. No backdrops or lights behind items."
+    },
+    {
+      "name": "harvest-props",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-3dc94347-e241-4b2c-badb-dc04475e789a.png",
+      "destination": "src/RebornLauncher/assets/scenery/props/harvest-props.png",
+      "prompt": "Production Japanese anime game PROP SPRITE ATLAS, 1536x1024 pixels, true transparent background. Strict equal 3 columns x 2 rows of 512x512 cells. Center each item in its assigned cell with at least50px transparent gutters on all sides. No text, no gridlines, no backdrop, no framing, no ground patches or detached shadows. Hand-painted cel shaded anime art matching a beautiful fantasy landscape, clean lines, compact clear silhouettes, colored shadows. Exactly three objects in top row: left a low mound of crimson/orange maple leaves with tiny twigs, middle a pair of brown acorns with textured caps and one tiny amber leaf, right a cluster of two amber woodland mushrooms with deep green moss around stem bases. All three bottom cells EMPTY transparent. Warm sunset golden highlights, rich orange and russet details, cool indigo shadows. Cozy autumn anime."
+    },
+    {
+      "name": "newyear-props",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-33c8fb91-6d2c-4dc9-8513-28cf9eb517fc.png",
+      "destination": "src/RebornLauncher/assets/scenery/props/newyear-props.png",
+      "prompt": "Production Japanese anime game PROP SPRITE ATLAS, 1536x1024 pixels, true transparent background. Strict equal 3 columns x 2 rows of 512x512 cells. Center each item in its assigned cell with at least50px transparent gutters on all sides. No text, no gridlines, no backdrop, no framing, no ground patches or detached shadows. Hand-painted cel shaded anime art matching a beautiful fantasy landscape, clean lines, compact clear silhouettes, colored shadows. Row1 left slender unlit blue-and-gold festival firework rocket on launch stick; middle lit elegant golden sparkler on thin metal rod (smallcontainedstar sparks); right a small airy group of six curled gold/teal/red confetti ribbons. Row2 left upright midnight blue party hat with golden stars and softgold pompom; middle glowing tiny decorative golden four-point star; right EMPTY transparent. Snowy nighttime fantasy festival anime, blues and restrained warm gold. Clean readable details, objects fully contained within cells."
+    },
+    {
+      "name": "standard-far",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-410eba54-c256-44e5-8ab1-ecfe2fad786f.png",
+      "destination": "src/RebornLauncher/assets/scenery/parallax/standard-far.png",
+      "prompt": "Edit this registered1672x941 anime scene into its opaque FAR background plane. Keep original exact position, horizon, sky/moon, mountains, lake, distant illuminated castle and bridge. Remove ALL close framing trees and upper branches, foreground ruins/arches, all close shrubs/flowers, all foreground stone pathway and walls, and all three Pokemon. Seamlessly paint removed foreground areas as continuation of the distant lake/forested valley, preserving scenic depth and same perspective. No close objects, no characters. Keep original beautiful anime palette and art. Entire canvas opaque; no transparency or UI."
+    },
+    {
+      "name": "standard-terrain",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-4635d24d-32b5-4234-b3a4-246ccdec2fdb.png",
+      "destination": "src/RebornLauncher/assets/scenery/parallax/standard-terrain.png",
+      "prompt": "Extract the TERRAIN plane of this exact1672x941 anime illustration onto TRUE transparency. Preserve precise original canvas registration, positions and sizes. Keep foreground stone path across bottom, the two raised stone ledges/walls and their low flowers/grass, and the three Pokemon Umbreon at left, Absol at right, sleeping Eevee at lower right in exact original places. Keep their feet and stonecontacts. Remove sky/moon, mountains, distant castle/bridge/lake/forest and tall framing trees/branches and upper ruined arches. All removed regions alpha0. Retain clean organic terrain silhouette, original opaque terrain and character materials, no new objects, no gradient bands or haze. Do not crop or move subjects."
+    },
+    {
+      "name": "spring-far",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-37ae4824-305d-4f9e-8a16-66639c165483.png",
+      "destination": "src/RebornLauncher/assets/scenery/parallax/spring-far.png",
+      "prompt": "Edit into opaque FAR BACKGROUND PLANE only. Keep canvas1672x941 and exact horizon registration: dusk sky, mountains, distant lake and its reflections, tiny distant towns, forested middle-distance slopes. Remove close cherry blossom trees and branches, all foreground flowers/rocks/stonepaths/lanterns/cottages and ALL Pokemon. Inpaint removed areas as seamless continuation of sky or distant green hills/valley/lake. No close trees, no framing, no characters; original gorgeous anime style, deepblue peach palette. Fill entire canvas opaque."
+    },
+    {
+      "name": "spring-terrain",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-cc6fa738-623e-421c-ae7a-c315749091c3.png",
+      "destination": "src/RebornLauncher/assets/scenery/parallax/spring-terrain.png",
+      "prompt": "Extract TERRAIN and CHARACTERS from this exact1672x941 scene with TRUE transparent background, same precise pixel positions. Keep foreground bottom stonepath, low grass/flowers, flanking raised rocky ledges and lanterns, Shayminleft, Sylveonright and Bunearybottomright unchanged withgroundcontacts. Remove ALLsky, lake, mountains, distantforests, distantbuildings, and tallframingtree trunks/branches/canopies. Only lowground+ledges+characters remain, clean natural irregular silhouette, no fuzzygradientbands. Preserve opaque interiors and original composition. Do not resize or move any keptparts."
+    },
+    {
+      "name": "summer-far",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-ac1559e7-42fa-4841-883e-06b666ec1276.png",
+      "destination": "src/RebornLauncher/assets/scenery/parallax/summer-far.png",
+      "prompt": "Edit into opaque FAR BACKGROUND PLANE only. Canvas1672x941 same precise horizon and sun positions, preserve sky, clouds, distantcoast mountains and far leftresort buildings and seawater. Remove all closepalm trunks/fronds/frame bushes, foregroundshore rocks/sand/flowers, and ALL threePokemon (Squirtle,Lapras,Mantyke). Extend the clear turquoise/blue ocean naturally tobottom and extend distantland/sky behind framingtrees. No foreground objects, no characters, same beautifulpaintedanime sunsetstyle. Entirecanvasopaque."
+    },
+    {
+      "name": "summer-terrain",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-936ee6b8-1552-41c5-ac92-514e9a418141.png",
+      "destination": "src/RebornLauncher/assets/scenery/parallax/summer-terrain.png",
+      "prompt": "Extract a precisely registered TRANSPARENT TERRAIN plane from this1672x941 scene. Keep original bottom sand beach and low rocks/flowers/grass with Squirtle onleftrock, Lapras and Mantyke atoriginalrightwaterpositions with their small immediate organic ripples only. Remove sky, sunset, all distantcoasts/buildings and the entire open sea except tiny soft-edged ripples touching the swimmingcharacters. Remove tallpalmtrunks/fronds. Everythingelse alpha0. Preserve exact positions/scales and original anime art, fullyopaque rocks/characters, no shiftedsubjects, no rectangular waterpatches. This will layer over same-scene oceanbackground."
+    },
+    {
+      "name": "harvest-far",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-e3025e0a-2eb6-43c2-82dd-b30bffd0e1ff.png",
+      "destination": "src/RebornLauncher/assets/scenery/parallax/harvest-far.png",
+      "prompt": "Edit into opaque FAR BACKGROUND PLANE. Same1672x941canvas, exacthorizon, distantmountains/sunsetsky, valleyforest, lake, distantbridge and castle. RemoveALLforeground: largeframingmapletrees/branches, closehouseatright, lanterns/fences/rocks/stonepath/leaves and allPokemon. Extend distantforestedvalley down tobottom, extend sky or distantforest in places formerlyhiddenbycloseobjects. Gorgeous originalanimegoldenautumnpalette preserved. No characters or foreground framingobjects, opaqueentirecanvas."
+    },
+    {
+      "name": "harvest-terrain",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-aed4854b-b588-4afb-ace2-f18620e2d414.png",
+      "destination": "src/RebornLauncher/assets/scenery/parallax/harvest-terrain.png",
+      "prompt": "Extract only foreground TERRAIN AND CHARACTERS on truealpha0background. Same1672x941 exactpixelregistration. Keep original bottomcobblestonepath and rocky terraces with redleaves, lowbushes, fences/lanterns, Leafeonleft, Sawsbuckright, Rowletonrightfence. Keep the nearby stonecottage at right as part of this midgroundplane. Remove sky/mountains/lake/distantforest/distantbridge/castle and tallmaplecanopies/trunksatupperleftandupperright. Preserve original positions and opaque paintedmaterials; clean organicsilhouette, no haze, no recentering, no resizedcharacters. Groundacrossbottommust remain solidopaque."
+    },
+    {
+      "name": "newyear-far",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-36e2efce-9283-44c8-951d-4fec6fdbc590.png",
+      "destination": "src/RebornLauncher/assets/scenery/parallax/newyear-far.png",
+      "prompt": "Edit this1672x941 anime scene into only its opaque FARplane. Preserve exacthorizon, nightstarrysky/clouds, snowmountains, lake and farshorecastles/towns/lights/reflections. Remove closeframinghouses leftandright, branches, foregroundsnow/railings/lanterns/stonepromenade and allPokemon(Clefairy,Pikachu,Jirachi). Continue distantlake tobottomnaturally and sky/distanttown behinddeletedframing. Original gorgeous winterfestivalanimebluegoldpalette. Fullyopaque canvas, noforegroundobjects, nocharacters."
+    },
+    {
+      "name": "newyear-terrain",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-cb5fe10e-38c1-4c6e-a2ba-4c6c9d91e5c2.png",
+      "destination": "src/RebornLauncher/assets/scenery/parallax/newyear-terrain.png",
+      "prompt": "Extract registeredTERRAINplane from this exact1672x941 anime illustration. Preserve exactpositions: bottomstonepromenade/snow, closeleftandrightframinghouses/walls/railings/lanterns and bushesshouldremain, alongwithClefairy,Pikachu,Jirachiintheiroriginalpositions. Removestarrysky,mountains, ALLdistanttown/castles/lake/waterreflections and talltreesatuppercorners. Everythingremovedistruealpha0; keystonegroundsolidopaque, charactersopaque, cleanirregularsilhouettes and no softrectangularglowmattes. Do not recenter orrescale."
+    },
+    {
+      "name": "arceus-far",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-588ce218-f076-42a9-8bc2-738357d30866.png",
+      "destination": "src/RebornLauncher/assets/scenery/parallax/arceus-far.png",
+      "prompt": "Edit this exact1672x941 anime scene to its opaque FARbackground. Keep sky/clouds,mountains and distantfloatingislands/temples and waterfalls preciselypositioned. Remove ALL threePokemon Arceusleft/Palkiaright/Giratinaupperright; removecloseleft/rightpillars/arches and foregroundplatforms/ground/flowers. Inpaint seamless sky, distantfloatingislands andcloudseabehindthem. KeepbluegoldsunsetpaletteandoriginalepicJapaneseanimepaintquality. Entirecanvasopaque noforegroundframingobjectsorcharacters."
+    },
+    {
+      "name": "arceus-terrain",
+      "source": "C:\\Users\\elias\\.codex\\generated_images\\01a16538-ef7a-79a1-a5e5-1d12fb09b40d\\exec-334af0c9-afac-4512-8f5a-a576bf5a080e.png",
+      "destination": "src/RebornLauncher/assets/scenery/parallax/arceus-terrain.png",
+      "prompt": "Extract a TERRAIN+CHARACTER parallax plane from this exact1672x941 illustration on TRUE transparent background. Keep exact original pixel positions/scales. Preserve original foregroundfloatingstoneplatforms and their whiteflower/ivyedges, lowerforegroundstonepath, closeleft/rightpillars/arches and originalArceusleft/Palkiaright/Giratinaabove-right. Remove ALLsky, cloudsea, distantmountains, distantfloatingislandsandtemples/waterfalls. Everythingremovedalpha0. Retainedground andcharacters fullyopaque andundistorted withtheiroriginalcontacts. Clean organic silhouette, no backgroundglowbands, no faint remainingmountains or rectangularhaze. Do not recenter or crop thecanvas."
+    }
+  ],
+  "nearPlanes": "Original anime/*-foreground.png copied unchanged into parallax/*-near.png for six themes. Winter uses original inhabited landscape and anime foreground.",
+  "winter": "Terrain extraction was rejected by image generation. Winter retains its original artwork with separate terrain/near transforms and grounded painted props."
+}

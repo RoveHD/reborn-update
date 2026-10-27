@@ -8,6 +8,5 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="../../src/RebornLauncher/Services/FireworkSimulation.cs" Link="FireworkSimulation.cs" />
-    <Compile Include="../../src/RebornLauncher/UI/FireworkScene.cs" Link="FireworkScene.cs" />
   </ItemGroup>
 </Project>

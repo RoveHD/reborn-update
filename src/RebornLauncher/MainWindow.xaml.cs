@@ -139,7 +139,13 @@ public partial class MainWindow : Window
                 ? "Für diese Version gibt es keine Versionshinweise."
                 : ReadablePatchNotes(manifest.PatchNotes);
             PatchNotesSubtitle.Text = $"Launcher {manifest.Launcher.Version} · Spiel {_remoteVersion}";
-            SetStatus("Spielstatus geladen.");
+            SetStatus(!HasSelectedGame()
+                ? "Wähle deinen vorhandenen Reborn-Spielordner aus."
+                : _versionSelection?.IsPreviousActive == true
+                    ? $"Reborn {_localVersion} ist ausgewählt. Automatische Spielupdates sind pausiert."
+                    : UpdateService.IsDifferentVersion(_localVersion, _remoteVersion)
+                        ? $"Reborn {_remoteVersion} ist verfügbar. Installiert: {_localVersion}."
+                        : $"Reborn {_localVersion} ist aktuell. Bereit zum Spielen.");
         }
         catch (OperationCanceledException)
         {
@@ -180,7 +186,7 @@ public partial class MainWindow : Window
         var token = _operationCts.Token;
 
         SetBusy(true, force ? "Spiel wird repariert …" : "Suche nach Spielupdates …");
-        ResetProgress();
+        ResetProgress(force ? "Spieldateien und verfügbare Version werden geprüft …" : "Installierte Version und Update-Kanal werden geprüft …");
 
         try
         {
@@ -202,7 +208,7 @@ public partial class MainWindow : Window
             var needsUpdate = force || UpdateService.IsDifferentVersion(_localVersion, _remoteVersion);
             if (!needsUpdate)
             {
-                SetStatus("Das Spiel ist auf dem neuesten Stand.");
+                SetStatus($"Reborn {_localVersion} ist aktuell. Bereit zum Spielen.");
                 UpdateIdleStatus();
                 return true;
             }
@@ -226,7 +232,7 @@ public partial class MainWindow : Window
             _localVersion = _remoteVersion;
             _versionSelection = _updates.GetVersionSelection(_settings);
             UpdateVersionLabels();
-            SetStatus($"Version {_localVersion} wurde installiert.");
+            SetStatus($"Update abgeschlossen: Reborn {_localVersion} ist spielbereit.");
             return true;
         }
         catch (OperationCanceledException)
@@ -253,6 +259,9 @@ public partial class MainWindow : Window
 
     private void ApplyProgress(UpdateProgress progress)
     {
+        // Progress<T> posts to the dispatcher. A final queued report must not
+        // reopen the progress display after the operation has already ended.
+        if (!_isBusy) return;
         ProgressPanel.Visibility = Visibility.Visible;
         TopStatusText.Text = StageName(progress.Stage);
         ActivityText.Text = progress.Message;
@@ -262,7 +271,7 @@ public partial class MainWindow : Window
         {
             DownloadProgressBar.IsIndeterminate = false;
             DownloadProgressBar.Value = Math.Clamp(percent, 0, 100);
-            ProgressText.Text = $"{percent:0.0}%";
+            ProgressText.Text = $"{StageName(progress.Stage)} · {percent:0}%";
         }
         else
         {
@@ -273,9 +282,10 @@ public partial class MainWindow : Window
         if (progress.Stage == UpdateStage.Downloading)
         {
             var downloaded = FormatBytes(progress.BytesReceived);
-            var total = progress.TotalBytes is > 0 ? FormatBytes(progress.TotalBytes.Value) : "?";
             var speed = progress.BytesPerSecond > 0 ? $"{FormatBytes(progress.BytesPerSecond)}/s" : "";
-            ProgressText.Text = $"{downloaded} / {total}";
+            ProgressText.Text = progress.TotalBytes is > 0
+                ? $"{downloaded} von {FormatBytes(progress.TotalBytes.Value)}"
+                : $"{downloaded} heruntergeladen";
             SpeedText.Text = speed;
         }
         else
@@ -284,13 +294,16 @@ public partial class MainWindow : Window
         }
     }
 
-    private void ResetProgress()
+    private void ResetProgress(string? detail = null)
     {
         ProgressPanel.Visibility = Visibility.Visible;
         DownloadProgressBar.IsIndeterminate = true;
         DownloadProgressBar.Value = 0;
-        ProgressText.Text = "Wird vorbereitet …";
-        Dispatcher.BeginInvoke(new Action(() => ProgressPanel.BringIntoView()), System.Windows.Threading.DispatcherPriority.Loaded);
+        ProgressText.Text = detail ?? StatusText.Text;
+        Dispatcher.BeginInvoke(new Action(() =>
+        {
+            if (_isBusy && ProgressPanel.IsVisible) ProgressPanel.BringIntoView();
+        }), System.Windows.Threading.DispatcherPriority.Loaded);
         SpeedText.Text = "";
     }
 
@@ -377,7 +390,7 @@ public partial class MainWindow : Window
         if (wantsPrevious == _versionSelection.IsPreviousActive) return;
         _operationCts = new CancellationTokenSource();
         SetBusy(true, "Spielversion wird gewechselt …");
-        ResetProgress();
+        ResetProgress("Dateien der ausgewählten Spielversion werden geprüft …");
         try
         {
             await _updates.SwitchVersionAsync(_settings, new Progress<UpdateProgress>(ApplyProgress), _operationCts.Token);
@@ -432,6 +445,14 @@ public partial class MainWindow : Window
     private void SetBusy(bool busy, string? activity = null)
     {
         _isBusy = busy;
+        if (!busy)
+        {
+            ProgressPanel.Visibility = Visibility.Collapsed;
+            DownloadProgressBar.IsIndeterminate = false;
+            DownloadProgressBar.Value = 0;
+            ProgressText.Text = "";
+            SpeedText.Text = "";
+        }
         StartGameButton.IsEnabled = !busy;
         CheckUpdatesButton.IsEnabled = !busy;
         ChooseFolderButton.IsEnabled = !busy;
@@ -844,7 +865,7 @@ public partial class MainWindow : Window
 
     private static string StageName(UpdateStage stage) => stage switch
     {
-        UpdateStage.Checking => "Suche", UpdateStage.Downloading => "Download", UpdateStage.Extracting => "Entpacken", UpdateStage.Installing => "Installation", UpdateStage.Complete => "Fertig", _ => "Bereit"
+        UpdateStage.Checking => "Prüfung", UpdateStage.Downloading => "Download", UpdateStage.Extracting => "Entpacken", UpdateStage.Installing => "Installation", UpdateStage.Complete => "Abgeschlossen", _ => "Bereit"
     };
 
     private async void ChooseFolderButton_Click(object sender, RoutedEventArgs e)

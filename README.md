@@ -5,12 +5,12 @@ Deutscher Windows-Launcher für die gemeinsame Reborn-/AllGen-Installation. Er a
 ## Für Mitspieler
 
 1. Spiel und alten Launcher schließen.
-2. [Reborn-Launcher-7.3.8-Setup.exe](https://github.com/RoveHD/reborn-update/releases/download/v7.3.8/Reborn-Launcher-7.3.8-Setup.exe) herunterladen und installieren. Keine Administratorrechte nötig.
+2. [Reborn-Launcher-7.4.0-Setup.exe](https://github.com/RoveHD/reborn-update/releases/download/v7.4.0/Reborn-Launcher-7.4.0-Setup.exe) herunterladen und installieren. Keine Administratorrechte nötig.
 3. Den Launcher über das Startmenü öffnen und einmal den vorhandenen Reborn-Spielordner auswählen.
 
 Der Launcher ist separat unter `%LOCALAPPDATA%\Programs\RebornLauncher` installiert. Das Setup verändert keine Spieldateien. Neue veröffentlichte Launcher-Versionen kommen beim Start automatisch über GitHub. Ein vorhandener C#-Launcher 7.0/7.1 kann sich ebenfalls selbst aktualisieren; für den dauerhaften Installationsordner einmal das Setup verwenden.
 
-Alte Python-Launcher brauchen einmalig das neue Setup. Das alte `version.txt`-Updateverfahren bleibt auf 6.1.0; das Spielpaket heißt `Reborn-AllGen-0.9.9.zip`. Dadurch installiert der alte Updater umbenannte Mods nicht ohne die notwendige Löschmigration. Das aktuelle Spielpaket bleibt bei diesem Launcher-Release auf 7.3.5 / AllGen 0.9.9. Passende kleine Hotfix-Pakete werden seit Launcher 7.3.3 automatisch ausgewählt.
+Alte Python-Launcher brauchen einmalig das neue Setup. Das alte `version.txt`-Updateverfahren bleibt auf 6.1.0; das Spielpaket heißt `Reborn-AllGen-0.9.9.zip`. Dadurch installiert der alte Updater umbenannte Mods nicht ohne die notwendige Löschmigration. Passende kleine Hotfix-Pakete werden automatisch ausgewählt; neue und entfernte Dateien werden ab Launcher 7.4.0 ebenfalls als sichere Deltas unterstützt.
 
 ### Jahreszeiten und Gestaltung
 
@@ -40,17 +40,19 @@ Die Auswahl bleibt nach dem Schließen erhalten. Solange **Vorherige** aktiv ist
 
 Spielstände und persönliche Einstellungen werden beim Wechsel nicht zurückgesetzt. Ein mit einer neueren Spielversion gespeicherter Spielstand kann mit der älteren Version inkompatibel sein; vor dem ersten Start mit einer neuen Version wichtige Spielstände separat sichern. Bereits vor Installation dieses Launchers entfernte Spielversionen können nicht nachträglich wiederhergestellt werden.
 
-**Downloadgröße:** Updates laden derzeit weiterhin das vollständige Spielpaket. Nur das lokale Ersetzen und die Sicherung sind auf geänderte Dateien begrenzt; Downloads einzelner Änderungen sind noch nicht implementiert.
+**Downloadgröße:** Der Launcher lädt bei einem passenden Versionsstand ein kleines, hashgeprüftes Delta mit nur den geänderten Dateien. Deltas können Dateien ersetzen, neu anlegen und gezielt entfernen. Für große Änderungen und ältere Launcher bleibt das vollständige Spielpaket als Fallback verfügbar.
 
 **Dateien reparieren** lädt das geprüfte Spielpaket erneut, prüft vorhandene Dateien und ersetzt beschädigte oder veraltete Dateien. Spielstände, `settings.json`, `mkxp.json` und unbekannte zusätzliche Dateien bleiben erhalten. Mitgelieferte Mod-Dateien werden auf den Paketstand aktualisiert; eigene Änderungen an genau diesen Dateien gehören daher vorher in eine eigene Sicherung.
 
 ## Updateverfahren
 
 - `update.json` enthält getrennte Versionen für Launcher und Spiel, feste Release-Adressen, Größen und SHA-256-Prüfsummen. Zusammengehörige Version und Download können dadurch nicht durch einen wechselnden `latest`-Link auseinanderlaufen.
+- Kleine Deltas können Dateien ersetzen, neu anlegen und gezielt entfernen. Sie laufen nur auf einer exakt passenden Spielversion und prüfen sowohl vorhandene Hashes als auch freie neue Pfade. Alte Launcher ignorieren das neue Deltaformat und behalten das vollständige Fallbackpaket.
 - HTTPS-Zertifikate werden geprüft. Fehlerhafte Downloads werden vor der Installation verworfen. Ein fehlendes Manifest wird offen angezeigt; es gibt keinen Rückfall auf den unsicheren alten Updateablauf.
 - Reborn muss geschlossen sein. Das Paket wird separat entpackt und geprüft. Identische Dateien bleiben unverändert. Alle betroffenen Originaldateien werden gesichert, bevor die erste Spieländerung erfolgt.
 - Bei Fehler oder Abbruch wird der vorherige Stand wiederhergestellt. Nach Prozessabbruch wird das dauerhafte Updateprotokoll beim nächsten Start ausgewertet, bevor Reborn starten darf. Bei gesperrten Dateien bleiben Sicherung und Protokoll für einen erneuten Versuch erhalten.
-- Löschungen sind nur für ausdrücklich genannte Dateien mit passender alter Prüfsumme erlaubt. Unbekannte Mods werden nicht pauschal entfernt.
+- Deltas beschreiben neue, ersetzte und zu entfernende Dateien einzeln. Vorhandene Basisdateien müssen exakt zur veröffentlichten Prüfsumme passen; neue Zielpfade müssen frei sein. Abweichungen stoppen das Delta vor Änderungen, statt eigene Dateien still zu überschreiben.
+- Löschungen sind nur für ausdrücklich genannte Dateien mit passender alter Prüfsumme erlaubt. Unbekannte Mods werden nicht pauschal entfernt. Rückwechsel entfernt ergänzte Dateien und stellt ausdrücklich entfernte Dateien wieder her.
 - Mehrere belegte Altstände derselben Datei werden berücksichtigt. Kollidiert eine selbst veränderte alte Moddatei mit ihrer neuen Benennung, bricht das Update vor der Installation ab und nennt die Datei. Sie muss dann außerhalb des Spiels gesichert und die Anpassung gezielt übernommen werden.
 - Beim Selbstupdate bleibt `launcher.exe.previous` als Rückweg erhalten. Der neu gestartete Prozess bestätigt den Austausch; ein nicht startfähiger neuer Launcher wird nach Möglichkeit durch die vorherige EXE ersetzt.
 

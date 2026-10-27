@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net9.0-windows</TargetFramework><UseWPF>true</UseWPF><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable></PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../src/RebornLauncher/Services/FireworkSimulation.cs" Link="FireworkSimulation.cs" />
+    <Compile Include="../../src/RebornLauncher/UI/FireworkScene.cs" Link="FireworkScene.cs" />
+  </ItemGroup>
+</Project>

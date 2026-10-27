@@ -11,9 +11,9 @@
     <Authors>Elias</Authors>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>assets/reborn.ico</ApplicationIcon>
-    <Version>7.3.8</Version>
-    <AssemblyVersion>7.3.8.0</AssemblyVersion>
-    <FileVersion>7.3.8.0</FileVersion>
+    <Version>7.4.0</Version>
+    <AssemblyVersion>7.4.0.0</AssemblyVersion>
+    <FileVersion>7.4.0.0</FileVersion>
     <Description>Reborn Launcher mit automatischer Selbstaktualisierung</Description>
   </PropertyGroup>
 
@@ -40,6 +40,7 @@
     <Resource Include="assets/scenery/inhabited/*.png" />
     <Resource Include="assets/scenery/parallax/*.png" />
     <Resource Include="assets/scenery/props/halloween-*.png" />
+    <Resource Include="assets/scenery/props/*-props.png" />
     <EmbeddedResource Include="assets/audio/events/*.wav" LogicalName="PokemonRebornLauncher.events.%(Filename).wav"/>
     <None Include="../../docs/EVENT-SOUND-CREDITS.md" Link="credits/EVENT-SOUND-CREDITS.md" CopyToPublishDirectory="PreserveNewest"/>
     <None Include="../../docs/HALLOWEEN-AMBIENT-AUDIO.md" Link="credits/HALLOWEEN-AMBIENT-AUDIO.md" CopyToPublishDirectory="PreserveNewest"/>

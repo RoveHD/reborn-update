@@ -26,6 +26,18 @@ public partial class MainWindow
                         : AtmosphereView.LandscapePointIn(EventPropsView, new Point(anchor.X, anchor.Y))) is Point point)
                         anchors[anchor.Kind] = point;
             EventPropsView.SetLandscapeAttachments(anchors);
+            var terrainAnchors = new Dictionary<int, Point>();
+            if (_activeTheme != "halloween")
+            {
+                bool winterFestival = (_smokeTest ? _themeDay : DateOnly.FromDateTime(DateTime.Now)).Month == 12;
+                foreach (var anchor in SceneDecorationLayout.SeasonalAnchorsForAspect(_activeTheme,
+                    AtmosphereView.ActualWidth / Math.Max(1, AtmosphereView.ActualHeight), winterFestival))
+                    if ((SceneDecorationLayout.AttachesToForeground(_activeTheme, anchor.Index, winterFestival)
+                        ? AtmosphereView.ForegroundPointIn(EventPropsView, new Point(anchor.X, anchor.Y))
+                        : AtmosphereView.TerrainPointIn(EventPropsView, new Point(anchor.X, anchor.Y))) is Point point)
+                        terrainAnchors[anchor.Index] = point;
+            }
+            EventPropsView.SetTerrainAttachments(terrainAnchors);
         }
         AtmosphereView.CameraChanged += position =>
         {

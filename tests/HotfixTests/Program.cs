@@ -26,7 +26,7 @@ Add("actual UpdateService selects small exact-base delta, preserves user extras 
     Check(f.Read("retired.txt") == "retired" && f.Read("Graphics/custom.png") == "custom shiny");
     Check(f.Read("Save Data/Game.rxdata") == "save" && f.Read("mkxp.json") == "custom settings");
     Check(f.Progress.Any(p => p.Stage == UpdateStage.Downloading && p.TotalBytes == f.Delta.Length && p.Message.Contains("Hotfix")));
-    Check(f.Manifest.GameHotfixes[0].RequiredSpace(f.Root) < f.Manifest.Game.Size * 3);
+    Check(f.DeltaManifest.RequiredSpace(f.Root) < f.Manifest.Game.Size * 3);
 });
 Add("delta update supports version switching in both directions", async f =>
 {
@@ -38,16 +38,17 @@ Add("delta update supports version switching in both directions", async f =>
     await service.SwitchVersionAsync(f.Settings, new InlineProgress(_ => { }), CancellationToken.None);
     Check(f.Read(Fixture.Mod) == "fixed mod" && f.Read("version.txt") == "7.3.2");
 });
-Add("custom base hash selects full package", async f =>
+Add("custom base hash stops without overwriting personal bytes through full fallback", async f =>
 {
-    f.Write(Fixture.Mod, "custom mod"); await f.Install();
-    Check(f.Handler.Requests.Contains("/full") && !f.Handler.Requests.Contains("/delta"));
-    Check(f.Read(Fixture.Mod) == "fixed mod" && !File.Exists(Path.Combine(f.Root, "retired.txt")));
+    f.Write(Fixture.Mod, "custom mod"); await Reject<InvalidOperationException>(() => f.Install());
+    Check(f.Handler.Requests.SequenceEqual(new[] { "/manifest" }));
+    Check(f.Read(Fixture.Mod) == "custom mod" && f.Read("version.txt") == "7.3.1" && f.Read("retired.txt") == "retired");
 });
-Add("missing base file selects full package", async f =>
+Add("missing replacement base stops without full fallback", async f =>
 {
-    File.Delete(Path.Combine(f.Root, Fixture.Mod)); await f.Install();
-    Check(f.Handler.Requests.Contains("/full") && !f.Handler.Requests.Contains("/delta"));
+    File.Delete(Path.Combine(f.Root, Fixture.Mod)); await Reject<InvalidOperationException>(() => f.Install());
+    Check(f.Handler.Requests.SequenceEqual(new[] { "/manifest" }));
+    Check(!File.Exists(Path.Combine(f.Root, Fixture.Mod)) && f.Read("version.txt") == "7.3.1");
 });
 Add("another version selects full package", async f =>
 {
@@ -66,7 +67,7 @@ Add("legacy manifest without hotfix array retains full install", async f =>
 });
 Add("archive hash failure stops without silent full download", async f =>
 {
-    f.Manifest.GameHotfixes[0].Sha256 = new string('0', 64);
+    f.DeltaManifest.Sha256 = new string('0', 64);
     await Reject<InvalidDataException>(() => f.Install()); Unchanged(f);
     Check(!f.Handler.Requests.Contains("/full"));
 });
@@ -157,7 +158,7 @@ Add("invalid hotfix declarations reject before network package request", async f
 });
 Add("versions file cannot be declared as a hotfix payload", async f =>
 {
-    f.Manifest.GameHotfixes[0].Files[0].Path = "version.txt";
+    f.DeltaManifest.Files[0].Path = "version.txt";
     await Reject<InvalidDataException>(() => f.Install()); Unchanged(f);
 });
 Add("cancelled delta leaves game and local version unchanged", async f =>
@@ -165,6 +166,198 @@ Add("cancelled delta leaves game and local version unchanged", async f =>
     using var cancellation = new CancellationTokenSource();
     f.Handler.BeforeDelta = cancellation.Cancel;
     await Reject<OperationCanceledException>(() => f.Install(cancellation.Token)); Unchanged(f);
+});
+
+Add("mixed delta adds replaces and removes with repeated bidirectional switching", async f =>
+{
+    f.MixedDelta();
+    Check(f.DeltaManifest.RequiredSpace(f.Root) < f.Manifest.Game.Size * 3);
+    await f.Install();
+    Check(f.Handler.Requests.SequenceEqual(new[] { "/manifest", "/delta" }));
+    using var service = f.Service();
+    for (int i = 0; i < 5; i++)
+    {
+        bool current = i % 2 == 0;
+        Check(f.Read(Fixture.Mod) == (current ? "fixed mod" : "old mod"));
+        Check(f.Read("version.txt") == (current ? "7.3.2" : "7.3.1"));
+        Check(File.Exists(Path.Combine(f.Root, Fixture.Added)) == current);
+        if (current) Check(f.Read(Fixture.Added) == "new mod");
+        Check(File.Exists(Path.Combine(f.Root, "retired.txt")) != current);
+        if (!current) Check(f.Read("retired.txt") == "retired");
+        Check(f.Read("Graphics/custom.png") == "custom shiny" && f.Read("Save Data/Game.rxdata") == "save" && f.Read("mkxp.json") == "custom settings");
+        if (i < 4) await service.SwitchVersionAsync(f.Settings, new InlineProgress(_ => { }), CancellationToken.None);
+    }
+});
+Add("addition-only delta uses small package and restores absence", async f =>
+{
+    f.MixedDelta();
+    f.DeltaManifest.Files.RemoveAll(file => file.Path != Fixture.Added);
+    f.SetDelta(Fixture.Zip((Fixture.Added, "new mod")));
+    await f.Install();
+    Check(f.Read(Fixture.Added) == "new mod" && f.Read(Fixture.Mod) == "old mod" && f.Read("retired.txt") == "retired");
+    using var service = f.Service();
+    await service.SwitchVersionAsync(f.Settings, new InlineProgress(_ => { }), CancellationToken.None);
+    Check(!File.Exists(Path.Combine(f.Root, Fixture.Added)) && f.Read("version.txt") == "7.3.1");
+});
+Add("deletion-only delta accepts empty ZIP and restores removed bytes", async f =>
+{
+    f.MixedDelta(); f.DeltaManifest.Files.RemoveAll(file => !file.Delete); f.SetDelta(Fixture.Zip());
+    await f.Install();
+    Check(!File.Exists(Path.Combine(f.Root, "retired.txt")) && f.Read(Fixture.Mod) == "old mod");
+    using var service = f.Service();
+    await service.SwitchVersionAsync(f.Settings, new InlineProgress(_ => { }), CancellationToken.None);
+    Check(f.Read("retired.txt") == "retired" && f.Read("version.txt") == "7.3.1");
+    await service.SwitchVersionAsync(f.Settings, new InlineProgress(_ => { }), CancellationToken.None);
+    Check(!File.Exists(Path.Combine(f.Root, "retired.txt")) && f.Read("version.txt") == "7.3.2");
+});
+Add("new path occupied by personal or identical bytes is never overwritten", async f =>
+{
+    f.MixedDelta();
+    foreach (string bytes in new[] { "personal mod", "new mod" })
+    {
+        f.Write(Fixture.Added, bytes); await Reject<InvalidOperationException>(() => f.Install());
+        Check(f.Read(Fixture.Added) == bytes); Unchanged(f);
+    }
+    Check(f.Handler.Requests.All(path => path == "/manifest"));
+});
+Add("new path occupied by directory or parent file is rejected", async f =>
+{
+    f.MixedDelta(); Directory.CreateDirectory(Path.Combine(f.Root, Fixture.Added));
+    await Reject<InvalidOperationException>(() => f.Install()); Unchanged(f);
+    f.DeltaManifest.Files.Single(file => !file.BeforeExists).Path = "personal-parent/new.rb";
+    f.Write("personal-parent", "personal parent file");
+    await Reject<InvalidOperationException>(() => f.Install()); Unchanged(f);
+    Check(f.Read("retired.txt") == "retired" && f.Handler.Requests.All(path => path == "/manifest"));
+});
+Add("changed or missing removal base is rejected without full download", async f =>
+{
+    f.MixedDelta(); f.Write("retired.txt", "personal bytes");
+    await Reject<InvalidOperationException>(() => f.Install()); Unchanged(f);
+    Check(f.Read("retired.txt") == "personal bytes");
+    File.Delete(Path.Combine(f.Root, "retired.txt"));
+    await Reject<InvalidOperationException>(() => f.Install()); Unchanged(f);
+    Check(f.Handler.Requests.All(path => path == "/manifest"));
+});
+Add("delete paths cannot carry archive payload", async f =>
+{
+    f.MixedDelta(); f.SetDelta(Fixture.Zip((Fixture.Mod, "fixed mod"), (Fixture.Added, "new mod"), ("retired.txt", "retired")));
+    await Reject<InvalidDataException>(() => f.Install()); Unchanged(f);
+    Check(f.Read("retired.txt") == "retired" && !File.Exists(Path.Combine(f.Root, Fixture.Added)));
+});
+Add("contradictory add remove declarations fail validation", async f =>
+{
+    foreach (Action<GameHotfix> corrupt in new Action<GameHotfix>[]
+    {
+        h => h.Files[0].BeforeExists = false,
+        h => h.Files[0].Delete = true,
+        h => { h.Files[0].Delete = true; h.Files[0].Sha256 = ""; h.Files[0].Size = 1; },
+        h => { h.Files[0].BeforeExists = false; h.Files[0].BeforeSha256 = ""; h.Files[0].Delete = true; h.Files[0].Sha256 = ""; h.Files[0].Size = 0; },
+        h => h.Files[0].BeforeSha256 = null!, h => h.Files[0].Sha256 = null!
+    })
+    {
+        var hotfix = Fixture.Hotfix(f.Delta); corrupt(hotfix); f.Manifest.GameHotfixes = [hotfix];
+        await Reject<InvalidDataException>(() => f.Install()); Unchanged(f);
+    }
+    Check(f.Handler.Requests.All(path => path == "/manifest"));
+});
+Add("addition absence is rechecked after download and backup", async f =>
+{
+    f.MixedDelta();
+    f.Callback = p => { if (p.Message.Contains("gesichert")) f.Write(Fixture.Added, "concurrent personal file"); };
+    await Reject<InvalidOperationException>(() => f.Install()); Unchanged(f);
+    Check(f.Read(Fixture.Added) == "concurrent personal file" && f.Read("retired.txt") == "retired");
+});
+Add("removal hash is rechecked after backup", async f =>
+{
+    f.MixedDelta();
+    f.Callback = p => { if (p.Message.Contains("gesichert")) f.Write("retired.txt", "concurrent personal file"); };
+    await Reject<IOException>(() => f.Install()); Unchanged(f);
+    Check(f.Read("retired.txt") == "concurrent personal file" && !File.Exists(Path.Combine(f.Root, Fixture.Added)));
+});
+Add("failed mixed delta rolls back additions removals replacements and version", async f =>
+{
+    f.MixedDelta();
+    f.Callback = p => { if (p.Message.Contains("Installiere version.txt")) throw new IOException("after every write"); };
+    await Reject<IOException>(() => f.Install()); Unchanged(f);
+    Check(f.Read("retired.txt") == "retired" && !File.Exists(Path.Combine(f.Root, Fixture.Added)));
+    Check(!File.Exists(Path.Combine(f.Root, ".reborn-updater/game-transaction.json")));
+});
+Add("switch rejects modified replacement or addition and unexpected restored removal", async f =>
+{
+    f.MixedDelta(); await f.Install(); using var service = f.Service();
+    foreach (var (path, original) in new[] { (Fixture.Mod, "fixed mod"), (Fixture.Added, "new mod"), ("retired.txt", (string?)null) })
+    {
+        f.Write(path, "personal bytes");
+        await Reject<InvalidOperationException>(() => service.SwitchVersionAsync(f.Settings, new InlineProgress(_ => { }), CancellationToken.None));
+        Check(f.Read(path) == "personal bytes" && f.Read("version.txt") == "7.3.2");
+        if (original is null) File.Delete(Path.Combine(f.Root, path)); else f.Write(path, original);
+    }
+    await service.SwitchVersionAsync(f.Settings, new InlineProgress(_ => { }), CancellationToken.None);
+    f.Write(Fixture.Added, "personal bytes on previous version");
+    await Reject<InvalidOperationException>(() => service.SwitchVersionAsync(f.Settings, new InlineProgress(_ => { }), CancellationToken.None));
+    Check(f.Read(Fixture.Added) == "personal bytes on previous version" && f.Read("version.txt") == "7.3.1" && f.Read("retired.txt") == "retired");
+});
+Add("switch rechecks all active states immediately before writes", async f =>
+{
+    f.MixedDelta(); await f.Install(); var installer = new GameInstaller(f.Root);
+    foreach (string path in new[] { Fixture.Mod, Fixture.Added, "retired.txt" })
+    {
+        int writes = 0;
+        await Reject<IOException>(() => Task.Run(() => installer.SwitchVersion(f.Settings.ResolveLocalVersionPath(), new InlineProgress(_ => { }), CancellationToken.None,
+            afterWrite: _ => writes++, beforeMutation: () => f.Write(path, "changed during backup"))));
+        Check(writes == 0 && f.Read(path) == "changed during backup" && f.Read("version.txt") == "7.3.2");
+        if (path == "retired.txt") File.Delete(Path.Combine(f.Root, path)); else f.Write(path, path == Fixture.Mod ? "fixed mod" : "new mod");
+    }
+});
+Add("failed switch restores all three operation kinds and remains retryable", async f =>
+{
+    f.MixedDelta(); await f.Install(); var installer = new GameInstaller(f.Root);
+    await Reject<IOException>(() => Task.Run(() => installer.SwitchVersion(f.Settings.ResolveLocalVersionPath(), new InlineProgress(_ => { }), CancellationToken.None,
+        afterWrite: index => { if (index == 3) throw new IOException("after version write"); })));
+    Check(f.Read(Fixture.Mod) == "fixed mod" && f.Read(Fixture.Added) == "new mod" && !File.Exists(Path.Combine(f.Root, "retired.txt")) && f.Read("version.txt") == "7.3.2");
+    installer.SwitchVersion(f.Settings.ResolveLocalVersionPath(), new InlineProgress(_ => { }), CancellationToken.None);
+    Unchanged(f); Check(f.Read("retired.txt") == "retired" && !File.Exists(Path.Combine(f.Root, Fixture.Added)));
+});
+Add("V2 is preferred over legacy delta for the same base", async f =>
+{
+    f.MixedDelta(); f.Manifest.GameHotfixes.Add(Fixture.Hotfix(Fixture.Zip((Fixture.Mod, "fixed mod"))));
+    await f.Install();
+    Check(f.Read(Fixture.Added) == "new mod" && !File.Exists(Path.Combine(f.Root, "retired.txt")));
+});
+Add("legacy reader can ignore V2 and still parse the full-package manifest", f =>
+{
+    f.MixedDelta();
+    var json = System.Text.Json.Nodes.JsonNode.Parse(JsonSerializer.Serialize(f.Manifest))!;
+    json.AsObject().Remove("GameHotfixesV2");
+    var legacy = UpdateManifest.Parse(json.ToJsonString());
+    Check(legacy.GameHotfixes.Count == 0 && legacy.GameHotfixesV2.Count == 0 && legacy.Game.Url == f.Manifest.Game.Url);
+    return Task.CompletedTask;
+});
+Add("extended operations are rejected in legacy list before any package request", async f =>
+{
+    f.MixedDelta(); f.Manifest.GameHotfixes = f.Manifest.GameHotfixesV2; f.Manifest.GameHotfixesV2 = [];
+    await Reject<InvalidDataException>(() => f.Install()); Unchanged(f);
+    Check(f.Handler.Requests.SequenceEqual(new[] { "/manifest" }));
+});
+Add("duplicate V2 bases and null V2 lists are rejected", async f =>
+{
+    f.MixedDelta(); f.Manifest.GameHotfixesV2.Add(f.DeltaManifest);
+    await Reject<InvalidDataException>(() => f.Install()); Unchanged(f);
+    f.Manifest.GameHotfixesV2 = null!;
+    await Reject<InvalidDataException>(() => f.Install()); Unchanged(f);
+});
+Add("older snapshots without installed hashes remain switchable", async f =>
+{
+    f.MixedDelta(); await f.Install();
+    string path = Path.Combine(f.Root, ".reborn-updater/versions.json");
+    var json = System.Text.Json.Nodes.JsonNode.Parse(File.ReadAllText(path))!;
+    foreach (var entry in json["Entries"]!.AsArray()) entry!.AsObject().Remove("InstalledSha256");
+    File.WriteAllText(path, json.ToJsonString());
+    using var service = f.Service();
+    await service.SwitchVersionAsync(f.Settings, new InlineProgress(_ => { }), CancellationToken.None);
+    Unchanged(f); Check(f.Read("retired.txt") == "retired" && !File.Exists(Path.Combine(f.Root, Fixture.Added)));
+    await service.SwitchVersionAsync(f.Settings, new InlineProgress(_ => { }), CancellationToken.None);
+    Check(f.Read(Fixture.Added) == "new mod" && !File.Exists(Path.Combine(f.Root, "retired.txt")));
 });
 
 int failures = 0;
@@ -179,9 +372,11 @@ Environment.ExitCode = failures == 0 ? 0 : 1;
 sealed class Fixture : IDisposable
 {
     public const string Mod = "patch/Mods/zzLegendaryCatchDifficulty.rb";
+    public const string Added = "patch/Mods/zzAddedHotfix.rb";
     public string Root { get; } = Path.Combine(Path.GetTempPath(), "RebornHotfixTests", Guid.NewGuid().ToString("N"));
     public LauncherSettings Settings { get; }
     public UpdateManifest Manifest { get; }
+    public GameHotfix DeltaManifest => Manifest.GameHotfixesV2.Concat(Manifest.GameHotfixes).First();
     public byte[] Delta { get; private set; }
     public byte[] Full { get; }
     public FakeHandler Handler { get; }
@@ -209,7 +404,14 @@ sealed class Fixture : IDisposable
         using var service = Service();
         await service.DownloadAndInstallAsync(Settings, "7.3.2", new InlineProgress(p => { Progress.Add(p); Callback?.Invoke(p); }), ct);
     }
-    public void SetDelta(byte[] bytes) { Delta = bytes; Manifest.GameHotfixes[0].Size = bytes.Length; Manifest.GameHotfixes[0].Sha256 = Hash(bytes); }
+    public void SetDelta(byte[] bytes) { Delta = bytes; DeltaManifest.Size = bytes.Length; DeltaManifest.Sha256 = Hash(bytes); }
+    public void MixedDelta()
+    {
+        DeltaManifest.Files.Add(new() { Path = Added, BeforeExists = false, Sha256 = Hash("new mod"), Size = Encoding.UTF8.GetByteCount("new mod") });
+        DeltaManifest.Files.Add(new() { Path = "retired.txt", Delete = true, BeforeSha256 = Hash("retired") });
+        Manifest.GameHotfixesV2.Add(DeltaManifest); Manifest.GameHotfixes.Clear();
+        SetDelta(Zip((Mod, "fixed mod"), (Added, "new mod")));
+    }
     public void Write(string path, string text) { string target = Path.Combine(Root, path); Directory.CreateDirectory(Path.GetDirectoryName(target)!); File.WriteAllText(target, text); }
     public string Read(string path) => File.ReadAllText(Path.Combine(Root, path));
     public static string Hash(string value) => Hash(Encoding.UTF8.GetBytes(value));
@@ -258,13 +460,14 @@ static class ReleaseCheck
     {
         string json = await File.ReadAllTextAsync(Path.Combine(releaseDirectory, "update.json"));
         var manifest = UpdateManifest.Parse(json);
-        var hotfix = manifest.GameHotfixes.Single();
+        var hotfix = manifest.GameHotfixesV2.Concat(manifest.GameHotfixes).First();
         string zip = Path.Combine(releaseDirectory, Uri.UnescapeDataString(Path.GetFileName(new Uri(hotfix.Url).AbsolutePath)));
         if (new FileInfo(zip).Length != hotfix.Size || !VerifiedDownload.Hash(zip).Equals(hotfix.Sha256, StringComparison.OrdinalIgnoreCase))
             throw new Exception("Release delta ZIP mismatch");
         using var fixture = new Fixture();
         foreach (var file in hotfix.Files)
         {
+            if (!file.BeforeExists) continue;
             string source = SafePaths.Under(Path.GetFullPath(baseDirectory), file.Path);
             if (!VerifiedDownload.Hash(source).Equals(file.BeforeSha256, StringComparison.OrdinalIgnoreCase)) throw new Exception("Release base mismatch: " + file.Path);
             string target = SafePaths.Under(fixture.Root, file.Path);
@@ -288,8 +491,12 @@ static class ReleaseCheck
         {
             if (fixture.Read("version.txt") != version) throw new Exception("Release version mismatch");
             foreach (var file in hotfix.Files)
-                if (!VerifiedDownload.Hash(SafePaths.Under(fixture.Root, file.Path)).Equals(before ? file.BeforeSha256 : file.Sha256, StringComparison.OrdinalIgnoreCase))
+            {
+                string path = SafePaths.Under(fixture.Root, file.Path);
+                bool expectedExists = before ? file.BeforeExists : !file.Delete;
+                if (File.Exists(path) != expectedExists || (expectedExists && !VerifiedDownload.Hash(path).Equals(before ? file.BeforeSha256 : file.Sha256, StringComparison.OrdinalIgnoreCase)))
                     throw new Exception("Release installed file mismatch: " + file.Path);
+            }
             if (fixture.Read("Graphics/custom.png") != "custom shiny" || fixture.Read("Save Data/Game.rxdata") != "save" || fixture.Read("mkxp.json") != "custom settings")
                 throw new Exception("Release user data changed");
         }

@@ -26,6 +26,7 @@ internal static class Program
             window.BeginAnimation(UIElement.OpacityProperty, null); window.Opacity = 1;
             var atmosphere = (AtmosphericBackdrop)window.FindName("AtmosphereView");
             var landscape = Field<Image>(atmosphere, "_landscape");
+            var far = Field<Image>(atmosphere, "_forest");
             var foreground = Field<Image>(atmosphere, "_foreground");
             var near = (TranslateTransform)foreground.RenderTransform;
             if (args.Contains("--gallery"))
@@ -62,8 +63,24 @@ internal static class Program
                     {
                         Invoke(window, "PreviewTheme", theme, day); Pump(); window.UpdateLayout();
                         Invoke(window, "VerifyVisibleControls");
-                        Check(((BitmapImage)landscape.Source).UriSource.ToString().Contains(theme == "halloween" ? "halloween-terrain" : theme + "-landscape"), "Wrong landscape");
-                        Check(((BitmapImage)foreground.Source).UriSource.ToString().Contains(theme == "halloween" ? "halloween-near" : theme + "-foreground"), "Wrong foreground");
+                        Check(((BitmapImage)landscape.Source).UriSource.ToString().Contains(theme == "winter" ? "anime/winter-foreground" : theme + "-terrain"), "Wrong terrain/middle plane");
+                        Check(((BitmapImage)far.Source).UriSource.ToString().Contains(theme switch
+                        {
+                            "winter" => "inhabited/winter-landscape",
+                            "halloween" => "halloween-forest",
+                            _ => theme + "-far"
+                        }), "Wrong far plane");
+                        Check(((BitmapImage)foreground.Source).UriSource.ToString().Contains(theme + (theme == "winter" ? "-foreground" : "-near")), "Wrong foreground");
+                        if (theme != "halloween")
+                            Check(new[] { far.RenderTransform, landscape.RenderTransform, foreground.RenderTransform }
+                                .Distinct(ReferenceEqualityComparer.Instance).Count() == 3, "Seasonal theme has fewer than three independent parallax planes: " + theme);
+                        if (theme == "winter")
+                        {
+                            Check(landscape.Clip is RectangleGeometry middle && middle.Rect.Bottom <= landscape.ActualHeight * 390d / 941 + .001,
+                                "Winter middle sheet must clip to upper branches");
+                            Check(foreground.Clip is RectangleGeometry winterNearClip && winterNearClip.Rect.Top >= foreground.ActualHeight * 390d / 941 - .001,
+                                "Winter near sheet must clip to lower bushes");
+                        }
                         Check(!atmosphere.IsHitTestVisible, "Background intercepts clicks");
                         VerifyAlpha((BitmapSource)foreground.Source);
                         if (width == 1280 && !day) Render((FrameworkElement)window.Content, Path.Combine(output, theme + ".png"));

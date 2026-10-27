@@ -286,6 +286,11 @@ def main():
         ci_payload(args.payload, args.approval)
     build(baseline / package.GAME_ARCHIVE, baseline / "game-files.json", args.channel,
           args.approval, args.payload, args.notes, args.output.resolve())
+    if args.ci:
+        # CI downloads only the pinned baseline ZIP and inventory. build() has
+        # verified that this channel still describes game 7.3.12 with the current
+        # smart-delta launcher; supply that manifest locally for the delta builder.
+        write_json(baseline / "update.json", read_json(args.channel))
     build_game_hotfix.build(baseline, args.output.resolve())
     if args.expected_archive_sha256:
         manifest = read_json(args.output / "update.json")

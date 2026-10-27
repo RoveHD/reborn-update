@@ -7,10 +7,10 @@
     "size": 180791029
   },
   "game": {
-    "version": "7.3.12",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.12/Reborn-AllGen-0.9.9.zip",
-    "sha256": "46d25df0aed1bf8c7c30773e753cdff6b97fe4e7dd6554052d1e8bd4e3d0d955",
-    "size": 1476970387,
+    "version": "7.3.13",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.13/Reborn-AllGen-0.9.9.zip",
+    "sha256": "3e685a4aae226858acb7c530ad5c1a796c7646f2642a77269f03c5a1de8a3474",
+    "size": 1476970938,
     "removedFiles": [
       {
         "path": "Audio/SE/003Cry_2.ogg",
@@ -6391,5 +6391,24 @@
       }
     ]
   },
-  "patchNotes": "# Reborn Launcher 7.4.0 – kleine, sichere Spielupdates\n\n- Kleine Updates laden nur die geänderten Dateien. Deltas können Dateien ersetzen, neu anlegen und gezielt entfernen.\n- Prüfsummen sichern jeden erwarteten Vorzustand; fremde Änderungen und belegte neue Pfade stoppen das Update vor dem Schreiben.\n- Rückwechsel entfernt hinzugefügte Dateien und stellt gezielt entfernte Dateien wieder her. Spielstände, Einstellungen und unbekannte Mods bleiben geschützt.\n- Große Änderungen und ältere Launcher verwenden weiterhin das vollständige, geprüfte Fallbackpaket."
+  "patchNotes": "# Spielhotfix 7.3.13 – Evoli kann sich zu Byteon entwickeln\n\n- Ergänzt die fehlende Verknüpfung zwischen Evoli und dem vorhandenen Byteon-Artendatensatz.\n- Byteon entwickelt sich bei einem Levelaufstieg in den bereits definierten Glitch-Gebieten.\n- Byteons Werte, Fähigkeiten und Attacken bleiben unverändert.\n- Launcher 7.4.0 installiert die Ergänzung als kleines, hashgesichertes Delta. Ältere Launcher behalten das vollständige Fallbackpaket; der Launcher wird separat aktualisiert.\n- Das manuelle Zusatzpaket bleibt für bestehende AllGen-Reborn-0.9.9-Installationen verfügbar; Spielstände werden nicht geändert.",
+  "gameHotfixes": [],
+  "gameHotfixesV2": [
+    {
+      "fromVersion": "7.3.12",
+      "version": "7.3.13",
+      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.13/Reborn-Hotfix-7.3.12-to-7.3.13.zip",
+      "sha256": "fbf241238bc472b6059378a088a88830484e44605498918889c9d11d3a81407a",
+      "size": 553,
+      "files": [
+        {
+          "path": "patch/Mods/zzzzByteonEvolutionHotfix.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "67600075475000a02de809c5ea107c4c7a35a33a0c5c15af090b00fd48cbfe59",
+          "size": 731
+        }
+      ]
+    }
+  ]
 }

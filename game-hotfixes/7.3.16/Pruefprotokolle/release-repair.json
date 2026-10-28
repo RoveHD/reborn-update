@@ -1,0 +1,41 @@
+{
+  "success": true,
+  "installedFilesVerified": 18865,
+  "personalFilesUnchanged": [
+    "mkxp.json",
+    "settings.json",
+    "Save Data/Game_3.rxdata",
+    "patch/Mods/FriendsOwnMod.rb"
+  ],
+  "version": "7.3.16",
+  "archiveSha256": "7a642a2e0b7405707d28d330c470978ad9ee86ea06bfc5d08a408902ebbeedf3",
+  "durationSeconds": 67.8329789,
+  "repair": true,
+  "unchangedFileTimestampPreserved": true,
+  "retiredPathsVerifiedAbsent": [
+    "patch/Mods/RE - Alte-Megasteine-Kompatibilitaet.rb",
+    "patch/Mods/RE - Begegnungen-Neue-Pokemon.rb",
+    "patch/Mods/RE - Begleiter-Formen.rb",
+    "patch/Mods/RE - Beutel-Sortierung-und-TM-Infos.rb",
+    "patch/Mods/RE - Box-Markierungen.rb",
+    "patch/Mods/RE - Deutsche-Zusatztexte.rb",
+    "patch/Mods/RE - Mitnahme-Overworld.rb",
+    "patch/Mods/RE - Pokedex-Ansichtsauswahl.rb",
+    "patch/Mods/RE - PulseDex-Versteckte-Bilder.rb",
+    "patch/Mods/RE - Sprachauswahl.rb",
+    "patch/Mods/RE - Zeit-und-Wetter-Fixes.rb",
+    "patch/Mods/RE - Zufallsmusik-Onlinekaempfe.rb",
+    "patch/Mods/RE - Zufallsmusik-Wildkaempfe.rb",
+    "patch/Mods/zzLegendaryCatchDifficulty.rb",
+    "patch/Mods/zzLocalGermanVisible.rb",
+    "patch/Mods/zzzz_RE_BattleSound_099_Compatibility.rb",
+    "patch/Mods/zzLegendaryWildMusic.rb",
+    "patch/Mods/zzzzByteonEvolutionHotfix.rb",
+    "patch/Mods/zzzzGermanGrammarAndClub.rb",
+    "patch/Mods/zzzzzEnglishStreetNames.rb",
+    "patch/Mods/zzzzzGermanFloorLabels.rb",
+    "patch/Mods/zzzzzzGermanItemReview.rb"
+  ],
+  "baselineVersion": "7.3.15",
+  "baselineFilesHashVerified": 18871
+}

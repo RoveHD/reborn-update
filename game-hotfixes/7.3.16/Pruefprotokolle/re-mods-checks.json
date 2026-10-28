@@ -1,0 +1,123 @@
+{
+  "success": true,
+  "version": "7.3.16",
+  "baselineVersion": "7.3.15",
+  "baselineArchiveSha256": "4fea005a1a17f3ee0fb9f6d0cf0e5644c6a72d60dd119498fd491472107dbf1a",
+  "baselineInventorySha256": "3ce65ee68817b1fb6a14a546ac5df6de284f0fc3072faaec29e1f6eba226844b",
+  "approvedManifestSha256": "8bc0f670b92b374a12761d30584902a98a86e5419e589dcec2a669c2c2127042",
+  "approvedFiles": [
+    {
+      "path": "Scripts/ScriptLoader.rb",
+      "sha256": "d89c902456c45816268dc2926409769ff7f242c3e9840111685b117bfe7c7a0e",
+      "size": 6997
+    },
+    {
+      "path": "patch/Mods/RE-Modliste.md",
+      "sha256": "aa3f760bf9f3507e6fd1f124c88d6ad08b5f208fefe9e7a09f39500f4149d8fc",
+      "size": 3992
+    },
+    {
+      "path": "patch/Mods/RE_Alte-Megasteine-Kompatibilitaet.rb",
+      "sha256": "49f0d1482d6c504d48ffc7725c7c6019b379e683c3f7429ce2d3a7518ba10ad7",
+      "size": 828
+    },
+    {
+      "path": "patch/Mods/RE_BattleSound_099_Compatibility.rb",
+      "sha256": "cc58ccb57d8a4741791d884f54d3d47109e293a3f9ea6649aae7958ff38607d4",
+      "size": 955
+    },
+    {
+      "path": "patch/Mods/RE_Begegnungen-Neue-Pokemon.rb",
+      "sha256": "0d4bd78abdc2788441ea6afa619e6900e88d640eb3d7d8dad8d3583dd2a7e1e0",
+      "size": 3053
+    },
+    {
+      "path": "patch/Mods/RE_Begleiter-Formen.rb",
+      "sha256": "91dc8f7af948e4462ece9fe0a74f95b8ef48f765dc851394e14572af6b1cf1af",
+      "size": 12639
+    },
+    {
+      "path": "patch/Mods/RE_Beutel-Sortierung-und-TM-Infos.rb",
+      "sha256": "e7de8633c95cbda2dd982a85ac33e767637ef0a6857112b7af1d10379fb31ba2",
+      "size": 66116
+    },
+    {
+      "path": "patch/Mods/RE_Box-Markierungen.rb",
+      "sha256": "a8501ca23f484ce47280894506fcb547d4f513e8a5bc0e37149770847d6a9def",
+      "size": 4427
+    },
+    {
+      "path": "patch/Mods/RE_ByteonEvolutionHotfix.rb",
+      "sha256": "39f1f35073add1d2eaf22b494548f7c2033056593bd125b6bc66a805b1bfae42",
+      "size": 953
+    },
+    {
+      "path": "patch/Mods/RE_Deutsch.rb",
+      "sha256": "5218be68bf8fbee078c7c9246e760818264a5845f3e68f2e454eb86dc46c76bc",
+      "size": 814943
+    },
+    {
+      "path": "patch/Mods/RE_LegendaryCatchDifficulty.rb",
+      "sha256": "3abdad5467530e87c798733c7029a2bdd57713d39b1184fa6b468fa8e0de7b2d",
+      "size": 15150
+    },
+    {
+      "path": "patch/Mods/RE_LegendaryWildMusic.rb",
+      "sha256": "44384b6b135c805c48f80c3f4c12595734bf49b0a30b05e525edd39bdb2acde0",
+      "size": 3495
+    },
+    {
+      "path": "patch/Mods/RE_Mitnahme-Overworld.rb",
+      "sha256": "85e24d90f956f17ac40c27b3360175f579a43e540d178e147f5b98b27b5ab8f7",
+      "size": 3683
+    },
+    {
+      "path": "patch/Mods/RE_Pokedex-Ansichtsauswahl.rb",
+      "sha256": "d722e7dcee16f7caaa84baaf96bcb7154935219eaf476d8beb65d4662ccdd640",
+      "size": 8326
+    },
+    {
+      "path": "patch/Mods/RE_PulseDex-Versteckte-Bilder.rb",
+      "sha256": "797b21fd0595397d9c0271ab8b7bab72d2d42ccf803b643e4efcd05cacc01b22",
+      "size": 5663
+    },
+    {
+      "path": "patch/Mods/RE_Zeit-und-Wetter-Fixes.rb",
+      "sha256": "28533c871174216ffc405fbe662ae5cbf29b4da07d2240901ca5575f182c8a42",
+      "size": 13896
+    },
+    {
+      "path": "patch/Mods/RE_Zufallsmusik-Onlinekaempfe.rb",
+      "sha256": "8c8ba13f0a1360a03e284652938493bd61e896c2f12071ff928a72517ecae351",
+      "size": 12070
+    },
+    {
+      "path": "patch/Mods/RE_Zufallsmusik-Wildkaempfe.rb",
+      "sha256": "e0a94dd4d7db9b7c9fcc6d0f1c18e3e570336ee98f5d8583fa3f7ef13ff55abb",
+      "size": 672
+    }
+  ],
+  "newFiles": [
+    "patch/Mods/RE_Alte-Megasteine-Kompatibilitaet.rb",
+    "patch/Mods/RE_BattleSound_099_Compatibility.rb",
+    "patch/Mods/RE_Begegnungen-Neue-Pokemon.rb",
+    "patch/Mods/RE_Begleiter-Formen.rb",
+    "patch/Mods/RE_Beutel-Sortierung-und-TM-Infos.rb",
+    "patch/Mods/RE_Box-Markierungen.rb",
+    "patch/Mods/RE_ByteonEvolutionHotfix.rb",
+    "patch/Mods/RE_Deutsch.rb",
+    "patch/Mods/RE_LegendaryCatchDifficulty.rb",
+    "patch/Mods/RE_LegendaryWildMusic.rb",
+    "patch/Mods/RE_Mitnahme-Overworld.rb",
+    "patch/Mods/RE_Pokedex-Ansichtsauswahl.rb",
+    "patch/Mods/RE_PulseDex-Versteckte-Bilder.rb",
+    "patch/Mods/RE_Zeit-und-Wetter-Fixes.rb",
+    "patch/Mods/RE_Zufallsmusik-Onlinekaempfe.rb",
+    "patch/Mods/RE_Zufallsmusik-Wildkaempfe.rb"
+  ],
+  "launcherVersion": "7.4.0",
+  "launcherUnchanged": true,
+  "removedFilesPreserved": true,
+  "published": false,
+  "fullFallbackSha256": "7a642a2e0b7405707d28d330c470978ad9ee86ea06bfc5d08a408902ebbeedf3"
+}

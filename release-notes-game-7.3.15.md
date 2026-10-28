@@ -1,0 +1,13 @@
+# Spielhotfix 7.3.15 – Itemtexte, Straßen und Etagen
+
+- Alle 1.157 Items geprüft. 119 Namen und 197 Beschreibungen korrigiert; offizielle Itemnamen mit PokéWiki abgeglichen, darunter King-Stein und die deutschen Z-Kristallnamen.
+- Alle 35 Gigadynamax-Mega-Steine tragen einheitlich „ G“ am Ende. Normale Mega-Varianten behalten ihre Kennzeichnung.
+- 52 zu lange Beschreibungen gekürzt. Alle Itembeschreibungen passen mit der unveränderten Spielschrift in Beutel, Itemlager und Laden.
+- Straßennamen bleiben einheitlich englisch, darunter Crocus Road und 4th Street.
+- Etagen, Aufzugansagen und Kaufhausverzeichnisse korrigiert, etwa „Erdgeschoss“ statt „Boden Boden“.
+
+UI-Design und Spielmechanik bleiben unverändert. Die Sprecher-, Grammatik- und Nachtclub-Korrekturen aus 7.3.14 bleiben enthalten.
+
+Über den Launcher aktualisieren und das Spiel danach vollständig neu starten. Launcher 7.4.0 bleibt aktuell; von Spielversion 7.3.14 wird nur der kleine Hotfix benötigt. Für ältere oder abweichende Installationen steht das vollständige geprüfte Spielpaket bereit.
+
+Prüfung: 1.157 Itemanzeigen, 250 Maschinenbeschreibungen, 83.025 Textabfragen sowie 3.471 Textfeldmessungen mit der echten Spiel-Engine. Keine Textfeldüberläufe. Originaldaten und Spielstände bleiben erhalten.

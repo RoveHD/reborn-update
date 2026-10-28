@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "items": 1157,
+  "window_checks": 3471,
+  "shortened_descriptions": 52,
+  "overflow": 0,
+  "windows": {
+    "bag": {
+      "width": 408,
+      "height": 96
+    },
+    "storage": {
+      "width": 396,
+      "height": 96
+    },
+    "shop": {
+      "width": 416,
+      "height": 96
+    }
+  },
+  "font": "PokemonEmerald",
+  "font_size": 36,
+  "engine": "actual installed Game.exe and rendering scripts, identical SHA-256",
+  "live_save_hashes_unchanged": true,
+  "live_save_file_count": 2249,
+  "final_review_sha256": "9d9c0129a0e7e0bd152c5b379b97bc41c23510afa6460a4c91c2ea6ff9aba2b2",
+  "mod_sha256": "28ed6a6891a9508ac99c94ded4e911008faf8843ee2618bfc9656f654e45be9d",
+  "run": "D:\\Dokumente\\ChatGPT\\Pokemon reborn\\translation-review\\items-20261028\\fit-runs\\20261028-141517",
+  "interactive_playthrough": false
+}

@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "path": "patch/Mods/zzzzzEnglishStreetNames.rb",
+      "sha256": "b6a9fd3880b94aeee2804ec5c346e55b00e8290491de00efb8e8f3009ca890d1",
+      "size": 5677
+    },
+    {
+      "path": "patch/Mods/zzzzzGermanFloorLabels.rb",
+      "sha256": "b37d0a9d5d7ca7fcee98d0473d46ee95bc828d1e7e28e8c93680ae0c438f0b16",
+      "size": 18485
+    },
+    {
+      "path": "patch/Mods/zzzzzzGermanItemReview.rb",
+      "sha256": "28ed6a6891a9508ac99c94ded4e911008faf8843ee2618bfc9656f654e45be9d",
+      "size": 151676
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "existing_lookups_checked": 83025,
+  "changed": 33,
+  "source_tables_unchanged": true,
+  "controls_unchanged": true,
+  "language_switch": true,
+  "upstream_guard": true,
+  "screenshot_sign": true,
+  "mod_sha256": "b6a9fd3880b94aeee2804ec5c346e55b00e8290491de00efb8e8f3009ca890d1",
+  "graphical_playthrough": false
+}

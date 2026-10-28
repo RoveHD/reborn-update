@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "items_checked": 1157,
+  "machines_checked": 250,
+  "gmax_checked": 35,
+  "existing_lookups_checked": 83025,
+  "changed_table_lookups": 156,
+  "source_tables_unchanged": true,
+  "item_and_move_data_unchanged": true,
+  "language_switch": true,
+  "upstream_guard": true,
+  "selection_ids_and_cancellation": true,
+  "numeric_ids": true,
+  "previous_street_floor_grammar_fixes_preserved": true,
+  "mod_sha256": "28ed6a6891a9508ac99c94ded4e911008faf8843ee2618bfc9656f654e45be9d",
+  "graphical_playthrough": false
+}

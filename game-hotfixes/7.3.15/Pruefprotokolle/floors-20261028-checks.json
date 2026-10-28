@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "existing_lookups_checked": 83025,
+  "changed": 70,
+  "menus_verified": 11,
+  "source_tables_unchanged": true,
+  "choice_order_and_metadata_preserved": true,
+  "language_switch": true,
+  "streets_preserved": true,
+  "screenshot_labels": true,
+  "mod_sha256": "b37d0a9d5d7ca7fcee98d0473d46ee95bc828d1e7e28e8c93680ae0c438f0b16",
+  "graphical_playthrough": false
+}

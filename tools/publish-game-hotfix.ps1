@@ -65,8 +65,10 @@ if (-not $existing) {
     if ($LASTEXITCODE -ne 0) { throw 'Release-Entwurf konnte nicht erstellt werden.' }
 }
 $assets = @($gameAsset,'update.json','game-files.json','SHA256SUMS.txt','patchnotes.txt','hotfix-checks.json','package-checks.json','release-repair.json')
-if (Test-Path -LiteralPath (Join-Path $releaseRoot 'Reborn-7.3.13-Zusatzdateien.zip')) { $assets += 'Reborn-7.3.13-Zusatzdateien.zip' }
+$addonName = "Reborn-$version-Zusatzdateien.zip"
+if (Test-Path -LiteralPath (Join-Path $releaseRoot $addonName)) { $assets += $addonName }
 if (Test-Path -LiteralPath (Join-Path $releaseRoot 'catch-checks.json')) { $assets += 'catch-checks.json' }
+if (Test-Path -LiteralPath (Join-Path $releaseRoot 'german-hotfix-checks.json')) { $assets += 'german-hotfix-checks.json' }
 foreach ($hotfix in (@($manifest.gameHotfixes) + @($manifest.gameHotfixesV2))) {
     $name = [IO.Path]::GetFileName(([Uri]$hotfix.url).AbsolutePath)
     if ($hotfix.version -ne $version -or $hotfix.url -ne "https://github.com/$repository/releases/download/$tag/$name") { throw 'Falsche Hotfix-Adresse oder Zielversion.' }

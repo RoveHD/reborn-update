@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "checks": 3050,
+  "existing_lookups_checked": 83025,
+  "changed_existing_lookups": 202,
+  "reviewed_repairs": 202,
+  "facility_fields": 1053,
+  "boss_fields": 105,
+  "actual_item_cache_verified": true,
+  "original_trainer_and_item_data_preserved": true,
+  "mod_sha256": "7ab070577017db4710ecb03ee87caf5e0a38e1250b9292992f7b60581f5359ef",
+  "scope": "Bundled Ruby with actual PBIntl, DataObjects, OrgBattle methods and compiled caches. No graphical game playthrough."
+}

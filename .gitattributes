@@ -1,0 +1,3 @@
+# Preserve the exact reviewed release payload bytes, including line endings.
+/game-hotfixes/7.3.14/payload/patch/Mods/zzzzGermanGrammarAndClub.rb -text
+/custom-mods/german-grammar-club/patch/Mods/zzzzGermanGrammarAndClub.rb -text

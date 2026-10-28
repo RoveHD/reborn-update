@@ -1,0 +1,9 @@
+# Spielhotfix 7.3.14 – Deutsche Namen, Grammatik und Nightclub-Dialoge
+
+- Korrigiert 202 bestehende Textstellen: unter anderem ZERO statt NULL, FERN statt FARN, Göttlicher Splitter und Synthetischer Samen.
+- Pokémon-Sprecher erhalten ihre deutschen Artnamen, darunter Voltobal, Guardevoir und Charmian. Menschliche Eigennamen bleiben erhalten.
+- Ergänzt die deutschen Begrüßungs-, Sieg- und Niederlagentexte aller 351 zufälligen Nightclub-Gegner sowie die 105 Dialogfelder der 35 Gegner der fünften Runde. Slang und charaktertypische Ausdrucksweise bleiben erhalten.
+- UI-Design, bewusst gestaltete UI-Bezeichnungen, Kampflogik und Originaldaten bleiben unverändert. Die Ergänzung greift nur bei deutscher Sprache.
+- Launcher 7.4.0 lädt von Spielversion 7.3.13 aus einen kleinen Hotfix. Für andere Ausgangsversionen und ältere Launcher steht das vollständige Spielpaket bereit. Spiel vor dem Update schließen und danach neu starten.
+
+Geprüft: 3.050 automatische Ruby-Prüfungen, 83.025 bestehende Textabfragen verglichen, exakt 202 beabsichtigte Änderungen; alle 1.158 Club-Dialogfelder, Sprachwechsel, Steuerzeichen und echte Itemdaten geprüft. Kein vollständiger grafischer Spieldurchlauf oder Lektorat aller Spieltexte.

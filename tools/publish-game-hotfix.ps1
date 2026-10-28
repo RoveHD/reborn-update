@@ -69,6 +69,7 @@ $addonName = "Reborn-$version-Zusatzdateien.zip"
 if (Test-Path -LiteralPath (Join-Path $releaseRoot $addonName)) { $assets += $addonName }
 if (Test-Path -LiteralPath (Join-Path $releaseRoot 'catch-checks.json')) { $assets += 'catch-checks.json' }
 if (Test-Path -LiteralPath (Join-Path $releaseRoot 'german-hotfix-checks.json')) { $assets += 'german-hotfix-checks.json' }
+if (Test-Path -LiteralPath (Join-Path $releaseRoot 're-mods-checks.json')) { $assets += 're-mods-checks.json' }
 foreach ($hotfix in (@($manifest.gameHotfixes) + @($manifest.gameHotfixesV2))) {
     $name = [IO.Path]::GetFileName(([Uri]$hotfix.url).AbsolutePath)
     if ($hotfix.version -ne $version -or $hotfix.url -ne "https://github.com/$repository/releases/download/$tag/$name") { throw 'Falsche Hotfix-Adresse oder Zielversion.' }

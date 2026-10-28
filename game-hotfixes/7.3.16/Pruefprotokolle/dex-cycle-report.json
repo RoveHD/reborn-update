@@ -1,0 +1,31 @@
+{
+  "active_local_mod": {
+    "path": "Z:\\Pokemon und  Citra\\Pokemon\\Reborn-19.5.42_Allgen_0.9.5\\patch\\Mods\\RE - Pokedex-Ansichtsauswahl.rb",
+    "sha256": "d722e7dcee16f7caaa84baaf96bcb7154935219eaf476d8beb65d4662ccdd640",
+    "bytes": 8326
+  },
+  "renamed_payload": {
+    "path": "D:\\Dokumente\\ChatGPT\\Pokemon reborn\\reborn-update\\game-hotfixes\\7.3.16\\payload\\patch\\Mods\\RE_Pokedex-Ansichtsauswahl.rb",
+    "sha256": "d722e7dcee16f7caaa84baaf96bcb7154935219eaf476d8beb65d4662ccdd640",
+    "bytes": 8326
+  },
+  "source_pokedex_scene": {
+    "path": "D:\\Dokumente\\ChatGPT\\Pokemon reborn\\translation-review\\byteon-priority-20261028\\german-check\\PokedexScene.rb",
+    "sha256": "e24ea0ac86c71bcacf3d19d67fb61906f9b487137b435bf2928b86e423983990",
+    "bytes": 48061
+  },
+  "source_nest_and_form": {
+    "path": "D:\\Dokumente\\ChatGPT\\Pokemon reborn\\translation-review\\byteon-priority-20261028\\german-check\\NestAndForm.rb",
+    "sha256": "1c7e13cd333e566b1aba099d6b064f95b969a2865182ce454cf60b43f966823a",
+    "bytes": 14920
+  },
+  "harness": {
+    "path": "D:\\Dokumente\\ChatGPT\\Pokemon reborn\\translation-review\\byteon-priority-20261028\\german-check\\dex_cycle_unit.rb",
+    "sha256": "e7cb0273a1be7b4cb19d6fa409d5689e8e9ed0a5a5ef7793cc2e646efab8024d",
+    "bytes": 14063
+  },
+  "active_and_payload_identical": true,
+  "passed_cases": 20,
+  "runtime_success_marker": true,
+  "missing_api_check": "PASS missing API: load is safe, warning emitted, mod disabled"
+}

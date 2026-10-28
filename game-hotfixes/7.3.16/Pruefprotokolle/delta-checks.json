@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "version": "7.3.16",
+  "archiveSha256": "7a642a2e0b7405707d28d330c470978ad9ee86ea06bfc5d08a408902ebbeedf3",
+  "generalHotfixChecksPassed": 42,
+  "builderChecksPassed": 4,
+  "releaseDeltas": [
+    {
+      "from": "7.3.14",
+      "to": "7.3.16",
+      "operations": 37,
+      "bytes": 287774,
+      "installRollbackReapply": true
+    },
+    {
+      "from": "7.3.15",
+      "to": "7.3.16",
+      "operations": 40,
+      "bytes": 287774,
+      "installRollbackReapply": true
+    }
+  ],
+  "userSentinelsPreserved": true
+}

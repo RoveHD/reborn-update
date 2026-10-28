@@ -7,10 +7,10 @@
     "size": 180791029
   },
   "game": {
-    "version": "7.3.14",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.14/Reborn-AllGen-0.9.9.zip",
-    "sha256": "1439144b3e9bd5e6e5376ac0972eab2705a2eea524e1a3e5428f0be84eb196b0",
-    "size": 1477034499,
+    "version": "7.3.15",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.15/Reborn-AllGen-0.9.9.zip",
+    "sha256": "4fea005a1a17f3ee0fb9f6d0cf0e5644c6a72d60dd119498fd491472107dbf1a",
+    "size": 1477066355,
     "removedFiles": [
       {
         "path": "Audio/SE/003Cry_2.ogg",
@@ -6391,22 +6391,36 @@
       }
     ]
   },
-  "patchNotes": "# Spielhotfix 7.3.14 – Deutsche Namen, Grammatik und Nightclub-Dialoge\n\n- Korrigiert 202 bestehende Textstellen: unter anderem ZERO statt NULL, FERN statt FARN, Göttlicher Splitter und Synthetischer Samen.\n- Pokémon-Sprecher erhalten ihre deutschen Artnamen, darunter Voltobal, Guardevoir und Charmian. Menschliche Eigennamen bleiben erhalten.\n- Ergänzt die deutschen Begrüßungs-, Sieg- und Niederlagentexte aller 351 zufälligen Nightclub-Gegner sowie die 105 Dialogfelder der 35 Gegner der fünften Runde. Slang und charaktertypische Ausdrucksweise bleiben erhalten.\n- UI-Design, bewusst gestaltete UI-Bezeichnungen, Kampflogik und Originaldaten bleiben unverändert. Die Ergänzung greift nur bei deutscher Sprache.\n- Launcher 7.4.0 lädt von Spielversion 7.3.13 aus einen kleinen Hotfix. Für andere Ausgangsversionen und ältere Launcher steht das vollständige Spielpaket bereit. Spiel vor dem Update schließen und danach neu starten.\n\nGeprüft: 3.050 automatische Ruby-Prüfungen, 83.025 bestehende Textabfragen verglichen, exakt 202 beabsichtigte Änderungen; alle 1.158 Club-Dialogfelder, Sprachwechsel, Steuerzeichen und echte Itemdaten geprüft. Kein vollständiger grafischer Spieldurchlauf oder Lektorat aller Spieltexte.",
+  "patchNotes": "# Spielhotfix 7.3.15 – Itemtexte, Straßen und Etagen\n\n- Alle 1.157 Items geprüft. 119 Namen und 197 Beschreibungen korrigiert; offizielle Itemnamen mit PokéWiki abgeglichen, darunter King-Stein und die deutschen Z-Kristallnamen.\n- Alle 35 Gigadynamax-Mega-Steine tragen einheitlich „ G“ am Ende. Normale Mega-Varianten behalten ihre Kennzeichnung.\n- 52 zu lange Beschreibungen gekürzt. Alle Itembeschreibungen passen mit der unveränderten Spielschrift in Beutel, Itemlager und Laden.\n- Straßennamen bleiben einheitlich englisch, darunter Crocus Road und 4th Street.\n- Etagen, Aufzugansagen und Kaufhausverzeichnisse korrigiert, etwa „Erdgeschoss“ statt „Boden Boden“.\n\nUI-Design und Spielmechanik bleiben unverändert. Die Sprecher-, Grammatik- und Nachtclub-Korrekturen aus 7.3.14 bleiben enthalten.\n\nÜber den Launcher aktualisieren und das Spiel danach vollständig neu starten. Launcher 7.4.0 bleibt aktuell; von Spielversion 7.3.14 wird nur der kleine Hotfix benötigt. Für ältere oder abweichende Installationen steht das vollständige geprüfte Spielpaket bereit.\n\nPrüfung: 1.157 Itemanzeigen, 250 Maschinenbeschreibungen, 83.025 Textabfragen sowie 3.471 Textfeldmessungen mit der echten Spiel-Engine. Keine Textfeldüberläufe. Originaldaten und Spielstände bleiben erhalten.",
   "gameHotfixes": [],
   "gameHotfixesV2": [
     {
-      "fromVersion": "7.3.13",
-      "version": "7.3.14",
-      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.14/Reborn-Hotfix-7.3.13-to-7.3.14.zip",
-      "sha256": "369ebe2cc55b00f509f84b60de294461b836f543688a3578d209f03283d50830",
-      "size": 63563,
+      "fromVersion": "7.3.14",
+      "version": "7.3.15",
+      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.15/Reborn-Hotfix-7.3.14-to-7.3.15.zip",
+      "sha256": "a64ac0b39ac5519ddc5e67500ad8ab6e98b0a44ac2108bac7b6f7f55fab0a1f2",
+      "size": 31818,
       "files": [
         {
-          "path": "patch/Mods/zzzzGermanGrammarAndClub.rb",
+          "path": "patch/Mods/zzzzzEnglishStreetNames.rb",
           "beforeExists": false,
           "beforeSha256": "",
-          "sha256": "7ab070577017db4710ecb03ee87caf5e0a38e1250b9292992f7b60581f5359ef",
-          "size": 205706
+          "sha256": "b6a9fd3880b94aeee2804ec5c346e55b00e8290491de00efb8e8f3009ca890d1",
+          "size": 5677
+        },
+        {
+          "path": "patch/Mods/zzzzzGermanFloorLabels.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "b37d0a9d5d7ca7fcee98d0473d46ee95bc828d1e7e28e8c93680ae0c438f0b16",
+          "size": 18485
+        },
+        {
+          "path": "patch/Mods/zzzzzzGermanItemReview.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "28ed6a6891a9508ac99c94ded4e911008faf8843ee2618bfc9656f654e45be9d",
+          "size": 151676
         }
       ]
     }

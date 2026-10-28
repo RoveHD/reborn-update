@@ -7,10 +7,10 @@
     "size": 180791029
   },
   "game": {
-    "version": "7.3.13",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.13/Reborn-AllGen-0.9.9.zip",
-    "sha256": "3e685a4aae226858acb7c530ad5c1a796c7646f2642a77269f03c5a1de8a3474",
-    "size": 1476970938,
+    "version": "7.3.14",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.14/Reborn-AllGen-0.9.9.zip",
+    "sha256": "1439144b3e9bd5e6e5376ac0972eab2705a2eea524e1a3e5428f0be84eb196b0",
+    "size": 1477034499,
     "removedFiles": [
       {
         "path": "Audio/SE/003Cry_2.ogg",
@@ -6391,22 +6391,22 @@
       }
     ]
   },
-  "patchNotes": "# Spielhotfix 7.3.13 – Evoli kann sich zu Byteon entwickeln\n\n- Ergänzt die fehlende Verknüpfung zwischen Evoli und dem vorhandenen Byteon-Artendatensatz.\n- Byteon entwickelt sich bei einem Levelaufstieg in den bereits definierten Glitch-Gebieten.\n- Byteons Werte, Fähigkeiten und Attacken bleiben unverändert.\n- Launcher 7.4.0 installiert die Ergänzung als kleines, hashgesichertes Delta. Ältere Launcher behalten das vollständige Fallbackpaket; der Launcher wird separat aktualisiert.\n- Das manuelle Zusatzpaket bleibt für bestehende AllGen-Reborn-0.9.9-Installationen verfügbar; Spielstände werden nicht geändert.",
+  "patchNotes": "# Spielhotfix 7.3.14 – Deutsche Namen, Grammatik und Nightclub-Dialoge\n\n- Korrigiert 202 bestehende Textstellen: unter anderem ZERO statt NULL, FERN statt FARN, Göttlicher Splitter und Synthetischer Samen.\n- Pokémon-Sprecher erhalten ihre deutschen Artnamen, darunter Voltobal, Guardevoir und Charmian. Menschliche Eigennamen bleiben erhalten.\n- Ergänzt die deutschen Begrüßungs-, Sieg- und Niederlagentexte aller 351 zufälligen Nightclub-Gegner sowie die 105 Dialogfelder der 35 Gegner der fünften Runde. Slang und charaktertypische Ausdrucksweise bleiben erhalten.\n- UI-Design, bewusst gestaltete UI-Bezeichnungen, Kampflogik und Originaldaten bleiben unverändert. Die Ergänzung greift nur bei deutscher Sprache.\n- Launcher 7.4.0 lädt von Spielversion 7.3.13 aus einen kleinen Hotfix. Für andere Ausgangsversionen und ältere Launcher steht das vollständige Spielpaket bereit. Spiel vor dem Update schließen und danach neu starten.\n\nGeprüft: 3.050 automatische Ruby-Prüfungen, 83.025 bestehende Textabfragen verglichen, exakt 202 beabsichtigte Änderungen; alle 1.158 Club-Dialogfelder, Sprachwechsel, Steuerzeichen und echte Itemdaten geprüft. Kein vollständiger grafischer Spieldurchlauf oder Lektorat aller Spieltexte.",
   "gameHotfixes": [],
   "gameHotfixesV2": [
     {
-      "fromVersion": "7.3.12",
-      "version": "7.3.13",
-      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.13/Reborn-Hotfix-7.3.12-to-7.3.13.zip",
-      "sha256": "fbf241238bc472b6059378a088a88830484e44605498918889c9d11d3a81407a",
-      "size": 553,
+      "fromVersion": "7.3.13",
+      "version": "7.3.14",
+      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.14/Reborn-Hotfix-7.3.13-to-7.3.14.zip",
+      "sha256": "369ebe2cc55b00f509f84b60de294461b836f543688a3578d209f03283d50830",
+      "size": 63563,
       "files": [
         {
-          "path": "patch/Mods/zzzzByteonEvolutionHotfix.rb",
+          "path": "patch/Mods/zzzzGermanGrammarAndClub.rb",
           "beforeExists": false,
           "beforeSha256": "",
-          "sha256": "67600075475000a02de809c5ea107c4c7a35a33a0c5c15af090b00fd48cbfe59",
-          "size": 731
+          "sha256": "7ab070577017db4710ecb03ee87caf5e0a38e1250b9292992f7b60581f5359ef",
+          "size": 205706
         }
       ]
     }

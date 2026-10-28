@@ -1,0 +1,59 @@
+name: Build Byteon and consolidated RE mods game hotfix
+on:
+  workflow_dispatch:
+    inputs:
+      expectedArchiveSha256:
+        description: Locally reviewed 7.3.16 fallback archive SHA256
+        type: string
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: game-re-mods-7.3.16
+  cancel-in-progress: false
+
+jobs:
+  package:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.8.10'
+      - name: Reproduce the reviewed complete fallback
+        env:
+          EXPECTED_ARCHIVE_SHA256: ${{ inputs.expectedArchiveSha256 }}
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if ($env:EXPECTED_ARCHIVE_SHA256 -notmatch '^[a-fA-F0-9]{64}$') { throw 'Invalid reviewed checksum.' }
+          python tools/prepare_re_mods_hotfix.py --ci --expected-archive-sha256 $env:EXPECTED_ARCHIVE_SHA256
+          if ($LASTEXITCODE -ne 0) { throw 'Fallback reproduction failed.' }
+      - name: Upload verified fallback and delta to the existing draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $draft = gh release view v7.3.16 --json isDraft | ConvertFrom-Json
+          if ($LASTEXITCODE -ne 0 -or -not $draft.isDraft) { throw 'Expected unpublished 7.3.16 draft.' }
+          $directory = 'dist/release-game-7.3.16-channel'
+          $manifest = Get-Content "$directory/update.json" -Raw | ConvertFrom-Json
+          $deltaInfo = $manifest.gameHotfixesV2 | Where-Object fromVersion -eq '7.3.15' | Select-Object -First 1
+          if (-not $deltaInfo) { throw 'New launcher V2 delta is missing.' }
+          $deltaName = [IO.Path]::GetFileName(([Uri]$deltaInfo.url).AbsolutePath)
+          gh release upload v7.3.16 "$directory/Reborn-AllGen-0.9.9.zip" "$directory/$deltaName" --clobber
+          if ($LASTEXITCODE -ne 0) { throw 'Draft asset upload failed.' }
+          $assets = gh release view v7.3.16 --json assets | ConvertFrom-Json
+          foreach ($name in @('Reborn-AllGen-0.9.9.zip', $deltaName)) {
+            $asset = $assets.assets | Where-Object name -eq $name
+            if ($asset.state -ne 'uploaded') { throw "Draft asset was not uploaded: $name" }
+          }
+          $fallback = $assets.assets | Where-Object name -eq 'Reborn-AllGen-0.9.9.zip'
+          if ($fallback.size -ne $manifest.game.size -or $fallback.digest -ne ('sha256:' + $manifest.game.sha256)) { throw 'Uploaded fallback differs from reviewed bytes.' }
+          $deltaAsset = $assets.assets | Where-Object name -eq $deltaName
+          if ($deltaAsset.size -ne $deltaInfo.size -or $deltaAsset.digest -ne ('sha256:' + $deltaInfo.sha256)) { throw 'Uploaded V2 delta differs from reviewed bytes.' }
+          Write-Output 'Verified fallback uploaded. Release and update channel remain unpublished.'

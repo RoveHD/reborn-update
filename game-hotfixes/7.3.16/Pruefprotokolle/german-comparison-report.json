@@ -1,0 +1,66 @@
+{
+  "baseline_game_zip": "Reborn-AllGen-0.9.9.zip (release-game-7.3.15-channel)",
+  "compared_components": {
+    "german.lookups": {
+      "count": 83025,
+      "baseline_sha256": "5a81f20747accb29a3522543a5057d99a4560ea3c187600899189d822666494e",
+      "combined_sha256": "5a81f20747accb29a3522543a5057d99a4560ea3c187600899189d822666494e",
+      "equal": true
+    },
+    "german.items": {
+      "count": 1157,
+      "baseline_sha256": "74a1e5becd1c6c0f0ac04b4d299047432097510925daf35f98f6f6651a63e70d",
+      "combined_sha256": "74a1e5becd1c6c0f0ac04b4d299047432097510925daf35f98f6f6651a63e70d",
+      "equal": true
+    },
+    "german.bttrainers": {
+      "count": 351,
+      "baseline_sha256": "68b8ab9e255e52593c5b311cbec090f87d39c50b77165c04c5b3d308a9cd9e8c",
+      "combined_sha256": "68b8ab9e255e52593c5b311cbec090f87d39c50b77165c04c5b3d308a9cd9e8c",
+      "equal": true
+    },
+    "english.lookups": {
+      "count": 81929,
+      "baseline_sha256": "c5384aa759b05ddf4cee63aa55b8e1f266cc47eb1f85b145c9be8deae84aac5c",
+      "combined_sha256": "c5384aa759b05ddf4cee63aa55b8e1f266cc47eb1f85b145c9be8deae84aac5c",
+      "equal": true
+    },
+    "english.items": {
+      "count": 1157,
+      "baseline_sha256": "4263def4634b5cd113c19c420f8ed403804c4c9cf177828b28c556febf3d3ab7",
+      "combined_sha256": "4263def4634b5cd113c19c420f8ed403804c4c9cf177828b28c556febf3d3ab7",
+      "equal": true
+    },
+    "english.bttrainers": {
+      "count": 351,
+      "baseline_sha256": "68b8ab9e255e52593c5b311cbec090f87d39c50b77165c04c5b3d308a9cd9e8c",
+      "combined_sha256": "68b8ab9e255e52593c5b311cbec090f87d39c50b77165c04c5b3d308a9cd9e8c",
+      "equal": true
+    },
+    "german_after_switch.lookups": {
+      "count": 83025,
+      "baseline_sha256": "5a81f20747accb29a3522543a5057d99a4560ea3c187600899189d822666494e",
+      "combined_sha256": "5a81f20747accb29a3522543a5057d99a4560ea3c187600899189d822666494e",
+      "equal": true
+    },
+    "german_after_switch.items": {
+      "count": 1157,
+      "baseline_sha256": "74a1e5becd1c6c0f0ac04b4d299047432097510925daf35f98f6f6651a63e70d",
+      "combined_sha256": "74a1e5becd1c6c0f0ac04b4d299047432097510925daf35f98f6f6651a63e70d",
+      "equal": true
+    },
+    "german_after_switch.bttrainers": {
+      "count": 351,
+      "baseline_sha256": "68b8ab9e255e52593c5b311cbec090f87d39c50b77165c04c5b3d308a9cd9e8c",
+      "combined_sha256": "68b8ab9e255e52593c5b311cbec090f87d39c50b77165c04c5b3d308a9cd9e8c",
+      "equal": true
+    }
+  },
+  "differences": [],
+  "counts": {
+    "lookups_per_language": 83025,
+    "items": 1157,
+    "bttrainer_entries": 351
+  },
+  "all_equal": true
+}

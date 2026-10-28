@@ -2,7 +2,7 @@
   {
     "path": "patch/Mods/zzLocalGermanText.rb",
     "sha256": "a920efdcb90e4d9a5fa9db96f67a84ac40869e04429dddb51e264db42d941cb3",
-    "replacedBy": "patch/Mods/RE - Deutsche-Zusatztexte.rb",
+    "replacedBy": "patch/Mods/RE_Deutsch.rb",
     "provenance": [
       {
         "path": "reborn-update/dist/release-7.0.0/Reborn-19.5.0.zip",
@@ -20,7 +20,7 @@
   {
     "path": "patch/Mods/zzLocalGermanText.rb",
     "sha256": "2354f69c75352cea944da88f2dcfa1f409b74bd3647d57b877ce66260e6cf888",
-    "replacedBy": "patch/Mods/RE - Deutsche-Zusatztexte.rb",
+    "replacedBy": "patch/Mods/RE_Deutsch.rb",
     "provenance": [
       {
         "path": "Deutsch-Ergaenzung/Sicherungen/20261025-102537-9692/zzLocalGermanText.rb"
@@ -30,7 +30,7 @@
   {
     "path": "patch/Mods/zzLocalGermanText.rb",
     "sha256": "402d0f35c75bf4019cfbcfd1c3749e81913162a3023f51a92a8350a9fe556f0c",
-    "replacedBy": "patch/Mods/RE - Deutsche-Zusatztexte.rb",
+    "replacedBy": "patch/Mods/RE_Deutsch.rb",
     "provenance": [
       {
         "path": "Deutsch-Ergaenzung/Sicherungen/20261025-140146-4469/zzLocalGermanText.rb"
@@ -43,5 +43,120 @@
         "entry": "Deutsch-Ergaenzung/patch/Mods/zzLocalGermanText.rb"
       }
     ]
+  },
+  {
+    "path": "patch/Mods/RE - Alte-Megasteine-Kompatibilitaet.rb",
+    "sha256": "49f0d1482d6c504d48ffc7725c7c6019b379e683c3f7429ce2d3a7518ba10ad7",
+    "replacedBy": "patch/Mods/RE_Alte-Megasteine-Kompatibilitaet.rb"
+  },
+  {
+    "path": "patch/Mods/RE - Begegnungen-Neue-Pokemon.rb",
+    "sha256": "0d4bd78abdc2788441ea6afa619e6900e88d640eb3d7d8dad8d3583dd2a7e1e0",
+    "replacedBy": "patch/Mods/RE_Begegnungen-Neue-Pokemon.rb"
+  },
+  {
+    "path": "patch/Mods/RE - Begleiter-Formen.rb",
+    "sha256": "91dc8f7af948e4462ece9fe0a74f95b8ef48f765dc851394e14572af6b1cf1af",
+    "replacedBy": "patch/Mods/RE_Begleiter-Formen.rb"
+  },
+  {
+    "path": "patch/Mods/RE - Beutel-Sortierung-und-TM-Infos.rb",
+    "sha256": "e7de8633c95cbda2dd982a85ac33e767637ef0a6857112b7af1d10379fb31ba2",
+    "replacedBy": "patch/Mods/RE_Beutel-Sortierung-und-TM-Infos.rb"
+  },
+  {
+    "path": "patch/Mods/RE - Box-Markierungen.rb",
+    "sha256": "a8501ca23f484ce47280894506fcb547d4f513e8a5bc0e37149770847d6a9def",
+    "replacedBy": "patch/Mods/RE_Box-Markierungen.rb"
+  },
+  {
+    "path": "patch/Mods/RE - Deutsche-Zusatztexte.rb",
+    "sha256": "ccde7090c618c50b7b826c016e2e66a4d6735a4742bcf1bfa73e98fa6367b830",
+    "replacedBy": "patch/Mods/RE_Deutsch.rb"
+  },
+  {
+    "path": "patch/Mods/RE - Mitnahme-Overworld.rb",
+    "sha256": "85e24d90f956f17ac40c27b3360175f579a43e540d178e147f5b98b27b5ab8f7",
+    "replacedBy": "patch/Mods/RE_Mitnahme-Overworld.rb"
+  },
+  {
+    "path": "patch/Mods/RE - Pokedex-Ansichtsauswahl.rb",
+    "sha256": "5975798f5552c7c6aa13be965819eb8a51e4705773d61d55f26c68afe5d753ac",
+    "replacedBy": "patch/Mods/RE_Pokedex-Ansichtsauswahl.rb"
+  },
+  {
+    "path": "patch/Mods/RE - PulseDex-Versteckte-Bilder.rb",
+    "sha256": "797b21fd0595397d9c0271ab8b7bab72d2d42ccf803b643e4efcd05cacc01b22",
+    "replacedBy": "patch/Mods/RE_PulseDex-Versteckte-Bilder.rb"
+  },
+  {
+    "path": "patch/Mods/RE - Sprachauswahl.rb",
+    "sha256": "dc1aa896e03f1d4649c1772912e6b0911fdb6cbe4ad5c8c1d300aff892e40f7e",
+    "replacedBy": "patch/Mods/RE_Deutsch.rb"
+  },
+  {
+    "path": "patch/Mods/RE - Zeit-und-Wetter-Fixes.rb",
+    "sha256": "28533c871174216ffc405fbe662ae5cbf29b4da07d2240901ca5575f182c8a42",
+    "replacedBy": "patch/Mods/RE_Zeit-und-Wetter-Fixes.rb"
+  },
+  {
+    "path": "patch/Mods/RE - Zufallsmusik-Onlinekaempfe.rb",
+    "sha256": "8c8ba13f0a1360a03e284652938493bd61e896c2f12071ff928a72517ecae351",
+    "replacedBy": "patch/Mods/RE_Zufallsmusik-Onlinekaempfe.rb"
+  },
+  {
+    "path": "patch/Mods/RE - Zufallsmusik-Wildkaempfe.rb",
+    "sha256": "e0a94dd4d7db9b7c9fcc6d0f1c18e3e570336ee98f5d8583fa3f7ef13ff55abb",
+    "replacedBy": "patch/Mods/RE_Zufallsmusik-Wildkaempfe.rb"
+  },
+  {
+    "path": "patch/Mods/zzLegendaryCatchDifficulty.rb",
+    "sha256": "3abdad5467530e87c798733c7029a2bdd57713d39b1184fa6b468fa8e0de7b2d",
+    "replacedBy": "patch/Mods/RE_LegendaryCatchDifficulty.rb"
+  },
+  {
+    "path": "patch/Mods/zzLegendaryWildMusic.rb",
+    "sha256": "44384b6b135c805c48f80c3f4c12595734bf49b0a30b05e525edd39bdb2acde0",
+    "replacedBy": "patch/Mods/RE_LegendaryWildMusic.rb"
+  },
+  {
+    "path": "patch/Mods/zzLocalGermanVisible.rb",
+    "sha256": "d1a70918ccce1d29e7481b7acffe5debd9fc1b3c969156942a2ef6d15628d72e",
+    "replacedBy": "patch/Mods/RE_Deutsch.rb"
+  },
+  {
+    "path": "patch/Mods/zzzzByteonEvolutionHotfix.rb",
+    "sha256": "67600075475000a02de809c5ea107c4c7a35a33a0c5c15af090b00fd48cbfe59",
+    "replacedBy": "patch/Mods/RE_ByteonEvolutionHotfix.rb"
+  },
+  {
+    "path": "patch/Mods/zzzzGermanGrammarAndClub.rb",
+    "sha256": "7ab070577017db4710ecb03ee87caf5e0a38e1250b9292992f7b60581f5359ef",
+    "replacedBy": "patch/Mods/RE_Deutsch.rb"
+  },
+  {
+    "path": "patch/Mods/zzzz_RE_BattleSound_099_Compatibility.rb",
+    "sha256": "cc58ccb57d8a4741791d884f54d3d47109e293a3f9ea6649aae7958ff38607d4",
+    "replacedBy": "patch/Mods/RE_BattleSound_099_Compatibility.rb"
+  },
+  {
+    "path": "patch/Mods/zzzzzEnglishStreetNames.rb",
+    "sha256": "b6a9fd3880b94aeee2804ec5c346e55b00e8290491de00efb8e8f3009ca890d1",
+    "replacedBy": "patch/Mods/RE_Deutsch.rb"
+  },
+  {
+    "path": "patch/Mods/zzzzzGermanFloorLabels.rb",
+    "sha256": "b37d0a9d5d7ca7fcee98d0473d46ee95bc828d1e7e28e8c93680ae0c438f0b16",
+    "replacedBy": "patch/Mods/RE_Deutsch.rb"
+  },
+  {
+    "path": "patch/Mods/zzzzzzGermanItemReview.rb",
+    "sha256": "28ed6a6891a9508ac99c94ded4e911008faf8843ee2618bfc9656f654e45be9d",
+    "replacedBy": "patch/Mods/RE_Deutsch.rb"
+  },
+  {
+    "path": "patch/Mods/zzzzByteonEvolutionHotfix.rb",
+    "sha256": "39f1f35073add1d2eaf22b494548f7c2033056593bd125b6bc66a805b1bfae42",
+    "replacedBy": "patch/Mods/RE_ByteonEvolutionHotfix.rb"
   }
 ]

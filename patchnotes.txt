@@ -1,13 +1,8 @@
-# Spielhotfix 7.3.15 – Itemtexte, Straßen und Etagen
+# Spielhotfix 7.3.16 – Byteon und einheitliche RE-Mods
 
-- Alle 1.157 Items geprüft. 119 Namen und 197 Beschreibungen korrigiert; offizielle Itemnamen mit PokéWiki abgeglichen, darunter King-Stein und die deutschen Z-Kristallnamen.
-- Alle 35 Gigadynamax-Mega-Steine tragen einheitlich „ G“ am Ende. Normale Mega-Varianten behalten ihre Kennzeichnung.
-- 52 zu lange Beschreibungen gekürzt. Alle Itembeschreibungen passen mit der unveränderten Spielschrift in Beutel, Itemlager und Laden.
-- Straßennamen bleiben einheitlich englisch, darunter Crocus Road und 4th Street.
-- Etagen, Aufzugansagen und Kaufhausverzeichnisse korrigiert, etwa „Erdgeschoss“ statt „Boden Boden“.
+- Evoli entwickelt sich beim Levelaufstieg in den vorgesehenen Glitch-Gebieten zu Byteon, auch bei hoher Freundschaft. Psiana oder Nachtara greifen dort nicht mehr vorher. Das gilt auch für EP-Bonbons.
+- Alle eigenen Mod-Dateien tragen einheitlich `RE_` statt `zz…` oder `RE - `. Die benötigte Ladereihenfolge bleibt im Loader hinterlegt.
+- Deutsche Übersetzungen, Grammatik, Sprecher, Nachtclub-Dialoge, Itemtexte, englische Straßennamen und Etagenkorrekturen sind zusammen mit der Sprachauswahl in einer Datei: `RE_Deutsch.rb`. Künftige Textkorrekturen werden dort ergänzt.
+- Die bisherigen Dateien werden anhand ihrer bekannten Prüfsummen gezielt ersetzt. UI-Design, Spielstände, Einstellungen und fremde Mods bleiben erhalten.
 
-UI-Design und Spielmechanik bleiben unverändert. Die Sprecher-, Grammatik- und Nachtclub-Korrekturen aus 7.3.14 bleiben enthalten.
-
-Über den Launcher aktualisieren und das Spiel danach vollständig neu starten. Launcher 7.4.0 bleibt aktuell; von Spielversion 7.3.14 wird nur der kleine Hotfix benötigt. Für ältere oder abweichende Installationen steht das vollständige geprüfte Spielpaket bereit.
-
-Prüfung: 1.157 Itemanzeigen, 250 Maschinenbeschreibungen, 83.025 Textabfragen sowie 3.471 Textfeldmessungen mit der echten Spiel-Engine. Keine Textfeldüberläufe. Originaldaten und Spielstände bleiben erhalten.
+Das Spiel vor dem Update schließen und danach vollständig neu starten. Launcher 7.4.0 bleibt aktuell. Für Spielversion 7.3.14 und 7.3.15 stehen kleine Hotfix-Pakete bereit; ältere oder abweichende Installationen erhalten das vollständige Spielpaket.

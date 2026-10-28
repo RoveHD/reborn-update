@@ -62,8 +62,8 @@
     },
     {
       "path": "patch/Mods/RE_Pokedex-Ansichtsauswahl.rb",
-      "sha256": "5975798f5552c7c6aa13be965819eb8a51e4705773d61d55f26c68afe5d753ac",
-      "size": 6688
+      "sha256": "d722e7dcee16f7caaa84baaf96bcb7154935219eaf476d8beb65d4662ccdd640",
+      "size": 8326
     },
     {
       "path": "patch/Mods/RE_PulseDex-Versteckte-Bilder.rb",

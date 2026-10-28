@@ -1,6 +1,6 @@
 # encoding: UTF-8
-# Pokédex-Vorderseite: Mit der Bestätigungstaste (Input::C) Geschlecht, Form
-# und Shiny-Anzeige wählen. Es werden nur bekannte Dex-Ansichten angeboten.
+# Pokédex-Vorderseite: X blättert zur vorherigen, Y zur nächsten bekannten Form.
+# Mit C bleiben Geschlecht, Form und Shiny-Anzeige zusätzlich manuell wählbar.
 # Deinstallation: Diese Datei entfernen und das Spiel neu starten.
 # Updates: Diese separate Datei behalten; keine Originalskripte überschreiben.
 # Nach Änderungen der Pokédex-API erneut prüfen. Inkompatibilität wird gemeldet.
@@ -50,6 +50,30 @@ module PokedexFrontMenu
     end
     genders = entry[:gender].keys.select { |gender| entry[:gender][gender] }
     [forms, genders]
+  end
+
+  def self.cycle_form(species, direction)
+    return false unless direction == -1 || direction == 1
+    value = entry(species)
+    return false unless value[:seen?]
+    forms, _genders = available(species, value)
+    return false if forms.length < 2
+    receiver = Object.new
+    unless receiver.respond_to?(:cancelledgenders, true)
+      raise Incompatible, "Form-Ausnahmeregel fehlt."
+    end
+    excluded = receiver.send(:cancelledgenders)
+    unless excluded.respond_to?(:include?)
+      raise Incompatible, "Unbekanntes Format der Form-Ausnahmeregel."
+    end
+    return false if excluded.include?(species)
+
+    index = forms.index(value[:lastSeen][:form])
+    index = direction < 0 ? 0 : forms.length - 1 if index.nil?
+    next_index = (index + direction) % forms.length
+    return false if next_index == index
+    value[:lastSeen][:form] = forms[next_index]
+    true
   end
 
   def self.choose(species, ask)
@@ -117,6 +141,24 @@ module PokedexFrontMenu
         @pokedex_front_menu_front = false
         return result
       end
+      if Input.trigger?(Input::X) || Input.trigger?(Input::Y)
+        @pokedex_front_menu_busy = true
+        begin
+          direction = Input.trigger?(Input::X) ? -1 : 1
+          if PokedexFrontMenu.cycle_form(@pokedex_front_menu_species, direction)
+            pbPlayCursorSE()
+            pbChangeToDexEntry(@pokedex_front_menu_species)
+          end
+        rescue Incompatible => error
+          @pokedex_front_menu_disabled = true
+          PokedexFrontMenu.warn_once(error.message)
+          Kernel.pbMessage("Die Pokédex-Vorderseiten-Mod ist mit dieser Spielversion nicht kompatibel.\n#{error.message}")
+        ensure
+          Input.update
+          @pokedex_front_menu_busy = false
+        end
+        return result
+      end
       return result unless Input.trigger?(Input::C)
       @pokedex_front_menu_busy = true
       begin
@@ -140,7 +182,7 @@ module PokedexFrontMenu
     unless defined?(PokemonPokedexScene) && defined?(Input) &&
            [:pbDexEntry, :pbChangeToDexEntry, :pbUpdate].all? { |name| PokemonPokedexScene.method_defined?(name) } &&
            Input.respond_to?(:trigger?) && Input.respond_to?(:update) &&
-           [:B, :C, :UP, :DOWN, :LEFT, :RIGHT].all? { |name| Input.const_defined?(name) } &&
+           [:B, :C, :UP, :DOWN, :LEFT, :RIGHT, :X, :Y].all? { |name| Input.const_defined?(name) } &&
            Kernel.respond_to?(:pbMessage)
       warn_once("Benötigte Pokédex-/Input-/Nachrichten-API fehlt.")
       return false

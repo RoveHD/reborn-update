@@ -113,5 +113,10 @@
     "path": "patch/Mods/zzzzByteonEvolutionHotfix.rb",
     "sha256": "39f1f35073add1d2eaf22b494548f7c2033056593bd125b6bc66a805b1bfae42",
     "replacedBy": "patch/Mods/RE_ByteonEvolutionHotfix.rb"
+  },
+  {
+    "path": "patch/Mods/RE - Pokedex-Ansichtsauswahl.rb",
+    "sha256": "d722e7dcee16f7caaa84baaf96bcb7154935219eaf476d8beb65d4662ccdd640",
+    "replacedBy": "patch/Mods/RE_Pokedex-Ansichtsauswahl.rb"
   }
 ]

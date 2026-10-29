@@ -1,5 +1,5 @@
-Pokémon Reborn 7.3.19 – Disco-Kämpfe
+Pokémon Reborn 7.3.20 – Fangchance für Legendäre
 
-Die Pokémon-Balance-Sperren der Disco-Kämpfe sind für das eigene Team und die Gegnerteams aufgehoben. Die neuen Gegner-Pools enthalten 163 starke Sets für 105 Pokémon-Arten, darunter alle 10 voll entwickelten Ultrabestien, 20 weitere Paradox-Arten sowie Koraidon und Miraidon. Die Sets bringen passende Items, Fähigkeiten, EVs und Doppelvarianten mit. Teamgröße, Duplikat-, Level- und Kampfregeln bleiben erhalten; Eier und besiegte Pokémon im Nuzlocke-Modus bleiben ausgeschlossen.
+Bei legendären und mysteriösen Pokémon steigt der Fangfaktor nach jedem fehlgeschlagenen Wurf mit einem Nicht-Meisterball. Nach 200 Fehlwürfen erreicht der nächste Wurf die normale, durch KP, Status und Ball bestimmte Fangchance. Meisterball-Freigaben und normale Pokémon bleiben unverändert.
 
-Die Testläufe bestanden 14.817 Prüfungen einschließlich 90 erzeugter Gegnerteams. Ein visueller Spieldurchlauf ist noch nicht erfolgt. Die Mods werden update-sicher als eigene Dateien installiert. Bitte das Spiel nach dem Launcher-Update vollständig neu starten.
+Die deutschen Textkorrekturen und die erweiterten Disco-Gegnerteams aus den Hotfixes 7.3.18 und 7.3.19 bleiben enthalten. Spielstände, Einstellungen und persönliche Mods bleiben erhalten. Launcher 7.4.0 bleibt unverändert.

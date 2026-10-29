@@ -7,10 +7,10 @@
     "size": 180791029
   },
   "game": {
-    "version": "7.3.19",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.19/Reborn-AllGen-0.9.9.zip",
-    "sha256": "1a8bf38742d365e1bd6bf6258f088271e9bff7b8f029e8db4cc4bb11506cd14e",
-    "size": 1476704560,
+    "version": "7.3.20",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.20/Reborn-AllGen-0.9.9.zip",
+    "sha256": "dc24d781e5c093042eca55da81881e64b4717908cfcd1dab0a2a1b9188e6d59a",
+    "size": 1477082089,
     "removedFiles": [
       {
         "path": "patch/Mods/RE - Alte-Megasteine-Kompatibilitaet.rb",
@@ -149,30 +149,24 @@
       }
     ]
   },
-  "patchNotes": "https://github.com/RoveHD/reborn-update/releases/tag/v7.3.19",
+  "patchNotes": "Pokémon Reborn 7.3.20 – Fangchance für Legendäre\n\nBei legendären und mysteriösen Pokémon steigt der Fangfaktor nach jedem fehlgeschlagenen Wurf mit einem Nicht-Meisterball. Nach 200 Fehlwürfen erreicht der nächste Wurf die normale, durch KP, Status und Ball bestimmte Fangchance. Meisterball-Freigaben und normale Pokémon bleiben unverändert.\n\nDie deutschen Textkorrekturen und die erweiterten Disco-Gegnerteams aus den Hotfixes 7.3.18 und 7.3.19 bleiben enthalten. Spielstände, Einstellungen und persönliche Mods bleiben erhalten. Launcher 7.4.0 bleibt unverändert.",
   "gameHotfixesV2": [
     {
-      "fromVersion": "7.3.18",
-      "version": "7.3.19",
-      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.19/Reborn-Hotfix-7.3.18-to-7.3.19.zip",
-      "sha256": "706e343ecd00b9d80e560545eb3f58d2d8761f83de25e5064613f026dfde11eb",
-      "size": 12311,
+      "fromVersion": "7.3.19",
+      "version": "7.3.20",
+      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.20/Reborn-Hotfix-7.3.19-to-7.3.20.zip",
+      "sha256": "74499c84c182d7204bb884f78c1957234c9e8ba2e6d5ae1dd8c1c31d3e581a9e",
+      "size": 5590,
       "files": [
         {
-          "path": "patch/Mods/RE_DiscoGegnerPool.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "cb0ba6a0f0827d5128b1e02ada38049957d26577378a5153fc2fc1f14676ee94",
-          "size": 53749
-        },
-        {
-          "path": "patch/Mods/RE_DiscoOhneBans.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "b985fe42b4e2a9d5450f1ada441590018290f65851effd36af79146160a5ec53",
-          "size": 544
+          "path": "patch/Mods/RE_LegendaryCatchDifficulty.rb",
+          "beforeExists": true,
+          "beforeSha256": "3abdad5467530e87c798733c7029a2bdd57713d39b1184fa6b468fa8e0de7b2d",
+          "sha256": "fe03a19f26fdac12c26a6850cd5677d0f0edc7e7123c291f42a263ff4648b31c",
+          "size": 15951
         }
       ]
     }
-  ]
+  ],
+  "gameHotfixes": []
 }

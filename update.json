@@ -7,10 +7,10 @@
     "size": 180791029
   },
   "game": {
-    "version": "7.3.16",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.16/Reborn-AllGen-0.9.9.zip",
-    "sha256": "7a642a2e0b7405707d28d330c470978ad9ee86ea06bfc5d08a408902ebbeedf3",
-    "size": 1477064450,
+    "version": "7.3.17",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.17/Reborn-AllGen-0.9.9.zip",
+    "sha256": "26064e18f7c5336acd23307d6a59eb22377db0d31dedb2a00d50aa0b945fb95b",
+    "size": 1477065123,
     "removedFiles": [
       {
         "path": "Audio/SE/003Cry_2.ogg",
@@ -6511,15 +6511,38 @@
       }
     ]
   },
-  "patchNotes": "# Spielhotfix 7.3.16 – Byteon und einheitliche RE-Mods\n\n- Evoli entwickelt sich beim Levelaufstieg in den vorgesehenen Glitch-Gebieten zu Byteon, auch bei hoher Freundschaft. Psiana oder Nachtara greifen dort nicht mehr vorher. Das gilt auch für EP-Bonbons.\n- Alle eigenen Mod-Dateien tragen einheitlich `RE_` statt `zz…` oder `RE - `. Die benötigte Ladereihenfolge bleibt im Loader hinterlegt.\n- Deutsche Übersetzungen, Grammatik, Sprecher, Nachtclub-Dialoge, Itemtexte, englische Straßennamen und Etagenkorrekturen sind zusammen mit der Sprachauswahl in einer Datei: `RE_Deutsch.rb`. Künftige Textkorrekturen werden dort ergänzt.\n- Die bisherigen Dateien werden anhand ihrer bekannten Prüfsummen gezielt ersetzt. UI-Design, Spielstände, Einstellungen und fremde Mods bleiben erhalten.\n\nDas Spiel vor dem Update schließen und danach vollständig neu starten. Launcher 7.4.0 bleibt aktuell. Für Spielversion 7.3.14 und 7.3.15 stehen kleine Hotfix-Pakete bereit; ältere oder abweichende Installationen erhalten das vollständige Spielpaket.",
+  "patchNotes": "# Spielhotfix 7.3.16 – Byteon und einheitliche RE-Mods\n\n- Evoli entwickelt sich beim Levelaufstieg in den vorgesehenen Glitch-Gebieten zu Byteon, auch bei hoher Freundschaft. Psiana oder Nachtara greifen dort nicht mehr vorher. Das gilt auch für EP-Bonbons.\n- In der Pokédex-Ansicht wechseln L/R die bekannten Formen lautlos; X oder Y schaltet die Shiny-Anzeige für gesehene Pokémon um.\n- Alle eigenen Mod-Dateien tragen einheitlich `RE_` statt `zz…` oder `RE - `. Die benötigte Ladereihenfolge bleibt im Loader hinterlegt.\n- Deutsche Übersetzungen, Grammatik, Sprecher, Nachtclub-Dialoge, Itemtexte, englische Straßennamen und Etagenkorrekturen sind zusammen mit der Sprachauswahl in einer Datei: `RE_Deutsch.rb`. Künftige Textkorrekturen werden dort ergänzt.\n- Die bisherigen Dateien werden anhand ihrer bekannten Prüfsummen gezielt ersetzt. UI-Design, Spielstände, Einstellungen und fremde Mods bleiben erhalten.\n\nDas Spiel vor dem Update schließen und danach vollständig neu starten. Launcher 7.4.0 bleibt aktuell. Für Spielversion 7.3.14 und 7.3.15 stehen kleine Hotfix-Pakete bereit; ältere oder abweichende Installationen erhalten das vollständige Spielpaket.\n- Tauros-Events verwenden „reiten“ fürs Aufsitzen; Boot- und Fahrradtexte behalten „mitfahren“ beziehungsweise „fahren“.\n- 76 Trainer-Eigennamen, die sonst als gewöhnliche Wörter übersetzt würden (darunter „Candy“), bleiben in Kampfberichten erhalten; normale Dialoge bleiben unverändert.",
   "gameHotfixes": [],
   "gameHotfixesV2": [
     {
-      "fromVersion": "7.3.15",
-      "version": "7.3.16",
-      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.16/Reborn-Hotfix-7.3.15-to-7.3.16.zip",
-      "sha256": "9594cb1af87e4515f34f96331d8199cf574ee644d73aef84175d5fb20fed7b85",
-      "size": 287774,
+      "fromVersion": "7.3.16",
+      "version": "7.3.17",
+      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.17/Reborn-Hotfix-7.3.16-to-7.3.17.zip",
+      "sha256": "43a9ab4901c0eac4d2dc028153ae0a226d6ec104532bce4b065756f94ce5c49e",
+      "size": 243152,
+      "files": [
+        {
+          "path": "patch/Mods/RE_Deutsch.rb",
+          "beforeExists": true,
+          "beforeSha256": "5218be68bf8fbee078c7c9246e760818264a5845f3e68f2e454eb86dc46c76bc",
+          "sha256": "8414e489540c54bc4cee3c52a160a0453dca5d36dac68e5dfba212e34356e1c0",
+          "size": 815968
+        },
+        {
+          "path": "patch/Mods/RE_Pokedex-Ansichtsauswahl.rb",
+          "beforeExists": true,
+          "beforeSha256": "d722e7dcee16f7caaa84baaf96bcb7154935219eaf476d8beb65d4662ccdd640",
+          "sha256": "a85240e27c9e71a703c094b1256553985429e9ff87077de0b93a23e5e007ba71",
+          "size": 9469
+        }
+      ]
+    },
+    {
+      "fromVersion": "7.3.14",
+      "version": "7.3.17",
+      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.17/Reborn-Hotfix-7.3.14-to-7.3.17.zip",
+      "sha256": "10bc8fad3bd25db48d5860c6a2fd12f20cf89d765aa4dbae4b382aeab81a19e0",
+      "size": 288447,
       "files": [
         {
           "path": "Scripts/ScriptLoader.rb",
@@ -6692,8 +6715,8 @@
           "path": "patch/Mods/RE_Deutsch.rb",
           "beforeExists": false,
           "beforeSha256": "",
-          "sha256": "5218be68bf8fbee078c7c9246e760818264a5845f3e68f2e454eb86dc46c76bc",
-          "size": 814943
+          "sha256": "8414e489540c54bc4cee3c52a160a0453dca5d36dac68e5dfba212e34356e1c0",
+          "size": 815968
         },
         {
           "path": "patch/Mods/RE_LegendaryCatchDifficulty.rb",
@@ -6720,8 +6743,295 @@
           "path": "patch/Mods/RE_Pokedex-Ansichtsauswahl.rb",
           "beforeExists": false,
           "beforeSha256": "",
-          "sha256": "d722e7dcee16f7caaa84baaf96bcb7154935219eaf476d8beb65d4662ccdd640",
-          "size": 8326
+          "sha256": "a85240e27c9e71a703c094b1256553985429e9ff87077de0b93a23e5e007ba71",
+          "size": 9469
+        },
+        {
+          "path": "patch/Mods/RE_PulseDex-Versteckte-Bilder.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "797b21fd0595397d9c0271ab8b7bab72d2d42ccf803b643e4efcd05cacc01b22",
+          "size": 5663
+        },
+        {
+          "path": "patch/Mods/RE_Zeit-und-Wetter-Fixes.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "28533c871174216ffc405fbe662ae5cbf29b4da07d2240901ca5575f182c8a42",
+          "size": 13896
+        },
+        {
+          "path": "patch/Mods/RE_Zufallsmusik-Onlinekaempfe.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "8c8ba13f0a1360a03e284652938493bd61e896c2f12071ff928a72517ecae351",
+          "size": 12070
+        },
+        {
+          "path": "patch/Mods/RE_Zufallsmusik-Wildkaempfe.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "e0a94dd4d7db9b7c9fcc6d0f1c18e3e570336ee98f5d8583fa3f7ef13ff55abb",
+          "size": 672
+        },
+        {
+          "path": "patch/Mods/zzLegendaryCatchDifficulty.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "3abdad5467530e87c798733c7029a2bdd57713d39b1184fa6b468fa8e0de7b2d",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/zzLegendaryWildMusic.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "44384b6b135c805c48f80c3f4c12595734bf49b0a30b05e525edd39bdb2acde0",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/zzLocalGermanVisible.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "d1a70918ccce1d29e7481b7acffe5debd9fc1b3c969156942a2ef6d15628d72e",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/zzzzByteonEvolutionHotfix.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "67600075475000a02de809c5ea107c4c7a35a33a0c5c15af090b00fd48cbfe59",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/zzzzGermanGrammarAndClub.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "7ab070577017db4710ecb03ee87caf5e0a38e1250b9292992f7b60581f5359ef",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/zzzz_RE_BattleSound_099_Compatibility.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "cc58ccb57d8a4741791d884f54d3d47109e293a3f9ea6649aae7958ff38607d4",
+          "sha256": "",
+          "size": 0
+        }
+      ]
+    },
+    {
+      "fromVersion": "7.3.15",
+      "version": "7.3.17",
+      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.17/Reborn-Hotfix-7.3.15-to-7.3.17.zip",
+      "sha256": "8271bcbc260d43955c7dbeec5243c5a13180488096afc10c42221d397c8e70ed",
+      "size": 288447,
+      "files": [
+        {
+          "path": "Scripts/ScriptLoader.rb",
+          "beforeExists": true,
+          "beforeSha256": "28b72b5846d2b7770a9b99ca644e0bd1a4a8153af2d5da848b9a838dfbb81089",
+          "sha256": "d89c902456c45816268dc2926409769ff7f242c3e9840111685b117bfe7c7a0e",
+          "size": 6997
+        },
+        {
+          "path": "patch/Mods/RE - Alte-Megasteine-Kompatibilitaet.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "49f0d1482d6c504d48ffc7725c7c6019b379e683c3f7429ce2d3a7518ba10ad7",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE - Begegnungen-Neue-Pokemon.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "0d4bd78abdc2788441ea6afa619e6900e88d640eb3d7d8dad8d3583dd2a7e1e0",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE - Begleiter-Formen.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "91dc8f7af948e4462ece9fe0a74f95b8ef48f765dc851394e14572af6b1cf1af",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE - Beutel-Sortierung-und-TM-Infos.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "e7de8633c95cbda2dd982a85ac33e767637ef0a6857112b7af1d10379fb31ba2",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE - Box-Markierungen.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "a8501ca23f484ce47280894506fcb547d4f513e8a5bc0e37149770847d6a9def",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE - Deutsche-Zusatztexte.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "ccde7090c618c50b7b826c016e2e66a4d6735a4742bcf1bfa73e98fa6367b830",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE - Mitnahme-Overworld.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "85e24d90f956f17ac40c27b3360175f579a43e540d178e147f5b98b27b5ab8f7",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE - Pokedex-Ansichtsauswahl.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "5975798f5552c7c6aa13be965819eb8a51e4705773d61d55f26c68afe5d753ac",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE - PulseDex-Versteckte-Bilder.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "797b21fd0595397d9c0271ab8b7bab72d2d42ccf803b643e4efcd05cacc01b22",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE - Sprachauswahl.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "dc1aa896e03f1d4649c1772912e6b0911fdb6cbe4ad5c8c1d300aff892e40f7e",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE - Zeit-und-Wetter-Fixes.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "28533c871174216ffc405fbe662ae5cbf29b4da07d2240901ca5575f182c8a42",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE - Zufallsmusik-Onlinekaempfe.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "8c8ba13f0a1360a03e284652938493bd61e896c2f12071ff928a72517ecae351",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE - Zufallsmusik-Wildkaempfe.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "e0a94dd4d7db9b7c9fcc6d0f1c18e3e570336ee98f5d8583fa3f7ef13ff55abb",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE-Modliste.md",
+          "beforeExists": true,
+          "beforeSha256": "2bb49f389a182579beb98a6b2b3e382f12726a2bbbf487a237d9c0ce586f3390",
+          "sha256": "aa3f760bf9f3507e6fd1f124c88d6ad08b5f208fefe9e7a09f39500f4149d8fc",
+          "size": 3992
+        },
+        {
+          "path": "patch/Mods/RE_Alte-Megasteine-Kompatibilitaet.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "49f0d1482d6c504d48ffc7725c7c6019b379e683c3f7429ce2d3a7518ba10ad7",
+          "size": 828
+        },
+        {
+          "path": "patch/Mods/RE_BattleSound_099_Compatibility.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "cc58ccb57d8a4741791d884f54d3d47109e293a3f9ea6649aae7958ff38607d4",
+          "size": 955
+        },
+        {
+          "path": "patch/Mods/RE_Begegnungen-Neue-Pokemon.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "0d4bd78abdc2788441ea6afa619e6900e88d640eb3d7d8dad8d3583dd2a7e1e0",
+          "size": 3053
+        },
+        {
+          "path": "patch/Mods/RE_Begleiter-Formen.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "91dc8f7af948e4462ece9fe0a74f95b8ef48f765dc851394e14572af6b1cf1af",
+          "size": 12639
+        },
+        {
+          "path": "patch/Mods/RE_Beutel-Sortierung-und-TM-Infos.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "e7de8633c95cbda2dd982a85ac33e767637ef0a6857112b7af1d10379fb31ba2",
+          "size": 66116
+        },
+        {
+          "path": "patch/Mods/RE_Box-Markierungen.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "a8501ca23f484ce47280894506fcb547d4f513e8a5bc0e37149770847d6a9def",
+          "size": 4427
+        },
+        {
+          "path": "patch/Mods/RE_ByteonEvolutionHotfix.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "39f1f35073add1d2eaf22b494548f7c2033056593bd125b6bc66a805b1bfae42",
+          "size": 953
+        },
+        {
+          "path": "patch/Mods/RE_Deutsch.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "8414e489540c54bc4cee3c52a160a0453dca5d36dac68e5dfba212e34356e1c0",
+          "size": 815968
+        },
+        {
+          "path": "patch/Mods/RE_LegendaryCatchDifficulty.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "3abdad5467530e87c798733c7029a2bdd57713d39b1184fa6b468fa8e0de7b2d",
+          "size": 15150
+        },
+        {
+          "path": "patch/Mods/RE_LegendaryWildMusic.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "44384b6b135c805c48f80c3f4c12595734bf49b0a30b05e525edd39bdb2acde0",
+          "size": 3495
+        },
+        {
+          "path": "patch/Mods/RE_Mitnahme-Overworld.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "85e24d90f956f17ac40c27b3360175f579a43e540d178e147f5b98b27b5ab8f7",
+          "size": 3683
+        },
+        {
+          "path": "patch/Mods/RE_Pokedex-Ansichtsauswahl.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "a85240e27c9e71a703c094b1256553985429e9ff87077de0b93a23e5e007ba71",
+          "size": 9469
         },
         {
           "path": "patch/Mods/RE_PulseDex-Versteckte-Bilder.rb",
@@ -6820,293 +7130,6 @@
           "beforeExists": true,
           "delete": true,
           "beforeSha256": "28ed6a6891a9508ac99c94ded4e911008faf8843ee2618bfc9656f654e45be9d",
-          "sha256": "",
-          "size": 0
-        }
-      ]
-    },
-    {
-      "fromVersion": "7.3.14",
-      "version": "7.3.16",
-      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.16/Reborn-Hotfix-7.3.14-to-7.3.16.zip",
-      "sha256": "3ec5f5b1fea7612de9930c3ef57b98762c7318e915a60a57be03a83c2d3793c0",
-      "size": 287774,
-      "files": [
-        {
-          "path": "Scripts/ScriptLoader.rb",
-          "beforeExists": true,
-          "beforeSha256": "28b72b5846d2b7770a9b99ca644e0bd1a4a8153af2d5da848b9a838dfbb81089",
-          "sha256": "d89c902456c45816268dc2926409769ff7f242c3e9840111685b117bfe7c7a0e",
-          "size": 6997
-        },
-        {
-          "path": "patch/Mods/RE - Alte-Megasteine-Kompatibilitaet.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "49f0d1482d6c504d48ffc7725c7c6019b379e683c3f7429ce2d3a7518ba10ad7",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/RE - Begegnungen-Neue-Pokemon.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "0d4bd78abdc2788441ea6afa619e6900e88d640eb3d7d8dad8d3583dd2a7e1e0",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/RE - Begleiter-Formen.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "91dc8f7af948e4462ece9fe0a74f95b8ef48f765dc851394e14572af6b1cf1af",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/RE - Beutel-Sortierung-und-TM-Infos.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "e7de8633c95cbda2dd982a85ac33e767637ef0a6857112b7af1d10379fb31ba2",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/RE - Box-Markierungen.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "a8501ca23f484ce47280894506fcb547d4f513e8a5bc0e37149770847d6a9def",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/RE - Deutsche-Zusatztexte.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "ccde7090c618c50b7b826c016e2e66a4d6735a4742bcf1bfa73e98fa6367b830",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/RE - Mitnahme-Overworld.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "85e24d90f956f17ac40c27b3360175f579a43e540d178e147f5b98b27b5ab8f7",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/RE - Pokedex-Ansichtsauswahl.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "5975798f5552c7c6aa13be965819eb8a51e4705773d61d55f26c68afe5d753ac",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/RE - PulseDex-Versteckte-Bilder.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "797b21fd0595397d9c0271ab8b7bab72d2d42ccf803b643e4efcd05cacc01b22",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/RE - Sprachauswahl.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "dc1aa896e03f1d4649c1772912e6b0911fdb6cbe4ad5c8c1d300aff892e40f7e",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/RE - Zeit-und-Wetter-Fixes.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "28533c871174216ffc405fbe662ae5cbf29b4da07d2240901ca5575f182c8a42",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/RE - Zufallsmusik-Onlinekaempfe.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "8c8ba13f0a1360a03e284652938493bd61e896c2f12071ff928a72517ecae351",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/RE - Zufallsmusik-Wildkaempfe.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "e0a94dd4d7db9b7c9fcc6d0f1c18e3e570336ee98f5d8583fa3f7ef13ff55abb",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/RE-Modliste.md",
-          "beforeExists": true,
-          "beforeSha256": "2bb49f389a182579beb98a6b2b3e382f12726a2bbbf487a237d9c0ce586f3390",
-          "sha256": "aa3f760bf9f3507e6fd1f124c88d6ad08b5f208fefe9e7a09f39500f4149d8fc",
-          "size": 3992
-        },
-        {
-          "path": "patch/Mods/RE_Alte-Megasteine-Kompatibilitaet.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "49f0d1482d6c504d48ffc7725c7c6019b379e683c3f7429ce2d3a7518ba10ad7",
-          "size": 828
-        },
-        {
-          "path": "patch/Mods/RE_BattleSound_099_Compatibility.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "cc58ccb57d8a4741791d884f54d3d47109e293a3f9ea6649aae7958ff38607d4",
-          "size": 955
-        },
-        {
-          "path": "patch/Mods/RE_Begegnungen-Neue-Pokemon.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "0d4bd78abdc2788441ea6afa619e6900e88d640eb3d7d8dad8d3583dd2a7e1e0",
-          "size": 3053
-        },
-        {
-          "path": "patch/Mods/RE_Begleiter-Formen.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "91dc8f7af948e4462ece9fe0a74f95b8ef48f765dc851394e14572af6b1cf1af",
-          "size": 12639
-        },
-        {
-          "path": "patch/Mods/RE_Beutel-Sortierung-und-TM-Infos.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "e7de8633c95cbda2dd982a85ac33e767637ef0a6857112b7af1d10379fb31ba2",
-          "size": 66116
-        },
-        {
-          "path": "patch/Mods/RE_Box-Markierungen.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "a8501ca23f484ce47280894506fcb547d4f513e8a5bc0e37149770847d6a9def",
-          "size": 4427
-        },
-        {
-          "path": "patch/Mods/RE_ByteonEvolutionHotfix.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "39f1f35073add1d2eaf22b494548f7c2033056593bd125b6bc66a805b1bfae42",
-          "size": 953
-        },
-        {
-          "path": "patch/Mods/RE_Deutsch.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "5218be68bf8fbee078c7c9246e760818264a5845f3e68f2e454eb86dc46c76bc",
-          "size": 814943
-        },
-        {
-          "path": "patch/Mods/RE_LegendaryCatchDifficulty.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "3abdad5467530e87c798733c7029a2bdd57713d39b1184fa6b468fa8e0de7b2d",
-          "size": 15150
-        },
-        {
-          "path": "patch/Mods/RE_LegendaryWildMusic.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "44384b6b135c805c48f80c3f4c12595734bf49b0a30b05e525edd39bdb2acde0",
-          "size": 3495
-        },
-        {
-          "path": "patch/Mods/RE_Mitnahme-Overworld.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "85e24d90f956f17ac40c27b3360175f579a43e540d178e147f5b98b27b5ab8f7",
-          "size": 3683
-        },
-        {
-          "path": "patch/Mods/RE_Pokedex-Ansichtsauswahl.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "d722e7dcee16f7caaa84baaf96bcb7154935219eaf476d8beb65d4662ccdd640",
-          "size": 8326
-        },
-        {
-          "path": "patch/Mods/RE_PulseDex-Versteckte-Bilder.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "797b21fd0595397d9c0271ab8b7bab72d2d42ccf803b643e4efcd05cacc01b22",
-          "size": 5663
-        },
-        {
-          "path": "patch/Mods/RE_Zeit-und-Wetter-Fixes.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "28533c871174216ffc405fbe662ae5cbf29b4da07d2240901ca5575f182c8a42",
-          "size": 13896
-        },
-        {
-          "path": "patch/Mods/RE_Zufallsmusik-Onlinekaempfe.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "8c8ba13f0a1360a03e284652938493bd61e896c2f12071ff928a72517ecae351",
-          "size": 12070
-        },
-        {
-          "path": "patch/Mods/RE_Zufallsmusik-Wildkaempfe.rb",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "e0a94dd4d7db9b7c9fcc6d0f1c18e3e570336ee98f5d8583fa3f7ef13ff55abb",
-          "size": 672
-        },
-        {
-          "path": "patch/Mods/zzLegendaryCatchDifficulty.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "3abdad5467530e87c798733c7029a2bdd57713d39b1184fa6b468fa8e0de7b2d",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/zzLegendaryWildMusic.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "44384b6b135c805c48f80c3f4c12595734bf49b0a30b05e525edd39bdb2acde0",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/zzLocalGermanVisible.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "d1a70918ccce1d29e7481b7acffe5debd9fc1b3c969156942a2ef6d15628d72e",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/zzzzByteonEvolutionHotfix.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "67600075475000a02de809c5ea107c4c7a35a33a0c5c15af090b00fd48cbfe59",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/zzzzGermanGrammarAndClub.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "7ab070577017db4710ecb03ee87caf5e0a38e1250b9292992f7b60581f5359ef",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Mods/zzzz_RE_BattleSound_099_Compatibility.rb",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "cc58ccb57d8a4741791d884f54d3d47109e293a3f9ea6649aae7958ff38607d4",
           "sha256": "",
           "size": 0
         }

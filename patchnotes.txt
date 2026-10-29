@@ -1,8 +1,5 @@
-Spielhotfix 7.3.18 – Deutsche Textkorrekturen
+Pokémon Reborn 7.3.19 – Disco-Kämpfe
 
-- Enthält die aktuellen deutschen Trainernamen, damit Eigennamen wie Candy in Kampfberichten nicht als gewöhnliche Wörter übersetzt werden.
-- Ergänzt die kontextgerechten Tauros-Texte mit „reiten“.
-- Nimmt die ausstehenden geprüften Textzuordnungen aus dem deutschen RE-Mod auf.
-- Spielstände, Einstellungen und persönliche Mods bleiben erhalten.
+Die Pokémon-Balance-Sperren der Disco-Kämpfe sind für das eigene Team und die Gegnerteams aufgehoben. Die neuen Gegner-Pools enthalten 163 starke Sets für 105 Pokémon-Arten, darunter alle 10 voll entwickelten Ultrabestien, 20 weitere Paradox-Arten sowie Koraidon und Miraidon. Die Sets bringen passende Items, Fähigkeiten, EVs und Doppelvarianten mit. Teamgröße, Duplikat-, Level- und Kampfregeln bleiben erhalten; Eier und besiegte Pokémon im Nuzlocke-Modus bleiben ausgeschlossen.
 
-Launcher 7.4.0 bleibt unverändert. Für Version 7.3.17 gibt es ein kleines Delta; ältere Versionen ohne passende, unveränderte Ausgangsdateien verwenden das Vollpaket.
+Die Testläufe bestanden 14.817 Prüfungen einschließlich 90 erzeugter Gegnerteams. Ein visueller Spieldurchlauf ist noch nicht erfolgt. Die Mods werden update-sicher als eigene Dateien installiert. Bitte das Spiel nach dem Launcher-Update vollständig neu starten.

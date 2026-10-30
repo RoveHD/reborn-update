@@ -7,10 +7,10 @@
     "size": 180791029
   },
   "game": {
-    "version": "7.3.20",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.20/Reborn-AllGen-0.9.9.zip",
-    "sha256": "dc24d781e5c093042eca55da81881e64b4717908cfcd1dab0a2a1b9188e6d59a",
-    "size": 1477082089,
+    "version": "7.3.21",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.21/Reborn-AllGen-0.9.9.zip",
+    "sha256": "b246cd3f894521b351a455954a73474c2ae2d1445eb007a0fe34ec721168e168",
+    "size": 1477191391,
     "removedFiles": [
       {
         "path": "patch/Mods/RE - Alte-Megasteine-Kompatibilitaet.rb",
@@ -149,21 +149,21 @@
       }
     ]
   },
-  "patchNotes": "Pokémon Reborn 7.3.20 – Fangchance für Legendäre\n\nBei legendären und mysteriösen Pokémon steigt der Fangfaktor nach jedem fehlgeschlagenen Wurf mit einem Nicht-Meisterball. Nach 200 Fehlwürfen erreicht der nächste Wurf die normale, durch KP, Status und Ball bestimmte Fangchance. Meisterball-Freigaben und normale Pokémon bleiben unverändert.\n\nDie deutschen Textkorrekturen und die erweiterten Disco-Gegnerteams aus den Hotfixes 7.3.18 und 7.3.19 bleiben enthalten. Spielstände, Einstellungen und persönliche Mods bleiben erhalten. Launcher 7.4.0 bleibt unverändert.",
+  "patchNotes": "Pokémon Reborn 7.3.21 – Deutsche Textkorrekturen\n\nKorrigiert geprüfte deutsche Dialoge und Meldungen: Grammatik, natürlicher Kontext, Pokémon-Namen und Geschlecht, sowie Formulierungen, die in kurzen UI-Feldern abgeschnitten oder missverständlich wirkten. Umgangssprache und derbe Figurenrede bleiben erhalten.\n\nDer Launcher 7.4.0 liefert das Update als kleines Hotfix-Paket aus. Spielstände und persönliche Mods bleiben erhalten.",
   "gameHotfixesV2": [
     {
-      "fromVersion": "7.3.19",
-      "version": "7.3.20",
-      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.20/Reborn-Hotfix-7.3.19-to-7.3.20.zip",
-      "sha256": "74499c84c182d7204bb884f78c1957234c9e8ba2e6d5ae1dd8c1c31d3e581a9e",
-      "size": 5590,
+      "fromVersion": "7.3.20",
+      "version": "7.3.21",
+      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.21/Reborn-Hotfix-7.3.20-to-7.3.21.zip",
+      "sha256": "333b47062fb8717de6c9b2ebf6e492d328fd29d1001730effa703c2453f0ee03",
+      "size": 354059,
       "files": [
         {
-          "path": "patch/Mods/RE_LegendaryCatchDifficulty.rb",
+          "path": "patch/Mods/RE_Deutsch.rb",
           "beforeExists": true,
-          "beforeSha256": "3abdad5467530e87c798733c7029a2bdd57713d39b1184fa6b468fa8e0de7b2d",
-          "sha256": "fe03a19f26fdac12c26a6850cd5677d0f0edc7e7123c291f42a263ff4648b31c",
-          "size": 15951
+          "beforeSha256": "ef90b2d850641259d0062ac2553a16be96eaee2e1cab305d49fcff41e339e846",
+          "sha256": "fad1e0c1a5436b8c4e439e4ea387ff46900cc04c32702896018f8ae8420515c4",
+          "size": 1154172
         }
       ]
     }

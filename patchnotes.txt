@@ -1,5 +1,5 @@
-Pokémon Reborn 7.3.20 – Fangchance für Legendäre
+Pokémon Reborn 7.3.21 – Deutsche Textkorrekturen
 
-Bei legendären und mysteriösen Pokémon steigt der Fangfaktor nach jedem fehlgeschlagenen Wurf mit einem Nicht-Meisterball. Nach 200 Fehlwürfen erreicht der nächste Wurf die normale, durch KP, Status und Ball bestimmte Fangchance. Meisterball-Freigaben und normale Pokémon bleiben unverändert.
+Korrigiert geprüfte deutsche Dialoge und Meldungen: Grammatik, natürlicher Kontext, Pokémon-Namen und Geschlecht, sowie Formulierungen, die in kurzen UI-Feldern abgeschnitten oder missverständlich wirkten. Umgangssprache und derbe Figurenrede bleiben erhalten.
 
-Die deutschen Textkorrekturen und die erweiterten Disco-Gegnerteams aus den Hotfixes 7.3.18 und 7.3.19 bleiben enthalten. Spielstände, Einstellungen und persönliche Mods bleiben erhalten. Launcher 7.4.0 bleibt unverändert.
+Der Launcher 7.4.0 liefert das Update als kleines Hotfix-Paket aus. Spielstände und persönliche Mods bleiben erhalten.

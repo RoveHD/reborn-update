@@ -1,13 +1,15 @@
 using System.Text.Json;
 using PokemonRebornLauncher.Services;
 
-if (args.Length is < 2 or > 5) throw new ArgumentException("ReleaseChecks <release-directory> <test-output-directory> [--repair|--switch|--migration <previous-archive> [baseline-directory]|--update-local|--update-public <previous-release-directory>]");
+if (args.Length is < 2 or > 5) throw new ArgumentException("ReleaseChecks <release-directory> <test-output-directory> [--repair|--switch|--migration <previous-archive> [baseline-directory]|--update-local|--update-public <previous-release-directory>|--delta-update-local|--delta-update-public <previous-release-directory> <baseline-install-root>]");
 string release=Path.GetFullPath(args[0]), output=Path.GetFullPath(args[1]);
 Directory.CreateDirectory(output);
+if (args.Length == 5 && args[2] is "--delta-update-local" or "--delta-update-public") { await DeltaUpdateCheck.Run(release, output, Path.GetFullPath(args[3]), Path.GetFullPath(args[4]), args[2] == "--delta-update-public"); return; }
 if (args.Length == 4 && args[2] is "--update-local" or "--update-public") { await FullUpdateCheck.Run(release, output, Path.GetFullPath(args[3]), args[2] == "--update-public"); return; }
 if (args.Length >= 4 && args[2] == "--migration") { MigrationCheck.Run(release, output, Path.GetFullPath(args[3]), args.Length == 5 ? Path.GetFullPath(args[4]) : null); return; }
 if (args.Length >= 4) throw new ArgumentException("Unknown release check mode");
 if (args.Length == 3 && args[2] == "--switch") { await VersionSwitchCheck.Run(release, output); return; }
+if (args.Length == 3 && args[2] != "--repair") throw new ArgumentException("Unknown release check mode");
 bool repair=args.Length==3 && args[2]=="--repair";
 string root=Path.Combine(output,"game-"+Guid.NewGuid().ToString("N"));
 if(repair) {

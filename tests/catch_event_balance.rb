@@ -12,7 +12,7 @@ Desolation = false
 GAMEVERSION = "19.5.43"
 LOAD_ORDER = ARGV.fetch(0, "swm-first")
 raise "Unknown load order" unless ["swm-first", "original", "catch-first", "script-reload"].include?(LOAD_ORDER)
-CATCH_MOD = File.expand_path(ARGV.fetch(1, File.join(ROOT, "custom-mods/legendary-catch/patch/Mods/zzLegendaryCatchDifficulty.rb")))
+CATCH_MOD = File.expand_path(ARGV.fetch(1, File.join(ROOT, "custom-mods/legendary-catch/patch/Mods/RE_LegendaryCatchDifficulty.rb")))
 
 class ItemHandlerHash
   def initialize; @handlers = {}; end
@@ -226,6 +226,15 @@ check("tier factors and pre-ball rarity cap") do
   assert(LegendaryCatchDifficulty.base_rate_cap(:MEW) == 3)
   assert(LegendaryCatchDifficulty.base_rate_cap(:EEVEE).nil?)
   assert(LegendaryCatchDifficulty::ARCEUS_REBORN_REQUIREMENT == 30)
+end
+check("all legendary tiers reach normal catch chance after 200 failed throws") do
+  [[:KELDEO, 300_000], [:GROUDON, 600_000], [:ARCEUS, 150_000]].each do |species, base|
+    assert(LegendaryCatchDifficulty.factor_units_after_throws(species, 0) == base, species.to_s)
+    assert(LegendaryCatchDifficulty.factor_units_after_throws(species, 199) < 1_000_000, species.to_s)
+    assert(LegendaryCatchDifficulty.factor_units_after_throws(species, 200) == 1_000_000, species.to_s)
+    assert(LegendaryCatchDifficulty.factor_units_after_throws(species, 500) == 1_000_000, species.to_s)
+  end
+  assert(LegendaryCatchDifficulty.factor_units_after_throws(:REGICE, 200) == 1_000_000)
 end
 check("ordinary Pokemon unchanged and consumes no gate RNG") do
   battle = PokeBattle_Battle.new(:EEVEE); caught_rolls(battle)

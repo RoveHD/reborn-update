@@ -1,7 +1,7 @@
 # encoding: UTF-8
 # Run the existing real Battle/Ball/Item/SWM regression with the release mod.
 ARGV[0] ||= "swm-first"
-ARGV[1] ||= File.expand_path("../custom-mods/legendary-catch/patch/Mods/zzLegendaryCatchDifficulty.rb", __dir__)
+ARGV[1] ||= File.expand_path("../custom-mods/legendary-catch/patch/Mods/RE_LegendaryCatchDifficulty.rb", __dir__)
 load File.join(__dir__, "catch_event_balance.rb")
 
 class FakeMon

@@ -1,3 +1,15 @@
 # Preserve the exact reviewed release payload bytes, including line endings.
 /game-hotfixes/7.3.14/payload/patch/Mods/zzzzGermanGrammarAndClub.rb -text
 /custom-mods/german-grammar-club/patch/Mods/zzzzGermanGrammarAndClub.rb -text
+# Hash-bound baseline and approved runtime sources must survive checkout byte-for-byte.
+/release-baselines/game-files-7.3.23.json -text
+/game-hotfixes/7.3.23/payload/patch/Mods/RE_Deutsch.rb -text
+/custom-mods/byteon-evolution/patch/Mods/zzzzByteonEvolutionHotfix.rb -text
+/custom-mods/english-street-names/patch/Mods/zzzzzEnglishStreetNames.rb -text
+/custom-mods/facility-unrestricted/patch/Mods/RE_DiscoGegnerPool.rb -text
+/custom-mods/facility-unrestricted/patch/Mods/RE_DiscoOhneBans.rb -text
+/custom-mods/german-floor-labels/patch/Mods/zzzzzGermanFloorLabels.rb -text
+/custom-mods/german-item-review/patch/Mods/zzzzzzGermanItemReview.rb -text
+/custom-mods/german-localization/patch/Mods/RE_Deutsch.rb -text
+/custom-mods/legendary-catch/patch/Mods/RE_LegendaryCatchDifficulty.rb -text
+/custom-mods/legendary-music/patch/Mods/RE_LegendaryWildMusic.rb -text

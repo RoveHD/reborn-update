@@ -14,7 +14,7 @@ GAME_FILES = {'game.exe','game.ini','cacert.pem','discord_game_sdk.dll','libcryp
               'libssl-3-x64.dll','libtolk.dll','nvdacontrollerclient.dll','x64-msvcrt-ruby310.dll',
               'zlib1.dll','intl.txt','modding.txt','readme.txt','rebornmap.png'}
 PRIVATE_DIRS = {'save data','saves','save','saved games','.git','.reborn-updater','node_modules',
-                '__pycache__','backups','screenshots','test-results'}
+                '__pycache__','backup','backups','screenshots','test-results'}
 PRIVATE_FILES = {'settings.json','mkxp.json','version.txt','launcher.exe','pokemon reborn launcher.exe',
                  'errorlog.txt','debug.txt','updater.log','thumbs.db','desktop.ini'}
 GAME_ARCHIVE = 'Reborn-AllGen-0.9.9.zip'
@@ -92,6 +92,17 @@ def removed_files(game, inventory, previous=None, previous_archives=None):
                 target = 'patch/Mods/' + renamed
                 if target.casefold() in current:
                     replacements[('patch/Mods/' + original).casefold()] = target
+    # Replacement semantics belong to the retired path, not to one historic
+    # byte version. Resolve them before adding hashes from old archives.
+    retired_entries = list(known_retired_files())
+    for entry in retired_entries:
+        if entry['replacedBy'].casefold() not in current:
+            continue
+        key = entry['path'].casefold()
+        previous_target = replacements.get(key)
+        if previous_target is not None and previous_target.casefold() != entry['replacedBy'].casefold():
+            raise ValueError('Widersprüchlicher historischer Ersatzpfad: ' + entry['path'])
+        replacements[key] = entry['replacedBy']
     removed = {}
     def add(rel, digest, replacement=None):
         if not allowed(rel) or rel.casefold() in current:
@@ -139,12 +150,12 @@ def removed_files(game, inventory, previous=None, previous_archives=None):
                     for block in iter(lambda: stream.read(1024 * 1024), b''):
                         h.update(block)
                 add(rel, h.hexdigest())
-    for entry in known_retired_files():
+    for entry in retired_entries:
         if entry['replacedBy'].casefold() in current:
             add(entry['path'], entry['sha256'], entry['replacedBy'])
     return sorted(removed.values(), key=lambda entry: (entry['path'].casefold(), entry['sha256']))
 
-def make_release(game,launcher,out,version,notes,previous=None,previous_archives=None):
+def make_release(game,launcher,out,version,notes,previous=None,previous_archives=None,project_root=None):
     if not re.fullmatch(r'\d+\.\d+\.\d+',version):raise ValueError('Version muss x.y.z sein')
     game=game.resolve();out=out.resolve();launcher=launcher.resolve()
     if out==game or game in out.parents:raise ValueError('Ausgabe muss außerhalb des Spiels liegen')
@@ -152,6 +163,13 @@ def make_release(game,launcher,out,version,notes,previous=None,previous_archives
               'patch/Data/moves.dat','patch/Data/items.dat','patch/Data/abil.dat','patch/Data/mons.dat']
     for rel in required:
         if not (game/rel).is_file():raise ValueError('Unvollständige Spielquelle: '+rel)
+    import verify_release_parity
+    project_root = (project_root or Path(__file__).resolve().parents[1]).resolve()
+    verify_release_parity.verify_release_baseline(
+        verify_release_parity.source_inventory(game), project_root)
+    verify_release_parity.verify_project_mod_sources(game, project_root)
+    verify_release_parity.verify_latest_hotfix_payload(game, project_root)
+    verify_release_parity.verify_translation_build(game, project_root)
     out.mkdir(parents=True,exist_ok=True)
     inventory={}
     case_seen=set()
@@ -184,10 +202,15 @@ def make_release(game,launcher,out,version,notes,previous=None,previous_archives
         'uncompressedBytes':sum(x['size'] for x in inventory.values()),'archiveBytes':archive.stat().st_size,
         'everyArchivedFileSha256Verified':True,'personalFilesIncluded':False,'removedFiles':removed})]:
         (out/name).write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+    # Record the canonical game root so the publishing gate can re-hash it after
+    # all tests and reject source edits made after this archive was built.
+    parity=verify_release_parity.verify(out,game,project_root=project_root)
+    (out/'source-game.path').write_text(str(game.resolve())+'\n',encoding='utf8')
+    (out/'source-parity.json').write_text(json.dumps(parity,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     (out/'version.txt').write_text(version+'\n',encoding='utf8')
     (out/'patchnotes.txt').write_text(notes+'\n',encoding='utf8')
     (out/'SHA256SUMS.txt').write_text('\n'.join(sha256(out/name)+'  '+name for name in
-        ['launcher.exe',GAME_ARCHIVE,'update.json','game-files.json'])+'\n',encoding='utf8')
+        ['launcher.exe',GAME_ARCHIVE,'update.json','game-files.json','source-parity.json'])+'\n',encoding='utf8')
     print(json.dumps({'success':True,'files':len(inventory),'archiveBytes':archive.stat().st_size,'removedFiles':len(removed)}))
 
 if __name__=='__main__':

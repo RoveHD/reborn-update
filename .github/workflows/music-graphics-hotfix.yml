@@ -39,9 +39,11 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
+          $directory = 'dist/release-game-7.3.12'
+          python tools/verify_release_parity.py --release-dir $directory --archive-only
+          if ($LASTEXITCODE -ne 0) { throw 'Release parity proof is missing or stale.' }
           $draft = gh release view v7.3.12 --json isDraft | ConvertFrom-Json
           if ($LASTEXITCODE -ne 0 -or -not $draft.isDraft) { throw 'Expected unpublished 7.3.12 draft.' }
-          $directory = 'dist/release-game-7.3.12'
           $manifest = Get-Content "$directory/update.json" -Raw | ConvertFrom-Json
           if ($manifest.game.sha256 -ne $env:EXPECTED_ARCHIVE_SHA256.ToLowerInvariant()) { throw 'Local fallback SHA mismatch.' }
           gh release upload v7.3.12 "$directory/Reborn-AllGen-0.9.9.zip" "$directory/Reborn-7.3.12-Zusatzdateien.zip" --clobber

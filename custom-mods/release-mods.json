@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "mods": [
+    {
+      "source": "custom-mods/byteon-evolution/patch/Mods/zzzzByteonEvolutionHotfix.rb",
+      "disposition": "renamed",
+      "runtime": "patch/Mods/RE_ByteonEvolutionHotfix.rb"
+    },
+    {
+      "source": "custom-mods/english-street-names/patch/Mods/zzzzzEnglishStreetNames.rb",
+      "disposition": "merged",
+      "runtime": "patch/Mods/RE_Deutsch.rb",
+      "reason": "Street names are incorporated into the consolidated German mod.",
+      "sourceSha256": "b6a9fd3880b94aeee2804ec5c346e55b00e8290491de00efb8e8f3009ca890d1",
+      "runtimeSha256": "dc434b8f154985b8a825569f937e9b6205aeae1781d096d680dddd06710882c1"
+    },
+    {
+      "source": "custom-mods/facility-unrestricted/patch/Mods/RE_DiscoGegnerPool.rb",
+      "disposition": "mirror",
+      "runtime": "patch/Mods/RE_DiscoGegnerPool.rb"
+    },
+    {
+      "source": "custom-mods/facility-unrestricted/patch/Mods/RE_DiscoOhneBans.rb",
+      "disposition": "mirror",
+      "runtime": "patch/Mods/RE_DiscoOhneBans.rb"
+    },
+    {
+      "source": "custom-mods/german-floor-labels/patch/Mods/zzzzzGermanFloorLabels.rb",
+      "disposition": "merged",
+      "runtime": "patch/Mods/RE_Deutsch.rb",
+      "reason": "Floor labels are incorporated into the consolidated German mod.",
+      "sourceSha256": "b37d0a9d5d7ca7fcee98d0473d46ee95bc828d1e7e28e8c93680ae0c438f0b16",
+      "runtimeSha256": "dc434b8f154985b8a825569f937e9b6205aeae1781d096d680dddd06710882c1"
+    },
+    {
+      "source": "custom-mods/german-grammar-club/patch/Mods/zzzzGermanGrammarAndClub.rb",
+      "disposition": "merged",
+      "runtime": "patch/Mods/RE_Deutsch.rb",
+      "reason": "Grammar and club text are incorporated into the consolidated German mod.",
+      "sourceSha256": "7ab070577017db4710ecb03ee87caf5e0a38e1250b9292992f7b60581f5359ef",
+      "runtimeSha256": "dc434b8f154985b8a825569f937e9b6205aeae1781d096d680dddd06710882c1"
+    },
+    {
+      "source": "custom-mods/german-item-review/patch/Mods/zzzzzzGermanItemReview.rb",
+      "disposition": "merged",
+      "runtime": "patch/Mods/RE_Deutsch.rb",
+      "reason": "Item review text is incorporated into the consolidated German mod.",
+      "sourceSha256": "28ed6a6891a9508ac99c94ded4e911008faf8843ee2618bfc9656f654e45be9d",
+      "runtimeSha256": "dc434b8f154985b8a825569f937e9b6205aeae1781d096d680dddd06710882c1"
+    },
+    {
+      "source": "custom-mods/german-localization/patch/Mods/RE_Deutsch.rb",
+      "disposition": "mirror",
+      "runtime": "patch/Mods/RE_Deutsch.rb"
+    },
+    {
+      "source": "custom-mods/legendary-catch/patch/Mods/RE_LegendaryCatchDifficulty.rb",
+      "disposition": "mirror",
+      "runtime": "patch/Mods/RE_LegendaryCatchDifficulty.rb"
+    },
+    {
+      "source": "custom-mods/legendary-music/patch/Mods/RE_LegendaryWildMusic.rb",
+      "disposition": "mirror",
+      "runtime": "patch/Mods/RE_LegendaryWildMusic.rb"
+    }
+  ]
+}

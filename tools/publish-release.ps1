@@ -7,6 +7,10 @@ $releaseRoot = (Resolve-Path -LiteralPath $ReleaseDirectory).Path
 $repository = 'RoveHD/reborn-update'
 $manifestPath = Join-Path $releaseRoot 'update.json'
 $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
+$parityProof = Join-Path $releaseRoot 'source-parity.json'
+if (-not (Test-Path -LiteralPath $parityProof)) { throw 'Pflichtnachweis fehlt: source-parity.json. Das Release muss aus der vollständigen lokalen Spielquelle neu gebaut werden.' }
+& python (Join-Path $PSScriptRoot 'verify_release_parity.py') --release-dir $releaseRoot
+if ($LASTEXITCODE -ne 0) { throw 'Lokale Spielquelle, Paketarchiv und Dateiinventar stimmen nicht überein.' }
 $version = $manifest.game.version
 $tag = "v$version"
 $gameAsset = [IO.Path]::GetFileName(([Uri]$manifest.game.url).AbsolutePath)
@@ -26,6 +30,9 @@ foreach ($name in @('package-checks.json','launcher-checks.json','release-instal
 $launcherChecks = Get-Content -LiteralPath (Join-Path $releaseRoot 'launcher-checks.json') -Raw | ConvertFrom-Json
 $installChecks = Get-Content -LiteralPath (Join-Path $releaseRoot 'release-install.json') -Raw | ConvertFrom-Json
 if ($launcherChecks.launcherSha256 -ne $manifest.launcher.sha256 -or $installChecks.archiveSha256 -ne $manifest.game.sha256) { throw 'Die Tests gehören zu anderen Release-Dateien.' }
+$managedFiles = (Get-Content -LiteralPath (Join-Path $releaseRoot 'game-files.json') -Raw | ConvertFrom-Json).PSObject.Properties.Count
+$installedFiles = if ($null -ne $installChecks.installedFilesVerified) { $installChecks.installedFilesVerified } else { $installChecks.newFilesVerified }
+if ($managedFiles -le 0 -or $installedFiles -ne $managedFiles) { throw 'Die isolierte Installation hat nicht jede verwaltete Paketdatei anhand des Manifests verifiziert.' }
 foreach ($name in @('release-repair.json','release-switch.json','release-migration.json')) {
     $checks = Get-Content -LiteralPath (Join-Path $releaseRoot $name) -Raw | ConvertFrom-Json
     if ($checks.archiveSha256 -ne $manifest.game.sha256) { throw "Prüfung gehört zu einem anderen Spielpaket: $name" }
@@ -59,7 +66,7 @@ if (-not $existing) {
     & gh release create $tag --repo $repository --target $sourceCommit --draft --title "Launcher $version · AllGen 0.9.9 (Deutsch)" --notes-file (Join-Path $releaseRoot 'patchnotes.txt')
     if ($LASTEXITCODE -ne 0) { throw 'Release-Entwurf konnte nicht erstellt werden.' }
 }
-$assets = @('launcher.exe',$gameAsset,'update.json','game-files.json','SHA256SUMS.txt','ERSTE-SCHRITTE.txt')
+$assets = @('launcher.exe',$gameAsset,'update.json','game-files.json','source-parity.json','SHA256SUMS.txt','ERSTE-SCHRITTE.txt')
 foreach ($name in $assets) {
     $path = Join-Path $releaseRoot $name
     $alreadyUploaded = $existing.assets | Where-Object { $_.name -eq $name } | Select-Object -First 1

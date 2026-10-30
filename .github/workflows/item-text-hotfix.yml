@@ -38,9 +38,11 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
+          $directory = 'dist/release-game-7.3.15-channel'
+          python tools/verify_release_parity.py --release-dir $directory --archive-only
+          if ($LASTEXITCODE -ne 0) { throw 'Release parity proof is missing or stale.' }
           $draft = gh release view v7.3.15 --json isDraft | ConvertFrom-Json
           if ($LASTEXITCODE -ne 0 -or -not $draft.isDraft) { throw 'Expected unpublished 7.3.15 draft.' }
-          $directory = 'dist/release-game-7.3.15-channel'
           $manifest = Get-Content "$directory/update.json" -Raw | ConvertFrom-Json
           $deltaInfo = $manifest.gameHotfixesV2 | Where-Object fromVersion -eq '7.3.14' | Select-Object -First 1
           if (-not $deltaInfo) { throw 'New launcher V2 delta is missing.' }

@@ -38,6 +38,8 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
+          python tools/verify_release_parity.py --release-dir dist/release-game-7.3.10 --archive-only
+          if ($LASTEXITCODE -ne 0) { throw 'Release parity proof is missing or stale.' }
           $draft = gh release view v7.3.10 --json isDraft | ConvertFrom-Json
           if ($LASTEXITCODE -ne 0 -or -not $draft.isDraft) { throw 'Expected unpublished 7.3.10 draft.' }
           gh release upload v7.3.10 dist/release-game-7.3.10/Reborn-AllGen-0.9.9.zip

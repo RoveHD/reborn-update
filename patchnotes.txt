@@ -1,4 +1,13 @@
-Deutsche Spieltextkorrekturen und die vollständige aktuelle Übersetzungsdatei. Der geprüfte Zwischenstand umfasst 521 manuelle Textkorrekturen; die Prüfung weiterer Dialoge wird fortgesetzt.
+Spielhotfix 7.3.25 – sauberer Neustart auf 7.3.23 / AllGen 0.9.9
 
-Enthalten sind die aktualisierte `intl.txt`, die daraus mit dem Reborn-Laufzeitcompiler erstellte `Data/german.dat` sowie alle freigegebenen Mods und Ressourcen der lokalen Spielquelle. Launcher 7.4.0 bleibt unverändert. Dieses Paket wird nur nach erfolgreichem Installations- und Hashvergleich veröffentlicht.
+7.3.24 wurde verworfen. Dieser Hotfix wurde frisch aus dem verifizierten 7.3.23-Paket gebaut.
+Alle funktionierenden Spieldaten, Custom-Mods, Musikdateien, Grafiken und Schrift-/UI-Anpassungen aus 7.3.23 bleiben erhalten.
+Die vollständigen AllGen-0.9.9-Itemdefinitionen und die kurzen, lesbaren Beschreibungen sind wieder enthalten.
+
+43 frisch geprüfte Übersetzungskorrekturen an 25 unterschiedlichen Originaltexten: Tauros-Reiten statt Fahren; korrekter Singular und Artikel bei Tauros/Bisofank; Ferns Anrede und Aussagen einschließlich derben Tons; natürliche Bitterkuss-Ladenschilder.
+Die Texte wurden mit dem passenden Spielcompiler neu in german.dat kompiliert.
+Bereits übersetzte UI-Beschriftungen, englische Design-Texte und die Originalschrift bleiben unverändert.
+
+Updatepfade für 7.3.23 und bereits installierte 7.3.24 werden separat geprüft. Spielstände, Einstellungen und eigene Dateien werden geschützt.
+Die vollständige inhaltliche Übersetzungsprüfung wird in weiteren getrennt geprüften Chargen fortgesetzt; dieses Release behauptet keine abgeschlossene Gesamtprüfung.
 

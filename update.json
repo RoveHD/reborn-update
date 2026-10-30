@@ -7,35 +7,338 @@
     "size": 180791029
   },
   "game": {
-    "version": "7.3.23",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.23/Reborn-AllGen-0.9.9.zip",
-    "sha256": "9f369db41ed0b595ff24809e30620e15dad1af3453ccc7a7174dd37753ae2485",
-    "size": 1477202975,
+    "version": "7.3.24",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.24/Reborn-AllGen-0.9.9.zip",
+    "sha256": "639a18daa74a8259a734c411c15db818c369faa2f523cdeb73050233a05a6aea",
+    "size": 1474946909,
     "removedFiles": [
       {
-        "path": "patch/Mods/RE - Alte-Megasteine-Kompatibilitaet.rb",
-        "sha256": "49f0d1482d6c504d48ffc7725c7c6019b379e683c3f7429ce2d3a7518ba10ad7",
-        "replacedBy": "patch/Mods/RE_Alte-Megasteine-Kompatibilitaet.rb"
+        "path": "Graphics/Characters/Followers/887s.png",
+        "sha256": "1f44936016e18de061b5c31d28ffe0962efb8ddf0677cb10fa0a0be61a621a98"
       },
       {
-        "path": "patch/Mods/RE - Begegnungen-Neue-Pokemon.rb",
-        "sha256": "0d4bd78abdc2788441ea6afa619e6900e88d640eb3d7d8dad8d3583dd2a7e1e0",
-        "replacedBy": "patch/Mods/RE_Begegnungen-Neue-Pokemon.rb"
+        "path": "patch/Audio/SE/024Cry_2.ogg",
+        "sha256": "422e130f9b0146de0c838baf41dfa81556c1f2a0a62a4ffd94818a99a1c5a4b8"
       },
       {
-        "path": "patch/Mods/RE - Begleiter-Formen.rb",
-        "sha256": "91dc8f7af948e4462ece9fe0a74f95b8ef48f765dc851394e14572af6b1cf1af",
-        "replacedBy": "patch/Mods/RE_Begleiter-Formen.rb"
+        "path": "patch/Audio/SE/1038Cry.ogg",
+        "sha256": "74ea7a2ed504447c40c85a2d46499934eff0d9a8f40addf5a8e5fef0039d1c71"
       },
       {
-        "path": "patch/Mods/RE - Beutel-Sortierung-und-TM-Infos.rb",
-        "sha256": "e7de8633c95cbda2dd982a85ac33e767637ef0a6857112b7af1d10379fb31ba2",
-        "replacedBy": "patch/Mods/RE_Beutel-Sortierung-und-TM-Infos.rb"
+        "path": "patch/Audio/SE/160Cry_2.ogg",
+        "sha256": "afcfccf0ed189c7a7441bfac2519ebe3935ae36b16898f8325e01efd8a37fcc7"
       },
       {
-        "path": "patch/Mods/RE - Box-Markierungen.rb",
-        "sha256": "a8501ca23f484ce47280894506fcb547d4f513e8a5bc0e37149770847d6a9def",
-        "replacedBy": "patch/Mods/RE_Box-Markierungen.rb"
+        "path": "patch/Audio/SE/166Cry_1.ogg",
+        "sha256": "37905684cb6a44c153e5ed7999517f07128336de07f5a4700d9d06f9550cb92f"
+      },
+      {
+        "path": "patch/Audio/SE/168Cry_1.ogg",
+        "sha256": "1d9663b390aeee6cbf02245876289574d2113ebdf1688b7962bdd7d4e4ee400c"
+      },
+      {
+        "path": "patch/Audio/SE/330Cry_1.ogg",
+        "sha256": "f39b0522e8d3c194435ff89662ef8abdf12db006d4668b7554ad0467430f81fb"
+      },
+      {
+        "path": "patch/Audio/SE/385Cry_1.ogg",
+        "sha256": "e508a154bc58b77b37d1c6b28df8da36ed04c0c4bf7437d38a4a7ef1f1543a76"
+      },
+      {
+        "path": "patch/Audio/SE/579Cry_1.ogg",
+        "sha256": "3702633a572102e10c1fbb10f074c3f9c8315fd666bc672b7764119f44ab74da"
+      },
+      {
+        "path": "patch/Audio/SE/612Cry_1.ogg",
+        "sha256": "aed2ac3429bed6a42d3cf6c9c2459390b297197f043d16e1e6fa5e0d9636378a"
+      },
+      {
+        "path": "patch/Audio/SE/693Cry_1.ogg",
+        "sha256": "dd10032a291701e6466a871b1875e92ccb2988c82cc76bf0392f47f3b7466604"
+      },
+      {
+        "path": "patch/Audio/SE/697Cry_1.ogg",
+        "sha256": "6ababcd3108dddbd360c49f839bd8f7c020655e9372c1b5af0e6e0eff96d3576"
+      },
+      {
+        "path": "patch/Audio/SE/699Cry_1.ogg",
+        "sha256": "5da0be9b95c4f12e3f9750560b4f48971b3b4b56a849831fcbff3ad669572d2a"
+      },
+      {
+        "path": "patch/Audio/SE/801Cry_2.ogg",
+        "sha256": "05d112ef45b7207357a379d1b7b5855aaefeedccfc02c5c8cf412e85d809933e"
+      },
+      {
+        "path": "patch/Audio/SE/815Cry_2.ogg",
+        "sha256": "848ff51d91fd9a9ac7a56627ac1fb1ebd119c9abb7797fedc69e049eebaa602a"
+      },
+      {
+        "path": "patch/Graphics/Battlers/amaura.png",
+        "sha256": "fab88e5e9fad2bb3ec4ef6deab23bb596cd6d8618cff77ea78006599e4dd4b6b"
+      },
+      {
+        "path": "patch/Graphics/Battlers/amauraegg.png",
+        "sha256": "beb8a384c9e3faa4166d93cc5749d23dd49c7c68b9d86193be1af4c936c4bca6"
+      },
+      {
+        "path": "patch/Graphics/Battlers/ariados.png",
+        "sha256": "06b8d414f80f32496b566559f009ac80154c942426ccb1d440b43a65bb700358"
+      },
+      {
+        "path": "patch/Graphics/Battlers/aurorus.png",
+        "sha256": "f0a2ee4dce5f3d10dca3c1931a78df5a1ea61df5e601940019cb95cc555fcd31"
+      },
+      {
+        "path": "patch/Graphics/Battlers/clawitzer.png",
+        "sha256": "53142a1f08a442e99db8c38c633e6850eda011b71e78b320d34c2c696f3f1fc0"
+      },
+      {
+        "path": "patch/Graphics/Battlers/garchompf.png",
+        "sha256": "436b50e82fbcc73bc46c1208299e4ae1593f35499ee8c6d754a657beaea90c85"
+      },
+      {
+        "path": "patch/Graphics/Battlers/gyarados.png",
+        "sha256": "a87a459c1a44cc988ebb646bb7e4d8aac83e43c7793080d11c81533206f41ce8"
+      },
+      {
+        "path": "patch/Graphics/Battlers/gyaradosf.png",
+        "sha256": "0c56b2a4e86c5cf8f78557a5f3cc8ad3a821b6312e789c5f0cf1ece5518a56a8"
+      },
+      {
+        "path": "patch/Graphics/Battlers/jumpluff.png",
+        "sha256": "074651aaa210d9f707b56c6ad648feba09eaf84eb210dc9ffa1f7772e840b566"
+      },
+      {
+        "path": "patch/Graphics/Battlers/ledian.png",
+        "sha256": "8a1e16fee850f199fcd179deb713b0fcb325acd8b5c92c99d832fcc4016a99af"
+      },
+      {
+        "path": "patch/Graphics/Battlers/magikarp.png",
+        "sha256": "5d239aa5b425c2447493688ded23f08a51364290f701885517b319cf874f9509"
+      },
+      {
+        "path": "patch/Graphics/Battlers/magikarpegg.png",
+        "sha256": "efa38d7b3d5ad15fe9746e99ea86ed2a7eb9bb30dfc2c6a37e725af4c23300f0"
+      },
+      {
+        "path": "patch/Graphics/Battlers/magikarpf.png",
+        "sha256": "64f781639a74ea8570fff89b75e13a5d5513ab771664ce55bce29bee429d10e8"
+      },
+      {
+        "path": "patch/Graphics/Battlers/magikarpfegg.png",
+        "sha256": "26e13763d69a13e6a84d657859590b466b07145cef02ec1450e58b61b337928b"
+      },
+      {
+        "path": "patch/Graphics/Battlers/regigigas.png",
+        "sha256": "b5e560ad1ce69b082c702c3a3a14289f3b216ff61cddfbd3c5b9c71a91ae8bbd"
+      },
+      {
+        "path": "patch/Graphics/Battlers/reuniclus.png",
+        "sha256": "b0d9e9f64677da2b0405dfd875b321aeee58cfd9d826e0d4d941729db94a5dd3"
+      },
+      {
+        "path": "patch/Graphics/Battlers/rhyperior.png",
+        "sha256": "66e8bd9081a3ea73799f32ae1c330273fa18dcc2f877cf713c067c85e278f799"
+      },
+      {
+        "path": "patch/Graphics/Battlers/rowlet.png",
+        "sha256": "e71509b3ddf23f1b3d750c07768cd5abe1420692eab97b57aa4741c6e602c784"
+      },
+      {
+        "path": "patch/Graphics/Battlers/tyranitar.png",
+        "sha256": "b26ee17e6c607504242f6daac42b6aeafd78105ba5776f054f9b75a7d4c47efa"
+      },
+      {
+        "path": "patch/Graphics/Battlers/zangoose.png",
+        "sha256": "ef92381a54aa8a893ef39a3b53845fb9e916034d00b7c1e10af3aa73f5558f6b"
+      },
+      {
+        "path": "patch/Graphics/Characters/Followers/1034.png",
+        "sha256": "25c8ebf26d8f29991c6d38080a0b81f1daf4703778c5cb146f6548104576b599"
+      },
+      {
+        "path": "patch/Graphics/Characters/Followers/1034s.png",
+        "sha256": "de5da3eb23decf29bb53b21025e220c8ba2109b1a34a0463346f953f972860bb"
+      },
+      {
+        "path": "patch/Graphics/Characters/Followers/1035.png",
+        "sha256": "2b4103d32ec21bee528ad99e077666427ec77a853ed1c67d9bb60eb6d4d937e4"
+      },
+      {
+        "path": "patch/Graphics/Characters/Followers/1035s.png",
+        "sha256": "6dfbc7efa6d2a3fea3255b10249f37f8a4fb96498aa98b5682c1893809d54b51"
+      },
+      {
+        "path": "patch/Graphics/Characters/Followers/1037.png",
+        "sha256": "af804a8ef5de64cd5ca50b13d51d2401c8f74ff7ab4f5ca3896aeedaba387678"
+      },
+      {
+        "path": "patch/Graphics/Characters/Followers/1037s.png",
+        "sha256": "d633d0c15dceb85c8b9a63ca93938ce497d73ba37d19c217021bde802eaeff30"
+      },
+      {
+        "path": "patch/Graphics/Characters/Followers/1038.png",
+        "sha256": "c3c4afcbbceeb99973e93da6044ddc8444e8904b6be4e5aa312d2f9de7526423"
+      },
+      {
+        "path": "patch/Graphics/Characters/Followers/1038s.png",
+        "sha256": "39b32c984f15ee75d8ca5e693059e99b3c6a10848fffab413f252004b6921f38"
+      },
+      {
+        "path": "patch/Graphics/Characters/Followers/130_2s.png",
+        "sha256": "60fa998283e2d6de0b14c812c0bd6bacd038757c191f112538686e05aaa8e9ef"
+      },
+      {
+        "path": "patch/Graphics/Characters/Followers/130s.png",
+        "sha256": "64157a9be02defca9e9b25fd5120f36c78e55462591cf9155151c397c4f7a3fe"
+      },
+      {
+        "path": "patch/Graphics/Icons/accelgreaves.png",
+        "sha256": "9c29a1e801531a318f143f715cd6f85a0d40f0363773333a37378984b0685966"
+      },
+      {
+        "path": "patch/Graphics/Icons/amaura.png",
+        "sha256": "9cf119ec905eaf387cb3f5831f0ceccd926d29b35c5c1b69c555e089fb61cdb2"
+      },
+      {
+        "path": "patch/Graphics/Icons/amauraegg.png",
+        "sha256": "929bb862fac1a2c9d49a18459104cfeed8bfd47d6d226785584ce23a189f653a"
+      },
+      {
+        "path": "patch/Graphics/Icons/arbokitey.png",
+        "sha256": "62f440c7a3e3897dea537615eeeba6409937cadc80f260faf4a50458803fc96d"
+      },
+      {
+        "path": "patch/Graphics/Icons/ariadite.png",
+        "sha256": "22b9d70d5c75d0f884929241d6328706ab408cd96e981db14fd2c83309962914"
+      },
+      {
+        "path": "patch/Graphics/Icons/ariados.png",
+        "sha256": "c19e1990e71c50c0b9392c63b49bf6e56a3d04cd94e5defc251a9d1f84181866"
+      },
+      {
+        "path": "patch/Graphics/Icons/aurorite.png",
+        "sha256": "d421a54fe848e760edb0eb9986252fc91cfb8cfa8f21dae787faa5afd755f16a"
+      },
+      {
+        "path": "patch/Graphics/Icons/aurorus.png",
+        "sha256": "b4b7ed4b3ced8bb1270e04208e3ce97a1693b6b50c107cbb5993a98d9502dd73"
+      },
+      {
+        "path": "patch/Graphics/Icons/cinderiteg.png",
+        "sha256": "bd1c5b53fe5a103e82c6fe43c5691ac9c93251ea2a5944c466eb73e25e22b9ae"
+      },
+      {
+        "path": "patch/Graphics/Icons/clawitzer.png",
+        "sha256": "c12accae55eccd4de71e3bcff67aad0b99092706f38d59480aa9b07cc2807df4"
+      },
+      {
+        "path": "patch/Graphics/Icons/clawitzerite.png",
+        "sha256": "72c4f064310837a917fdd518ef521fe625a67f3526d91b9b01d822e54f4e0402"
+      },
+      {
+        "path": "patch/Graphics/Icons/feraligiteg.png",
+        "sha256": "c9ba6e54c8a3c439419b32501f7dc137d920ffc0a36ca5b979ddeb5fbac068fc"
+      },
+      {
+        "path": "patch/Graphics/Icons/gamblershat.png",
+        "sha256": "bbd2e3c877bf5902b714307b5f47afb0d4880bbc688ac4ede72ad7af4c4636a6"
+      },
+      {
+        "path": "patch/Graphics/Icons/garchompf.png",
+        "sha256": "387ed17044669cb1bf78643ce4fe5d798c31ff71a35ef9d5527478926f664c39"
+      },
+      {
+        "path": "patch/Graphics/Icons/gyarados.png",
+        "sha256": "a934166fea60f925cd906b5c3a922c14f3de0194806d4c76c51880451cb85783"
+      },
+      {
+        "path": "patch/Graphics/Icons/gyaradosf.png",
+        "sha256": "6385f47d458881bf327898832ba204ddf8c5b05131ed801e716540ceba8c8433"
+      },
+      {
+        "path": "patch/Graphics/Icons/haxorite.png",
+        "sha256": "d4b8664670ebe5f3182275ac13c5d53d448c9222d67dc7a907b815febd101ada"
+      },
+      {
+        "path": "patch/Graphics/Icons/jirachi.png",
+        "sha256": "818d6a96060a2a2aba81377a4cab3e4278bb27440f68bd0cfce92faa196888af"
+      },
+      {
+        "path": "patch/Graphics/Icons/ledian.png",
+        "sha256": "ebf68277f6ecd026f5b2d9ecb5b5c24f3abb6c9834cf0e4465f8891cbf51065a"
+      },
+      {
+        "path": "patch/Graphics/Icons/ledianite.png",
+        "sha256": "13ce27c19d6f9c289f0bdea92647b76837a1304cb51ea19a993a5aa2c04e3035"
+      },
+      {
+        "path": "patch/Graphics/Icons/magearna.png",
+        "sha256": "c0ac2a1432d8cdf0b0df210a095a58a2705239494181fcfc5977953ab2822c4a"
+      },
+      {
+        "path": "patch/Graphics/Icons/magearnitez.png",
+        "sha256": "15f3ce9e093a67553a269b70b86cb455ce47f88e0a9dcfd632d09a242c062bfc"
+      },
+      {
+        "path": "patch/Graphics/Icons/magikarp.png",
+        "sha256": "e841ddc06a7a12e0971d983b966b77913d1202ab9d488fb9cb2c5b83ff9a3f2c"
+      },
+      {
+        "path": "patch/Graphics/Icons/magikarpegg.png",
+        "sha256": "6dd553ee2e3dad939a4551d8dd50189b45b1441a07b905da612fa9dd43aa37ba"
+      },
+      {
+        "path": "patch/Graphics/Icons/magikarpf.png",
+        "sha256": "4b601241b7eea6296a6084afdf923c760c222b40c1e543ff57452592963222eb"
+      },
+      {
+        "path": "patch/Graphics/Icons/magikarpfegg.png",
+        "sha256": "8e989654c3390da81451aa85db4d54444ff60afc395dcf0a09e2ce1e68618bd5"
+      },
+      {
+        "path": "patch/Graphics/Icons/noguardbelt.png",
+        "sha256": "7ee333c69e31d9fe1d0e7539d9757fe91e01be76e19b8968a1844eefec15899f"
+      },
+      {
+        "path": "patch/Graphics/Icons/purloinmittens.png",
+        "sha256": "1d70ed7a85e247ce9f3600f26c86dc37d8bf1e4c23f495faae61078720c2ad66"
+      },
+      {
+        "path": "patch/Graphics/Icons/reuniclus.png",
+        "sha256": "0f7010ccc2beb999712c5248b75965c42cfac40789642a17335061211f47f8f8"
+      },
+      {
+        "path": "patch/Graphics/Icons/reuniclusite.png",
+        "sha256": "7eff1f95a47ed1ec276f28a361548b9bdb1264fd38f6916027ccd29f8bed1511"
+      },
+      {
+        "path": "patch/Graphics/Icons/rowlet.png",
+        "sha256": "d6a6d16c0f46c58b01b1a2525f29cf149e63a4da81b959efb851096c079d184d"
+      },
+      {
+        "path": "patch/Graphics/Icons/royalmantle.png",
+        "sha256": "1711172f216432ff771af4cd66fd65e22c7a05dbdb74b804b048da8989af04ac"
+      },
+      {
+        "path": "patch/Graphics/Icons/tyrantrumite.png",
+        "sha256": "87262a0615a8969517a6e3b979c82c98671f4b7d80753f568e9d85521fcee317"
+      },
+      {
+        "path": "patch/Graphics/Icons/wondershield.png",
+        "sha256": "5fac70dbca9a6385e0eec0f4cc9a23b61d197024979cacd78c622a48eb3be0cc"
+      },
+      {
+        "path": "patch/Graphics/Icons/zangoosite.png",
+        "sha256": "0f64bcc0b9f453137bafe2bc77c76d2e0cf867cc4d88edc26e4fe2922d24076e"
+      },
+      {
+        "path": "patch/Mods/MoveTutor.rb",
+        "sha256": "c0d603f1036c056ffc5179f5df6b3611d98d42480ca341a6316383bdfb63f34d"
+      },
+      {
+        "path": "patch/Mods/PBS/naturetext.rb",
+        "sha256": "1fb5e06bf9553e70220504217c00571a97583c31381822b7ddb7ea7fde8ac594"
       },
       {
         "path": "patch/Mods/RE - Deutsche-Zusatztexte.rb",
@@ -43,44 +346,85 @@
         "replacedBy": "patch/Mods/RE_Deutsch.rb"
       },
       {
-        "path": "patch/Mods/RE - Mitnahme-Overworld.rb",
-        "sha256": "85e24d90f956f17ac40c27b3360175f579a43e540d178e147f5b98b27b5ab8f7",
-        "replacedBy": "patch/Mods/RE_Mitnahme-Overworld.rb"
-      },
-      {
-        "path": "patch/Mods/RE - Pokedex-Ansichtsauswahl.rb",
-        "sha256": "5975798f5552c7c6aa13be965819eb8a51e4705773d61d55f26c68afe5d753ac",
-        "replacedBy": "patch/Mods/RE_Pokedex-Ansichtsauswahl.rb"
-      },
-      {
-        "path": "patch/Mods/RE - Pokedex-Ansichtsauswahl.rb",
-        "sha256": "d722e7dcee16f7caaa84baaf96bcb7154935219eaf476d8beb65d4662ccdd640",
-        "replacedBy": "patch/Mods/RE_Pokedex-Ansichtsauswahl.rb"
-      },
-      {
-        "path": "patch/Mods/RE - PulseDex-Versteckte-Bilder.rb",
-        "sha256": "797b21fd0595397d9c0271ab8b7bab72d2d42ccf803b643e4efcd05cacc01b22",
-        "replacedBy": "patch/Mods/RE_PulseDex-Versteckte-Bilder.rb"
-      },
-      {
         "path": "patch/Mods/RE - Sprachauswahl.rb",
         "sha256": "dc1aa896e03f1d4649c1772912e6b0911fdb6cbe4ad5c8c1d300aff892e40f7e",
         "replacedBy": "patch/Mods/RE_Deutsch.rb"
       },
       {
-        "path": "patch/Mods/RE - Zeit-und-Wetter-Fixes.rb",
-        "sha256": "28533c871174216ffc405fbe662ae5cbf29b4da07d2240901ca5575f182c8a42",
-        "replacedBy": "patch/Mods/RE_Zeit-und-Wetter-Fixes.rb"
+        "path": "patch/Mods/RE-Modliste.md",
+        "sha256": "aa3f760bf9f3507e6fd1f124c88d6ad08b5f208fefe9e7a09f39500f4149d8fc"
       },
       {
-        "path": "patch/Mods/RE - Zufallsmusik-Onlinekaempfe.rb",
-        "sha256": "8c8ba13f0a1360a03e284652938493bd61e896c2f12071ff928a72517ecae351",
-        "replacedBy": "patch/Mods/RE_Zufallsmusik-Onlinekaempfe.rb"
+        "path": "patch/Mods/RE_Alte-Megasteine-Kompatibilitaet.rb",
+        "sha256": "49f0d1482d6c504d48ffc7725c7c6019b379e683c3f7429ce2d3a7518ba10ad7"
       },
       {
-        "path": "patch/Mods/RE - Zufallsmusik-Wildkaempfe.rb",
-        "sha256": "e0a94dd4d7db9b7c9fcc6d0f1c18e3e570336ee98f5d8583fa3f7ef13ff55abb",
-        "replacedBy": "patch/Mods/RE_Zufallsmusik-Wildkaempfe.rb"
+        "path": "patch/Mods/RE_BattleSound_099_Compatibility.rb",
+        "sha256": "cc58ccb57d8a4741791d884f54d3d47109e293a3f9ea6649aae7958ff38607d4"
+      },
+      {
+        "path": "patch/Mods/RE_Begegnungen-Neue-Pokemon.rb",
+        "sha256": "0d4bd78abdc2788441ea6afa619e6900e88d640eb3d7d8dad8d3583dd2a7e1e0"
+      },
+      {
+        "path": "patch/Mods/RE_Begleiter-Formen.rb",
+        "sha256": "91dc8f7af948e4462ece9fe0a74f95b8ef48f765dc851394e14572af6b1cf1af"
+      },
+      {
+        "path": "patch/Mods/RE_Beutel-Sortierung-und-TM-Infos.rb",
+        "sha256": "e7de8633c95cbda2dd982a85ac33e767637ef0a6857112b7af1d10379fb31ba2"
+      },
+      {
+        "path": "patch/Mods/RE_Box-Markierungen.rb",
+        "sha256": "a8501ca23f484ce47280894506fcb547d4f513e8a5bc0e37149770847d6a9def"
+      },
+      {
+        "path": "patch/Mods/RE_Mitnahme-Overworld.rb",
+        "sha256": "85e24d90f956f17ac40c27b3360175f579a43e540d178e147f5b98b27b5ab8f7"
+      },
+      {
+        "path": "patch/Mods/RE_Pokedex-Ansichtsauswahl.rb",
+        "sha256": "a85240e27c9e71a703c094b1256553985429e9ff87077de0b93a23e5e007ba71"
+      },
+      {
+        "path": "patch/Mods/RE_PulseDex-Versteckte-Bilder.rb",
+        "sha256": "797b21fd0595397d9c0271ab8b7bab72d2d42ccf803b643e4efcd05cacc01b22"
+      },
+      {
+        "path": "patch/Mods/RE_Zeit-und-Wetter-Fixes.rb",
+        "sha256": "28533c871174216ffc405fbe662ae5cbf29b4da07d2240901ca5575f182c8a42"
+      },
+      {
+        "path": "patch/Mods/RE_Zufallsmusik-Onlinekaempfe.rb",
+        "sha256": "8c8ba13f0a1360a03e284652938493bd61e896c2f12071ff928a72517ecae351"
+      },
+      {
+        "path": "patch/Mods/RE_Zufallsmusik-Wildkaempfe.rb",
+        "sha256": "e0a94dd4d7db9b7c9fcc6d0f1c18e3e570336ee98f5d8583fa3f7ef13ff55abb"
+      },
+      {
+        "path": "patch/Mods/Randomizer.rb",
+        "sha256": "6867211521adb62fe0452331b2cc3bd4ffd89823b0dc5cf2b87aa0272a7ce38a"
+      },
+      {
+        "path": "patch/Mods/RandomizerHandler.rb",
+        "sha256": "9bb4106603893fa039d774b15d4252d7938e623ec054d59cb405ea7c91ab059c"
+      },
+      {
+        "path": "patch/Mods/RandomizerSettings.rb",
+        "sha256": "940388e83aef7f9ec4022bc22f22a1c6f509e0b7accc51d8909515ad9882650a"
+      },
+      {
+        "path": "patch/Mods/RandomizerUtilFix.rb",
+        "sha256": "543da56f7557e85b7682a2bcb347fc32952ad9bc4760de6d29a739e9316b3ad3"
+      },
+      {
+        "path": "patch/Mods/RebornPokegear.rb",
+        "sha256": "2c47b1e391af33d77717f5bc227fe2045d54d8c41162c39dc69a22dd2a79d721"
+      },
+      {
+        "path": "patch/Mods/Split Mega and Gigantamax.rb",
+        "sha256": "fcd5823ab1a3d9859085427c8770d2d435d1d4ee6b577aba7d01607a20d2fded"
       },
       {
         "path": "patch/Mods/zzLegendaryCatchDifficulty.rb",
@@ -91,26 +435,6 @@
         "path": "patch/Mods/zzLegendaryWildMusic.rb",
         "sha256": "44384b6b135c805c48f80c3f4c12595734bf49b0a30b05e525edd39bdb2acde0",
         "replacedBy": "patch/Mods/RE_LegendaryWildMusic.rb"
-      },
-      {
-        "path": "patch/Mods/zzLocalGermanText.rb",
-        "sha256": "2354f69c75352cea944da88f2dcfa1f409b74bd3647d57b877ce66260e6cf888",
-        "replacedBy": "patch/Mods/RE_Deutsch.rb"
-      },
-      {
-        "path": "patch/Mods/zzLocalGermanText.rb",
-        "sha256": "402d0f35c75bf4019cfbcfd1c3749e81913162a3023f51a92a8350a9fe556f0c",
-        "replacedBy": "patch/Mods/RE_Deutsch.rb"
-      },
-      {
-        "path": "patch/Mods/zzLocalGermanText.rb",
-        "sha256": "a920efdcb90e4d9a5fa9db96f67a84ac40869e04429dddb51e264db42d941cb3",
-        "replacedBy": "patch/Mods/RE_Deutsch.rb"
-      },
-      {
-        "path": "patch/Mods/zzLocalGermanVisible.rb",
-        "sha256": "d1a70918ccce1d29e7481b7acffe5debd9fc1b3c969156942a2ef6d15628d72e",
-        "replacedBy": "patch/Mods/RE_Deutsch.rb"
       },
       {
         "path": "patch/Mods/zzzzByteonEvolutionHotfix.rb",
@@ -126,11 +450,6 @@
         "path": "patch/Mods/zzzzGermanGrammarAndClub.rb",
         "sha256": "7ab070577017db4710ecb03ee87caf5e0a38e1250b9292992f7b60581f5359ef",
         "replacedBy": "patch/Mods/RE_Deutsch.rb"
-      },
-      {
-        "path": "patch/Mods/zzzz_RE_BattleSound_099_Compatibility.rb",
-        "sha256": "cc58ccb57d8a4741791d884f54d3d47109e293a3f9ea6649aae7958ff38607d4",
-        "replacedBy": "patch/Mods/RE_BattleSound_099_Compatibility.rb"
       },
       {
         "path": "patch/Mods/zzzzzEnglishStreetNames.rb",
@@ -149,24 +468,2063 @@
       }
     ]
   },
-  "patchNotes": "Deutsche Textkorrekturen für fünf Tauros-Reitdialoge und den Bitterkuss-Süßwarenladen. Die umgangssprachliche Formulierung bleibt kurz genug für die Dialogboxen.\n\nDer Hotfix aktualisiert nur `patch/Mods/RE_Deutsch.rb`. Der Launcher bleibt auf 7.4.0. Die vollständige manuelle Spieltextprüfung sowie PokéWiki- und In-Game-Umbruchprüfungen laufen weiter.",
+  "patchNotes": "Deutsche Spieltextkorrekturen und die vollständige aktuelle Übersetzungsdatei. Der geprüfte Zwischenstand umfasst 521 manuelle Textkorrekturen; die Prüfung weiterer Dialoge wird fortgesetzt.\n\nEnthalten sind die aktualisierte `intl.txt`, die daraus mit dem Reborn-Laufzeitcompiler erstellte `Data/german.dat` sowie alle freigegebenen Mods und Ressourcen der lokalen Spielquelle. Launcher 7.4.0 bleibt unverändert. Dieses Paket wird nur nach erfolgreichem Installations- und Hashvergleich veröffentlicht.\n",
   "gameHotfixesV2": [
     {
-      "fromVersion": "7.3.22",
-      "version": "7.3.23",
-      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.23/Reborn-Hotfix-7.3.22-to-7.3.23.zip",
-      "sha256": "1ab322ffb1f586b6e37f4749084d0c6bbbd7f829bde66f3e00e4435dda118e4c",
-      "size": 365643,
+      "fromVersion": "7.3.23",
+      "version": "7.3.24",
+      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.24/Reborn-Hotfix-7.3.23-to-7.3.24.zip",
+      "sha256": "b2d6a70997346b0e5521e69f557102f351e29fb3999263e18c1e30eda9bd1569",
+      "size": 15191623,
       "files": [
         {
-          "path": "patch/Mods/RE_Deutsch.rb",
+          "path": "Data/german.dat",
           "beforeExists": true,
-          "beforeSha256": "1e76c40a47686713e143a6d94b7d2aedf6dbfb1fcb242954ed4303356a0781e3",
-          "sha256": "dc434b8f154985b8a825569f937e9b6205aeae1781d096d680dddd06710882c1",
-          "size": 1194883
+          "beforeSha256": "fb1ff27f43e772f02c34105172b68bab43a9957bb27a987fedde01b49c2dd81e",
+          "sha256": "60c1508600ceeedbcea4ee0efb3879e6cff3df522eea91dd01518ad522b8e522",
+          "size": 11642939
+        },
+        {
+          "path": "Graphics/Characters/Followers/722.png",
+          "beforeExists": true,
+          "beforeSha256": "40ff9ce20e3cbcda66e3961c86a1c2ebe579bdf1b7d79949d7dc73a6dca33991",
+          "sha256": "3dbac19afe0b28c2f219b03c405ea0622aa1cc1f634af114413d48ad6f9ece57",
+          "size": 7937
+        },
+        {
+          "path": "Graphics/Characters/Followers/887s.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "1f44936016e18de061b5c31d28ffe0962efb8ddf0677cb10fa0a0be61a621a98",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "Scripts/DrawText.rb",
+          "beforeExists": true,
+          "beforeSha256": "32addd2abd6f58569b7f4a9f095ead31c5f941f1ead17b425a67971996ed76ff",
+          "sha256": "24af61ec283eca2da27c749faf1306f360e20ee90e8c8199b4b58208d6fc5fb6",
+          "size": 33060
+        },
+        {
+          "path": "Scripts/PBIntl.rb",
+          "beforeExists": true,
+          "beforeSha256": "a914fa1b300486f773b8549c7ac625e9587301e915fd7324fc40f94e4ff2330b",
+          "sha256": "88723ec4bcde8dc09ac66b95cd850d4941dab5b3f9c5d999622304012bda4bb5",
+          "size": 19636
+        },
+        {
+          "path": "Scripts/Reborn/FieldNoteCompiler.rb",
+          "beforeExists": true,
+          "beforeSha256": "864075a96e713451430c22e21874d89051220554ae6b61a6ba60a2a67afcf682",
+          "sha256": "7920385c2d3ba0613bb2caa36e08d0db3ce06fc887bf7fbb9133cfd21d0549e9",
+          "size": 137293
+        },
+        {
+          "path": "Scripts/Reborn/abiltext.rb",
+          "beforeExists": true,
+          "beforeSha256": "c9988fbfbdc8463b875d0dc522db61c165070765cea9550ef84593ee3092809d",
+          "sha256": "ddfb1f354ced0feee18e6a581526b5be50bb519d9e9df6500cd9267a52fa3cb2",
+          "size": 69852
+        },
+        {
+          "path": "Scripts/Reborn/enctext.rb",
+          "beforeExists": true,
+          "beforeSha256": "1c97060a2f675d5450e6cff6c80bbb6b555d4032dd193d4271f25ca0babfc344",
+          "sha256": "33ded75d51a159c2a4a366a9e303b98e0b07346e881a1cc3a4d9afb916522ea7",
+          "size": 321212
+        },
+        {
+          "path": "Scripts/Reborn/fieldtext.rb",
+          "beforeExists": true,
+          "beforeSha256": "fc6b20068c2f797a47afb7d3f71c9d6be73dc09067375807310e05c6927ac306",
+          "sha256": "c803e66d620a26c74f390239f3faee1b44f8d419bae60227dc9e209605393942",
+          "size": 90779
+        },
+        {
+          "path": "Scripts/Reborn/itemtext.rb",
+          "beforeExists": true,
+          "beforeSha256": "23518246b15e034dc58fd619c0baaa1b5329b99a72444976b9c24c6585423baf",
+          "sha256": "fb9306a055bf30058a1071fc780b3c25be56de7bc1e5d32d871a609e7d2b597b",
+          "size": 317578
+        },
+        {
+          "path": "Scripts/Reborn/metatext.rb",
+          "beforeExists": true,
+          "beforeSha256": "17c4be1258eed05e2deea18429a022aff4329e982f0d233229d63895659ae425",
+          "sha256": "356254cfa16b1f6592d00913172f92d5d82fd5a1c5b49ce7248c350aa849979e",
+          "size": 153108
+        },
+        {
+          "path": "Scripts/Reborn/montext.rb",
+          "beforeExists": true,
+          "beforeSha256": "85f5a4e0feb1dcdb812b8031cc49c5b9e35a76f7080c04b135913cb53cd51419",
+          "sha256": "6c99c9311c9ec253f7ddad776b72189d74ca0027feb7231e4d8008091ed83f2d",
+          "size": 2495761
+        },
+        {
+          "path": "Scripts/Reborn/movetext.rb",
+          "beforeExists": true,
+          "beforeSha256": "ae2b1e4071acb4fdf6ed5f88210c67733ec7e0897ddd6336b4c509b6a61d08c3",
+          "sha256": "7251ead5be8756190c2285cb700bc62e843a28ebb5fe7b3d3521a33e607dd03a",
+          "size": 379487
+        },
+        {
+          "path": "Scripts/Reborn/naturetext.rb",
+          "beforeExists": true,
+          "beforeSha256": "1fb5e06bf9553e70220504217c00571a97583c31381822b7ddb7ea7fde8ac594",
+          "sha256": "9b20aab4d367eea0fce7df636f4f0bd80e8894f75795389be6e696e37e03e9a1",
+          "size": 3294
+        },
+        {
+          "path": "Scripts/Reborn/trainertext.rb",
+          "beforeExists": true,
+          "beforeSha256": "32bdf9a7f297dbc66f110d9d9d0c26ba8200fa7f21268fce5d9491eb03ede505",
+          "sha256": "9c98b87487f4a9f6d470f2d8e7e3bbd03001b5aa71008d3d6882dd005f1831ec",
+          "size": 1307007
+        },
+        {
+          "path": "Scripts/Reborn/ttypetext.rb",
+          "beforeExists": true,
+          "beforeSha256": "6566e4d392ec4b6ff6cb0842b3c82714a0daf6004f696790a5b1db1c19d47c0b",
+          "sha256": "8ad1e6812da61a26983195fd1a9ddc738145dc0a1467a23f5fce37b0617273ce",
+          "size": 43228
+        },
+        {
+          "path": "Scripts/ScriptLoader.rb",
+          "beforeExists": true,
+          "beforeSha256": "d89c902456c45816268dc2926409769ff7f242c3e9840111685b117bfe7c7a0e",
+          "sha256": "71d2ad7de702366237c3ddbdaea3fa5aa249da0e960a2789328604f288825699",
+          "size": 3837
+        },
+        {
+          "path": "Scripts/Summary.rb",
+          "beforeExists": true,
+          "beforeSha256": "1926c4bc386bbe02b95922b7261377214dd12aa3bd8b7cfcafa264be7083c5d5",
+          "sha256": "056e5db47d110d770967b85d37a2d56fa50a0023e62cf09d96aad9e0944666ac",
+          "size": 52844
+        },
+        {
+          "path": "intl.txt",
+          "beforeExists": true,
+          "beforeSha256": "13b953ab1bc2bb50bf797cf228b2be7e1038e50aee6ebf924d52a1b2978c32f4",
+          "sha256": "a957442a7253ba210984291c4489bc188b1f4f77fabe9e7ec56ca2359184eae9",
+          "size": 7823575
+        },
+        {
+          "path": "patch/AllGen 19.5 Reborn Guide.xlsx",
+          "beforeExists": true,
+          "beforeSha256": "b0f0228b52cae5612865cca3233a592948aa23ff4e51a99fd7cc65143dfcb370",
+          "sha256": "fe8a63ad99c8bb812e94fe52d476ea24c3b9e382c4b89b7e807e550bb909c532",
+          "size": 1652400
+        },
+        {
+          "path": "patch/Audio/SE/024Cry_2.ogg",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "422e130f9b0146de0c838baf41dfa81556c1f2a0a62a4ffd94818a99a1c5a4b8",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Audio/SE/1038Cry.ogg",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "74ea7a2ed504447c40c85a2d46499934eff0d9a8f40addf5a8e5fef0039d1c71",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Audio/SE/160Cry_2.ogg",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "afcfccf0ed189c7a7441bfac2519ebe3935ae36b16898f8325e01efd8a37fcc7",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Audio/SE/166Cry_1.ogg",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "37905684cb6a44c153e5ed7999517f07128336de07f5a4700d9d06f9550cb92f",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Audio/SE/168Cry_1.ogg",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "1d9663b390aeee6cbf02245876289574d2113ebdf1688b7962bdd7d4e4ee400c",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Audio/SE/330Cry_1.ogg",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "f39b0522e8d3c194435ff89662ef8abdf12db006d4668b7554ad0467430f81fb",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Audio/SE/385Cry_1.ogg",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "e508a154bc58b77b37d1c6b28df8da36ed04c0c4bf7437d38a4a7ef1f1543a76",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Audio/SE/579Cry_1.ogg",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "3702633a572102e10c1fbb10f074c3f9c8315fd666bc672b7764119f44ab74da",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Audio/SE/612Cry_1.ogg",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "aed2ac3429bed6a42d3cf6c9c2459390b297197f043d16e1e6fa5e0d9636378a",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Audio/SE/693Cry_1.ogg",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "dd10032a291701e6466a871b1875e92ccb2988c82cc76bf0392f47f3b7466604",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Audio/SE/697Cry_1.ogg",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "6ababcd3108dddbd360c49f839bd8f7c020655e9372c1b5af0e6e0eff96d3576",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Audio/SE/699Cry_1.ogg",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "5da0be9b95c4f12e3f9750560b4f48971b3b4b56a849831fcbff3ad669572d2a",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Audio/SE/801Cry_2.ogg",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "05d112ef45b7207357a379d1b7b5855aaefeedccfc02c5c8cf412e85d809933e",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Audio/SE/815Cry_2.ogg",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "848ff51d91fd9a9ac7a56627ac1fb1ebd119c9abb7797fedc69e049eebaa602a",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Changelog.txt",
+          "beforeExists": true,
+          "beforeSha256": "5f7efe81efccf8e057427225ca5529196f252b43b5406ce69bcc1ef9dd12085c",
+          "sha256": "353978783cf29025dba9b2431d5ce3dd955aeb87bf190189ea2a0e2728f829eb",
+          "size": 29595
+        },
+        {
+          "path": "patch/Credits.txt",
+          "beforeExists": true,
+          "beforeSha256": "617ea869e576b3316e33c1ffce4cd6f4b05e3284a5767b16ad4ef3a34a0ce368",
+          "sha256": "51a19f8a79ec1af913bb935aa3686744d35732b6c2cc0fafb44ce42690003a70",
+          "size": 6218
+        },
+        {
+          "path": "patch/Data/Map004.rxdata",
+          "beforeExists": true,
+          "beforeSha256": "24bfe611ef097713a1cda07365b47de2565e220e298fc2ae584863ab1f1f1411",
+          "sha256": "342120828823efcda6052b03f506f177be99933b1e392dc297f7489e5bf413ff",
+          "size": 5596
+        },
+        {
+          "path": "patch/Data/Map209.rxdata",
+          "beforeExists": true,
+          "beforeSha256": "a8952c98f7b283a98ac931748584a6a241e31baec079c24ca55af79652e8d891",
+          "sha256": "e6c2e17cc1585531f4308c22936f0a8549f8c1477abfa2dd9c2848b2741fe7cd",
+          "size": 173870
+        },
+        {
+          "path": "patch/Data/Map355.rxdata",
+          "beforeExists": true,
+          "beforeSha256": "ee73767294d1fa84db17ae768a251f2ead5bcfea811580d8a521ece8c7261734",
+          "sha256": "f5fda142f71af5ff79be8f6e4c62cde3a2d3cac4217b868766f3d2bd54e8dd8c",
+          "size": 197320
+        },
+        {
+          "path": "patch/Data/Map417.rxdata",
+          "beforeExists": true,
+          "beforeSha256": "5a01c3fdd7ddd6502b03ab13a22c0af54a20f18d53b4df235cad340eec0fff08",
+          "sha256": "08a9f465a7e0749762a6e2da132e53ae2f3f637e1d8ea37cfa931609b48b22f4",
+          "size": 175870
+        },
+        {
+          "path": "patch/Data/Map425.rxdata",
+          "beforeExists": true,
+          "beforeSha256": "2766eebbbebf0a80905ade08f9d09a0a156fc431d9e3256a31c747de44c179d1",
+          "sha256": "dd97b0729398cdf2b6b2947bcb8cb45e9da744ebda6909ba31a5b0f9bd861483",
+          "size": 22263
+        },
+        {
+          "path": "patch/Data/Map666.rxdata",
+          "beforeExists": true,
+          "beforeSha256": "987b492a2fff6edf7631ef322a7aa8c5a42a437cb33c039e971f9595abe4665b",
+          "sha256": "440eb91014d8b2c454653d4e075d114aa3d167023e11937f645e9254bc8be061",
+          "size": 53322
+        },
+        {
+          "path": "patch/Data/Map701.rxdata",
+          "beforeExists": true,
+          "beforeSha256": "bf0f2e9562ce8e1b208da91265fd2b75a74aec9ea7264ef314184ba80d565f09",
+          "sha256": "8d99179925f3dee78229d09a63db06e44a51cca33979d0da7f7a2afddb54e7c7",
+          "size": 90920
+        },
+        {
+          "path": "patch/Data/Map763.rxdata",
+          "beforeExists": true,
+          "beforeSha256": "7b23d2ddf0f99600060936d09766a5c338090b4e5c6760296d18b31e888d54bd",
+          "sha256": "8e661f5b539fd12d3a17e4fa844a8e5b439573864fc6c231abc515182b7c01be",
+          "size": 183291
+        },
+        {
+          "path": "patch/Data/Map775.rxdata",
+          "beforeExists": true,
+          "beforeSha256": "be56378020b1f4b524179c721ae76de6c48454a79686e4d74540ce076d96a17e",
+          "sha256": "f0fc9a62d8e41332c8e982c200154c0001cc2271f29450e5b0c47fd23f12ed58",
+          "size": 66144
+        },
+        {
+          "path": "patch/Data/System.rxdata",
+          "beforeExists": true,
+          "beforeSha256": "ad0e4c383fbf12927d10a3eb6341dee970ddc95e8b77c31c8aa5811f3130bf4e",
+          "sha256": "b170ea266af28aa8105adc9aebcae65fcda3c854448db2b6db2ebfb40932e762",
+          "size": 78732
+        },
+        {
+          "path": "patch/Data/abil.dat",
+          "beforeExists": true,
+          "beforeSha256": "653a464e2c6ac2a9d35200806726571f5c90894ca9058eb933a9fe7359d6e80b",
+          "sha256": "784ca4245143dd1593ee42aa79a79f9a2a2204a3d8bed45ed62902735142705a",
+          "size": 56462
+        },
+        {
+          "path": "patch/Data/fieldnotes.dat",
+          "beforeExists": true,
+          "beforeSha256": "3dc706b36566cba7082e957dd3654a1016a315ea843ea86f08989cf4fc5ddbcf",
+          "sha256": "1828b0b7458ffcf85438df5e89796deb5883a02dff6537049923ac4f15176ebe",
+          "size": 139070
+        },
+        {
+          "path": "patch/Data/fields.dat",
+          "beforeExists": true,
+          "beforeSha256": "5e0730a0779c4256e0229f286d30362aa652334295db79bcc8fb27c76029455f",
+          "sha256": "3138d682847a0753b15d2e678ea284b23c8cdb714896c82c09a3904ff3ed54bf",
+          "size": 40693
+        },
+        {
+          "path": "patch/Data/items.dat",
+          "beforeExists": true,
+          "beforeSha256": "f2eaf507ab8131ffa6981b002aa1d7b041677ed1102916c7d017908599a509b0",
+          "sha256": "f8fd5160bfed580193549fb86925df86d523d738e140390b6dfdd20481fc9331",
+          "size": 197306
+        },
+        {
+          "path": "patch/Data/maps.dat",
+          "beforeExists": true,
+          "beforeSha256": "06f3f68e0fd1649d56dcc3aa786aa7ecd6ba8d6538c3f5e3b7889a26acd486e2",
+          "sha256": "7ebab3fc06e60f7762d058290fb837b7b3cf22f75160a952f163ebc1a373f992",
+          "size": 217240
+        },
+        {
+          "path": "patch/Data/messages.dat",
+          "beforeExists": true,
+          "beforeSha256": "0933ef9bd875e8198ccd6527b429e8c14928613f22946da6b36e743e88ed6417",
+          "sha256": "8f46d6bf1204b9feb755d7e1b8ef6e4381dd0ed796084aca3ecddbc7bd532139",
+          "size": 9151180
+        },
+        {
+          "path": "patch/Data/mons.dat",
+          "beforeExists": true,
+          "beforeSha256": "9a0e0d7d528ed50e36a6f166c590277a49d3c98ad9e97bb2b16e672cc15d31d3",
+          "sha256": "85817e732d8359b6341079f9a25cad6144fa5040de9473cde564b5ef0c03a8b2",
+          "size": 827069
+        },
+        {
+          "path": "patch/Data/moves.dat",
+          "beforeExists": true,
+          "beforeSha256": "e90e67bf4653b285523d6ea0e4c21d5105acfbcd71b4b3879295663d98b98319",
+          "sha256": "4540ee35d8cea28e28a1883b40fc99f674ad23ad6ef5e7c0c98f44dfaf1ca4a4",
+          "size": 180290
+        },
+        {
+          "path": "patch/Data/natures.dat",
+          "beforeExists": true,
+          "beforeSha256": "bf5cad4b2e833f62b59997663af039e25fa26ebb3c6fc1344335ca8a97a3a931",
+          "sha256": "930ff3845947740ae42beceed2ac0a5c8c2d380a781d9c6c3d8e4d580af5cd11",
+          "size": 1615
+        },
+        {
+          "path": "patch/Data/trainers.dat",
+          "beforeExists": true,
+          "beforeSha256": "953c645f7af23f6418da955d0d93312e8d82ad2ef2147148278e76edee090411",
+          "sha256": "3e01ca1ed34095c0766dffa068fc6658cf81f46df1c8c018f88d914be6454763",
+          "size": 1139378
+        },
+        {
+          "path": "patch/Data/ttypes.dat",
+          "beforeExists": true,
+          "beforeSha256": "2046bcdbabb694b36be8d13ad65c6ac58878a7d122e39c3371fcbdfef8190f47",
+          "sha256": "8057b7b4a2c599e9bf7d37f42d2f8ee8ca1832131723f013e8556a5ba641c870",
+          "size": 26223
+        },
+        {
+          "path": "patch/Graphics/Battlers/abysseon.png",
+          "beforeExists": true,
+          "beforeSha256": "db3ab1d665d511ace9c8800ed886ed9f18c781e287c2fd51c2eb40b068a9fa02",
+          "sha256": "1518777ee846a009512e7c75a58f47450909f87c1141fdf2ec85a9daee994627",
+          "size": 6117
+        },
+        {
+          "path": "patch/Graphics/Battlers/amaura.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "fab88e5e9fad2bb3ec4ef6deab23bb596cd6d8618cff77ea78006599e4dd4b6b",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/amauraegg.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "beb8a384c9e3faa4166d93cc5749d23dd49c7c68b9d86193be1af4c936c4bca6",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/arbok.png",
+          "beforeExists": true,
+          "beforeSha256": "d32b4c77ecf79814e044d03966f3b3e9c782307ea08fae8670a942e9c813a674",
+          "sha256": "835346ff8fa650050c9263f4a0fc0c8fd413471883dba34cdb8a1eb65f5c756c",
+          "size": 11817
+        },
+        {
+          "path": "patch/Graphics/Battlers/arctibax.png",
+          "beforeExists": true,
+          "beforeSha256": "828eafbe1f0f5e932271d99b34ca8e40989523410e5c38a826f978d40963f39e",
+          "sha256": "88a10f6f63b30cfc5913a866b6c39f8adb24967073678ead7ef49ff5f2588aae",
+          "size": 4732
+        },
+        {
+          "path": "patch/Graphics/Battlers/ariados.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "06b8d414f80f32496b566559f009ac80154c942426ccb1d440b43a65bb700358",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/aurorus.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "f0a2ee4dce5f3d10dca3c1931a78df5a1ea61df5e601940019cb95cc555fcd31",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/barbaracle.png",
+          "beforeExists": true,
+          "beforeSha256": "c036c44f3dfa3004edc403fdb7a278940d81b538d2232acb14256e4d292465d7",
+          "sha256": "800450176fb9e7ac858e5dd675d56fe2829078b9482218c6896b5dc35f6417db",
+          "size": 24944
+        },
+        {
+          "path": "patch/Graphics/Battlers/baxcalibur.png",
+          "beforeExists": true,
+          "beforeSha256": "c11be19cd315c3c95d9aeb910251a392b055f6f1e01a4aaec0ed67b399b4979d",
+          "sha256": "59c28b25c315c92e03b0530c8a1fa17b6d0fdeee598a81fa254bcde3456763ce",
+          "size": 15880
+        },
+        {
+          "path": "patch/Graphics/Battlers/castform.png",
+          "beforeExists": true,
+          "beforeSha256": "ee0bc87f9eaa56680f13547fbbb98c920f4e8b00730e67da55bd39197f8c85e7",
+          "sha256": "820dd3104c48b07bb260f51bc2f3503281a8299b15208f815cd980ef22ed60f0",
+          "size": 19953
+        },
+        {
+          "path": "patch/Graphics/Battlers/cetitan.png",
+          "beforeExists": true,
+          "beforeSha256": "615cbfa79c2d0adad4ec064a833e9268a9129e0ec42f1261f1dc93cf0c545e3d",
+          "sha256": "3bbc3a27c04339492a6816e7082acceb4bb7d8fb7d1b11a200eef7694fd5031a",
+          "size": 6143
+        },
+        {
+          "path": "patch/Graphics/Battlers/cetoddle.png",
+          "beforeExists": true,
+          "beforeSha256": "c8762533a63fe95a4af16dd20172d91c9d4d383df4664645e4b30571959d6856",
+          "sha256": "73ec2152a770290ed3e3cd288f06c42e36d0e894b6bf363f338f9756886d4712",
+          "size": 3835
+        },
+        {
+          "path": "patch/Graphics/Battlers/cetoddleegg.png",
+          "beforeExists": true,
+          "beforeSha256": "90b53e5f2e2efdc269b99ee647411490a5618251a9380bf7112a630117e3223a",
+          "sha256": "e0f3d136b024535e31a7ad0eebfc04c09c415811c5fefc436695d0cebf7592fa",
+          "size": 956
+        },
+        {
+          "path": "patch/Graphics/Battlers/chesnaught.png",
+          "beforeExists": true,
+          "beforeSha256": "e8aaf68d98f4ab1ba667a2392e570ad743d86ee747e69febe1c61c4b29066742",
+          "sha256": "b22a19288116b74aff887c8f287d60378077907e1509c4c63526f53d1b9c16dd",
+          "size": 15503
+        },
+        {
+          "path": "patch/Graphics/Battlers/cinderace.png",
+          "beforeExists": true,
+          "beforeSha256": "87748dbcf4fb73f0fa1f3d8d29b4371898351f2057b175b316e6dc1f72a71c54",
+          "sha256": "cec24d27a3a9390ff73830edf693f014fac3d817a1e8072c26c6957af951b812",
+          "size": 14597
+        },
+        {
+          "path": "patch/Graphics/Battlers/clawitzer.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "53142a1f08a442e99db8c38c633e6850eda011b71e78b320d34c2c696f3f1fc0",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/delphox.png",
+          "beforeExists": true,
+          "beforeSha256": "6e32289b22152be34516947a0f2d1d2620606ea95ee51877c5c05bd43704fb7a",
+          "sha256": "dcf9ba6476622a99eb3a5607957ddb615085ce9240e9e9955985ec9656948c17",
+          "size": 15334
+        },
+        {
+          "path": "patch/Graphics/Battlers/dragapult.png",
+          "beforeExists": true,
+          "beforeSha256": "7a1186b24f9e82e5015634f719b9e7f08786e3f19bbd5c025ca55ce5db61a3d0",
+          "sha256": "4d66a268e217d06a5441e001cee8c956d988cbdd8d0683df1ecf6f18240186d9",
+          "size": 6545
+        },
+        {
+          "path": "patch/Graphics/Battlers/dragapult_1.png",
+          "beforeExists": true,
+          "beforeSha256": "29e6d3211701b7d77761d5df1316cb819bd12a0da156aeb1d814c27058e8fd32",
+          "sha256": "f14dd2b67139e5aa64295ddcd809b446014e7b699f08a08fdeb3615c99e5976f",
+          "size": 9790
+        },
+        {
+          "path": "patch/Graphics/Battlers/dragapultb_1.png",
+          "beforeExists": true,
+          "beforeSha256": "1dbc606e7be63f3a81646f9ac35f5b3d48ed9755073e208263a72b224abca81d",
+          "sha256": "06560744967ebf561ea1d30a50f7324a7cc1a34fc70ec5b99a751cab9a537f8d",
+          "size": 2942
+        },
+        {
+          "path": "patch/Graphics/Battlers/dragapults_1.png",
+          "beforeExists": true,
+          "beforeSha256": "3e665f7f107a2b77fc3b318629769c031c6a10768cf311343db1f4a78907c085",
+          "sha256": "d55e6e4f8a2a94871587a6cd836d53c4a40eaa9de0a41e607bb096ca0c6baa3a",
+          "size": 8937
+        },
+        {
+          "path": "patch/Graphics/Battlers/dragapultsb_1.png",
+          "beforeExists": true,
+          "beforeSha256": "52e192a846bf292d2d6f970ec2e0135a04dc7da97b5d4fcb9918ac497923eeee",
+          "sha256": "55dd8dca0a4a04d66c1a545772ea1b568da5a92c16d1b54c526251500a0a260f",
+          "size": 2812
+        },
+        {
+          "path": "patch/Graphics/Battlers/drakloak.png",
+          "beforeExists": true,
+          "beforeSha256": "4e0799e701de473ed103bb5092816b349add4e5986d27a6df6bcdb20ccc3c2d4",
+          "sha256": "47d895ed51a9e4e5ac59177535fd9d544425eadce155b2957d958272d00306c7",
+          "size": 5113
+        },
+        {
+          "path": "patch/Graphics/Battlers/dreepy.png",
+          "beforeExists": true,
+          "beforeSha256": "621d11d01107bcadeb37eabcd775065574d6cc552025de58839de768d0108a03",
+          "sha256": "6990bf491b26dd88fd30db13b85cab1a9b90e115b6342ef03be6dcf895195e21",
+          "size": 3503
+        },
+        {
+          "path": "patch/Graphics/Battlers/dreepyegg.png",
+          "beforeExists": true,
+          "beforeSha256": "4040e71461d4afd6c59bdbc37742e3455533f90c31a55178715842c076b4eb50",
+          "sha256": "9d96dc8a852877b871615cb5394f86aa921355e0064caee646d14639e808db57",
+          "size": 750
+        },
+        {
+          "path": "patch/Graphics/Battlers/eternatus.png",
+          "beforeExists": true,
+          "beforeSha256": "1f96360a02ae4ecd81c9784e7c2e2f6a68e9a203463329bc5a8170e40cdcab38",
+          "sha256": "4f6defbf4929e57afc77a5a36521d0cd0bf049a9cfa77ce79661ae7b1fa0fa55",
+          "size": 21259
+        },
+        {
+          "path": "patch/Graphics/Battlers/eternatus_2.png",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "54fe3a18201473b2822bea9a1010e70e809f26727906e04310ca70eff91d2ba0",
+          "size": 3143
+        },
+        {
+          "path": "patch/Graphics/Battlers/feraligatr.png",
+          "beforeExists": true,
+          "beforeSha256": "7fc6d3369a823aae7929f36a10f53037fbed628e84e6006052a0a796bef4f977",
+          "sha256": "b51871ba266e3e7aa33e87c92ef0167cc106f84ede974606e5e6e613cdd4b1b4",
+          "size": 13781
+        },
+        {
+          "path": "patch/Graphics/Battlers/frigibax.png",
+          "beforeExists": true,
+          "beforeSha256": "2f384c8b37437c6611f19531cb6abde6216d9632a02753434a6995f7db72f5da",
+          "sha256": "5999d7e9995cad2d2848550daffed90623efa913f06c8618bb406b6fb95c6af0",
+          "size": 3442
+        },
+        {
+          "path": "patch/Graphics/Battlers/frigibaxegg.png",
+          "beforeExists": true,
+          "beforeSha256": "2771c1bc33f3410e64dce3376880f761701f1aa587aa40e927b2b79d4ba0430c",
+          "sha256": "d3b43ba7da70ef1d913419d8758e18db60414508ce76ce743688eb2bf93adddb",
+          "size": 1348
+        },
+        {
+          "path": "patch/Graphics/Battlers/froslass.png",
+          "beforeExists": true,
+          "beforeSha256": "8b3d06fb7a5da14cd4154bb819d3891fbd1be55ed30d4897a80916c492d4a305",
+          "sha256": "7592d75bf86f9fcd86b1e5989c44bca873d96bb979fd84acbb4dc7a6cb5c818d",
+          "size": 10046
+        },
+        {
+          "path": "patch/Graphics/Battlers/garchomp.png",
+          "beforeExists": true,
+          "beforeSha256": "5835b998c33eaae15f6f24780c267c040fc5d775b1384b3f687995f5b22e59ba",
+          "sha256": "0e0578c550a1b5f5e20beffb3930f6adcbc82230e3bf05f2c8d9443169d42732",
+          "size": 51025
+        },
+        {
+          "path": "patch/Graphics/Battlers/garchompf.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "436b50e82fbcc73bc46c1208299e4ae1593f35499ee8c6d754a657beaea90c85",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/glimmet.png",
+          "beforeExists": true,
+          "beforeSha256": "0c07aa06e009242b837e337a8c426a1067e989e771f5a07e42c17a4d44be1198",
+          "sha256": "a7c70aea49416fee3b97b38cba42cd59059f90079be36b61b289264dfa275999",
+          "size": 2953
+        },
+        {
+          "path": "patch/Graphics/Battlers/glimmetegg.png",
+          "beforeExists": true,
+          "beforeSha256": "b6b10710df06019df4937ab092b24ba523e0334a4afadcd335137a9419ff5cf4",
+          "sha256": "9908b4e718cfc90bc8d3933edc2268c6177bf583c8b9e01bd82293aa153042bc",
+          "size": 1162
+        },
+        {
+          "path": "patch/Graphics/Battlers/glimmora.png",
+          "beforeExists": true,
+          "beforeSha256": "886b33698b95bd0a019248286976a1de10747b690ea7f25a40368396d80820bd",
+          "sha256": "b6872737803f7fecfa4f9dea16c4c4d47d3fcf12c90dfd1ce42055db3edfaa11",
+          "size": 12252
+        },
+        {
+          "path": "patch/Graphics/Battlers/golurk.png",
+          "beforeExists": true,
+          "beforeSha256": "f7c1255183c3dab8a21b5c924742f046d8729112fb6d33dafe2cc47aa92f1538",
+          "sha256": "c292fb3bdd6fc16454eede16f84246725fe4b088c6346399177019a829f600cb",
+          "size": 16961
+        },
+        {
+          "path": "patch/Graphics/Battlers/greninja.png",
+          "beforeExists": true,
+          "beforeSha256": "3c921886eaff5e72eee3badc456a64e62daf35f22e89b02b916492bd97127e2a",
+          "sha256": "3c900aeb5df31e5d624c3cb92eca977341ac5c03ca745f9e540763146d3a760b",
+          "size": 18514
+        },
+        {
+          "path": "patch/Graphics/Battlers/gyarados.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "a87a459c1a44cc988ebb646bb7e4d8aac83e43c7793080d11c81533206f41ce8",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/gyaradosf.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "0c56b2a4e86c5cf8f78557a5f3cc8ad3a821b6312e789c5f0cf1ece5518a56a8",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/haxorus.png",
+          "beforeExists": true,
+          "beforeSha256": "caa579e1ceb8e71b7e37c70cf66505e3f495627d51e6986d27ca9c8b70547757",
+          "sha256": "930c6f684942d18a72ef602bb081ce4446e54657c1ac97c479b204b3ed8d7b98",
+          "size": 15229
+        },
+        {
+          "path": "patch/Graphics/Battlers/jirachi.png",
+          "beforeExists": true,
+          "beforeSha256": "f30ceb2bc2e193eae47c127518db2f4e2a2b16330b9fb61c6ce1f896c238c7e4",
+          "sha256": "2595845a9d556d3fccffe7277a69ccf784c63dc17fc23558185c23e288804963",
+          "size": 25648
+        },
+        {
+          "path": "patch/Graphics/Battlers/jumpluff.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "074651aaa210d9f707b56c6ad648feba09eaf84eb210dc9ffa1f7772e840b566",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/jumpluff_1.png",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "e680582129cf8d8530c62b85bbebaaab1040eb8abafee6ad9662e3fc9d7a69b6",
+          "size": 2393
+        },
+        {
+          "path": "patch/Graphics/Battlers/jumpluffb_1.png",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "6240c453d43895b62456096217c46dd7c145f641a09498311a50f76756286b3f",
+          "size": 2242
+        },
+        {
+          "path": "patch/Graphics/Battlers/jumpluffs_1.png",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "65bde029571bd1bfd10499eca64a37a9fbac5f6a91f539dc26d7cf7654625857",
+          "size": 2393
+        },
+        {
+          "path": "patch/Graphics/Battlers/jumpluffsb_1.png",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "f078e0b25959edc05226d47d0fc343f6058efb94bd6c5b09844ce5bc23ca77d6",
+          "size": 2242
+        },
+        {
+          "path": "patch/Graphics/Battlers/ledian.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "8a1e16fee850f199fcd179deb713b0fcb325acd8b5c92c99d832fcc4016a99af",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/magearna.png",
+          "beforeExists": true,
+          "beforeSha256": "619beb6540c42f275dbda178576a7732fdc014b4e4d394f59c9beea15ddb6394",
+          "sha256": "1d313c7dca561f053b12fc3d1dd687a171760797de7a0cdeb8dccc6728a58136",
+          "size": 12572
+        },
+        {
+          "path": "patch/Graphics/Battlers/magikarp.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "5d239aa5b425c2447493688ded23f08a51364290f701885517b319cf874f9509",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/magikarpegg.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "efa38d7b3d5ad15fe9746e99ea86ed2a7eb9bb30dfc2c6a37e725af4c23300f0",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/magikarpf.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "64f781639a74ea8570fff89b75e13a5d5513ab771664ce55bce29bee429d10e8",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/magikarpfegg.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "26e13763d69a13e6a84d657859590b466b07145cef02ec1450e58b61b337928b",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/malamar.png",
+          "beforeExists": true,
+          "beforeSha256": "bf63bbaca5bd26c571e65ca575a10d29298612f0df90926924f24f0f036f08f8",
+          "sha256": "dab76644159ca274bc8768f040e24218c098d218314f121f11db38e777382b81",
+          "size": 12667
+        },
+        {
+          "path": "patch/Graphics/Battlers/melmetal.png",
+          "beforeExists": true,
+          "beforeSha256": "99bce2673884e881f67f4ac018510edcd132851a8c0d94b53bfa4eca83ca5e2c",
+          "sha256": "89bda55de4481abefe7de58eed70b1a720e1195b7ca1915b389cb5397d16ee9b",
+          "size": 18389
+        },
+        {
+          "path": "patch/Graphics/Battlers/meltan.png",
+          "beforeExists": true,
+          "beforeSha256": "2ade36334ca716a4063f3ee99976ebd77acb7fdb35e56866ff35b9b1e19af6f4",
+          "sha256": "e2864edc548bfd75ef54ac2cd7a90c26c9d53ef4d5c5e6e291341254615a5d8a",
+          "size": 2929
+        },
+        {
+          "path": "patch/Graphics/Battlers/noivern.png",
+          "beforeExists": true,
+          "beforeSha256": "91b2bd1c992643acbcdd7eada394025365ccd51dfdec40fe74235c4f055d2360",
+          "sha256": "640f1b9b089ca0a29bc7ccaa4a8437dc1f71d5ec47a9afb451c505833ddeed43",
+          "size": 33074
+        },
+        {
+          "path": "patch/Graphics/Battlers/noivern_1.png",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "fb519c9cb7352ff8bce45d068191d61614a438cd04dae7bb04be1639c869cf17",
+          "size": 3955
+        },
+        {
+          "path": "patch/Graphics/Battlers/noivernb_1.png",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "f96835571b0329ea6f08bfc01196c2b0523bb21a8575c56d1753be645a62afd2",
+          "size": 2825
+        },
+        {
+          "path": "patch/Graphics/Battlers/noiverns_1.png",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "a5249480492a28054f7a6ae03dbc880023c599ef8bec0d0275819d03ce414ba0",
+          "size": 3876
+        },
+        {
+          "path": "patch/Graphics/Battlers/noivernsb_1.png",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "9bb752fe5a20747e239dfcf10725769dd7e39be32ef7ac27593b151e313938d9",
+          "size": 2777
+        },
+        {
+          "path": "patch/Graphics/Battlers/regigigas.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "b5e560ad1ce69b082c702c3a3a14289f3b216ff61cddfbd3c5b9c71a91ae8bbd",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/regigigas_1.png",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "13ffd83c9afc9e64bfe9315ed75d0d7863a5c87d08642bcdf57f751dc4055b45",
+          "size": 4155
+        },
+        {
+          "path": "patch/Graphics/Battlers/regigigasb_1.png",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "79818a038e2e6642123b684ce89d863edc52da8c8bf3dee3b669e3f8df466b0e",
+          "size": 3840
+        },
+        {
+          "path": "patch/Graphics/Battlers/regigigass_1.png",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "e4aba75c03825510e8afa22c050ebde0c96ebc1cc532d3b80044ac54d341668a",
+          "size": 4213
+        },
+        {
+          "path": "patch/Graphics/Battlers/regigigassb_1.png",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "ea266f85d81a9f6984184e73bb412c1cacd593a565c2fb5c1275f264e1c7ce85",
+          "size": 3803
+        },
+        {
+          "path": "patch/Graphics/Battlers/reuniclus.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "b0d9e9f64677da2b0405dfd875b321aeee58cfd9d826e0d4d941729db94a5dd3",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/rhyperior.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "66e8bd9081a3ea73799f32ae1c330273fa18dcc2f877cf713c067c85e278f799",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/rhyperior_1.png",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "36c9333b461d80deb48c5b0e8fb03351ab5a62c6ce78f9377677141be7ba5bff",
+          "size": 6782
+        },
+        {
+          "path": "patch/Graphics/Battlers/rhyperiorb_1.png",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "0de3353023cdc92f400f43fc084a755241f586b96bde51b73b0876993cb9698e",
+          "size": 4934
+        },
+        {
+          "path": "patch/Graphics/Battlers/rhyperiors_1.png",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "3722bc96b60dc50be6c3226d7196299dfb1860576699c9ccbcb696c7e30cb70b",
+          "size": 5835
+        },
+        {
+          "path": "patch/Graphics/Battlers/rhyperiorsb_1.png",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "0142de9a223dba329601d32dc31877517cab5723a27c85700da901bf570a4c70",
+          "size": 4814
+        },
+        {
+          "path": "patch/Graphics/Battlers/rowlet.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "e71509b3ddf23f1b3d750c07768cd5abe1420692eab97b57aa4741c6e602c784",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/starmie.png",
+          "beforeExists": true,
+          "beforeSha256": "70da2f4a47718b72ae6310d5b7eb39526c48e18f72cbe685dde2b18c751e3707",
+          "sha256": "a46c344128f67b61722d95d3a15b7b6c33e4f77dfc3f52f52578c0fe08717f1a",
+          "size": 15583
+        },
+        {
+          "path": "patch/Graphics/Battlers/tyranitar.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "b26ee17e6c607504242f6daac42b6aeafd78105ba5776f054f9b75a7d4c47efa",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/tyrantrum.png",
+          "beforeExists": true,
+          "beforeSha256": "7da7300327c7e8a2edb7061e776525162d111d8e23c4c18550f0228bc6be16ab",
+          "sha256": "d9ef17444e254729fd0a46037fb0addfa68ad943d39c2bc1cda90af9b2949cc9",
+          "size": 7838
+        },
+        {
+          "path": "patch/Graphics/Battlers/zangoose.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "ef92381a54aa8a893ef39a3b53845fb9e916034d00b7c1e10af3aa73f5558f6b",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Battlers/zeraora.png",
+          "beforeExists": true,
+          "beforeSha256": "7d1253bccc4d76836c5a05c552d3adf6a30bf2f2c34f747a3dc5e2329abf708d",
+          "sha256": "3568d4628bf670712852fa3cb7825de1104b37b778dd681332793c802e53b174",
+          "size": 13512
+        },
+        {
+          "path": "patch/Graphics/Battlers/zygarde.png",
+          "beforeExists": true,
+          "beforeSha256": "0549ba2694043e5789a44e7c9e8fe4053c95a8e7948de3a8abe607439228dfda",
+          "sha256": "472e698efa7984159d47dbbbcffee4a0d8e3851466b458f60d3247adeebe59fe",
+          "size": 27359
+        },
+        {
+          "path": "patch/Graphics/Characters/Followers/1034.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "25c8ebf26d8f29991c6d38080a0b81f1daf4703778c5cb146f6548104576b599",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Characters/Followers/1034s.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "de5da3eb23decf29bb53b21025e220c8ba2109b1a34a0463346f953f972860bb",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Characters/Followers/1035.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "2b4103d32ec21bee528ad99e077666427ec77a853ed1c67d9bb60eb6d4d937e4",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Characters/Followers/1035s.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "6dfbc7efa6d2a3fea3255b10249f37f8a4fb96498aa98b5682c1893809d54b51",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Characters/Followers/1037.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "af804a8ef5de64cd5ca50b13d51d2401c8f74ff7ab4f5ca3896aeedaba387678",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Characters/Followers/1037s.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "d633d0c15dceb85c8b9a63ca93938ce497d73ba37d19c217021bde802eaeff30",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Characters/Followers/1038.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "c3c4afcbbceeb99973e93da6044ddc8444e8904b6be4e5aa312d2f9de7526423",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Characters/Followers/1038s.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "39b32c984f15ee75d8ca5e693059e99b3c6a10848fffab413f252004b6921f38",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Characters/Followers/130_2s.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "60fa998283e2d6de0b14c812c0bd6bacd038757c191f112538686e05aaa8e9ef",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Characters/Followers/130s.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "64157a9be02defca9e9b25fd5120f36c78e55462591cf9155151c397c4f7a3fe",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/abysseon.png",
+          "beforeExists": true,
+          "beforeSha256": "9199f197f027614b5036d0e76e4abf7b22ef72d8c2d09c5a276e05b594dd745f",
+          "sha256": "e207dace0c60720608a28592e1bdf1053caf4bbf51d3a872a0de5eb0754bb66a",
+          "size": 2242
+        },
+        {
+          "path": "patch/Graphics/Icons/accelgreaves.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "9c29a1e801531a318f143f715cd6f85a0d40f0363773333a37378984b0685966",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/amaura.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "9cf119ec905eaf387cb3f5831f0ceccd926d29b35c5c1b69c555e089fb61cdb2",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/amauraegg.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "929bb862fac1a2c9d49a18459104cfeed8bfd47d6d226785584ce23a189f653a",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/arbok.png",
+          "beforeExists": true,
+          "beforeSha256": "357d0ee3c55a2de98f49d2c2c00885bc270bb62e9e1081d0b5d0ffa59a43435d",
+          "sha256": "e72e22fc51853b89df60d2962fc130189547d59360635f234b8f51c57b854963",
+          "size": 2095
+        },
+        {
+          "path": "patch/Graphics/Icons/arbokitey.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "62f440c7a3e3897dea537615eeeba6409937cadc80f260faf4a50458803fc96d",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/arctibax.png",
+          "beforeExists": true,
+          "beforeSha256": "a8db3d50d9696f9a576670982a0f1266e2e497eff87068620f88623d7d3dd562",
+          "sha256": "f626a965ffba20e8948bf77acb8a9b24fc5042006d233e7f19a371c67e9547fd",
+          "size": 1474
+        },
+        {
+          "path": "patch/Graphics/Icons/ariadite.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "22b9d70d5c75d0f884929241d6328706ab408cd96e981db14fd2c83309962914",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/ariados.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "c19e1990e71c50c0b9392c63b49bf6e56a3d04cd94e5defc251a9d1f84181866",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/aurorite.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "d421a54fe848e760edb0eb9986252fc91cfb8cfa8f21dae787faa5afd755f16a",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/aurorus.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "b4b7ed4b3ced8bb1270e04208e3ce97a1693b6b50c107cbb5993a98d9502dd73",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/barbaracle.png",
+          "beforeExists": true,
+          "beforeSha256": "43867554feafb6de7859380c8b695945da1766f9c018f685c178d0ec893ef80c",
+          "sha256": "bf78c255bdd1e2557c97a3f0b5d7936ad11f5da04c38565d95dc0d9bbdf2d904",
+          "size": 3299
+        },
+        {
+          "path": "patch/Graphics/Icons/baxcalibur.png",
+          "beforeExists": true,
+          "beforeSha256": "58ce33bf5663b40d34ba39117de56c1f4c971bafb613c2f2f041ca29b78ffdcd",
+          "sha256": "7e2ccff56b661ab77afa47a7cbb5a3c4d46fb08cd6f3975b5d7cd332866d5075",
+          "size": 1780
+        },
+        {
+          "path": "patch/Graphics/Icons/cetitan.png",
+          "beforeExists": true,
+          "beforeSha256": "b8afa13729656c5a7dbe35364935d3d2ededbe68d9f54f32ee756d6a53975139",
+          "sha256": "a9bce9547258cf062764a62f669479c48a02ffebec745224b72352c278c08e67",
+          "size": 1051
+        },
+        {
+          "path": "patch/Graphics/Icons/cetoddle.png",
+          "beforeExists": true,
+          "beforeSha256": "c36c972ac123b5b01e3c243f14a2a726d98ebd2e062d1902fefa8e98243387c7",
+          "sha256": "009f96f908d86439498369f35b12b51da769621b1e513b4b5a10145e847d49ad",
+          "size": 2424
+        },
+        {
+          "path": "patch/Graphics/Icons/cetoddleegg.png",
+          "beforeExists": true,
+          "beforeSha256": "0112a438d53acc27daefa6084b1115ab426c5d493f33d1cc9ee36ae2c3b8ba42",
+          "sha256": "83793c016e66e46f9161ca27be8ef83a859a15711ac49b44a7097c8c549f52f3",
+          "size": 2365
+        },
+        {
+          "path": "patch/Graphics/Icons/chesnaught.png",
+          "beforeExists": true,
+          "beforeSha256": "76f308c98a1dc30846b2e02b25af916c32e22fecf165c4c3ca3902c20ff027d0",
+          "sha256": "1798d51460aa0393a5d112aef8b4173c22f02c928f338fce37d3b8d40d91c99c",
+          "size": 2519
+        },
+        {
+          "path": "patch/Graphics/Icons/cinderace.png",
+          "beforeExists": true,
+          "beforeSha256": "bf9ef35f8e9b7a577454a92604ad6dc79522b88d602679190fd84e868d9ba96b",
+          "sha256": "91fa165281c3ab3f51b6c69fb5a2918015e95d859699ebe396b4e9645befb86a",
+          "size": 2400
+        },
+        {
+          "path": "patch/Graphics/Icons/cinderite.png",
+          "beforeExists": true,
+          "beforeSha256": "617bf5590061689cd365684fbc1f584a24cae1034f6cab7ed8472464f1ea0a52",
+          "sha256": "bd1c5b53fe5a103e82c6fe43c5691ac9c93251ea2a5944c466eb73e25e22b9ae",
+          "size": 489
+        },
+        {
+          "path": "patch/Graphics/Icons/cinderiteg.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "bd1c5b53fe5a103e82c6fe43c5691ac9c93251ea2a5944c466eb73e25e22b9ae",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/clawitzer.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "c12accae55eccd4de71e3bcff67aad0b99092706f38d59480aa9b07cc2807df4",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/clawitzerite.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "72c4f064310837a917fdd518ef521fe625a67f3526d91b9b01d822e54f4e0402",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/delphox.png",
+          "beforeExists": true,
+          "beforeSha256": "e829e59806b1a47f7d3502e3a7467dc432e5133bda843d49c3caadb113be6be6",
+          "sha256": "658cae3fbc73248ad85d151c3304270ce7c388acf0534a0b15c52696738ee529",
+          "size": 2438
+        },
+        {
+          "path": "patch/Graphics/Icons/dragapult.png",
+          "beforeExists": true,
+          "beforeSha256": "e78b18fbe3fc6a538f491d65e53e83657ed96f54cf495b53f2a4750f38b94bf4",
+          "sha256": "3345674508ff74cd90541dbd04755cdbd2b8c4c31795fa6a89865e1eb878d61f",
+          "size": 2453
+        },
+        {
+          "path": "patch/Graphics/Icons/drakloak.png",
+          "beforeExists": true,
+          "beforeSha256": "769d140a3062ec65ef26f3dc9df77664432b113a8bcb841623be7267ab16beab",
+          "sha256": "cda7e8f48e8ad74bf208f3bec67727e0a28e4d3ed2e3eeaa8a8d0809db97333c",
+          "size": 1032
+        },
+        {
+          "path": "patch/Graphics/Icons/dreepy.png",
+          "beforeExists": true,
+          "beforeSha256": "541623c61f314921322c62bf849307af44ae2bd2d33dce72f3c817c3e64527c5",
+          "sha256": "ec1eb4f2f1f951de21b6a3261bbf2e0c04d70c450bdd5ca0d31623fb34207eba",
+          "size": 855
+        },
+        {
+          "path": "patch/Graphics/Icons/dreepyegg.png",
+          "beforeExists": true,
+          "beforeSha256": "5c6367630613b803da73cdf1cea6771ed5610d215a7474280786c57c36ce8e4f",
+          "sha256": "0923ba7a9506b27e48affeb68f7ce2a3fc294eb45d40af09550d143b1feb566e",
+          "size": 956
+        },
+        {
+          "path": "patch/Graphics/Icons/eelektross.png",
+          "beforeExists": true,
+          "beforeSha256": "34400183cb7e43b8f6282a572433f7a7487c6656cbb3f39a2fe446eb06481b0c",
+          "sha256": "278bd04e39143725f694d042d07f66fab6ae0989e03a3451251dcd643546ff82",
+          "size": 3182
+        },
+        {
+          "path": "patch/Graphics/Icons/electivire.png",
+          "beforeExists": true,
+          "beforeSha256": "134d6d455828679288cb06e6222832ecd181568ca797cfd03ab0d163ed2fc0d3",
+          "sha256": "ba78bb074c1936f593af2dabcff7964895e314da63a6c608d6c27c9bd4f8ca0a",
+          "size": 1821
+        },
+        {
+          "path": "patch/Graphics/Icons/feraligatr.png",
+          "beforeExists": true,
+          "beforeSha256": "73172c0ac6a3b146e75e3dc18f8ed63be6babeb545704d93a42b9683f8209d9d",
+          "sha256": "0d8d16304aaa4574721f6fb7a2d807f5d81478ac373cbf0ad8a150cca1146375",
+          "size": 2352
+        },
+        {
+          "path": "patch/Graphics/Icons/feraligiteg.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "c9ba6e54c8a3c439419b32501f7dc137d920ffc0a36ca5b979ddeb5fbac068fc",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/frigibax.png",
+          "beforeExists": true,
+          "beforeSha256": "5e927ad8d1758b89a2e472e703170dd267aa4f87524215874c7e6cc4b00229f3",
+          "sha256": "2b43acb5613e5e1cc3803b9051ba08d7405239d039d404f5870e84c81b04e937",
+          "size": 1315
+        },
+        {
+          "path": "patch/Graphics/Icons/frigibaxegg.png",
+          "beforeExists": true,
+          "beforeSha256": "f51ca4470ae7eb55083aab6b8db94a6ea8c0f1b457ac388e3fc01c9a0ea81025",
+          "sha256": "d333a368d9e89d7328c91266c3200589980035439967dfd043456effd20862cb",
+          "size": 861
+        },
+        {
+          "path": "patch/Graphics/Icons/froslass.png",
+          "beforeExists": true,
+          "beforeSha256": "a52345ccd02a6046bc180015334fa6bc85382d4557371ff11f6f5cf37d266022",
+          "sha256": "bfb187a2254f01567cbb0b4ed45657691224a9ecc05ce9a54d2481da5a031e54",
+          "size": 2010
+        },
+        {
+          "path": "patch/Graphics/Icons/gamblershat.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "bbd2e3c877bf5902b714307b5f47afb0d4880bbc688ac4ede72ad7af4c4636a6",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/garchomp.png",
+          "beforeExists": true,
+          "beforeSha256": "35b666ecfe0179a8d5d29e83976a5ed45f42a09d7fb419234a04077d227ab06e",
+          "sha256": "bda9268d21175cb13c8581539806fbe386a3b9b851ac6f372329409ffbe1d22a",
+          "size": 3953
+        },
+        {
+          "path": "patch/Graphics/Icons/garchompf.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "387ed17044669cb1bf78643ce4fe5d798c31ff71a35ef9d5527478926f664c39",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/glimmet.png",
+          "beforeExists": true,
+          "beforeSha256": "36c2d94d3f7ef84e47c871edd2659e9c1d1715663577c52862282ce1c264fcb1",
+          "sha256": "deff30e7b1173456d03cd71856202b4becbc8b8701b5c3b0ef31fff36706ce00",
+          "size": 861
+        },
+        {
+          "path": "patch/Graphics/Icons/glimmetegg.png",
+          "beforeExists": true,
+          "beforeSha256": "fedabc594727acc2b836c536823a5799e81c74e3836d366bdf721540f81fea54",
+          "sha256": "a8049d473d494fd2b65ea7dcccb05b762e9d07f6862be05b44644fbc0cdc27ca",
+          "size": 1001
+        },
+        {
+          "path": "patch/Graphics/Icons/glimmora.png",
+          "beforeExists": true,
+          "beforeSha256": "68d7c67537161e542f977cf906ed7600996c1a1dd6b0212f4152961800e81ee1",
+          "sha256": "6ac60f50867675a0c20b7ca162eb52a5c18ce2a3a6a13f1ff7aa5fc0819f2542",
+          "size": 2650
+        },
+        {
+          "path": "patch/Graphics/Icons/golurk.png",
+          "beforeExists": true,
+          "beforeSha256": "c841b54ed6834110f8cfdaf2bf9864e076d50ce1109f8ab03813de6e0e1f775b",
+          "sha256": "08085ebedd0b6d7392988f432012de78096721eb9928235309d47ec0cfc6c402",
+          "size": 2623
+        },
+        {
+          "path": "patch/Graphics/Icons/greninja.png",
+          "beforeExists": true,
+          "beforeSha256": "520daf13007091647a0097ae59a513ceb972b3e5efe8c4feb5680290c8b20e68",
+          "sha256": "0aac22688fcf8abcbaf61b2877285f188c4f1cc660c830f747d4d5e0d2151350",
+          "size": 3370
+        },
+        {
+          "path": "patch/Graphics/Icons/gyarados.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "a934166fea60f925cd906b5c3a922c14f3de0194806d4c76c51880451cb85783",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/gyaradosf.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "6385f47d458881bf327898832ba204ddf8c5b05131ed801e716540ceba8c8433",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/haxorite.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "d4b8664670ebe5f3182275ac13c5d53d448c9222d67dc7a907b815febd101ada",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/haxorus.png",
+          "beforeExists": true,
+          "beforeSha256": "5f4ed721599428aa5dc17cab99383ffd92c47f0a02a52a2fc2dc1d78610b9173",
+          "sha256": "08ce8fec2b07ca3c8096e0f45efa1cca2378fc058e57ade19c3d45a8083b1753",
+          "size": 2760
+        },
+        {
+          "path": "patch/Graphics/Icons/jirachi.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "818d6a96060a2a2aba81377a4cab3e4278bb27440f68bd0cfce92faa196888af",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/ledian.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "ebf68277f6ecd026f5b2d9ecb5b5c24f3abb6c9834cf0e4465f8891cbf51065a",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/ledianite.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "13ce27c19d6f9c289f0bdea92647b76837a1304cb51ea19a993a5aa2c04e3035",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/lucario.png",
+          "beforeExists": true,
+          "beforeSha256": "3aa3f4ac7e5849b613bd508fb2f53a4959d856dd907966bd812688a446083ade",
+          "sha256": "00ad39b9698f5860106cee3920e8668b3e8baad0baeef4aeb1a9a04b1de64d76",
+          "size": 4107
+        },
+        {
+          "path": "patch/Graphics/Icons/magearna.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "c0ac2a1432d8cdf0b0df210a095a58a2705239494181fcfc5977953ab2822c4a",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/magearnitez.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "15f3ce9e093a67553a269b70b86cb455ce47f88e0a9dcfd632d09a242c062bfc",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/magikarp.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "e841ddc06a7a12e0971d983b966b77913d1202ab9d488fb9cb2c5b83ff9a3f2c",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/magikarpegg.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "6dd553ee2e3dad939a4551d8dd50189b45b1441a07b905da612fa9dd43aa37ba",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/magikarpf.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "4b601241b7eea6296a6084afdf923c760c222b40c1e543ff57452592963222eb",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/magikarpfegg.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "8e989654c3390da81451aa85db4d54444ff60afc395dcf0a09e2ce1e68618bd5",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/malamar.png",
+          "beforeExists": true,
+          "beforeSha256": "67c99414cff61ba16f0620ac014aec73861461146bb7687877172682b760e8ff",
+          "sha256": "6ad9b0e2ed4bd144533dce447caf95d0007d5fce25587a1ad0157a3670cc0b3d",
+          "size": 2377
+        },
+        {
+          "path": "patch/Graphics/Icons/melmetal.png",
+          "beforeExists": true,
+          "beforeSha256": "79a33a645e81e019b017f8aad05eecfce9fb1d53f70d40452c7f1dea14015ced",
+          "sha256": "784312a838239587352110b0f02515909e604d3bf4b2a540363ac8e3a876f562",
+          "size": 2490
+        },
+        {
+          "path": "patch/Graphics/Icons/meltan.png",
+          "beforeExists": true,
+          "beforeSha256": "6a68948d3991874d9c8e43b287888ed8b9d9d14a161bedefb441c5765b8c05e7",
+          "sha256": "6210384b9a849b8379d092b94f230bb488536b8aa223e42c4d9b575f212d84d6",
+          "size": 781
+        },
+        {
+          "path": "patch/Graphics/Icons/noguardbelt.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "7ee333c69e31d9fe1d0e7539d9757fe91e01be76e19b8968a1844eefec15899f",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/purloinmittens.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "1d70ed7a85e247ce9f3600f26c86dc37d8bf1e4c23f495faae61078720c2ad66",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/reuniclus.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "0f7010ccc2beb999712c5248b75965c42cfac40789642a17335061211f47f8f8",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/reuniclusite.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "7eff1f95a47ed1ec276f28a361548b9bdb1264fd38f6916027ccd29f8bed1511",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/rowlet.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "d6a6d16c0f46c58b01b1a2525f29cf149e63a4da81b959efb851096c079d184d",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/royalmantle.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "1711172f216432ff771af4cd66fd65e22c7a05dbdb74b804b048da8989af04ac",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/tyrantrumite.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "87262a0615a8969517a6e3b979c82c98671f4b7d80753f568e9d85521fcee317",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/wondershield.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "5fac70dbca9a6385e0eec0f4cc9a23b61d197024979cacd78c622a48eb3be0cc",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Icons/zangoosite.png",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "0f64bcc0b9f453137bafe2bc77c76d2e0cf867cc4d88edc26e4fe2922d24076e",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Graphics/Pictures/Battle/battleStatuses.png",
+          "beforeExists": true,
+          "beforeSha256": "1d82b457374fe288602e2c65aaffc414328c4672222fee4c34a929c195e14d02",
+          "sha256": "bc1b7e2513197b956bc5dccfa04bcdd053115bfb079d16f5726ac32b96929457",
+          "size": 9962
+        },
+        {
+          "path": "patch/Graphics/Pictures/statuses.PNG",
+          "beforeExists": true,
+          "beforeSha256": "1307ad10019999f3c2b4dc1a85429ce4bd495cd91772941263a5a64db4d2364f",
+          "sha256": "2619ac985728e9b4fd749c5810d2bf6e66dc81c420aa4379186b5aa580c03812",
+          "size": 772
+        },
+        {
+          "path": "patch/Mods/AllGen Reborn.rb",
+          "beforeExists": true,
+          "beforeSha256": "7ff1f079ef4a90b0cf11232d4d56c2488b2353f9e002125b31c1fe4f4c40f9b5",
+          "sha256": "2d510e4ef681638723789541370e07147391438fb4868e738d6f8f944d416b1e",
+          "size": 60012
+        },
+        {
+          "path": "patch/Mods/Bag.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "fa12c15fd812cf59572010aef2f7513281ffb15c9304f54307d8481a915ea1dc",
+          "size": 66517
+        },
+        {
+          "path": "patch/Mods/Battle.rb",
+          "beforeExists": true,
+          "beforeSha256": "997ae27c4a702dd423b5ad9d804bd688b590f0f67095b94ef7da410050ff4b4b",
+          "sha256": "f7b663bcc4ece99a31170520b97d907622f0d2a6a273b4dc7474764db4cc71b7",
+          "size": 287426
+        },
+        {
+          "path": "patch/Mods/Battle_AI.rb",
+          "beforeExists": true,
+          "beforeSha256": "38306dfb9e7931fd38344c38470c30697a9b35973efc1afa3e599025301510d9",
+          "sha256": "f3bff574d7cf7de639d7d7f05e570ec30704066fbe2f6820e4aa3a7dee97cadd",
+          "size": 745748
+        },
+        {
+          "path": "patch/Mods/Battle_Field.rb",
+          "beforeExists": true,
+          "beforeSha256": "9abe79bd51984232028b729aecc85b35179de966b00eabff6cc3581f0d1072ae",
+          "sha256": "6ab2df7f79f1d012f6deb5f42ec34eeec49a1c3f0fa9b331fed0f78a239a92e4",
+          "size": 39310
+        },
+        {
+          "path": "patch/Mods/Battle_GmaxMove.rb",
+          "beforeExists": true,
+          "beforeSha256": "1da5f0d361514a0f8e6585bce68885a466956888dc31374562bcd1682d1845b5",
+          "sha256": "a97b238bc0e55763f2a55705d28cc72eb60171534ce12d6f6c613650477d999d",
+          "size": 34011
+        },
+        {
+          "path": "patch/Mods/Battle_Inspect.rb",
+          "beforeExists": true,
+          "beforeSha256": "abd131832109dc3dfa4f177494af3794b73cdc74ca72bd9413b257571c6a925f",
+          "sha256": "adb8a5ef1ade1b327d6e7b3602a435e73669973b7fb09f67163d78eb5efa5486",
+          "size": 34955
+        },
+        {
+          "path": "patch/Mods/Battle_Move.rb",
+          "beforeExists": true,
+          "beforeSha256": "dfa2333251175d6887d052eccc96a3e719fe915c6bad0bef30b147c4df986c5a",
+          "sha256": "e64256fe7e135821cc592580c37f8c352c5031f45e637fd5f318e4bb696f1b38",
+          "size": 143125
+        },
+        {
+          "path": "patch/Mods/Battle_MoveEffects.rb",
+          "beforeExists": true,
+          "beforeSha256": "ac971bf98d66510c3a4d6b1f960c2eca69bde0eb00f6d3b36c7701f66a42bf6c",
+          "sha256": "4822038f44849eea640e5059bf70130407cd3a0db0ccde467e5f068615fdaf74",
+          "size": 564285
+        },
+        {
+          "path": "patch/Mods/Battle_Online.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "8c8ba13f0a1360a03e284652938493bd61e896c2f12071ff928a72517ecae351",
+          "size": 12070
+        },
+        {
+          "path": "patch/Mods/Battle_Scene.rb",
+          "beforeExists": true,
+          "beforeSha256": "bb97fd36fb0cd99a119ca6752083c6846ceaa325ef09eccd8bfc8ab7969e9d43",
+          "sha256": "2e811682faded4dfc7e1c6ba3d8a531f95ab30d4c8c0fe97d402e77d6fb8672a",
+          "size": 178707
+        },
+        {
+          "path": "patch/Mods/Battler.rb",
+          "beforeExists": true,
+          "beforeSha256": "475bf7594100dde1609f4a24725d8ffe6c2c3fcae1fdd1a846277c0be54c10df",
+          "sha256": "1790c3085136a27bd6f2b01e31df7cc0dac7bc13755028be9fea854fc048cf5f",
+          "size": 316044
+        },
+        {
+          "path": "patch/Mods/DayCare.rb",
+          "beforeExists": true,
+          "beforeSha256": "f2319ecbb6b9fc4dbdf76a8301ba4a21f8ba51bdb67e5343f537c58cdcfad4bd",
+          "sha256": "9ca77ebd23bafea1b0df86ec1ea737cf4fa7c742d9012c95ed0fed42d9d50afa",
+          "size": 18262
+        },
+        {
+          "path": "patch/Mods/Debug.rb",
+          "beforeExists": true,
+          "beforeSha256": "eac338d4e1429f2c502ff62b0d4bfabd8164bda96d3319e7ce6b6af06d0e85a9",
+          "sha256": "6c1aabc7c4ebb69507e530374c0d15250838749366cbc4d53733afa977e4d519",
+          "size": 57311
+        },
+        {
+          "path": "patch/Mods/Evolution.rb",
+          "beforeExists": true,
+          "beforeSha256": "32c64ef080a06e7ba36090e09ac10cdcb3ec27db909a283994e3b184105a6a55",
+          "sha256": "a8604f5ca4eea82adf2b09316595ef00af48a029cbc50eb231fd6567b96459b2",
+          "size": 30376
+        },
+        {
+          "path": "patch/Mods/ItemEffects.rb",
+          "beforeExists": true,
+          "beforeSha256": "896298bb7c9779328d906912df30e19faed462d7f99aa82eb930c5566b8c2290",
+          "sha256": "b956bdd090dd20c5aab61b74e9b2c9424ec68e6916892ebb6ec5866373b6ebd3",
+          "size": 123803
+        },
+        {
+          "path": "patch/Mods/Languages.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "dc1aa896e03f1d4649c1772912e6b0911fdb6cbe4ad5c8c1d300aff892e40f7e",
+          "size": 77
+        },
+        {
+          "path": "patch/Mods/MoveTutor.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "c0d603f1036c056ffc5179f5df6b3611d98d42480ca341a6316383bdfb63f34d",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/PBS/FieldNoteCompiler.rb",
+          "beforeExists": true,
+          "beforeSha256": "864075a96e713451430c22e21874d89051220554ae6b61a6ba60a2a67afcf682",
+          "sha256": "0f07f211f84a95bca5aebd81e008a139738c25ade6f86989b6070cf9d949e5bb",
+          "size": 128659
+        },
+        {
+          "path": "patch/Mods/PBS/abiltext.rb",
+          "beforeExists": true,
+          "beforeSha256": "c9988fbfbdc8463b875d0dc522db61c165070765cea9550ef84593ee3092809d",
+          "sha256": "fe6511f5eb1536b28b500343d97b5a0ece1887ee9596b2006d5180a4560e80c7",
+          "size": 58534
+        },
+        {
+          "path": "patch/Mods/PBS/enctext.rb",
+          "beforeExists": true,
+          "beforeSha256": "1c97060a2f675d5450e6cff6c80bbb6b555d4032dd193d4271f25ca0babfc344",
+          "sha256": "0711190e6f1eda5c71f107ae97d034fa85537c232be70e9f52d7b28d43330d19",
+          "size": 328391
+        },
+        {
+          "path": "patch/Mods/PBS/fieldtext.rb",
+          "beforeExists": true,
+          "beforeSha256": "fc6b20068c2f797a47afb7d3f71c9d6be73dc09067375807310e05c6927ac306",
+          "sha256": "c803e66d620a26c74f390239f3faee1b44f8d419bae60227dc9e209605393942",
+          "size": 90779
+        },
+        {
+          "path": "patch/Mods/PBS/itemtext.rb",
+          "beforeExists": true,
+          "beforeSha256": "23518246b15e034dc58fd619c0baaa1b5329b99a72444976b9c24c6585423baf",
+          "sha256": "34b2d4a64ac23295861598c93d8bc22ea891baf938ede104163dba1d3d90a249",
+          "size": 297046
+        },
+        {
+          "path": "patch/Mods/PBS/metatext.rb",
+          "beforeExists": true,
+          "beforeSha256": "17c4be1258eed05e2deea18429a022aff4329e982f0d233229d63895659ae425",
+          "sha256": "2148dcd47d2a55b2dd55a5831d8089889b84f363b8a31db260e05f86cb91fa24",
+          "size": 156142
+        },
+        {
+          "path": "patch/Mods/PBS/montext.rb",
+          "beforeExists": true,
+          "beforeSha256": "85f5a4e0feb1dcdb812b8031cc49c5b9e35a76f7080c04b135913cb53cd51419",
+          "sha256": "958b2c54a6eea44e13e9ade15e5658ecb764dda54ab24b21be2a6b62d78e5e15",
+          "size": 2427792
+        },
+        {
+          "path": "patch/Mods/PBS/movetext.rb",
+          "beforeExists": true,
+          "beforeSha256": "ae2b1e4071acb4fdf6ed5f88210c67733ec7e0897ddd6336b4c509b6a61d08c3",
+          "sha256": "49bea4562c8e99fba9600315b6ef0edd57e6a66b8aae4fc5a837ce96c54c2ba3",
+          "size": 364711
+        },
+        {
+          "path": "patch/Mods/PBS/naturetext.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "1fb5e06bf9553e70220504217c00571a97583c31381822b7ddb7ea7fde8ac594",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/PBS/trainertext.rb",
+          "beforeExists": true,
+          "beforeSha256": "32bdf9a7f297dbc66f110d9d9d0c26ba8200fa7f21268fce5d9491eb03ede505",
+          "sha256": "a9e9eb398227cea6168dfef99940c179dfaa877040c381b2e63919b411afb082",
+          "size": 4535899
+        },
+        {
+          "path": "patch/Mods/PBS/ttypetext.rb",
+          "beforeExists": true,
+          "beforeSha256": "6566e4d392ec4b6ff6cb0842b3c82714a0daf6004f696790a5b1db1c19d47c0b",
+          "sha256": "e31be301c20e3371584622f528dbb506a45d2541df5e17d0c94129409e6cc2fd",
+          "size": 45727
+        },
+        {
+          "path": "patch/Mods/PBStuff.rb",
+          "beforeExists": true,
+          "beforeSha256": "e8080825937dcb593c6d9beaf4d28143429fc88b4218a67d707417df3cb5d2a9",
+          "sha256": "326d16f1c990278dec74ce2b7db5d1136aca50767d04cb526d98a7fd73e361f0",
+          "size": 61572
+        },
+        {
+          "path": "patch/Mods/Party.rb",
+          "beforeExists": true,
+          "beforeSha256": "28fd33de6145094dc0dbcd545cae0759a1396ba590ed88fa2af28da12e9b4ed1",
+          "sha256": "78fd2702fe657a2af5c5f8b97eb21c231364a2bc75948f78a5318f9d61d4c7eb",
+          "size": 53515
+        },
+        {
+          "path": "patch/Mods/Pokemon.rb",
+          "beforeExists": true,
+          "beforeSha256": "fbdbdea77fd3ff6d02a2929d2d4622391b178448be749af9bc028063575e2cf1",
+          "sha256": "68c3f1f142ada21c90128756d3de0dbc2da15f69edb3925a6d28edda05660c4c",
+          "size": 43194
+        },
+        {
+          "path": "patch/Mods/PokemonFormItems.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "91dc8f7af948e4462ece9fe0a74f95b8ef48f765dc851394e14572af6b1cf1af",
+          "size": 12639
+        },
+        {
+          "path": "patch/Mods/PulseDex.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "1371de3af5429b41759f29626fcc481d81a4fd2d1fcd73f02e89f2371dba68f9",
+          "size": 5663
+        },
+        {
+          "path": "patch/Mods/RE-Modliste.md",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "aa3f760bf9f3507e6fd1f124c88d6ad08b5f208fefe9e7a09f39500f4149d8fc",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE_Alte-Megasteine-Kompatibilitaet.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "49f0d1482d6c504d48ffc7725c7c6019b379e683c3f7429ce2d3a7518ba10ad7",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE_BattleSound_099_Compatibility.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "cc58ccb57d8a4741791d884f54d3d47109e293a3f9ea6649aae7958ff38607d4",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE_Begegnungen-Neue-Pokemon.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "0d4bd78abdc2788441ea6afa619e6900e88d640eb3d7d8dad8d3583dd2a7e1e0",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE_Begleiter-Formen.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "91dc8f7af948e4462ece9fe0a74f95b8ef48f765dc851394e14572af6b1cf1af",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE_Beutel-Sortierung-und-TM-Infos.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "e7de8633c95cbda2dd982a85ac33e767637ef0a6857112b7af1d10379fb31ba2",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE_Box-Markierungen.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "a8501ca23f484ce47280894506fcb547d4f513e8a5bc0e37149770847d6a9def",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE_LegendaryWildMusic.rb",
+          "beforeExists": true,
+          "beforeSha256": "44384b6b135c805c48f80c3f4c12595734bf49b0a30b05e525edd39bdb2acde0",
+          "sha256": "bbdf16d090adb52196c5125f8c07c796277f1a458dc2021b6afd68ce24ba9be0",
+          "size": 4578
+        },
+        {
+          "path": "patch/Mods/RE_Mitnahme-Overworld.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "85e24d90f956f17ac40c27b3360175f579a43e540d178e147f5b98b27b5ab8f7",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE_Pokedex-Ansichtsauswahl.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "a85240e27c9e71a703c094b1256553985429e9ff87077de0b93a23e5e007ba71",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE_PulseDex-Versteckte-Bilder.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "797b21fd0595397d9c0271ab8b7bab72d2d42ccf803b643e4efcd05cacc01b22",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE_Zeit-und-Wetter-Fixes.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "28533c871174216ffc405fbe662ae5cbf29b4da07d2240901ca5575f182c8a42",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE_Zufallsmusik-Onlinekaempfe.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "8c8ba13f0a1360a03e284652938493bd61e896c2f12071ff928a72517ecae351",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RE_Zufallsmusik-Wildkaempfe.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "e0a94dd4d7db9b7c9fcc6d0f1c18e3e570336ee98f5d8583fa3f7ef13ff55abb",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/Randomizer.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "6867211521adb62fe0452331b2cc3bd4ffd89823b0dc5cf2b87aa0272a7ce38a",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RandomizerHandler.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "9bb4106603893fa039d774b15d4252d7938e623ec054d59cb405ea7c91ab059c",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RandomizerSettings.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "940388e83aef7f9ec4022bc22f22a1c6f509e0b7accc51d8909515ad9882650a",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RandomizerUtilFix.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "543da56f7557e85b7682a2bcb347fc32952ad9bc4760de6d29a739e9316b3ad3",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RebornPokegear.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "2c47b1e391af33d77717f5bc227fe2045d54d8c41162c39dc69a22dd2a79d721",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/RebornScripts.rb",
+          "beforeExists": true,
+          "beforeSha256": "97c3ae05b0a2b02fe03b3a4b69384b3ce1f8654042f69a9f21f4a9aaaf4bfe29",
+          "sha256": "4cfaac9b7a77d0a8fc2cc3346059c671476801c1249ea77686600d2a45567858",
+          "size": 76279
+        },
+        {
+          "path": "patch/Mods/Split Mega and Gigantamax.rb",
+          "beforeExists": true,
+          "delete": true,
+          "beforeSha256": "fcd5823ab1a3d9859085427c8770d2d435d1d4ee6b577aba7d01607a20d2fded",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "patch/Mods/SystemConstants.rb",
+          "beforeExists": true,
+          "beforeSha256": "afcaff5ea4325d4b1109c70bea8ebf7f9acbcebc878dd80075dbe3143a7232c2",
+          "sha256": "6592fb6696a4dfcb1ffe0001b41b86639a5288f0a214f31f5241c7602bbed8db",
+          "size": 5597
+        },
+        {
+          "path": "patch/Mods/TimeWeather.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "28533c871174216ffc405fbe662ae5cbf29b4da07d2240901ca5575f182c8a42",
+          "size": 13896
+        },
+        {
+          "path": "patch/Mods/mitnahme.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "85e24d90f956f17ac40c27b3360175f579a43e540d178e147f5b98b27b5ab8f7",
+          "size": 3683
+        },
+        {
+          "path": "patch/Mods/randomwildmusic.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "e0a94dd4d7db9b7c9fcc6d0f1c18e3e570336ee98f5d8583fa3f7ef13ff55abb",
+          "size": 672
+        },
+        {
+          "path": "patch/Mods/smartrepel.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "0d4bd78abdc2788441ea6afa619e6900e88d640eb3d7d8dad8d3583dd2a7e1e0",
+          "size": 3053
+        },
+        {
+          "path": "patch/Mods/zzLocalGermanText.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "ccde7090c618c50b7b826c016e2e66a4d6735a4742bcf1bfa73e98fa6367b830",
+          "size": 397678
+        },
+        {
+          "path": "patch/Mods/zzLocalGermanVisible.rb",
+          "beforeExists": false,
+          "beforeSha256": "",
+          "sha256": "8ef46fe2020131ff268cfca2e3864806522aea88276f3eee8416ab944aad91f4",
+          "size": 41404
         }
       ]
     }
-  ],
-  "gameHotfixes": []
+  ]
 }

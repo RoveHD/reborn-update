@@ -1,3 +1,4 @@
-Deutsche Textkorrekturen für fünf Tauros-Reitdialoge und den Bitterkuss-Süßwarenladen. Die umgangssprachliche Formulierung bleibt kurz genug für die Dialogboxen.
+Deutsche Spieltextkorrekturen und die vollständige aktuelle Übersetzungsdatei. Der geprüfte Zwischenstand umfasst 521 manuelle Textkorrekturen; die Prüfung weiterer Dialoge wird fortgesetzt.
 
-Der Hotfix aktualisiert nur `patch/Mods/RE_Deutsch.rb`. Der Launcher bleibt auf 7.4.0. Die vollständige manuelle Spieltextprüfung sowie PokéWiki- und In-Game-Umbruchprüfungen laufen weiter.
+Enthalten sind die aktualisierte `intl.txt`, die daraus mit dem Reborn-Laufzeitcompiler erstellte `Data/german.dat` sowie alle freigegebenen Mods und Ressourcen der lokalen Spielquelle. Launcher 7.4.0 bleibt unverändert. Dieses Paket wird nur nach erfolgreichem Installations- und Hashvergleich veröffentlicht.
+

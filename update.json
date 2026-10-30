@@ -7,10 +7,10 @@
     "size": 180791029
   },
   "game": {
-    "version": "7.3.22",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.22/Reborn-AllGen-0.9.9.zip",
-    "sha256": "375b583d6788ed0c2707b19f6a9e4cf3e056d190dec178abd0f6102b130adb93",
-    "size": 1477202685,
+    "version": "7.3.23",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.23/Reborn-AllGen-0.9.9.zip",
+    "sha256": "9f369db41ed0b595ff24809e30620e15dad1af3453ccc7a7174dd37753ae2485",
+    "size": 1477202975,
     "removedFiles": [
       {
         "path": "patch/Mods/RE - Alte-Megasteine-Kompatibilitaet.rb",
@@ -149,21 +149,21 @@
       }
     ]
   },
-  "patchNotes": "Deutsche Textkorrekturen für Dialoge in mehreren späteren Spielabschnitten: Grammatik, natürliche Formulierungen, Pokémon-Bezeichnungen und Anrede. Schimpfwörter und lockerer Ton bleiben erhalten.\n\nDer Hotfix aktualisiert nur `patch/Mods/RE_Deutsch.rb`. Der Launcher bleibt auf 7.4.0 und lädt für bestehende Installationen ein kleines Delta. Die gesamte manuelle Sinn- und Kontextprüfung des Spiels läuft weiter; PokéWiki-Abgleich und Prüfung des Textumbruchs im Spiel sind noch offen.",
+  "patchNotes": "Deutsche Textkorrekturen für fünf Tauros-Reitdialoge und den Bitterkuss-Süßwarenladen. Die umgangssprachliche Formulierung bleibt kurz genug für die Dialogboxen.\n\nDer Hotfix aktualisiert nur `patch/Mods/RE_Deutsch.rb`. Der Launcher bleibt auf 7.4.0. Die vollständige manuelle Spieltextprüfung sowie PokéWiki- und In-Game-Umbruchprüfungen laufen weiter.",
   "gameHotfixesV2": [
     {
-      "fromVersion": "7.3.21",
-      "version": "7.3.22",
-      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.22/Reborn-Hotfix-7.3.21-to-7.3.22.zip",
-      "sha256": "f161fef11bda150e381d0a70572348143287d7bc3904fa4f329c3e152000e4e8",
-      "size": 365353,
+      "fromVersion": "7.3.22",
+      "version": "7.3.23",
+      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.23/Reborn-Hotfix-7.3.22-to-7.3.23.zip",
+      "sha256": "1ab322ffb1f586b6e37f4749084d0c6bbbd7f829bde66f3e00e4435dda118e4c",
+      "size": 365643,
       "files": [
         {
           "path": "patch/Mods/RE_Deutsch.rb",
           "beforeExists": true,
-          "beforeSha256": "fad1e0c1a5436b8c4e439e4ea387ff46900cc04c32702896018f8ae8420515c4",
-          "sha256": "1e76c40a47686713e143a6d94b7d2aedf6dbfb1fcb242954ed4303356a0781e3",
-          "size": 1193546
+          "beforeSha256": "1e76c40a47686713e143a6d94b7d2aedf6dbfb1fcb242954ed4303356a0781e3",
+          "sha256": "dc434b8f154985b8a825569f937e9b6205aeae1781d096d680dddd06710882c1",
+          "size": 1194883
         }
       ]
     }

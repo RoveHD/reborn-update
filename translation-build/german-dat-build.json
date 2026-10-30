@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "compiler": "Pokemon Reborn bundled runtime pbCompileText",
+  "entries": 83025,
+  "intlSha256": "38cfdd895e7164b0075b8055db904972e6c797e901563f8621f1ed30634975ee",
+  "germanDatSha256": "2ff95333f9a0cd02aeabd651c8398bbb62935c28dad4a214ccfef9d432bea04b",
+  "germanDatBytes": 13743639,
+  "runtimeFiles": {
+    "Game.exe": "56225eaaf224feedd17cc59c098f5b8c253beafbe795763f8f3f2ceb9d7d8178",
+    "Game.ini": "b372c194a03b626b5aee209613bfd34d90057fa6254a778e960f1762a01f775a",
+    "Scripts/PBIntl.rb": "a914fa1b300486f773b8549c7ac625e9587301e915fd7324fc40f94e4ff2330b",
+    "Scripts/ScriptLoader.rb": "d89c902456c45816268dc2926409769ff7f242c3e9840111685b117bfe7c7a0e",
+    "Data/Scripts.rxdata": "8e013ce3afe2400ebe16ab576fffdda9ad8c2953152fd8872e25b9429191da4e"
+  }
+}

@@ -8,16 +8,16 @@
     {
       "path": "intl.txt",
       "beforeSha256": "13b953ab1bc2bb50bf797cf228b2be7e1038e50aee6ebf924d52a1b2978c32f4",
-      "afterSha256": "0817978496881b233b3a096ee9727363c495c33d1a9a1cdb62a2a110b224e3e6",
-      "size": 8535516,
-      "reason": "43 freshly reviewed occurrences (25 source pairs) against 7.3.23: Tauros/Bouffalant singular and riding, Fern meaning/address, Sweet Kiss shop signs. Audit: translation-review/item-regression-20261030/fresh-reviewed-translations-7.3.25.json. No UI label, item, font or runtime change."
+      "afterSha256": "38cfdd895e7164b0075b8055db904972e6c797e901563f8621f1ed30634975ee",
+      "size": 8534872,
+      "reason": "Clean7.3.23 baseline plus published43 corrections in7.3.25 and184 freshly reviewed text pairs in7.3.26. Map26 pairing repaired from actual map event; Map42 choices and pixel widths tested in AllGen0.9.9. No item data, gameplay scripts, font or UI layout changed. Matching bundled compiler proof and runtime audit required."
     },
     {
       "path": "Data/german.dat",
       "beforeSha256": "fb1ff27f43e772f02c34105172b68bab43a9957bb27a987fedde01b49c2dd81e",
-      "afterSha256": "ceecd28b2a6e63962db2ebb04bd86c29f9ab336c59c4a5f3043413779c5d724f",
-      "size": 13744445,
-      "reason": "Recompiled exact approved intl.txt with restored 7.3.23 bundled pbCompileText. Hash-bound proof: translation-build/german-dat-build.json."
+      "afterSha256": "2ff95333f9a0cd02aeabd651c8398bbb62935c28dad4a214ccfef9d432bea04b",
+      "size": 13743639,
+      "reason": "Clean7.3.23 baseline plus published43 corrections in7.3.25 and184 freshly reviewed text pairs in7.3.26. Map26 pairing repaired from actual map event; Map42 choices and pixel widths tested in AllGen0.9.9. No item data, gameplay scripts, font or UI layout changed. Matching bundled compiler proof and runtime audit required."
     }
   ]
 }

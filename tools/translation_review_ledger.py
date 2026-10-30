@@ -332,11 +332,17 @@ def release_version_from_source(path: Path, data: dict[str, Any]) -> str:
 
 
 def load_reviewed_changes(path: Path, entries: list[dict[str, Any]], runtime: dict[str, Any],
-                          expected_count: int | None = None) -> list[dict[str, Any]]:
+                          expected_count: int | None = None,
+                          source_sha256: str | None = None) -> list[dict[str, Any]]:
     data = read_json(path)
     if not isinstance(data, dict) or not data.get("baseline") or not isinstance(data.get("changes"), list):
         raise ValueError("Invalid reviewed translation change source")
     release_version = release_version_from_source(path, data)
+    claimed_source_sha = data.get("sourceIntlSha256", data.get("sourceSha256"))
+    if claimed_source_sha is not None and (not isinstance(claimed_source_sha, str) or
+                                           not re.fullmatch(r"[0-9a-f]{64}", claimed_source_sha) or
+                                           (source_sha256 is not None and claimed_source_sha != source_sha256)):
+        raise ValueError("Reviewed change source SHA does not match the current intl source")
     entry_by_location = {(row["section"], row["sourceLines"]["de"]): row for row in entries}
     runtime_rows = runtime.get("translations", []) if isinstance(runtime, dict) else []
     runtime_set = {(row.get("section", "").strip("[]"), row.get("en"), row.get("de")) for row in runtime_rows}
@@ -365,7 +371,9 @@ def load_reviewed_changes(path: Path, entries: list[dict[str, Any]], runtime: di
                        "reason": reason, "category": category,
                        "semanticReview": {"status": "passed", "reviewer": "root",
                                           "reviewedAt": change.get("reviewedAt"), "source": path.name,
-                                          "reviewedContextFingerprint": change.get("reviewedContextFingerprint")},
+                                          "reviewedFingerprint": change.get("reviewedFingerprint"),
+                                          "reviewedContextFingerprint": change.get("reviewedContextFingerprint"),
+                                          "sourceIntlSha256": claimed_source_sha},
                        "runtimeLookup": {"status": "passed" if lookup_passed else "not-verified"},
                        "releaseVersion": release_version, "releaseStatus": "pending"})
     if expected_count is not None and len(output) != expected_count:
@@ -441,7 +449,7 @@ def sync_ledger(source: Path, review_root: Path, game_root: Path,
     snapshot = proof_snapshot(source, game_root, review_root, compile_path, structure_path, runtime_path)
     runtime = read_json(runtime_path) if runtime_path.is_file() else {}
     reviewed_changes = load_reviewed_changes(changes_source, entries, runtime if isinstance(runtime, dict) else {},
-                                             expected_reviewed_changes)
+                                             expected_reviewed_changes, source_info["sha256"])
     change_source_data = read_json(changes_source)
     release_version = release_version_from_source(changes_source, change_source_data)
     reviewed_change_source_hash = digest_bytes(changes_source.read_bytes())
@@ -502,16 +510,19 @@ def sync_ledger(source: Path, review_root: Path, game_root: Path,
                 if text_same and previous.get("evidence", {}).get("release", {}).get("status") == "published":
                     state["evidence"]["release"] = deepcopy(previous["evidence"]["release"])
         state.setdefault("status", "unreviewed")
-        previously_reviewed_text = (previous.get("textFingerprint") == row["textFingerprint"] or
-                                    previous.get("invalidatedReview", {}).get("oldTextFingerprint") == row["textFingerprint"]) if previous else False
         previous_change_source_hash = (previous.get("reviewedChangeSourceSha256") or
                                        previous.get("invalidatedReview", {}).get("oldReviewedChangeSourceSha256")) if previous else None
         old_context_current = previous is not None and previous.get("reviewedContextFingerprint", previous.get("contextFingerprint")) == row["contextFingerprint"]
-        context_claim = changes_by_id.get(row["id"], {}).get("semanticReview", {}).get("reviewedContextFingerprint")
+        semantic_review = changes_by_id.get(row["id"], {}).get("semanticReview", {})
+        context_claim = semantic_review.get("reviewedContextFingerprint")
+        text_claim = semantic_review.get("reviewedFingerprint")
+        source_claim_current = semantic_review.get("sourceIntlSha256") == source_info["sha256"]
+        fresh_explicit_review = (previous is not None and previous_change_source_hash != reviewed_change_source_hash and
+                                 source_claim_current and text_claim == row["textFingerprint"] and
+                                 context_claim == row["contextFingerprint"])
         eligible_fresh_review = (previous is None or
             (same and state["status"] != "recheck-required" and old_context_current) or
-            (previous_change_source_hash != reviewed_change_source_hash and previously_reviewed_text and
-             (old_context_current or context_claim == row["contextFingerprint"])))
+            fresh_explicit_review)
         eligible_fresh_review = eligible_fresh_review and (context_claim is None or context_claim == row["contextFingerprint"])
         if row["id"] in changes_by_id and eligible_fresh_review:
             change = changes_by_id[row["id"]]
@@ -606,7 +617,7 @@ def sync_ledger(source: Path, review_root: Path, game_root: Path,
     for proposal in proposals:
         proposal_groups.setdefault(proposal["source"], []).append(proposal)
     proposal_batches = [{"id": name, "sections": sorted({row["section"] for row in batch}),
-                         "entries": len(batch),
+                         "entries": len(batch), "candidateCorrections": None,
                          "decisions": dict(Counter(row["rootDecision"] for row in batch)),
                          "disposition": "proposals-unapplied", "applied": 0, "published": 0}
                         for name, batch in sorted(proposal_groups.items())]
@@ -866,13 +877,27 @@ def summarize(ledger: dict[str, Any], changes: dict[str, Any]) -> dict[str, Any]
             "coverageFlags": ledger["coverageFlags"]}
 
 
+def change_batches(changes: dict[str, Any]) -> list[dict[str, Any]]:
+    """Return persisted batches in release order, without recalculating historical review state."""
+    history = changes.get("history", [])
+    if not isinstance(history, list):
+        raise ValueError("Invalid change history; expected history[]")
+    batches = [batch for batch in history if isinstance(batch, dict)]
+    batches.append(changes)
+    return batches
+
+
 def markdown_reports(ledger: dict[str, Any], changes: dict[str, Any], output_root: Path) -> tuple[str, str]:
     stats = summarize(ledger, changes)
     version = changes["releaseVersion"]
+    batches = change_batches(changes)
+    all_change_categories = Counter(change.get("category", "Unkategorisiert")
+                                    for batch in batches for change in batch.get("changes", []))
     lines = ["# Pokémon Reborn AllGen 0.9.9 – Übersetzungsübersicht", "",
              "## Inhaltsverzeichnis", "", "- [Umfang und Status](#umfang-und-status)",
              "- [Nachweise](#nachweise)", "- [Prüfvorschläge](#prüfvorschläge)",
-             f"- [Änderungen in {version}](#änderungen-in-{version.replace('.', '')})", "- [Kategorien](#kategorien)",
+             *[f"- [Änderungen in {batch.get('releaseVersion', 'unbekannt')}](#änderungen-in-{str(batch.get('releaseVersion', 'unbekannt')).replace('.', '')})" for batch in batches],
+             "- [Kategorien](#kategorien)",
              "- [Vollständige Einzelansicht](index.html)", "",
              "## Umfang und Status", "",
              f"- Übersetzungseinträge: **{stats['totalEntries']:,}** in **{stats['sections']}** Abschnitten; davon **{stats['maps']}** Maps.".replace(",", " "),
@@ -893,18 +918,24 @@ def markdown_reports(ledger: dict[str, Any], changes: dict[str, Any], output_roo
              "", "## Prüfvorschläge", "",
              "Die Agentenreviews sind Vorschläge und bleiben von freigegebenen Änderungen getrennt. Sie haben keinen Status `reviewed-corrected`, zählen nicht als angewendet und sind nicht veröffentlicht.", ""]
     for batch in ledger["reviewBatches"]:
-        candidates = f"{batch['candidateCorrections']} mögliche Korrekturen" if batch["candidateCorrections"] is not None else "Korrekturzahl offen"
-        lines.append(f"- `{batch['id']}`: {batch['entries']} Einträge, {candidates}; **Root-Review offen**, angewendet 0, veröffentlicht 0.")
-    lines.extend(["", f"## Änderungen in {version}", "",
-                  f"Releasezuordnung: **{changes['releaseStatus']}**. {len(changes['changes'])} geprüfte Änderungen sind diesem Batch zugeordnet.",
-                  "", "| Abschnitt / Zeile | Englisch | Deutsch vorher | Deutsch nachher | Fehlerkategorie | Grund | Status |",
-                  "|---|---|---|---|---|---|---|"])
-    for change in changes["changes"]:
-        loc = f"{change['section']}:{change['sourceLines']['de']}"
-        cells = [loc, change["en"], change["before"], change["after"], change["category"], change["reason"], change["releaseStatus"]]
-        lines.append("| " + " | ".join(str(cell).replace("|", "\\|").replace("\n", "<br>") for cell in cells) + " |")
-    lines.extend(["", "## Kategorien", ""])
-    for category, count in sorted(stats["changeCategories"].items()):
+        decisions = batch.get("decisions", {})
+        decision_text = ", ".join(f"{count} {decision}" for decision, count in sorted(decisions.items())) or "keine Root-Entscheidung"
+        lines.append(f"- `{batch['id']}`: {batch['entries']} Vorschläge; {decision_text}; angewendet {batch.get('applied', 0)}, veröffentlicht {batch.get('published', 0)}.")
+    for batch in batches:
+        batch_version = str(batch.get("releaseVersion", "unbekannt"))
+        anchor = batch_version.replace(".", "")
+        label = "Aktuelle Charge" if batch is changes else "Historische Charge"
+        batch_changes = batch.get("changes", [])
+        lines.extend(["", f"## Änderungen in {batch_version}", "", f"{label}. Releasezuordnung: **{batch.get('releaseStatus', 'unbekannt')}**. {len(batch_changes)} geprüfte Änderungen.",
+                      "", "| Abschnitt / Zeile | Englisch | Deutsch vorher | Deutsch nachher | Fehlerkategorie | Grund | Status |",
+                      "|---|---|---|---|---|---|---|"])
+        for change in batch_changes:
+            source_lines = change.get("sourceLines") or {}
+            loc = f"{change.get('section', '?')}:{source_lines.get('de', change.get('line', '?'))}"
+            cells = [loc, change.get("en", ""), change.get("before", ""), change.get("after", ""), change.get("category", ""), change.get("reason", ""), change.get("releaseStatus", batch.get("releaseStatus", "unknown"))]
+            lines.append("| " + " | ".join(str(cell).replace("|", "\\|").replace("\n", "<br>") for cell in cells) + " |")
+    lines.extend(["", "## Kategorien über Historie und aktuelle Charge", ""])
+    for category, count in sorted(all_change_categories.items()):
         lines.append(f"- {category}: **{count}**.")
     lines.extend(["", "## Technischer Stand", "",
                   f"- Quelle: `{ledger['source']['path']}`, SHA-256 `{ledger['source']['sha256']}`.",
@@ -976,7 +1007,11 @@ def generate_html(ledger: dict[str, Any], changes: dict[str, Any], output_path: 
     compact_entries = [[row["id"], row["section"], row["sectionKind"], row["en"], row["de"], row["status"],
                         row.get("errorCategory"), row.get("change"), row.get("agentProposal"),
                         row.get("lastReviewedAt"), row.get("sourceLines")] for row in ledger["entries"]]
-    payload = json.dumps({"entries": compact_entries, "changes": changes["changes"], "releaseVersion": changes["releaseVersion"],
+    batches = change_batches(changes)
+    all_changes = [dict(change, releaseVersion=batch.get("releaseVersion"),
+                        releaseStatus=change.get("releaseStatus", batch.get("releaseStatus", "pending")))
+                   for batch in batches for change in batch.get("changes", [])]
+    payload = json.dumps({"entries": compact_entries, "changes": all_changes, "releaseVersion": changes["releaseVersion"],
                           "sourcePath": ledger.get("source", {}).get("path", "intl.txt"),
                           "entities": entities, "entityReviews": entity_reviews,
                           "categoryStats": category_stats}, ensure_ascii=False, separators=(",", ":"))
@@ -1010,7 +1045,7 @@ const DATA = __DATA__;
 document.getElementById("releaseVersion").textContent=DATA.releaseVersion;
 const LABELS={"reviewed-correct":"Perfekt / Geprüft","reviewed-corrected":"Korrigiert / Geprüft","unreviewed":"Ungeprüft","context-review-required":"Kontextprüfung nötig","recheck-required":"Erneute Prüfung nötig","error-found":"Fehler festgestellt"};
 const $=id=>document.getElementById(id), pageSize=100; let pageNo=0, mode="texts";
-const entries=DATA.entries, changes=new Map(DATA.changes.map(c=>[c.entryId,c]));
+const entries=DATA.entries, changes=new Map();for(const c of DATA.changes){if(!changes.has(c.entryId))changes.set(c.entryId,[]);changes.get(c.entryId).push(c)}
 const entityCatalog=DATA.entities||{}, entityRows=Array.isArray(entityCatalog.entities)?entityCatalog.entities:[];
 const runtimeData=entityCatalog.runtimeTexts||{}, runtimeRows=Array.isArray(runtimeData)?runtimeData:(runtimeData.entries||runtimeData.texts||[]), runtimeByEntity=new Map();
 for(const t of runtimeRows){if(t.entityId){if(!runtimeByEntity.has(t.entityId))runtimeByEntity.set(t.entityId,[]);runtimeByEntity.get(t.entityId).push(t)}}
@@ -1029,20 +1064,21 @@ $("coverage").textContent=entityCatalog.coverageStatus==="complete"?"Runtime-Ent
 function countFor(s){return entries.filter(e=>e[5]===s).length}
 for(const [status,label] of Object.entries(LABELS)){const box=document.createElement("div");box.className="stat";const strong=document.createElement("strong");strong.textContent=countFor(status).toLocaleString("de-DE");const span=document.createElement("span");span.textContent=label;box.append(strong,span);$("stats").append(box)}
 function makeText(tag,text,cls){const n=document.createElement(tag);n.textContent=text??"";if(cls)n.className=cls;return n}
-function matches(e){const q=$("query").value.toLocaleLowerCase("de-DE"),refs=entityRefs.get(e[0])||[],change=changes.get(e[0]),small=`${e[0]} ${e[1]} ${e[3]} ${e[4]} ${e[8]?e[8].proposed+" "+e[8].reason:""} ${change?change.before+" "+change.after+" "+change.reason:""}`.toLocaleLowerCase("de-DE");
+function changesFor(id){return changes.get(id)||[]}function hasReleaseStatus(id,status){return changesFor(id).some(c=>c.releaseStatus===status)}
+function matches(e){const q=$("query").value.toLocaleLowerCase("de-DE"),refs=entityRefs.get(e[0])||[],entryChanges=changesFor(e[0]),small=`${e[0]} ${e[1]} ${e[3]} ${e[4]} ${e[8]?e[8].proposed+" "+e[8].reason:""} ${entryChanges.map(c=>c.before+" "+c.after+" "+c.reason).join(" ")}`.toLocaleLowerCase("de-DE");
 if(q&&!small.includes(q)&&!refs.some(entity=>matchingEntityIds.has(entity.entityId)))return false;
 if($("section").value&&e[1]!==$("section").value)return false;if($("status").value&&e[5]!==$("status").value)return false;
-if($("category").value&&e[6]!==$("category").value)return false;if($("release").value==="changed"&&!changes.has(e[0]))return false;
-if($("release").value==="pending"&&(!changes.has(e[0])||changes.get(e[0]).releaseStatus!=="pending"))return false;
-if($("release").value==="published"&&(!changes.has(e[0])||changes.get(e[0]).releaseStatus!=="published"))return false;return true}
+if($("category").value&&e[6]!==$("category").value)return false;if($("release").value==="changed"&&!entryChanges.length)return false;
+if($("release").value==="pending"&&!hasReleaseStatus(e[0],"pending"))return false;
+if($("release").value==="published"&&!hasReleaseStatus(e[0],"published"))return false;return true}
 function renderText(e){const box=document.createElement("article");box.className="result";box.append(makeText("h2",e[0]+" · "+e[1]));box.append(makeText("span",LABELS[e[5]]||e[5],"badge"));if(e[6])box.append(makeText("span",e[6],"badge"));
 box.append(makeText("p","EN  "+e[3]));box.append(makeText("p","DE  "+e[4]));box.append(makeText("p","Quelle: "+DATA.sourcePath+" · EN-Zeile "+(e[10]?.en??"?")+" · DE-Zeile "+(e[10]?.de??"?"),"muted"));if(e[9])box.append(makeText("p","Geprüft am: "+e[9]));
 for(const entity of entityRefs.get(e[0])||[]){const label=[entity.category,entity.enName,entity.deName,entity.form?"Form "+entity.form:""].filter(Boolean).join(" · ");box.append(makeText("span",label,"badge"))}
 if(e[8]){const proposal=document.createElement("div");proposal.className="change";proposal.append(makeText("p","Vorschlag: "+e[8].proposed));proposal.append(makeText("p","Grund: "+e[8].reason+" · Root: "+e[8].rootDecision+" · angewendet: nein · veröffentlicht: nein","muted"));box.append(proposal)}
-const change=changes.get(e[0]);if(change){const c=document.createElement("div");c.className="change";c.append(makeText("p","Vorher: "+change.before));c.append(makeText("p","Nachher: "+change.after));c.append(makeText("p","Grund: "+change.reason+" · "+change.category+" · "+change.releaseVersion+": "+change.releaseStatus,"muted"));box.append(c)}return box}
+for(const change of changesFor(e[0])){const c=document.createElement("div");c.className="change";c.append(makeText("p","Vorher: "+change.before));c.append(makeText("p","Nachher: "+change.after));c.append(makeText("p","Grund: "+change.reason+" · "+change.category+" · "+change.releaseVersion+": "+change.releaseStatus,"muted"));box.append(c)}return box}
 function entityRowsFor(e){return(entityEntryRefs.get(e.entityId)||[]).map(id=>entryById.get(id)).filter(Boolean)}
-function entityPassesFilters(e){const linked=entityRowsFor(e),status=$("status").value,release=$("release").value,aggregate=entityReviewStats[e.entityId];if($("category").value&&e.category!==$("category").value)return false;if(status&&aggregate?.status!==status)return false;if(release==="changed"&&!linked.some(row=>changes.has(row[0])))return false;if(release==="pending"&&!linked.some(row=>changes.get(row[0])?.releaseStatus==="pending"))return false;if(release==="published"&&!linked.some(row=>changes.get(row[0])?.releaseStatus==="published"))return false;return true}
-function renderEntity(e){const box=document.createElement("article");box.className="entity";const a=entityReviewStats[e.entityId],percent=a?.percent===null||a?.percent===undefined?"n/a":a.percent+"%",title=[e.category,e.enName||e.entityId,e.deName].filter(Boolean).join(" · "),details=document.createElement("details"),summary=document.createElement("summary");summary.textContent=`${title} · ${LABELS[a?.status]||a?.status||"Ungeprüft"} · ${a?.reviewed||0}/${a?.total||0} Texte (${percent}) · ${a?.runtimeCount||0} Runtime-Beobachtungen${a?.unknownCoverage?" · Coverage offen":""}`;details.append(summary);details.addEventListener("toggle",()=>{if(!details.open||details.dataset.loaded)return;const body=document.createElement("div"),lines=[["ID",e.entityId],["Quelle",e.sourceFile||"unbekannt"],["Source Key",e.sourceKey||"unbekannt"],["Coverage",e.coverageStatus||"unbekannt"],["Coverage-Flags",(e.coverageFlags||[]).join(", ")||"keine"],["Exportdatum",entityCatalog.source?.exportedAt||"unbekannt"],["Übersetzungsstatus",LABELS[a?.status]||a?.status||"unreviewed"],["Prüfung",`${a?.reviewed||0}/${a?.total||0} verknüpfte Texte · ${percent}`],["Runtime-Beobachtungen",a?.runtimeCount||0]];if(e.nationalDex!==null&&e.nationalDex!==undefined)lines.push(["Nationaldex",e.nationalDex]);if(e.form)lines.push(["Form",e.form]);for(const [label,value] of lines)body.append(makeText("p",label+": "+value,"muted"));for(const id of entityEntryRefs.get(e.entityId)||[]){const row=entryById.get(id);if(row)body.append(makeText("p",id+" · "+(LABELS[row[5]]||row[5])+" · EN: "+row[3]+" · DE: "+row[4]))}for(const t of runtimeByEntity.get(e.entityId)||[]){body.append(makeText("p",(t.textType||"Text")+" · EN: "+(t.en??"nicht eindeutig erfasst")));if(t.sourceText!==null&&t.sourceText!==undefined)body.append(makeText("p","Quelltext: "+t.sourceText));body.append(makeText("p","DE: "+(t.de??t.runtimeDeutsch??"nicht verfügbar")));for(const id of new Set(t.intlRefs||[]))body.append(makeText("p","Textverweis: "+id,"muted"))}details.append(body);details.dataset.loaded="true"});box.append(details);return box}
+function entityPassesFilters(e){const linked=entityRowsFor(e),status=$("status").value,release=$("release").value,aggregate=entityReviewStats[e.entityId];if($("category").value&&e.category!==$("category").value)return false;if(status&&aggregate?.status!==status)return false;if(release==="changed"&&!linked.some(row=>changesFor(row[0]).length))return false;if(release==="pending"&&!linked.some(row=>hasReleaseStatus(row[0],"pending")))return false;if(release==="published"&&!linked.some(row=>hasReleaseStatus(row[0],"published")))return false;return true}
+function renderEntity(e){const box=document.createElement("article");box.className="entity";const a=entityReviewStats[e.entityId],percent=a?.percent===null||a?.percent===undefined?"n/a":a.percent+"%",title=[e.category,e.enName||e.entityId,e.deName].filter(Boolean).join(" · "),details=document.createElement("details"),summary=document.createElement("summary");summary.textContent=`${title} · ${LABELS[a?.status]||a?.status||"Ungeprüft"} · ${a?.reviewed||0}/${a?.total||0} Texte (${percent}) · ${a?.runtimeCount||0} Runtime-Beobachtungen${a?.unknownCoverage?" · Coverage offen":""}`;details.append(summary);details.addEventListener("toggle",()=>{if(!details.open||details.dataset.loaded)return;const body=document.createElement("div"),lines=[["ID",e.entityId],["Quelle",e.sourceFile||"unbekannt"],["Source Key",e.sourceKey||"unbekannt"],["Coverage",e.coverageStatus||"unbekannt"],["Coverage-Flags",(e.coverageFlags||[]).join(", ")||"keine"],["Exportdatum",entityCatalog.source?.exportedAt||"unbekannt"],["Übersetzungsstatus",LABELS[a?.status]||a?.status||"unreviewed"],["Prüfung",`${a?.reviewed||0}/${a?.total||0} verknüpfte Texte · ${percent}`],["Runtime-Beobachtungen",a?.runtimeCount||0]];if(e.nationalDex!==null&&e.nationalDex!==undefined)lines.push(["Nationaldex",e.nationalDex]);if(e.form)lines.push(["Form",e.form]);for(const [label,value] of lines)body.append(makeText("p",label+": "+value,"muted"));for(const id of entityEntryRefs.get(e.entityId)||[]){const row=entryById.get(id);if(row)body.append(renderText(row))}for(const t of runtimeByEntity.get(e.entityId)||[]){body.append(makeText("p",(t.textType||"Text")+" · EN: "+(t.en??"nicht eindeutig erfasst")));if(t.sourceText!==null&&t.sourceText!==undefined)body.append(makeText("p","Quelltext: "+t.sourceText));body.append(makeText("p","DE: "+(t.de??t.runtimeDeutsch??"nicht verfügbar")));for(const id of new Set(t.intlRefs||[]))body.append(makeText("p","Textverweis: "+id,"muted"))}details.append(body);details.dataset.loaded="true"});box.append(details);return box}
 function render(){const entityMode=mode==="entities",query=$("query").value.toLocaleLowerCase("de-DE");$("section").parentElement.hidden=entityMode;$("entityCategoryStats").hidden=!entityMode;updateMatchingEntities(query);if(entityMode)renderCategoryStats();const source=mode==="texts"?entries.filter(matches):entityRows.filter(e=>(!query||matchingEntityIds.has(e.entityId))&&entityPassesFilters(e));
 const filtered=mode==="entities"?source:source;const pages=Math.max(1,Math.ceil(filtered.length/pageSize));pageNo=Math.min(pageNo,pages-1);$("count").textContent=`${filtered.length.toLocaleString("de-DE")} Treffer · Seite ${pageNo+1} von ${pages}`;$("page").textContent=`${pageNo+1} / ${pages}`;$("prev").disabled=pageNo===0;$("next").disabled=pageNo>=pages-1;const result=$("results");result.replaceChildren();for(const e of filtered.slice(pageNo*pageSize,(pageNo+1)*pageSize))result.append(mode==="texts"?renderText(e):renderEntity(e))}
 for(const id of ["query","section","status","category","release"]){$(id).addEventListener(id==="query"?"input":"change",()=>{pageNo=0;render()})}

@@ -125,25 +125,31 @@ class TranslationReviewLedgerTests(unittest.TestCase):
         self.assertTrue(all(row["rootDecision"] == "stale_source" for row in proposals if row["stale"]))
         self.assertTrue(all(not row["stale"] for row in proposals if row["rootDecision"] == "rejected_preserve_existing"))
 
-    def test_current_inputs_have_expected_counts_and_only_43_applied_changes(self):
-        entries, source = ledger.parse_source(ledger.DEFAULT_SOURCE)
+    def test_frozen_7_3_25_fixture_has_exactly_43_root_reviewed_changes(self):
+        review_root = ledger.DEFAULT_REVIEW_ROOT / "item-regression-20261030"
+        historical_source = review_root / "approved-7.3.25-text-backup/intl.txt"
+        changes_path = review_root / "fresh-reviewed-translations-7.3.25.json"
+        runtime_path = review_root / "runtime-layout.json"
+        catalog_root = ledger.DEFAULT_REVIEW_ROOT / "catalog-source-7.3.25"
+        entries, source = ledger.parse_source(historical_source)
+        self.assertEqual(source["sha256"], "0817978496881b233b3a096ee9727363c495c33d1a9a1cdb62a2a110b224e3e6")
         self.assertEqual((source["sections"], source["pairs"]), (916, 83933))
         self.assertEqual(sum(1 for row in entries if re_map(row["section"], 1, 9)), 136)
         self.assertEqual(sum(1 for row in entries if re_map(row["section"], 10, 19)), 538)
-        runtime = ledger.read_json(ledger.RUNTIME_PROOF)
-        changes = ledger.load_reviewed_changes(ledger.CHANGE_SOURCE, entries, runtime)
+        changes_data = ledger.read_json(changes_path)
+        self.assertEqual(ledger.release_version_from_source(changes_path, changes_data), "7.3.25")
+        runtime = ledger.read_json(runtime_path)
+        changes = ledger.load_reviewed_changes(changes_path, entries, runtime, expected_count=43,
+                                               source_sha256=source["sha256"])
         self.assertEqual(len(changes), 43)
         self.assertTrue(all(row["releaseStatus"] == "pending" for row in changes))
-        with tempfile.TemporaryDirectory() as temp:
-            root = Path(temp)
-            state, delta = ledger.sync_ledger(ledger.DEFAULT_SOURCE, root / "review", ledger.DEFAULT_SOURCE.parent)
-            self.assertEqual(len(delta["changes"]), 43)
-            self.assertEqual(delta["releaseStatus"], "pending")
-            self.assertEqual(state["entityCatalog"]["entityCount"], 9093)
-            self.assertEqual(state["entityCatalog"]["runtimeTextCount"], 116433)
-            self.assertEqual(state["entityCatalog"]["coverageStatus"], "partial")
-            self.assertTrue(state["coverageFlags"])
-            self.assertTrue(all(row["releaseStatus"] == "pending" for row in delta["changes"]))
+        coverage = ledger.read_json(catalog_root / "coverage.json")
+        self.assertTrue(coverage["success"])
+        self.assertFalse(coverage["linguisticReviewComplete"])
+        self.assertEqual(coverage["entityCount"], 9093)
+        self.assertEqual(coverage["textObservationCount"], 116433)
+        self.assertTrue(coverage["unresolvedGroups"])
+        self.assertTrue(coverage["unresolvedEventExpressions"])
 
     def test_unverified_publication_cannot_mark_release_published(self):
         with self.assertRaises(ValueError):
@@ -395,6 +401,51 @@ class TranslationReviewLedgerTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "empty or invalid explicit category"):
                 ledger.load_reviewed_changes(batch, entries, {}, expected_count=1)
 
+    def test_fresh_explicit_review_claim_can_approve_first_correction_of_unreviewed_text(self):
+        for claim_kind in ("current", "stale_context", "stale_text", "missing_context", "stale_source_sha", "missing_source_sha"):
+            with self.subTest(claim=claim_kind), tempfile.TemporaryDirectory() as temp:
+                root = Path(temp); source = root / "intl.txt"
+                source.write_text("[Map1]\nHello\nOld German\n", encoding="utf-8")
+                old_batch = self.change_source(root, version="7.3.25")
+                previous, _ = self.sync_fixture(root, source, old_batch)
+                self.save_state(root, previous)
+
+                source.write_text("[Map1]\nHello\nNew German\n", encoding="utf-8")
+                current_entries, current_info = ledger.parse_source(source)
+                current_entry = current_entries[0]
+                context_claim = current_entry["contextFingerprint"]
+                source_claim = current_info["sha256"]
+                if claim_kind == "stale_context":
+                    context_claim = "0" * 64
+                if claim_kind == "stale_text":
+                    current_text_claim = "0" * 64
+                else:
+                    current_text_claim = current_entry["textFingerprint"]
+                if claim_kind == "missing_context":
+                    context_claim = None
+                if claim_kind == "stale_source_sha":
+                    source_claim = "f" * 64
+                change = {"section": "Map1", "line": 3, "en": "Hello", "before": "Old German",
+                          "after": "New German", "reason": "Fresh explicit review", "category": "Meaning",
+                          "reviewedAt": "2026-10-30", "reviewedFingerprint": current_text_claim,
+                          "reviewedContextFingerprint": context_claim}
+                batch = root / "fresh-reviewed-translations-7.3.26.json"
+                batch_data = {"baseline": "7.3.25", "releaseVersion": "7.3.26", "changes": [change]}
+                if claim_kind != "missing_source_sha":
+                    batch_data["sourceIntlSha256"] = source_claim
+                batch.write_text(json.dumps(batch_data), encoding="utf-8")
+                if claim_kind == "stale_source_sha":
+                    with self.assertRaisesRegex(ValueError, "source SHA"):
+                        self.sync_fixture(root, source, batch, expected_reviewed_changes=1)
+                    continue
+                state, _ = self.sync_fixture(root, source, batch, expected_reviewed_changes=1)
+                if claim_kind == "current":
+                    self.assertEqual(state["entries"][0]["status"], "reviewed-corrected")
+                    self.assertEqual(state["entries"][0]["reviewedFingerprint"], current_entry["textFingerprint"])
+                    self.assertEqual(state["entries"][0]["reviewedContextFingerprint"], current_entry["contextFingerprint"])
+                else:
+                    self.assertEqual(state["entries"][0]["status"], "recheck-required")
+
     def test_runtime_event_context_and_map_source_changes_invalidate_unchanged_text(self):
         for change_file in (False, True):
             with self.subTest(map_source=change_file), tempfile.TemporaryDirectory() as temp:
@@ -557,6 +608,70 @@ class TranslationReviewLedgerTests(unittest.TestCase):
                 self.assertEqual(delta["history"][0]["publicationProof"], proof)
                 self.assertEqual(current["entries"][0]["evidence"]["release"]["version"], "7.3.25")
                 self.save_state(root, current, delta)
+
+    def test_reports_and_html_keep_published_history_alongside_pending_repeated_entry(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            entry_id = "Map1/ordinal/000001"
+            old = {"entryId": entry_id, "section": "Map1", "sourceLines": {"de": 3}, "en": "hello",
+                   "before": "alt", "after": "hallo", "category": "Dialog", "reason": "Korrektur .25",
+                   "releaseVersion": "7.3.25", "releaseStatus": "published"}
+            current = {"entryId": entry_id, "section": "Map1", "sourceLines": {"de": 3}, "en": "hello",
+                       "before": "hallo", "after": "guten Tag", "category": "Dialog", "reason": "Korrektur .26",
+                       "releaseVersion": "7.3.26", "releaseStatus": "pending"}
+            changes = {"schemaVersion": 1, "sourceVersion": "7.3.23", "releaseVersion": "7.3.26",
+                       "releaseStatus": "pending", "changes": [current], "history": [
+                           {"releaseVersion": "7.3.25", "releaseStatus": "published",
+                            "publicationProof": self.publication_snapshot(), "changes": [old]}]}
+            state = {"entries": [{"id": entry_id, "section": "Map1", "sectionKind": "map", "en": "hello",
+                                   "de": "guten Tag", "status": "recheck-required", "sourceLines": {"en": 2, "de": 3}}],
+                     "source": {"path": "intl.txt", "sha256": "a" * 64}, "schemaVersion": 1,
+                     "gameVersion": "AllGen 0.9.9", "statusCounts": {status: 0 for status in ledger.STATUSES},
+                     "reviewBatches": [], "proofs": {"structure": {"status": "passed", "pairs": 1},
+                         "compile": {"status": "passed", "compiledEntries": 1}, "runtimeReport": {"status": "passed"}},
+                     "sections": [], "entityCatalog": {"entityCount": 0, "runtimeTextCount": 0,
+                         "coverageStatus": "partial", "coverageFlag": "unknown"}, "coverageFlags": []}
+            html_path = root / "index.html"
+            ledger.generate_html(state, changes, html_path)
+            html = html_path.read_text(encoding="utf-8")
+            self.assertIn("Korrektur .25", html)
+            self.assertIn("Korrektur .26", html)
+            self.assertIn('releaseVersion":"7.3.25","releaseStatus":"published"', html)
+            self.assertIn('releaseVersion":"7.3.26","releaseStatus":"pending"', html)
+            self.assertIn("function hasReleaseStatus(id,status){return changesFor(id).some", html)
+            changelog, release_report = ledger.markdown_reports(state, changes, root)
+            self.assertIn("Änderungen in 7.3.25", changelog)
+            self.assertIn("Änderungen in 7.3.26", changelog)
+            self.assertIn("Korrektur .25", changelog)
+            self.assertIn("Korrektur .26", changelog)
+            self.assertNotIn("Korrektur .25", release_report)
+            self.assertIn("Korrektur .26", release_report)
+
+    def test_multi_proposal_manifest_write_outputs_has_consistent_root_decisions(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            source = root / "intl.txt"
+            source.write_text("[Map1]\nA?\nA-DE\nB?\nB-DE\n", encoding="utf-8")
+            files = []
+            for line, en, de, decision in ((2, "A?", "A-DE", "accepted_pending_application"),
+                                           (4, "B?", "B-DE", "rejected_preserve_existing")):
+                path = root / f"proposal-{line}.json"
+                path.write_text(json.dumps({"proposals": [{"section": "Map1", "source_line": line,
+                    "en": en, "oldDE": de, "proposedDE": de + "!", "reason": "isolated fixture",
+                    "rootDecision": decision, "reviewedAt": "2026-10-30", "applied": False, "published": False}]}), encoding="utf-8")
+                files.append(path.name)
+            manifest = root / "proposal-manifest.json"
+            manifest.write_text(json.dumps({"proposalFiles": files}), encoding="utf-8")
+            state, changes = self.sync_fixture(root, source, self.change_source(root, version="7.3.26"),
+                                               proposals_source=manifest)
+            output_root = root / "review"
+            ledger.write_outputs(state, changes, output_root)
+            changelog = (output_root / ledger.CHANGELOG_FILE).read_text(encoding="utf-8")
+            self.assertIn("accepted_pending_application", changelog)
+            self.assertIn("rejected_preserve_existing", changelog)
+            self.assertNotIn("Root-Review offen", changelog)
+            self.assertEqual(len(json.loads((output_root / ledger.STATUS_FILE).read_text(encoding="utf-8"))["entries"]), 2)
+            self.assertEqual(json.loads((output_root / ledger.CHANGES_FILE).read_text(encoding="utf-8"))["releaseStatus"], "pending")
 
     def test_legacy_local_only_published_status_is_not_reused(self):
         with tempfile.TemporaryDirectory() as temp:

@@ -41,7 +41,7 @@ for src,name in [('test-results/self-update.json','launcher-checks.json'),
                  ('test-results/migration-6.1.0/release-switch.json','release-switch.json')]:
     shutil.copy2(root/src,release/name)
 (release/'SHA256SUMS.txt').write_text('\n'.join(sha(release/name)+'  '+name for name in
-    ['launcher.exe',archive,'update.json','game-files.json'])+'\n',encoding='utf8')
+    ['launcher.exe',archive,'update.json','game-files.json','source-parity.json'])+'\n',encoding='utf8')
 screens=root/'docs/screenshots';screens.mkdir(parents=True,exist_ok=True)
 for name in ['launcher-1280x800.png','launcher-minimum.png','launcher-previous.png']:
     shutil.copy2(Path(self_test['testDirectory'])/name,screens/name)

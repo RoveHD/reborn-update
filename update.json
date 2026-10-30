@@ -7,10 +7,10 @@
     "size": 180791029
   },
   "game": {
-    "version": "7.3.21",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.21/Reborn-AllGen-0.9.9.zip",
-    "sha256": "b246cd3f894521b351a455954a73474c2ae2d1445eb007a0fe34ec721168e168",
-    "size": 1477191391,
+    "version": "7.3.22",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.22/Reborn-AllGen-0.9.9.zip",
+    "sha256": "375b583d6788ed0c2707b19f6a9e4cf3e056d190dec178abd0f6102b130adb93",
+    "size": 1477202685,
     "removedFiles": [
       {
         "path": "patch/Mods/RE - Alte-Megasteine-Kompatibilitaet.rb",
@@ -149,21 +149,21 @@
       }
     ]
   },
-  "patchNotes": "Pokémon Reborn 7.3.21 – Deutsche Textkorrekturen\n\nKorrigiert geprüfte deutsche Dialoge und Meldungen: Grammatik, natürlicher Kontext, Pokémon-Namen und Geschlecht, sowie Formulierungen, die in kurzen UI-Feldern abgeschnitten oder missverständlich wirkten. Umgangssprache und derbe Figurenrede bleiben erhalten.\n\nDer Launcher 7.4.0 liefert das Update als kleines Hotfix-Paket aus. Spielstände und persönliche Mods bleiben erhalten.",
+  "patchNotes": "Deutsche Textkorrekturen für Dialoge in mehreren späteren Spielabschnitten: Grammatik, natürliche Formulierungen, Pokémon-Bezeichnungen und Anrede. Schimpfwörter und lockerer Ton bleiben erhalten.\n\nDer Hotfix aktualisiert nur `patch/Mods/RE_Deutsch.rb`. Der Launcher bleibt auf 7.4.0 und lädt für bestehende Installationen ein kleines Delta. Die gesamte manuelle Sinn- und Kontextprüfung des Spiels läuft weiter; PokéWiki-Abgleich und Prüfung des Textumbruchs im Spiel sind noch offen.",
   "gameHotfixesV2": [
     {
-      "fromVersion": "7.3.20",
-      "version": "7.3.21",
-      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.21/Reborn-Hotfix-7.3.20-to-7.3.21.zip",
-      "sha256": "333b47062fb8717de6c9b2ebf6e492d328fd29d1001730effa703c2453f0ee03",
-      "size": 354059,
+      "fromVersion": "7.3.21",
+      "version": "7.3.22",
+      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.22/Reborn-Hotfix-7.3.21-to-7.3.22.zip",
+      "sha256": "f161fef11bda150e381d0a70572348143287d7bc3904fa4f329c3e152000e4e8",
+      "size": 365353,
       "files": [
         {
           "path": "patch/Mods/RE_Deutsch.rb",
           "beforeExists": true,
-          "beforeSha256": "ef90b2d850641259d0062ac2553a16be96eaee2e1cab305d49fcff41e339e846",
-          "sha256": "fad1e0c1a5436b8c4e439e4ea387ff46900cc04c32702896018f8ae8420515c4",
-          "size": 1154172
+          "beforeSha256": "fad1e0c1a5436b8c4e439e4ea387ff46900cc04c32702896018f8ae8420515c4",
+          "sha256": "1e76c40a47686713e143a6d94b7d2aedf6dbfb1fcb242954ed4303356a0781e3",
+          "size": 1193546
         }
       ]
     }

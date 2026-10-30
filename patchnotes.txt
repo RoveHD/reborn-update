@@ -1,5 +1,3 @@
-Pokémon Reborn 7.3.21 – Deutsche Textkorrekturen
+Deutsche Textkorrekturen für Dialoge in mehreren späteren Spielabschnitten: Grammatik, natürliche Formulierungen, Pokémon-Bezeichnungen und Anrede. Schimpfwörter und lockerer Ton bleiben erhalten.
 
-Korrigiert geprüfte deutsche Dialoge und Meldungen: Grammatik, natürlicher Kontext, Pokémon-Namen und Geschlecht, sowie Formulierungen, die in kurzen UI-Feldern abgeschnitten oder missverständlich wirkten. Umgangssprache und derbe Figurenrede bleiben erhalten.
-
-Der Launcher 7.4.0 liefert das Update als kleines Hotfix-Paket aus. Spielstände und persönliche Mods bleiben erhalten.
+Der Hotfix aktualisiert nur `patch/Mods/RE_Deutsch.rb`. Der Launcher bleibt auf 7.4.0 und lädt für bestehende Installationen ein kleines Delta. Die gesamte manuelle Sinn- und Kontextprüfung des Spiels läuft weiter; PokéWiki-Abgleich und Prüfung des Textumbruchs im Spiel sind noch offen.

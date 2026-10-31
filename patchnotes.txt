@@ -1,13 +1,7 @@
-Spielhotfix 7.3.25 – sauberer Neustart auf 7.3.23 / AllGen 0.9.9
+# Launcher 7.4.1
 
-7.3.24 wurde verworfen. Dieser Hotfix wurde frisch aus dem verifizierten 7.3.23-Paket gebaut.
-Alle funktionierenden Spieldaten, Custom-Mods, Musikdateien, Grafiken und Schrift-/UI-Anpassungen aus 7.3.23 bleiben erhalten.
-Die vollständigen AllGen-0.9.9-Itemdefinitionen und die kurzen, lesbaren Beschreibungen sind wieder enthalten.
-
-43 frisch geprüfte Übersetzungskorrekturen an 25 unterschiedlichen Originaltexten: Tauros-Reiten statt Fahren; korrekter Singular und Artikel bei Tauros/Bisofank; Ferns Anrede und Aussagen einschließlich derben Tons; natürliche Bitterkuss-Ladenschilder.
-Die Texte wurden mit dem passenden Spielcompiler neu in german.dat kompiliert.
-Bereits übersetzte UI-Beschriftungen, englische Design-Texte und die Originalschrift bleiben unverändert.
-
-Updatepfade für 7.3.23 und bereits installierte 7.3.24 werden separat geprüft. Spielstände, Einstellungen und eigene Dateien werden geschützt.
-Die vollständige inhaltliche Übersetzungsprüfung wird in weiteren getrennt geprüften Chargen fortgesetzt; dieses Release behauptet keine abgeschlossene Gesamtprüfung.
-
+- Spielupdates und Reparaturen lassen sich jetzt auch starten, wenn „Vorherige“ als Spielversion ausgewählt ist.
+- Das Update führt von der gerade ausgewählten Version auf den aktuellen Kanalstand. Die vorige Version bleibt als Rückweg erhalten.
+- Automatische Spielupdates bleiben pausiert, solange du bewusst die vorige Version spielst. Manuelle Updates und Launcher-Selbstupdates sind weiterhin verfügbar.
+- Spielstände und persönliche Einstellungen bleiben erhalten.
+- Der Spielkanal bleibt unverändert auf Pokémon Reborn AllGen 0.9.9, Version 7.3.25.

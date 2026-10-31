@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "launcher": {
-    "version": "7.4.0",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.4.0/launcher.exe",
-    "sha256": "404873972d4bf1be3d1013a79169b555164c1a73d5078d1ec555bf2cbbda1f7b",
-    "size": 180791029
+    "version": "7.4.1",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.4.1/launcher.exe",
+    "sha256": "b73e1c4869cbbdef5eae6db7cdc497bc811b809f3b1b7c4a6cf408105e194985",
+    "size": 180790588
   },
   "game": {
     "version": "7.3.25",
@@ -271,7 +271,7 @@
       }
     ]
   },
-  "patchNotes": "Spielhotfix 7.3.25 – sauberer Neustart auf 7.3.23 / AllGen 0.9.9\n\n7.3.24 wurde verworfen. Dieser Hotfix wurde frisch aus dem verifizierten 7.3.23-Paket gebaut.\nAlle funktionierenden Spieldaten, Custom-Mods, Musikdateien, Grafiken und Schrift-/UI-Anpassungen aus 7.3.23 bleiben erhalten.\nDie vollständigen AllGen-0.9.9-Itemdefinitionen und die kurzen, lesbaren Beschreibungen sind wieder enthalten.\n\n43 frisch geprüfte Übersetzungskorrekturen an 25 unterschiedlichen Originaltexten: Tauros-Reiten statt Fahren; korrekter Singular und Artikel bei Tauros/Bisofank; Ferns Anrede und Aussagen einschließlich derben Tons; natürliche Bitterkuss-Ladenschilder.\nDie Texte wurden mit dem passenden Spielcompiler neu in german.dat kompiliert.\nBereits übersetzte UI-Beschriftungen, englische Design-Texte und die Originalschrift bleiben unverändert.\n\nUpdatepfade für 7.3.23 und bereits installierte 7.3.24 werden separat geprüft. Spielstände, Einstellungen und eigene Dateien werden geschützt.\nDie vollständige inhaltliche Übersetzungsprüfung wird in weiteren getrennt geprüften Chargen fortgesetzt; dieses Release behauptet keine abgeschlossene Gesamtprüfung.\n",
+  "patchNotes": "# Launcher 7.4.1\n\n- Spielupdates und Reparaturen lassen sich jetzt auch starten, wenn „Vorherige“ als Spielversion ausgewählt ist.\n- Das Update führt von der gerade ausgewählten Version auf den aktuellen Kanalstand. Die vorige Version bleibt als Rückweg erhalten.\n- Automatische Spielupdates bleiben pausiert, solange du bewusst die vorige Version spielst. Manuelle Updates und Launcher-Selbstupdates sind weiterhin verfügbar.\n- Spielstände und persönliche Einstellungen bleiben erhalten.\n- Der Spielkanal bleibt unverändert auf Pokémon Reborn AllGen 0.9.9, Version 7.3.25.",
   "gameHotfixesV2": [
     {
       "fromVersion": "7.3.23",

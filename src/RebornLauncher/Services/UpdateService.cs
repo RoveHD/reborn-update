@@ -61,8 +61,6 @@ public sealed class UpdateService : IDisposable
         using var installLock = installer.AcquireLock();
         GameInstaller.EnsureGameStopped(directory, settings.GameExecutable);
         await Task.Run(installer.Recover, cancellationToken);
-        if (installer.GetVersionSelection(settings.ResolveLocalVersionPath()).IsPreviousActive)
-            throw new InvalidOperationException("Bitte zuerst zur aktuellen Version wechseln, bevor du ein Update oder eine Reparatur startest.");
         string versionPath = settings.ResolveLocalVersionPath();
         string localVersion = File.Exists(versionPath) ? await File.ReadAllTextAsync(versionPath, cancellationToken) : "0.0.0";
         if (ReleaseVersion.Parse(localVersion).CompareTo(ReleaseVersion.Parse(manifest.Game.Version)) > 0)

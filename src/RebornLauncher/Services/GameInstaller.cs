@@ -76,7 +76,6 @@ public sealed partial class GameInstaller
         string journalPath = Path.Combine(state, "game-transaction.json");
         if (File.Exists(journalPath)) throw new InvalidOperationException("Ein vorheriges Update muss zuerst wiederhergestellt werden.");
         var selection = LoadSelection(versionPath);
-        if (selection?.IsPreviousActive == true) throw new InvalidOperationException("Bitte zuerst zur aktuellen Version wechseln, bevor du ein Update oder eine Reparatur startest.");
         string transaction = CreateStage();
         try
         {

@@ -5,7 +5,7 @@ Deutscher Windows-Launcher für die gemeinsame Reborn-/AllGen-Installation. Er a
 ## Für Mitspieler
 
 1. Spiel und alten Launcher schließen.
-2. [Reborn-Launcher-7.4.0-Setup.exe](https://github.com/RoveHD/reborn-update/releases/download/v7.4.0/Reborn-Launcher-7.4.0-Setup.exe) herunterladen und installieren. Keine Administratorrechte nötig.
+2. [Reborn-Launcher-7.4.1-Setup.exe](https://github.com/RoveHD/reborn-update/releases/download/v7.4.1/Reborn-Launcher-7.4.1-Setup.exe) herunterladen und installieren. Keine Administratorrechte nötig.
 3. Den Launcher über das Startmenü öffnen und einmal den vorhandenen Reborn-Spielordner auswählen.
 
 Der Launcher ist separat unter `%LOCALAPPDATA%\Programs\RebornLauncher` installiert. Das Setup verändert keine Spieldateien. Neue veröffentlichte Launcher-Versionen kommen beim Start automatisch über GitHub. Ein vorhandener C#-Launcher 7.0/7.1 kann sich ebenfalls selbst aktualisieren; für den dauerhaften Installationsordner einmal das Setup verwenden.
@@ -36,7 +36,7 @@ Die automatische Spielaktualisierung ist standardmäßig aktiv und abschaltbar. 
 
 Unter **Spielversion wählen** stehen nach dem ersten Versionsupdate mit diesem Launcher **Aktuell** und **Vorherige** bereit. Beide bleiben erhalten und lassen sich beliebig oft auswählen und starten. Reborn muss beim Umschalten geschlossen sein. Der Launcher tauscht die unterschiedlichen Dateien im vorhandenen Spielordner aus; es läuft jeweils die ausgewählte Version. Dafür ist kein erneuter Download erforderlich.
 
-Die Auswahl bleibt nach dem Schließen erhalten. Solange **Vorherige** aktiv ist, pausieren automatische Spielupdates; Update und Reparatur werden erst nach dem Wechsel zu **Aktuell** wieder freigegeben. Ein weiteres Versionsupdate ersetzt das Paar: Aus A/B wird B/C. Eine Reparatur derselben Version erhält den vorhandenen Rückweg. Gespeichert werden die unterschiedlichen Dateien, keine vollständige zweite Kopie des Spiels.
+Die Auswahl bleibt nach dem Schließen erhalten. Solange **Vorherige** aktiv ist, pausieren automatische Spielupdates, damit du die ältere Version bewusst weiterspielen kannst. Über **Updates prüfen** oder **Dateien reparieren** kannst du jederzeit direkt von der ausgewählten Version auf den aktuellen Stand wechseln. Ein weiteres Versionsupdate ersetzt das Paar: Aus A/B wird B/C. Eine Reparatur derselben Version erhält den vorhandenen Rückweg. Gespeichert werden die unterschiedlichen Dateien, keine vollständige zweite Kopie des Spiels.
 
 Spielstände und persönliche Einstellungen werden beim Wechsel nicht zurückgesetzt. Ein mit einer neueren Spielversion gespeicherter Spielstand kann mit der älteren Version inkompatibel sein; vor dem ersten Start mit einer neuen Version wichtige Spielstände separat sichern. Bereits vor Installation dieses Launchers entfernte Spielversionen können nicht nachträglich wiederhergestellt werden.
 

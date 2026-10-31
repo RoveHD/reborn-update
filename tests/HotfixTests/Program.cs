@@ -38,6 +38,43 @@ Add("delta update supports version switching in both directions", async f =>
     await service.SwitchVersionAsync(f.Settings, new InlineProgress(_ => { }), CancellationToken.None);
     Check(f.Read(Fixture.Mod) == "fixed mod" && f.Read("version.txt") == "7.3.2");
 });
+Add("hotfix updates directly from selected older version and replaces withdrawn snapshot", async f =>
+{
+    await f.Install();
+    using var service = f.Service();
+    await service.SwitchVersionAsync(f.Settings, new InlineProgress(_ => { }), CancellationToken.None);
+    string withdrawnSnapshot = JsonSerializer.Deserialize<GameInstaller.VersionState>(
+        File.ReadAllText(Path.Combine(f.Root, ".reborn-updater/versions.json")))!.Snapshot;
+    Check(service.GetVersionSelection(f.Settings) == new VersionSelection("7.3.1", "7.3.2", true));
+
+    f.Handler.Requests.Clear();
+    await f.Install();
+
+    Check(f.Handler.Requests.SequenceEqual(new[] { "/manifest", "/delta" }));
+    Check(f.Read(Fixture.Mod) == "fixed mod" && f.Read("version.txt") == "7.3.2");
+    Check(service.GetVersionSelection(f.Settings) == new VersionSelection("7.3.2", "7.3.1", false));
+    Check(!Directory.Exists(Path.Combine(f.Root, ".reborn-updater", withdrawnSnapshot)));
+    Check(Directory.GetDirectories(Path.Combine(f.Root, ".reborn-updater"), "game-*").Length == 1);
+    Check(f.Read("Save Data/Game.rxdata") == "save" && f.Read("mkxp.json") == "custom settings");
+});
+Add("full-package update works from selected older version", async f =>
+{
+    await f.Install();
+    using var service = f.Service();
+    await service.SwitchVersionAsync(f.Settings, new InlineProgress(_ => { }), CancellationToken.None);
+    Check(service.GetVersionSelection(f.Settings).IsPreviousActive);
+
+    f.Manifest.GameHotfixes.Clear();
+    f.Manifest.GameHotfixesV2.Clear();
+    f.Handler.Requests.Clear();
+    await f.Install();
+
+    Check(f.Handler.Requests.SequenceEqual(new[] { "/manifest", "/full" }));
+    Check(f.Read(Fixture.Mod) == "fixed mod" && f.Read("version.txt") == "7.3.2");
+    Check(service.GetVersionSelection(f.Settings) == new VersionSelection("7.3.2", "7.3.1", false));
+    Check(f.Read("Graphics/custom.png") == "custom shiny");
+    Check(f.Read("Save Data/Game.rxdata") == "save" && f.Read("mkxp.json") == "custom settings");
+});
 Add("custom base hash stops without overwriting personal bytes through full fallback", async f =>
 {
     f.Write(Fixture.Mod, "custom mod"); await Reject<InvalidOperationException>(() => f.Install());

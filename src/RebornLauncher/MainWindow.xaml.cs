@@ -108,8 +108,8 @@ public partial class MainWindow : Window
         _localVersion = "6.1.0";
         _versionSelection = new VersionSelection("6.1.0", "7.0.0", true);
         UpdateVersionLabels();
-        SetStatus("Version 6.1.0 ausgewählt. Automatische Spielupdates pausieren.");
-        if (PreviousVersionButton.IsEnabled || !LatestVersionButton.IsEnabled || CheckUpdatesButton.IsEnabled || RepairButton.IsEnabled || !StartGameButton.IsEnabled)
+        SetStatus("Version 6.1.0 ausgewählt. Manuelle Updates bleiben verfügbar.");
+        if (PreviousVersionButton.IsEnabled || !LatestVersionButton.IsEnabled || !CheckUpdatesButton.IsEnabled || !RepairButton.IsEnabled || !StartGameButton.IsEnabled)
             throw new InvalidOperationException("Falsche Bedienelemente bei ausgewählter vorheriger Version.");
     }
 
@@ -142,7 +142,7 @@ public partial class MainWindow : Window
             SetStatus(!HasSelectedGame()
                 ? "Wähle deinen vorhandenen Reborn-Spielordner aus."
                 : _versionSelection?.IsPreviousActive == true
-                    ? $"Reborn {_localVersion} ist ausgewählt. Automatische Spielupdates sind pausiert."
+                    ? $"Reborn {_localVersion} (Vorherige) ist ausgewählt. Manuelle Updates bleiben verfügbar."
                     : UpdateService.IsDifferentVersion(_localVersion, _remoteVersion)
                         ? $"Reborn {_remoteVersion} ist verfügbar. Installiert: {_localVersion}."
                         : $"Reborn {_localVersion} ist aktuell. Bereit zum Spielen.");
@@ -195,12 +195,6 @@ public partial class MainWindow : Window
             _localVersion = await _updates.ReadLocalVersionAsync(_settings, token);
             _versionSelection = _updates.GetVersionSelection(_settings);
             UpdateVersionLabels();
-
-            if (_versionSelection.IsPreviousActive)
-            {
-                SetStatus("Vorherige Version ausgewählt. Zum Aktualisieren oder Reparieren zuerst auf „Aktuell“ wechseln.");
-                return true;
-            }
 
             _remoteVersion = await _updates.GetRemoteVersionAsync(_settings, token);
             UpdateVersionLabels();
@@ -324,7 +318,13 @@ public partial class MainWindow : Window
 
         if (_versionSelection?.IsPreviousActive == true)
         {
-            SetBadge($"Vorherige Version {_localVersion} aktiv · Auto-Update pausiert", "#2A2230", "#5D4D6D", "#E7D8FF");
+            string previousStatus = !hasRemote
+                ? $"Vorherige Version {_localVersion} aktiv · Offline"
+                : needsUpdate
+                    ? $"Update auf {_remoteVersion} verfügbar · ältere Version aktiv"
+                    : $"Vorherige Version {_localVersion} aktiv · manuelles Update verfügbar";
+            SetBadge(previousStatus,
+                "#2A2230", "#5D4D6D", "#E7D8FF");
         }
         else if (!hasRemote)
         {
@@ -365,10 +365,10 @@ public partial class MainWindow : Window
         VersionSelectionHint.Text = !hasPair
             ? "Eine zweite Version ist nach dem nächsten Spielupdate verfügbar."
             : previous
-                ? "Auto-Update pausiert. Neue Spielstände sind eventuell nicht mit der älteren Version kompatibel."
+                ? "Manuelle Updates funktionieren auch hier. Neue Spielstände können mit älteren Versionen inkompatibel sein."
                 : "Beide Versionen bleiben verfügbar. Zum Wechseln muss Reborn geschlossen sein.";
-        CheckUpdatesButton.IsEnabled = !_isBusy && !previous;
-        RepairButton.IsEnabled = !_isBusy && !previous;
+        CheckUpdatesButton.IsEnabled = !_isBusy;
+        RepairButton.IsEnabled = !_isBusy;
         StartGameButton.Content = "REBORN STARTEN";
         if (!HasSelectedGame())
         {
@@ -617,7 +617,7 @@ public partial class MainWindow : Window
         if (_isBusy) return;
         if (!HasSelectedGame()) { ChooseFolderButton_Click(sender, e); return; }
         var ready = true;
-        if (_versionSelection?.IsPreviousActive != true && _settings.AutoUpdate && !string.IsNullOrWhiteSpace(_remoteVersion))
+        if (_settings.AutoUpdate && !string.IsNullOrWhiteSpace(_remoteVersion))
         {
             ready = await CheckLauncherUpdateAsync();
         }

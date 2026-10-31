@@ -41,8 +41,9 @@ ZWISCHEN ZWEI VERSIONEN WECHSELN
 Nach dem ersten Versionsupdate kannst du unter „Spielversion wählen“ zwischen
 „Aktuell“ und „Vorherige“ wechseln. Reborn muss dabei geschlossen sein.
 Beide Versionen bleiben startbar. Es ist kein neuer Download nötig.
-Solange „Vorherige“ aktiv ist, pausieren automatische Spielupdates.
-Für Updates und Reparaturen zuerst wieder „Aktuell“ auswählen.
+Solange „Vorherige“ aktiv ist, pausieren automatische Spielupdates,
+damit du die ältere Version bewusst weiterspielen kannst. Über „Updates prüfen“
+oder „Dateien reparieren“ kannst du jederzeit direkt auf den aktuellen Stand wechseln.
 Beim nächsten Versionsupdate bleibt wieder genau ein Vorgänger erhalten.
 Spielstände bleiben unverändert; neue Spielstände können mit älteren
 Spielversionen inkompatibel sein. Wichtige Spielstände vorher separat sichern.

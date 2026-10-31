@@ -517,7 +517,9 @@ Add("Repair preserves previous release and repairs bytes before switching back a
     installer.Install(v2, Path.Combine(root, "version.txt"), "2.0.0", [], progress, CancellationToken.None);
     Check(metadata == f.Read(root, ".reborn-updater/versions.json"));
     installer.SwitchVersion(Path.Combine(root, "version.txt"), progress, CancellationToken.None); Check(f.Read(root, "a") == "v1");
-    Throws<InvalidOperationException>(() => installer.Install(v2, Path.Combine(root, "version.txt"), "2.0.0", [], progress, CancellationToken.None));
+    installer.Install(v2, Path.Combine(root, "version.txt"), "2.0.0", [], progress, CancellationToken.None);
+    Check(f.Read(root, "a") == "v2" && installer.GetVersionSelection(Path.Combine(root, "version.txt")) == new VersionSelection("2.0.0", "1.0.0", false));
+    installer.SwitchVersion(Path.Combine(root, "version.txt"), progress, CancellationToken.None); Check(f.Read(root, "a") == "v1");
     installer.SwitchVersion(Path.Combine(root, "version.txt"), progress, CancellationToken.None); Check(f.Read(root, "a") == "v2");
 });
 Add("Damaged snapshot fails before any active mutation and keeps the selected release playable", () =>
@@ -562,21 +564,25 @@ Add("Process interruption during switch restores active files and retains both r
     fresh.SwitchVersion(Path.Combine(root, "version.txt"), progress, CancellationToken.None); Check(f.Read(root, "a") == "v1");
     fresh.SwitchVersion(Path.Combine(root, "version.txt"), progress, CancellationToken.None); Check(f.Read(root, "a") == "v2");
 });
-Async("Service blocks update and repair of previous selection before package request", async () =>
+Async("Service updates from previous selection using the current full package", async () =>
 {
     using var f = new Fixture(); string root = f.Dir("game"), v2 = f.Dir("v2");
     foreach (string file in new[] { "Game.exe", "Game.ini", "mkxp.json" }) f.Write(root, file, "existing");
-    f.Write(root, "a", "v1"); f.Write(root, "version.txt", "1.0.0"); f.Write(v2, "a", "v2");
+    f.Write(root, "a", "v1"); f.Write(root, "version.txt", "1.0.0"); f.Write(root, "Save Data/Game.rxdata", "save"); f.Write(v2, "a", "v2");
     var installer = new GameInstaller(root);
     using (installer.AcquireLock()) { installer.Install(v2, Path.Combine(root, "version.txt"), "2.0.0", [], progress, CancellationToken.None); installer.SwitchVersion(Path.Combine(root, "version.txt"), progress, CancellationToken.None); }
-    var asset = new { version = "2.0.0", url = "https://example.test/package", sha256 = new string('0', 64), size = 1 };
+    string packagePath = f.Zip(["Game.exe", "Game.ini", "mkxp.json", "a"]);
+    byte[] package = File.ReadAllBytes(packagePath);
+    var asset = new { version = "3.0.0", url = "https://example.test/package", sha256 = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(package)), size = package.Length };
     string json = System.Text.Json.JsonSerializer.Serialize(new { schemaVersion = 1, launcher = asset, game = asset, patchNotes = "" });
-    var handler = new StubHandler(Encoding.UTF8.GetBytes(json)); using var service = new UpdateService(new VerifiedDownload(handler));
+    var handler = new StubHandler(Encoding.UTF8.GetBytes(json)) { PackageData = package }; using var service = new UpdateService(new VerifiedDownload(handler));
     var settings = new LauncherSettings { InstallDirectory = root, ManifestUrl = "https://example.test/update.json" };
     Check(service.GetVersionSelection(settings) == new VersionSelection("1.0.0", "2.0.0", true));
-    await ThrowsAsync<InvalidOperationException>(() => service.DownloadAndInstallAsync(settings, "2.0.0", progress, CancellationToken.None));
-    Check(handler.Requests == 1 && f.Read(root, "a") == "v1");
-    await service.SwitchVersionAsync(settings, progress, CancellationToken.None); Check(service.GetVersionSelection(settings) == new VersionSelection("2.0.0", "1.0.0", false));
+    await service.DownloadAndInstallAsync(settings, "3.0.0", progress, CancellationToken.None);
+    Check(handler.Paths.SequenceEqual(new[] { "/update.json", "/package" }));
+    Check(f.Read(root, "a") == "data" && f.Read(root, "version.txt") == "3.0.0");
+    Check(service.GetVersionSelection(settings) == new VersionSelection("3.0.0", "1.0.0", false));
+    Check(f.Read(root, "Save Data/Game.rxdata") == "save" && f.Read(root, "mkxp.json") == "existing");
 });
 
 Add("Committed switch journal finalizes metadata after interrupted commit and retires the old snapshot", () =>
@@ -651,10 +657,13 @@ Environment.ExitCode = failures == 0 ? 0 : 1;
 sealed class StubHandler(byte[] data, HttpStatusCode status = HttpStatusCode.OK) : HttpMessageHandler
 {
     public int Requests { get; private set; }
+    public List<string> Paths { get; } = [];
+    public byte[]? PackageData { get; set; }
     protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        Requests++;
-        return Task.FromResult(new HttpResponseMessage(status) { Content = new ByteArrayContent(data), RequestMessage = request });
+        Requests++; Paths.Add(request.RequestUri!.AbsolutePath);
+        byte[] response = request.RequestUri.AbsolutePath == "/package" && PackageData is not null ? PackageData : data;
+        return Task.FromResult(new HttpResponseMessage(status) { Content = new ByteArrayContent(response), RequestMessage = request });
     }
 }
 sealed class InlineProgress(Action<UpdateProgress> callback) : IProgress<UpdateProgress>

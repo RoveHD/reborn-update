@@ -1,1 +1,5 @@
-Deutsches Dialog-Hotfix für AllGen 0.9.9 (Spiel 7.3.27). Enthält 1.353 geprüfte Dialogkorrekturen in intl.txt und der mit dem gebündelten Spielcompiler erzeugten Data/german.dat sowie aktuelle Trainertext- und zusammengeführte Deutschkorrekturen. Auslieferung über Launcher 7.4.1. Das getestete Update von Spiel 7.3.25 nutzt ein Delta von 8,7 MB; das Vollpaket bleibt als Fallback verfügbar. Die Dialogprüfung wird fortgesetzt; dieses Release ist ein geprüfter Zwischenstand und schließt nicht sämtliche Spieldialoge ab.
+# Launcher 7.4.2 – robuste Wiederaufnahme bei abweichendem Spielstand
+
+- Wenn ein inkrementelles Update nicht exakt auf die vorhandenen Spieldateien passt, lädt der Launcher das geprüfte Vollpaket der Zielversion.
+- Änderungen an verwalteten Spieldateien bleiben in der vorherigen Version erhalten und können über den Versionswechsel wiederhergestellt werden.
+- Spielstände, Einstellungen und zusätzliche Dateien außerhalb des Pakets bleiben erhalten.

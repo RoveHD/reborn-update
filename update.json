@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "launcher": {
-    "version": "7.4.1",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.4.1/launcher.exe",
-    "sha256": "b73e1c4869cbbdef5eae6db7cdc497bc811b809f3b1b7c4a6cf408105e194985",
-    "size": 180790588
+    "version": "7.4.2",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.4.2/launcher.exe",
+    "sha256": "1cf982e08801b885f61161747763998cc1e4cd711b31b2f982fa79d33f0ed9e5",
+    "size": 180791541
   },
   "game": {
     "version": "7.3.27",
@@ -199,7 +199,7 @@
       }
     ]
   },
-  "patchNotes": "Deutsches Dialog-Hotfix für AllGen 0.9.9 (Spiel 7.3.27). Enthält 1.353 geprüfte Dialogkorrekturen in intl.txt und der mit dem gebündelten Spielcompiler erzeugten Data/german.dat sowie aktuelle Trainertext- und zusammengeführte Deutschkorrekturen. Auslieferung über Launcher 7.4.1. Das getestete Update von Spiel 7.3.25 nutzt ein Delta von 8,7 MB; das Vollpaket bleibt als Fallback verfügbar. Die Dialogprüfung wird fortgesetzt; dieses Release ist ein geprüfter Zwischenstand und schließt nicht sämtliche Spieldialoge ab.",
+  "patchNotes": "# Launcher 7.4.2 – robuste Wiederaufnahme bei abweichendem Spielstand\n\n- Wenn ein inkrementelles Update nicht exakt auf die vorhandenen Spieldateien passt, lädt der Launcher das geprüfte Vollpaket der Zielversion.\n- Änderungen an verwalteten Spieldateien bleiben in der vorherigen Version erhalten und können über den Versionswechsel wiederhergestellt werden.\n- Spielstände, Einstellungen und zusätzliche Dateien außerhalb des Pakets bleiben erhalten.",
   "gameHotfixes": [],
   "gameHotfixesV2": [
     {

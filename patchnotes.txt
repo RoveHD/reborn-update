@@ -1,7 +1,2 @@
-# Launcher 7.4.1
+German dialogue update: 1,353 reviewed corrections are included in intl.txt and its bundled-runtime compiled german.dat. Current German trainer and consolidated localization text corrections are also preserved. The total dialogue inventory is still being reviewed. Launcher remains at 7.4.0; this is a local release candidate and has not been published.
 
-- Spielupdates und Reparaturen lassen sich jetzt auch starten, wenn „Vorherige“ als Spielversion ausgewählt ist.
-- Das Update führt von der gerade ausgewählten Version auf den aktuellen Kanalstand. Die vorige Version bleibt als Rückweg erhalten.
-- Automatische Spielupdates bleiben pausiert, solange du bewusst die vorige Version spielst. Manuelle Updates und Launcher-Selbstupdates sind weiterhin verfügbar.
-- Spielstände und persönliche Einstellungen bleiben erhalten.
-- Der Spielkanal bleibt unverändert auf Pokémon Reborn AllGen 0.9.9, Version 7.3.25.

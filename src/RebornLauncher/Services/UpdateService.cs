@@ -76,9 +76,11 @@ public sealed class UpdateService : IDisposable
                 .FirstOrDefault(h => h.FromVersion.Equals(localVersion.Trim(), StringComparison.Ordinal));
             if (candidate is not null)
             {
-                if (!await Task.Run(() => candidate.MatchesBase(directory, versionPath, cancellationToken), cancellationToken))
-                    throw new InvalidOperationException("Die Spieldateien passen nicht zur Hotfix-Ausgangsversion. Eine Datei wurde verändert, fehlt oder belegt einen neuen Hotfix-Pfad. Bitte eigene Dateien außerhalb des Spielordners sichern und den Konflikt prüfen. Es wurden keine Spieldateien geändert.");
-                hotfix = candidate;
+                if (await Task.Run(() => candidate.MatchesBase(directory, versionPath, cancellationToken), cancellationToken))
+                    hotfix = candidate;
+                else
+                    progress.Report(new(UpdateStage.Checking, null, 0, null, 0,
+                        "Der installierte Versionsstand weicht ab. Das geprüfte Vollpaket wird geladen; geänderte Spieldateien bleiben über die vorherige Version wiederherstellbar …"));
             }
         }
         UpdateAsset asset = hotfix?.Asset ?? manifest.Game;

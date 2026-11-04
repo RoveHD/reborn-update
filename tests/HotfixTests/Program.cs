@@ -38,16 +38,26 @@ Add("delta update supports version switching in both directions", async f =>
     await service.SwitchVersionAsync(f.Settings, new InlineProgress(_ => { }), CancellationToken.None);
     Check(f.Read(Fixture.Mod) == "fixed mod" && f.Read("version.txt") == "7.3.2");
 });
-Add("custom base hash stops without overwriting personal bytes through full fallback", async f =>
+Add("custom base hash uses verified full package and keeps changed game files in previous version", async f =>
 {
-    f.Write(Fixture.Mod, "custom mod"); await Reject<InvalidOperationException>(() => f.Install());
-    Check(f.Handler.Requests.SequenceEqual(new[] { "/manifest" }));
-    Check(f.Read(Fixture.Mod) == "custom mod" && f.Read("version.txt") == "7.3.1" && f.Read("retired.txt") == "retired");
+    f.Write(Fixture.Mod, "custom mod"); await f.Install();
+    Check(f.Handler.Requests.SequenceEqual(new[] { "/manifest", "/full" }));
+    Check(f.Read(Fixture.Mod) == "fixed mod" && f.Read("version.txt") == "7.3.2");
+    Check(!File.Exists(Path.Combine(f.Root, "retired.txt")) && f.Read("Graphics/custom.png") == "custom shiny");
+    using var service = f.Service();
+    Check(service.GetVersionSelection(f.Settings) == new VersionSelection("7.3.2", "7.3.1", false));
+    await service.SwitchVersionAsync(f.Settings, new InlineProgress(_ => { }), CancellationToken.None);
+    Check(f.Read(Fixture.Mod) == "custom mod" && f.Read("version.txt") == "7.3.1");
+    Check(f.Read("retired.txt") == "retired");
+    Check(f.Read("Save Data/Game.rxdata") == "save" && f.Read("mkxp.json") == "custom settings");
 });
-Add("missing replacement base stops without full fallback", async f =>
+Add("missing replacement base uses full package and is restored by version switch", async f =>
 {
-    File.Delete(Path.Combine(f.Root, Fixture.Mod)); await Reject<InvalidOperationException>(() => f.Install());
-    Check(f.Handler.Requests.SequenceEqual(new[] { "/manifest" }));
+    File.Delete(Path.Combine(f.Root, Fixture.Mod)); await f.Install();
+    Check(f.Handler.Requests.SequenceEqual(new[] { "/manifest", "/full" }));
+    Check(f.Read(Fixture.Mod) == "fixed mod" && f.Read("version.txt") == "7.3.2");
+    using var service = f.Service();
+    await service.SwitchVersionAsync(f.Settings, new InlineProgress(_ => { }), CancellationToken.None);
     Check(!File.Exists(Path.Combine(f.Root, Fixture.Mod)) && f.Read("version.txt") == "7.3.1");
 });
 Add("another version selects full package", async f =>
@@ -210,33 +220,31 @@ Add("deletion-only delta accepts empty ZIP and restores removed bytes", async f 
     await service.SwitchVersionAsync(f.Settings, new InlineProgress(_ => { }), CancellationToken.None);
     Check(!File.Exists(Path.Combine(f.Root, "retired.txt")) && f.Read("version.txt") == "7.3.2");
 });
-Add("new path occupied by personal or identical bytes is never overwritten", async f =>
+Add("new path occupied by personal or identical bytes survives verified full-package fallback", async f =>
 {
     f.MixedDelta();
-    foreach (string bytes in new[] { "personal mod", "new mod" })
-    {
-        f.Write(Fixture.Added, bytes); await Reject<InvalidOperationException>(() => f.Install());
-        Check(f.Read(Fixture.Added) == bytes); Unchanged(f);
-    }
-    Check(f.Handler.Requests.All(path => path == "/manifest"));
+    f.Write(Fixture.Added, "personal mod"); await f.Install();
+    Check(f.Read(Fixture.Added) == "personal mod" && f.Read("version.txt") == "7.3.2");
+    using var second = new Fixture(); second.MixedDelta(); second.Write(Fixture.Added, "new mod"); await second.Install();
+    Check(second.Read(Fixture.Added) == "new mod" && second.Read("version.txt") == "7.3.2");
 });
-Add("new path occupied by directory or parent file is rejected", async f =>
+Add("unrelated directory or parent file survives verified full-package fallback", async f =>
 {
     f.MixedDelta(); Directory.CreateDirectory(Path.Combine(f.Root, Fixture.Added));
-    await Reject<InvalidOperationException>(() => f.Install()); Unchanged(f);
-    f.DeltaManifest.Files.Single(file => !file.BeforeExists).Path = "personal-parent/new.rb";
-    f.Write("personal-parent", "personal parent file");
-    await Reject<InvalidOperationException>(() => f.Install()); Unchanged(f);
-    Check(f.Read("retired.txt") == "retired" && f.Handler.Requests.All(path => path == "/manifest"));
+    await f.Install();
+    Check(Directory.Exists(Path.Combine(f.Root, Fixture.Added)) && f.Read("version.txt") == "7.3.2");
+    using var second = new Fixture(); second.MixedDelta();
+    second.DeltaManifest.Files.Single(file => !file.BeforeExists).Path = "personal-parent/new.rb";
+    second.Write("personal-parent", "personal parent file"); await second.Install();
+    Check(second.Read("personal-parent") == "personal parent file" && second.Read("version.txt") == "7.3.2");
 });
-Add("changed or missing removal base is rejected without full download", async f =>
+Add("full-package fallback preserves changed or missing removal paths", async f =>
 {
     f.MixedDelta(); f.Write("retired.txt", "personal bytes");
-    await Reject<InvalidOperationException>(() => f.Install()); Unchanged(f);
+    await f.Install();
     Check(f.Read("retired.txt") == "personal bytes");
-    File.Delete(Path.Combine(f.Root, "retired.txt"));
-    await Reject<InvalidOperationException>(() => f.Install()); Unchanged(f);
-    Check(f.Handler.Requests.All(path => path == "/manifest"));
+    using var second = new Fixture(); second.MixedDelta(); File.Delete(Path.Combine(second.Root, "retired.txt")); await second.Install();
+    Check(!File.Exists(Path.Combine(second.Root, "retired.txt")) && second.Read("version.txt") == "7.3.2");
 });
 Add("delete paths cannot carry archive payload", async f =>
 {

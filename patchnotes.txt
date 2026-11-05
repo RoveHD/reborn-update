@@ -1,5 +1,6 @@
-# Launcher 7.4.2 – robuste Wiederaufnahme bei abweichendem Spielstand
+# Spielhotfix 7.3.28 – deutsche Dialoge
 
-- Wenn ein inkrementelles Update nicht exakt auf die vorhandenen Spieldateien passt, lädt der Launcher das geprüfte Vollpaket der Zielversion.
-- Änderungen an verwalteten Spieldateien bleiben in der vorherigen Version erhalten und können über den Versionswechsel wiederhergestellt werden.
-- Spielstände, Einstellungen und zusätzliche Dateien außerhalb des Pakets bleiben erhalten.
+- Liefert 18.123 lokal integrierte Dialogkorrekturen aus `intl.txt` und dem mit dem gebündelten Pokémon-Reborn-Compiler erzeugten `Data/german.dat`.
+- Enthält außerdem die geprüften Dialogformulierungen des Danielle-Eis-Events und den Schriftgrößen-Fix nach Texten mit Größenmarkierung.
+- In der isolierten Testkopie bestanden 66/66 PBIntl-Lookups, acht native Dialogfenster und der sichtbare Spielstart mit sauberem Exit.
+- Die Dialogübersetzung bleibt in Arbeit.

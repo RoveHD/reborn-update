@@ -7,61 +7,11 @@
     "size": 180791541
   },
   "game": {
-    "version": "7.3.27",
-    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.27/Reborn-AllGen-0.9.9.zip",
-    "sha256": "f9ebf5dee6bf0af5dd4d53d16e0c1fbdd932790b5158a8f2a95439fe76551315",
-    "size": 1476821311,
+    "version": "7.3.28",
+    "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.28/Reborn-AllGen-0.9.9.zip",
+    "sha256": "db41f0eaac69eb3af3e3abb69917cab806fb4a8c72b847481b702e15a29931f7",
+    "size": 1476763829,
     "removedFiles": [
-      {
-        "path": "Graphics/Characters/Followers/1036.png",
-        "sha256": "af804a8ef5de64cd5ca50b13d51d2401c8f74ff7ab4f5ca3896aeedaba387678",
-        "replacedBy": "Graphics/Characters/Followers/1037.png"
-      },
-      {
-        "path": "Graphics/Characters/Followers/1036s.png",
-        "sha256": "d633d0c15dceb85c8b9a63ca93938ce497d73ba37d19c217021bde802eaeff30",
-        "replacedBy": "Graphics/Characters/Followers/1037s.png"
-      },
-      {
-        "path": "patch/Graphics/Characters/Followers/1034.png",
-        "sha256": "25c8ebf26d8f29991c6d38080a0b81f1daf4703778c5cb146f6548104576b599",
-        "replacedBy": "Graphics/Characters/Followers/1034.png"
-      },
-      {
-        "path": "patch/Graphics/Characters/Followers/1034s.png",
-        "sha256": "de5da3eb23decf29bb53b21025e220c8ba2109b1a34a0463346f953f972860bb",
-        "replacedBy": "Graphics/Characters/Followers/1034s.png"
-      },
-      {
-        "path": "patch/Graphics/Characters/Followers/1035.png",
-        "sha256": "2b4103d32ec21bee528ad99e077666427ec77a853ed1c67d9bb60eb6d4d937e4",
-        "replacedBy": "Graphics/Characters/Followers/1035.png"
-      },
-      {
-        "path": "patch/Graphics/Characters/Followers/1035s.png",
-        "sha256": "6dfbc7efa6d2a3fea3255b10249f37f8a4fb96498aa98b5682c1893809d54b51",
-        "replacedBy": "Graphics/Characters/Followers/1035s.png"
-      },
-      {
-        "path": "patch/Graphics/Characters/Followers/1037.png",
-        "sha256": "af804a8ef5de64cd5ca50b13d51d2401c8f74ff7ab4f5ca3896aeedaba387678",
-        "replacedBy": "Graphics/Characters/Followers/1037.png"
-      },
-      {
-        "path": "patch/Graphics/Characters/Followers/1037s.png",
-        "sha256": "d633d0c15dceb85c8b9a63ca93938ce497d73ba37d19c217021bde802eaeff30",
-        "replacedBy": "Graphics/Characters/Followers/1037s.png"
-      },
-      {
-        "path": "patch/Graphics/Characters/Followers/1038.png",
-        "sha256": "c3c4afcbbceeb99973e93da6044ddc8444e8904b6be4e5aa312d2f9de7526423",
-        "replacedBy": "Graphics/Characters/Followers/1038.png"
-      },
-      {
-        "path": "patch/Graphics/Characters/Followers/1038s.png",
-        "sha256": "39b32c984f15ee75d8ca5e693059e99b3c6a10848fffab413f252004b6921f38",
-        "replacedBy": "Graphics/Characters/Followers/1038s.png"
-      },
       {
         "path": "patch/Mods/RE - Alte-Megasteine-Kompatibilitaet.rb",
         "sha256": "49f0d1482d6c504d48ffc7725c7c6019b379e683c3f7429ce2d3a7518ba10ad7",
@@ -199,170 +149,43 @@
       }
     ]
   },
-  "patchNotes": "# Launcher 7.4.2 – robuste Wiederaufnahme bei abweichendem Spielstand\n\n- Wenn ein inkrementelles Update nicht exakt auf die vorhandenen Spieldateien passt, lädt der Launcher das geprüfte Vollpaket der Zielversion.\n- Änderungen an verwalteten Spieldateien bleiben in der vorherigen Version erhalten und können über den Versionswechsel wiederhergestellt werden.\n- Spielstände, Einstellungen und zusätzliche Dateien außerhalb des Pakets bleiben erhalten.",
+  "patchNotes": "# Spielhotfix 7.3.28 – deutsche Dialoge\n\n- Liefert 18.123 lokal integrierte Dialogkorrekturen aus `intl.txt` und dem mit dem gebündelten Pokémon-Reborn-Compiler erzeugten `Data/german.dat`.\n- Enthält außerdem die geprüften Dialogformulierungen des Danielle-Eis-Events und den Schriftgrößen-Fix nach Texten mit Größenmarkierung.\n- In der isolierten Testkopie bestanden 66/66 PBIntl-Lookups, acht native Dialogfenster und der sichtbare Spielstart mit sauberem Exit.\n- Die Dialogübersetzung bleibt in Arbeit.",
   "gameHotfixes": [],
   "gameHotfixesV2": [
     {
-      "fromVersion": "7.3.25",
-      "version": "7.3.27",
-      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.27/Reborn-Hotfix-7.3.25-to-7.3.27.zip",
-      "sha256": "36dbd39482df9c14b24f18ca2186223481504b90daf39c4b9620ad87b5dac09c",
-      "size": 8702714,
+      "fromVersion": "7.3.27",
+      "version": "7.3.28",
+      "url": "https://github.com/RoveHD/reborn-update/releases/download/v7.3.28/Reborn-Hotfix-7.3.27-to-7.3.28.zip",
+      "sha256": "da5cb2e71087de369da71d5939e7c1f7919ecaa8b1dcd571b1564c309b4d05bd",
+      "size": 8014431,
       "files": [
         {
           "path": "Data/german.dat",
           "beforeExists": true,
-          "beforeSha256": "ceecd28b2a6e63962db2ebb04bd86c29f9ab336c59c4a5f3043413779c5d724f",
-          "sha256": "f78736e44ea4f5c17692ba3607162474f0062a62d68d328d3f9e5672e5084f9b",
-          "size": 13745622
+          "beforeSha256": "f78736e44ea4f5c17692ba3607162474f0062a62d68d328d3f9e5672e5084f9b",
+          "sha256": "8f3ec620c639ccb6e150b0759b773a6ccc6edcff19e9bca817872d49e04935ef",
+          "size": 13680722
         },
         {
-          "path": "Graphics/Characters/Followers/1034.png",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "25c8ebf26d8f29991c6d38080a0b81f1daf4703778c5cb146f6548104576b599",
-          "size": 9493
-        },
-        {
-          "path": "Graphics/Characters/Followers/1034s.png",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "de5da3eb23decf29bb53b21025e220c8ba2109b1a34a0463346f953f972860bb",
-          "size": 8695
-        },
-        {
-          "path": "Graphics/Characters/Followers/1035.png",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "2b4103d32ec21bee528ad99e077666427ec77a853ed1c67d9bb60eb6d4d937e4",
-          "size": 10965
-        },
-        {
-          "path": "Graphics/Characters/Followers/1035s.png",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "6dfbc7efa6d2a3fea3255b10249f37f8a4fb96498aa98b5682c1893809d54b51",
-          "size": 10032
-        },
-        {
-          "path": "Graphics/Characters/Followers/1037.png",
+          "path": "Scripts/SW Subclasses.rb",
           "beforeExists": true,
-          "beforeSha256": "c3c4afcbbceeb99973e93da6044ddc8444e8904b6be4e5aa312d2f9de7526423",
-          "sha256": "af804a8ef5de64cd5ca50b13d51d2401c8f74ff7ab4f5ca3896aeedaba387678",
-          "size": 9483
-        },
-        {
-          "path": "Graphics/Characters/Followers/1037s.png",
-          "beforeExists": true,
-          "beforeSha256": "39b32c984f15ee75d8ca5e693059e99b3c6a10848fffab413f252004b6921f38",
-          "sha256": "d633d0c15dceb85c8b9a63ca93938ce497d73ba37d19c217021bde802eaeff30",
-          "size": 8947
-        },
-        {
-          "path": "Graphics/Characters/Followers/1038.png",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "c3c4afcbbceeb99973e93da6044ddc8444e8904b6be4e5aa312d2f9de7526423",
-          "size": 7160
-        },
-        {
-          "path": "Graphics/Characters/Followers/1038s.png",
-          "beforeExists": false,
-          "beforeSha256": "",
-          "sha256": "39b32c984f15ee75d8ca5e693059e99b3c6a10848fffab413f252004b6921f38",
-          "size": 7213
-        },
-        {
-          "path": "Scripts/Reborn/trainertext.rb",
-          "beforeExists": true,
-          "beforeSha256": "32bdf9a7f297dbc66f110d9d9d0c26ba8200fa7f21268fce5d9491eb03ede505",
-          "sha256": "070407b097de8e86e96c4e3b3b2297827210813fbcbdee99181b89742583d4d2",
-          "size": 4733339
+          "beforeSha256": "449f389bde3910f236a656606c1b949c1ba02735330a11c8fcb5134e9fbec434",
+          "sha256": "aeec63aba2615753bdef3442066ecc0180c3f0d55ae2a30a6f3d3cd9b91e9997",
+          "size": 44087
         },
         {
           "path": "intl.txt",
           "beforeExists": true,
-          "beforeSha256": "0817978496881b233b3a096ee9727363c495c33d1a9a1cdb62a2a110b224e3e6",
-          "sha256": "05726a30a4677631f4f2210d4c806b75d67d3a7c5d18a8e7ab2d00ddc32332af",
-          "size": 8535648
-        },
-        {
-          "path": "patch/Graphics/Characters/Followers/1034.png",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "25c8ebf26d8f29991c6d38080a0b81f1daf4703778c5cb146f6548104576b599",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Graphics/Characters/Followers/1034s.png",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "de5da3eb23decf29bb53b21025e220c8ba2109b1a34a0463346f953f972860bb",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Graphics/Characters/Followers/1035.png",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "2b4103d32ec21bee528ad99e077666427ec77a853ed1c67d9bb60eb6d4d937e4",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Graphics/Characters/Followers/1035s.png",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "6dfbc7efa6d2a3fea3255b10249f37f8a4fb96498aa98b5682c1893809d54b51",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Graphics/Characters/Followers/1037.png",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "af804a8ef5de64cd5ca50b13d51d2401c8f74ff7ab4f5ca3896aeedaba387678",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Graphics/Characters/Followers/1037s.png",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "d633d0c15dceb85c8b9a63ca93938ce497d73ba37d19c217021bde802eaeff30",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Graphics/Characters/Followers/1038.png",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "c3c4afcbbceeb99973e93da6044ddc8444e8904b6be4e5aa312d2f9de7526423",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "patch/Graphics/Characters/Followers/1038s.png",
-          "beforeExists": true,
-          "delete": true,
-          "beforeSha256": "39b32c984f15ee75d8ca5e693059e99b3c6a10848fffab413f252004b6921f38",
-          "sha256": "",
-          "size": 0
+          "beforeSha256": "05726a30a4677631f4f2210d4c806b75d67d3a7c5d18a8e7ab2d00ddc32332af",
+          "sha256": "35fa1b7914f4ce1884b1e5b936f1427abe3501e61f1fca7ac7718392515e24de",
+          "size": 8302836
         },
         {
           "path": "patch/Mods/RE_Deutsch.rb",
           "beforeExists": true,
-          "beforeSha256": "dc434b8f154985b8a825569f937e9b6205aeae1781d096d680dddd06710882c1",
-          "sha256": "42162d52caa16270881c531c0d225702e472f4a8b043a00381ec1f0aa305374f",
-          "size": 1194683
-        },
-        {
-          "path": "patch/Mods/RE_DiscoGegnerPool.rb",
-          "beforeExists": true,
-          "beforeSha256": "cb0ba6a0f0827d5128b1e02ada38049957d26577378a5153fc2fc1f14676ee94",
-          "sha256": "664f779648cf276adb5ec8d2b67bf14fdebc7637a8a1373263f69ddaee7b8bf0",
-          "size": 55755
+          "beforeSha256": "42162d52caa16270881c531c0d225702e472f4a8b043a00381ec1f0aa305374f",
+          "sha256": "547acca2d6f14bcad2708ed460289c7fef9493f47c4cfc5e6d40306e20458cfb",
+          "size": 1184973
         }
       ]
     }
